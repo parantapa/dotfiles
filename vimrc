@@ -255,7 +255,7 @@ function! s:ExecuteInShell(command) " {{{
     echo 'Shell command ' . command . ' executed.'
 endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-nnoremap <leader>! :Shell 
+nnoremap <leader>! :Shell
 
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
@@ -293,6 +293,11 @@ let g:gundo_preview_bottom = 1
 
 noremap  <F2> :NERDTreeToggle<cr>
 inoremap <F2> <esc>:NERDTreeToggle<cr>
+
+" }}}
+" Latex {{{
+
+    let g:tex_flavor = 'latex'
 
 " }}}
 " }}}
