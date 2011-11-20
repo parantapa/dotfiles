@@ -1,0 +1,8 @@
+[user]
+	name = Parantapa Bhattacharya
+	email = parantapa@gmail.com
+[color]
+	interactive = auto
+	diff = auto
+	status = auto
+	branch = auto
