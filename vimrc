@@ -110,6 +110,11 @@ set statusline+=%m      " Modified flag.
 set statusline+=%r      " Readonly flag.
 set statusline+=%w      " Preview window flag.
 
+set statusline+=\ 
+set statusline+=%#redbar#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 set statusline+=%=                              " Right align.
 set statusline+=(
 set statusline+=%{&ff}                          " Format (unix/DOS).
@@ -121,6 +126,7 @@ set statusline+=)
 
 " Line and column position and counts.
 set statusline+=\ (line\ %l\/%L,\ col\ %03c)
+
 
 " }}}
 " Searching and movement -------------------------------------------------- {{{
@@ -298,6 +304,12 @@ inoremap <F2> <esc>:NERDTreeToggle<cr>
 " Latex {{{
 
     let g:tex_flavor = 'latex'
+
+" }}}
+" Syntastic {{{
+
+    let g:syntastic_enable_signs = 1
+    let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " }}}
 " }}}
