@@ -151,18 +151,23 @@ set sidescroll=1
 set virtualedit+=block
 
 " Don't move on *
-nnoremap * *<c-o>
+nnoremap * *<C-o>
 
 " Easier to type, and I never use the default behavior.
 noremap H ^
 noremap L g_
 
 " Heresy
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
+inoremap <C-a> <esc>I
+inoremap <C-e> <esc>A
 
-nnoremap <tab> %
-vnoremap <tab> %
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+nnoremap <Leader>a :Ack!
+nnoremap <M-j> :lnext
+nnoremap <M-k> :lprev
+
 
 " }}}
 " Folding ----------------------------------------------------------------- {{{
@@ -312,4 +317,5 @@ inoremap <F2> <esc>:NERDTreeToggle<cr>
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " }}}
+
 " }}}
