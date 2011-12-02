@@ -296,14 +296,14 @@ set pastetoggle=<F6>
 
 " Gundo {{{
 
-nnoremap <F5> :GundoToggle<CR>
-let g:gundo_debug = 1
-let g:gundo_preview_bottom = 1
+    nnoremap <F5> :GundoToggle<CR>
+    let g:gundo_debug = 1
+    let g:gundo_preview_bottom = 1
 
 " }}}
 " NERD Tree {{{
 
-noremap  <F2> :NERDTreeToggle<cr>
+    noremap  <F2> :NERDTreeToggle<cr>
 
 " }}}
 " Latex {{{
@@ -317,21 +317,29 @@ noremap  <F2> :NERDTreeToggle<cr>
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " }}}
+" Ack {{{
+
+    nnoremap <Leader>a :Ack!
+
+" }}}
 " Pylint {{{
 
+    let g:pylint_onwrite = 0
     autocmd FileType python compiler pylint
+    autocmd FileType python nnoremap <leader>pyl :Pylint<CR>
 
 " }}}
 " Pydoc {{{
 
     let g:pydoc_open_cmd = 'tabnew'
     let g:pydoc_highlight=0
-    nnoremap <leader>pd :Pydoc 
+    autocmd FileType python nnoremap <leader>pyd :Pydoc 
 
 " }}}
-" Ack {{{
+" Pep8 {{{
 
-    nnoremap <Leader>a :Ack!
+    let g:no_pep8_maps = 1
+    autocmd FileType python noremap <leader>pep :call Pep8()<CR>
 
 " }}}
 
