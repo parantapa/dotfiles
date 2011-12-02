@@ -111,7 +111,7 @@ set statusline+=%m      " Modified flag.
 set statusline+=%r      " Readonly flag.
 set statusline+=%w      " Preview window flag.
 
-set statusline+=\ 
+set statusline+=\
 set statusline+=%#redbar#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -166,8 +166,10 @@ nnoremap <Tab> %
 vnoremap <Tab> %
 
 nnoremap <Leader>a :Ack!
-nnoremap <M-j> :lnext
-nnoremap <M-k> :lprev
+nnoremap <M-j> :lnext<CR>
+nnoremap <M-k> :lprev<CR>
+nnoremap <C-j> :cnext<CR>
+nnoremap <C-k> :cprev<CR>
 
 " }}}
 " Folding ----------------------------------------------------------------- {{{
@@ -316,6 +318,11 @@ inoremap <F2> <esc>:NERDTreeToggle<cr>
 
     let g:syntastic_enable_signs = 1
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+
+" }}}
+" Pylint {{{
+
+    autocmd FileType python compiler pylint
 
 " }}}
 
