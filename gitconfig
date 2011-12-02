@@ -6,3 +6,5 @@
 	diff = auto
 	status = auto
 	branch = auto
+[core]
+	excludesfile = ~/.cvsignore
