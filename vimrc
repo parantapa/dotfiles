@@ -6,6 +6,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 
 filetype off
 call pathogen#infect()
+call pathogen#helptags()
 filetype plugin indent on
 
 set nocompatible
@@ -168,7 +169,6 @@ nnoremap <Leader>a :Ack!
 nnoremap <M-j> :lnext
 nnoremap <M-k> :lprev
 
-
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
@@ -242,11 +242,12 @@ augroup ft_vim
 augroup END
 
 " }}}
+"
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
-nnoremap <leader>et <C-w>s<C-w>j<C-w>L:e ~/.tmux.conf<cr>
+nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <leader>et :tabedit ~/.tmux.conf<cr>
 
 " }}}
 " Shell ------------------------------------------------------------------- {{{
