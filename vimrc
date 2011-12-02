@@ -111,7 +111,7 @@ set statusline+=%m      " Modified flag.
 set statusline+=%r      " Readonly flag.
 set statusline+=%w      " Preview window flag.
 
-set statusline+=\
+set statusline+=\ 
 set statusline+=%#redbar#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -127,7 +127,6 @@ set statusline+=)
 
 " Line and column position and counts.
 set statusline+=\ (line\ %l\/%L,\ col\ %03c)
-
 
 " }}}
 " Searching and movement -------------------------------------------------- {{{
@@ -165,7 +164,6 @@ inoremap <C-e> <esc>A
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-nnoremap <Leader>a :Ack!
 nnoremap <M-j> :lnext<CR>
 nnoremap <M-k> :lprev<CR>
 nnoremap <C-j> :cnext<CR>
@@ -306,7 +304,6 @@ let g:gundo_preview_bottom = 1
 " NERD Tree {{{
 
 noremap  <F2> :NERDTreeToggle<cr>
-inoremap <F2> <esc>:NERDTreeToggle<cr>
 
 " }}}
 " Latex {{{
@@ -323,6 +320,18 @@ inoremap <F2> <esc>:NERDTreeToggle<cr>
 " Pylint {{{
 
     autocmd FileType python compiler pylint
+
+" }}}
+" Pydoc {{{
+
+    let g:pydoc_open_cmd = 'tabnew'
+    let g:pydoc_highlight=0
+    nnoremap <leader>pd :Pydoc 
+
+" }}}
+" Ack {{{
+
+    nnoremap <Leader>a :Ack!
 
 " }}}
 
