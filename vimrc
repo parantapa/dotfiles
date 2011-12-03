@@ -331,8 +331,9 @@ set pastetoggle=<F6>
 " }}}
 " Pydoc {{{
 
+    let g:pydoc_cmd = 'pydoc2'
     let g:pydoc_open_cmd = 'tabnew'
-    let g:pydoc_highlight=0
+    let g:pydoc_highlight = 0
     autocmd FileType python nnoremap <leader>pyd :Pydoc 
 
 " }}}
