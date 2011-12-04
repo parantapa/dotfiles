@@ -41,7 +41,7 @@ set autoread
 set autowrite
 
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set fillchars=diff:⣿
+set fillchars=diff:░
 set backspace=indent,eol,start
 set showbreak=↪
 
