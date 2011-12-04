@@ -20,15 +20,12 @@ URxvt*foreground: White
 ! background color (prior to tinting) (default is white)
 URxvt*background: Black
 
-! Xft: DejaVu fonts
-! Fedora/debian packages: dejavu-sans-mono-fonts/ttf-dejavu 
-!URxvt*font: xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
-!URxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
-!
-! Xft: Inconsolata fonts
-! Debian packages: ttf-inconsolata
-URxvt*font: xft:Inconsolata:pixelsize=16:antialias=true:
-URxvt*boldFont: xft:Inconsolata:bold:pixelsize=16:antialias=true:
+! Set base fonts Inconsolata and DejaVu Sans Mono
+URxvt*font: xft:Inconsolata:pixelsize=16:antialias=true:hinting=true,\
+            xft:DejaVu Sans Mono:pixelsize=16:antialias=true:hinting=true
+
+URxvt*boldFont: xft:Inconsolata:bold:pixelsize=16:antialias=true:hinting=true,\
+                xft:DejaVu Sans Mono:bold:pixelsize=126:antialias=true:hinting=true
 !
 ! Traditional fonts - a more traditional font setup in lieu of xft
 !URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
