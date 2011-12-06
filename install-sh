@@ -1,0 +1,25 @@
+#!/bin/bash
+
+srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ -d "$1" ] ; then
+	dstdir="$1"
+else
+	dstdir="$HOME"
+fi
+
+dotfiles=(profile bash_logout bashrc
+    vimrc vim tmux.conf
+    gitconfig cvsignore
+    pylintrc Xresources)
+
+cd "$dstdir"
+for file in "${dotfiles[@]}" ; do
+    rm -i ".$file"
+    ln -s "$srcdir/$file" ".$file"
+done
+
+cd "$dstdir/.vim"
+mkdir tmp
+mkdir tmp/backup
+mkdir tmp/undo
+mkdir tmp/swap
