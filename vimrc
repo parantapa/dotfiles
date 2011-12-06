@@ -343,5 +343,10 @@ set pastetoggle=<F6>
     autocmd FileType python noremap <leader>pep :call Pep8()<CR>
 
 " }}}
+" Command-T {{{
 
+    let g:CommandTAcceptSelectionTabMap = ['<C-t>', '<CR>']
+
+" }}}
+"
 " }}}
