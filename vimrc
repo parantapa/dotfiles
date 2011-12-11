@@ -242,7 +242,16 @@ augroup ft_vim
 augroup END
 
 " }}}
-"
+" Tex {{{
+
+augroup ft_tex
+    au!
+
+    au FileType tex setlocal spell spelllang=en
+augroup END
+
+" }}}
+
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
@@ -271,6 +280,9 @@ nnoremap <leader>! :Shell
 
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
+
+" I dont use ex mode
+map Q gq
 
 " Clean whitespace
 map <leader>W  :%s/\s\+$//<cr>:let @/=''<CR>

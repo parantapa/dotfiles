@@ -51,9 +51,3 @@ else
 fi
 PS1="$PS1\\h: \\W]\\$ "
 
-# I am still on python2
-alias python=python2
-alias pydoc=pydoc2
-alias pip=pip2
-alias ipython=ipython2
-alias cython=cython2
