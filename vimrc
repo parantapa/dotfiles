@@ -27,6 +27,7 @@ set history=1000
 set shell=/bin/bash
 set matchtime=3
 set title
+set hidden
 
 set ruler
 set nonumber
@@ -255,8 +256,10 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-nnoremap <leader>ev :tabedit $MYVIMRC<cr>
-nnoremap <leader>et :tabedit ~/.tmux.conf<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>et :edit ~/.tmux.conf<cr>
+
+autocmd BufWritePost .vimrc source %
 
 " }}}
 " Shell ------------------------------------------------------------------- {{{
@@ -343,8 +346,8 @@ set pastetoggle=<F6>
 " }}}
 " Pydoc {{{
 
-    let g:pydoc_cmd = 'pydoc2'
-    let g:pydoc_open_cmd = 'tabnew'
+    let g:pydoc_cmd = 'pydoc'
+    let g:pydoc_open_cmd = 'split'
     let g:pydoc_highlight = 0
     autocmd FileType python nnoremap <leader>pyd :Pydoc 
 
@@ -355,10 +358,6 @@ set pastetoggle=<F6>
     autocmd FileType python noremap <leader>pep :call Pep8()<CR>
 
 " }}}
-" Command-T {{{
-
-    let g:CommandTAcceptSelectionTabMap = ['<C-t>', '<CR>']
-
-" }}}
 "
 " }}}
+
