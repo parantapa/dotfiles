@@ -221,6 +221,7 @@ augroup ft_rest
     au Filetype rst nnoremap <buffer> <localleader>2 yypVr-
     au Filetype rst nnoremap <buffer> <localleader>3 yypVr~
     au Filetype rst nnoremap <buffer> <localleader>4 yypVr`
+    au FileType rst setlocal spell spelllang=en
 augroup END
 
 " }}}
