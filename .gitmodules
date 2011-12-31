@@ -34,3 +34,6 @@
 [submodule "vim/bundle/pylint"]
 	path = vim/bundle/pylint
 	url = https://github.com/parantapa/pylint.vim.git
+[submodule "vim/bundle/tabular"]
+	path = vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
