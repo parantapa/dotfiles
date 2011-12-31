@@ -22,3 +22,10 @@ mkdir tmp
 mkdir tmp/backup
 mkdir tmp/undo
 mkdir tmp/swap
+
+cd "$srcdir"
+git submodule update --init
+
+cd vim/bundle/commad-t
+rake make
+
