@@ -26,6 +26,6 @@ mkdir tmp/swap
 cd "$srcdir"
 git submodule update --init
 
-cd vim/bundle/commad-t
+cd vim/bundle/command-t
 rake make
 
