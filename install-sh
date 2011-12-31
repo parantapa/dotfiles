@@ -8,9 +8,8 @@ else
 fi
 
 dotfiles=(profile bash_logout bashrc
-    vimrc vim tmux.conf
-    gitconfig cvsignore
-    pylintrc Xresources)
+    vimrc vim tmux.conf gitconfig cvsignore
+    pylintrc Xresources latexmkrc)
 
 cd "$dstdir"
 for file in "${dotfiles[@]}" ; do
