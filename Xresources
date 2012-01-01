@@ -51,3 +51,5 @@ URxvt*scrollstyle: plain
 ! diable IS0 14755 key cap mode (use to directly enter unicode)
 URxvt*iso14755: false
 
+! Use a icon
+URxvt*iconFile: /usr/share/icons/gnome/scalable/apps/utilities-terminal-symbolic.svg
