@@ -95,7 +95,12 @@ let maplocalleader = "\\"
 
 syntax on
 set background=dark
-colorscheme molokai
+
+if &t_Co > 255
+    colorscheme molokai
+else
+    colorscheme desert
+end
 
 " }}}
 " Status line ------------------------------------------------------------- {{{
