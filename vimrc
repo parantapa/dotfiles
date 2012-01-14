@@ -96,9 +96,8 @@ let maplocalleader = "\\"
 syntax on
 set background=dark
 
-if &t_Co > 255
-    colorscheme molokai
-else
+colorscheme molokai
+if &t_Co < 256
     colorscheme desert
 end
 
@@ -170,10 +169,10 @@ inoremap <C-e> <esc>A
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-nnoremap <M-j> :lnext<CR>
-nnoremap <M-k> :lprev<CR>
-nnoremap <C-j> :cnext<CR>
-nnoremap <C-k> :cprev<CR>
+nnoremap <C-j> :lnext<CR>
+nnoremap <C-k> :lprev<CR>
+" nnoremap <M-k> :cnext<CR>
+" nnoremap <M-l> :cprev<CR>
 
 " }}}
 " Folding ----------------------------------------------------------------- {{{
@@ -227,14 +226,6 @@ augroup ft_rest
     au Filetype rst nnoremap <buffer> <localleader>3 yypVr~
     au Filetype rst nnoremap <buffer> <localleader>4 yypVr`
     au FileType rst setlocal spell spelllang=en
-augroup END
-
-" }}}
-" Ruby {{{
-
-augroup ft_ruby
-    au!
-    au Filetype ruby setlocal foldmethod=syntax
 augroup END
 
 " }}}
@@ -336,6 +327,7 @@ set pastetoggle=<F6>
 
     let g:syntastic_enable_signs = 1
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+    let g:syntastic_c_compiler_options = ' -Wall -Wextra'
 
 " }}}
 " Ack {{{
