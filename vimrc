@@ -254,8 +254,14 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
+fun! Open_ft_snippets()
+    let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/" . &ft . ".snippets"
+    execute cmd
+endf
+
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>et :edit ~/.tmux.conf<cr>
+nnoremap <leader>es :call Open_ft_snippets()<cr>
 
 autocmd BufWritePost .vimrc source %
 
