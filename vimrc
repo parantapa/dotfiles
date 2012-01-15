@@ -334,13 +334,6 @@ set pastetoggle=<F6>
     nnoremap <Leader>a :Ack!
 
 " }}}
-" Pylint {{{
-
-    let g:pylint_onwrite = 0
-    autocmd FileType python compiler pylint
-    autocmd FileType python nnoremap <leader>pyl :Pylint<CR>
-
-" }}}
 " Pydoc {{{
 
     let g:pydoc_cmd = 'pydoc'
