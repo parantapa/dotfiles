@@ -43,3 +43,6 @@
 [submodule "vim/bundle/snipmate-snippets"]
 	path = vim/bundle/snipmate-snippets
 	url = https://github.com/parantapa/snipmate-snippets.git
+[submodule "vim/bundle/latex-box"]
+	path = vim/bundle/latex-box
+	url = https://github.com/olivierverdier/vim-latex-box.git
