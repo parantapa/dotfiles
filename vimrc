@@ -166,9 +166,10 @@ noremap L g_
 inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
 
-nnoremap <Tab> %
-vnoremap <Tab> %
+" Too many shifts
+nnoremap ; :
 
+nnoremap <C-h> :lrewind<CR>
 nnoremap <C-j> :lnext<CR>
 nnoremap <C-k> :lprev<CR>
 " nnoremap <M-k> :cnext<CR>
@@ -294,9 +295,6 @@ nnoremap <leader>s :%s/\v
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-" Less chording
-nnoremap ; :
-
 " Sudo to write
 cmap w!! w !sudo tee % >/dev/null
 
@@ -328,6 +326,7 @@ set pastetoggle=<F6>
     let g:syntastic_enable_signs = 1
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
+    let g:syntastic_python_checker = 'pylint'
 
 " }}}
 " Ack {{{
