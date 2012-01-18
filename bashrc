@@ -41,7 +41,7 @@ export VISUAL=vim
 # Make tmux always use unicode
 alias tmux="tmux -u"
 alias diff="colordiff"
-alias pacman="pacman-color"
+# alias pacman="pacman-color"
 
 # Time to set a fancy prompt
 if [ "`id -u`" -eq 0 ] ; then

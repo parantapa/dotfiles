@@ -9,6 +9,7 @@ command! rc :!urxvtc -e vim $HOME/.pentadactylrc
 command! m open mail.parantapa.net
 command! n open slashdot.org | boingboing.net | news.ycombinator.org | reddit.com
 command! fb open facebook.com
+command! gh open github.com
 command! c1 open dilbert.com/fast | xkcd.com
 command! c2 open gocomics.com/calvinandhobbes | gocomics.com/garfield | gocomics.com/broomhilda | gocomics.com/bc | gocomics.com/wizardofid
 command! c3 open arcamax.com/thefunnies/hagarthehorrible | arcamax.com/thefunnies/beetlebailey | arcamax.com/thefunnies/peanuts
