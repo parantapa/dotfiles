@@ -226,7 +226,6 @@ augroup ft_rest
     au Filetype rst nnoremap <buffer> <localleader>2 yypVr-
     au Filetype rst nnoremap <buffer> <localleader>3 yypVr~
     au Filetype rst nnoremap <buffer> <localleader>4 yypVr`
-    au FileType rst setlocal spell spelllang=en
 augroup END
 
 " }}}
@@ -238,15 +237,6 @@ augroup ft_vim
     au FileType vim setlocal foldmethod=marker
     au FileType help setlocal textwidth=78
     " au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
-augroup END
-
-" }}}
-" Tex {{{
-
-augroup ft_tex
-    au!
-
-    au FileType tex setlocal spell spelllang=en
 augroup END
 
 " }}}
@@ -292,7 +282,7 @@ nnoremap <leader>! :Shell
 map Q gq
 
 " Clean whitespace
-map <leader>W  :%s/\s\+$//<cr>:let @/=''<CR>
+map <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Substitute
 nnoremap <leader>s :%s/\v
@@ -306,6 +296,9 @@ cmap w!! w !sudo tee % >/dev/null
 
 " Toggle paste
 set pastetoggle=<F6>
+
+" Toggle spell
+nmap <F3> :setlocal spell! spelllang=en_us<CR>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
