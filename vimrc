@@ -77,7 +77,7 @@ set shiftround
 
 set undodir=~/.vim/tmp/undo//
 set undofile
-set undoreload=10000
+set undoreload=1000
 
 set backupdir=~/.vim/tmp/backup//
 set backup
@@ -240,6 +240,15 @@ augroup ft_vim
 augroup END
 
 " }}}
+" Python {{{
+
+augroup ft_python
+    au!
+
+    au FileType python nnoremap <F10> :Shell python %<CR>
+augroup END
+
+" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
@@ -268,7 +277,7 @@ function! s:ExecuteInShell(command) " {{{
     silent! redraw
     silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
     silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
-    silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>q :q<CR>'
     silent! execute 'AnsiEsc'
     echo 'Shell command ' . command . ' executed.'
 endfunction " }}}
@@ -300,15 +309,17 @@ set pastetoggle=<F6>
 " Toggle spell
 nmap <F3> :setlocal spell! spelllang=en_us<CR>
 
-" Plugin maps for function keys
-nmap <F5> :GundoToggle<CR>
-nmap <F2> :NERDTreeToggle<CR>
-
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
+" NERDTree {{{
+
+    nmap <F2> :NERDTreeToggle<CR>
+
+" }}}
 " Gundo {{{
 
+    nmap <F5> :GundoToggle<CR>
     let g:gundo_debug = 1
     let g:gundo_preview_bottom = 1
 
