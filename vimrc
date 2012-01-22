@@ -249,9 +249,9 @@ fun! Open_ft_snippets()
     execute cmd
 endf
 
-nnoremap <leader>ev :edit $MYVIMRC<cr>
-nnoremap <leader>et :edit ~/.tmux.conf<cr>
-nnoremap <leader>es :call Open_ft_snippets()<cr>
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>et :edit ~/.tmux.conf<CR>
+nnoremap <Leader>es :call Open_ft_snippets()<CR>
 
 autocmd BufWritePost .vimrc source %
 
@@ -273,7 +273,7 @@ function! s:ExecuteInShell(command) " {{{
     echo 'Shell command ' . command . ' executed.'
 endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-nnoremap <leader>! :Shell
+nnoremap <Leader>! :Shell
 
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
@@ -282,14 +282,14 @@ nnoremap <leader>! :Shell
 map Q gq
 
 " Clean whitespace
-map <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+map <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Substitute
-nnoremap <leader>s :%s/\v
+nnoremap <Leader>s :%s/\v
 
 " Emacs bindings in command line mode
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
 
 " Sudo to write
 cmap w!! w !sudo tee % >/dev/null
@@ -300,19 +300,17 @@ set pastetoggle=<F6>
 " Toggle spell
 nmap <F3> :setlocal spell! spelllang=en_us<CR>
 
+" Plugin maps for function keys
+nmap <F5> :GundoToggle<CR>
+nmap <F2> :NERDTreeToggle<CR>
+
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
 " Gundo {{{
 
-    nnoremap <F5> :GundoToggle<CR>
     let g:gundo_debug = 1
     let g:gundo_preview_bottom = 1
-
-" }}}
-" NERD Tree {{{
-
-    noremap  <F2> :NERDTreeToggle<cr>
 
 " }}}
 " Latex {{{
@@ -338,13 +336,19 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     let g:pydoc_cmd = 'pydoc'
     let g:pydoc_open_cmd = 'split'
     let g:pydoc_highlight = 0
-    autocmd FileType python nnoremap <leader>pyd :Pydoc 
+    autocmd FileType python nnoremap <Leader>pyd :Pydoc
 
 " }}}
 " Pep8 {{{
 
     let g:no_pep8_maps = 1
-    autocmd FileType python noremap <leader>pep :call Pep8()<CR>
+    autocmd FileType python nnoremap <Leader>pep :call Pep8()<CR>
+
+" }}}
+" Tabbing {{{
+
+    nnoremap <Leader>T :Tab /\v
+    vnoremap <Leader>T :Tab /\v
 
 " }}}
 "
