@@ -14,17 +14,18 @@ dotfiles=(profile bash_logout bashrc
 
 cd "$dstdir"
 for file in "${dotfiles[@]}" ; do
-    rm -i ".$file"
-    ln -s "$srcdir/$file" ".$file"
+    [ -a ".$file" ] && rm -i ".$file"
+    [ -a ".$file" ] || ln -s "$srcdir/$file" ".$file"
 done
 
 cd "$dstdir/.vim"
-mkdir tmp
-mkdir tmp/backup
-mkdir tmp/undo
-mkdir tmp/swap
+[ -d tmp ]        || mkdir tmp
+[ -d tmp/backup ] || mkdir tmp/backup
+[ -d tmp/undo ]   || mkdir tmp/undo
+[ -d tmp/swap ]   || mkdir tmp/swap
 
 cd "$srcdir"
+git submodule sync
 git submodule update --init
 
 cd vim/bundle/command-t
