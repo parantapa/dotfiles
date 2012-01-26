@@ -46,3 +46,6 @@
 [submodule "vim/bundle/latex-box"]
 	path = vim/bundle/latex-box
 	url = https://github.com/olivierverdier/vim-latex-box.git
+[submodule "vim/bundle/mako"]
+	path = vim/bundle/mako
+	url = https://github.com/sophacles/vim-bundle-mako.git
