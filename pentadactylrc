@@ -1,8 +1,9 @@
 set mapleader=","
-set editor="urxvtc -e vim"
+set editor="gvim"
 
 nnoremap j 3j
 nnoremap k 3k
+nnoremap ; :
 
 command! rc :!urxvtc -e vim $HOME/.pentadactylrc
 
