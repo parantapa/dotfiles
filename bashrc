@@ -92,3 +92,6 @@ else
     PS1="${txtcyn}\u@\h${txtred}: ${txtgrn}\W ${txtred}\\\$ ${txtrst}"
 fi
 
+# Shortcut for ps-ing pgrep output
+psg () { ps -f $(pgrep "$@") ; }
+
