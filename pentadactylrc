@@ -5,8 +5,6 @@ nnoremap j 3j
 nnoremap k 3k
 nnoremap ; :
 
-command! rc :!urxvtc -e vim $HOME/.pentadactylrc
-
 command! m open mail.parantapa.net
 command! n open slashdot.org | boingboing.net | news.ycombinator.org | reddit.com
 command! fb open facebook.com
