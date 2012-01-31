@@ -49,3 +49,6 @@
 [submodule "vim/bundle/mako"]
 	path = vim/bundle/mako
 	url = https://github.com/sophacles/vim-bundle-mako.git
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
