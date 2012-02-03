@@ -362,6 +362,11 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     vnoremap <Leader>T :Tab /\v
 
 " }}}
+" Snippets {{{
+
+    let g:snips_author = "Parantapa Bhattacharya <parantapa@gmail.com>"
+
+" }}}
 "
 " }}}
 
