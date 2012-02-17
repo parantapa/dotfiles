@@ -367,6 +367,16 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     let g:snips_author = "Parantapa Bhattacharya <parantapa@gmail.com>"
 
 " }}}
+" TagBar {{{
+
+    nmap <F8> :TagbarToggle<CR>
+
+" }}}
+" Ctrl-P {{{
+
+    let g:ctrlp_working_path_mode = 0
+
+" }}}
 "
 " }}}
 
