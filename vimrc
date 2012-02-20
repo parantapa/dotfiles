@@ -364,7 +364,7 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " }}}
 " Snippets {{{
 
-    let g:snips_author = "Parantapa Bhattacharya <parantapa@gmail.com>"
+    let g:snips_author = "Parantapa Bhattacharya <pb@parantapa.net>"
 
 " }}}
 " TagBar {{{
