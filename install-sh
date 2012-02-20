@@ -28,6 +28,3 @@ cd "$srcdir"
 git submodule sync
 git submodule update --init
 
-cd vim/bundle/command-t
-rake make
-
