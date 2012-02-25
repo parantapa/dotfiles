@@ -2,3 +2,6 @@
 
 disable=C0103,W0142
 
+[BASIC]
+
+no-docstring-rgx=(__.*__|main)
