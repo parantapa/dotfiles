@@ -242,10 +242,16 @@ augroup END
 " }}}
 " Python {{{
 
+fun! Exec_python()
+    write
+    execute "Shell python %"
+    wincmd h
+endf
+
 augroup ft_python
     au!
 
-    au FileType python nnoremap <F10> :Shell python %<CR>
+    au FileType python nnoremap <F10> :call Exec_python()<CR>
 augroup END
 
 " }}}
