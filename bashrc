@@ -80,12 +80,12 @@ txtrst='\[\e[0m\]'    # Text Reset
 
 # Time to set a fancy prompt
 if [ -r /etc/bash_completion.d/git ] ; then
-    . /etc/bash_completion.d/git
-
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=1
     export GIT_PS1_SHOWUPSTREAM="auto"
+
+    . /etc/bash_completion.d/git
 
     PS1="${txtcyn}\u@\h${txtred}: ${txtgrn}\W ${txtylw}\$(__git_ps1 \"(%s)\")${txtred}\\\$ ${txtrst}"
 else
@@ -94,4 +94,11 @@ fi
 
 # Shortcut for ps-ing pgrep output
 psg () { ps -f $(pgrep "$@") ; }
+
+# Use virtualenvwrapper
+if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
+    export WORKON_HOME=$HOME/.virtualenvs
+
+    . /usr/bin/virtualenvwrapper.sh
+fi
 
