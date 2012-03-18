@@ -1,19 +1,18 @@
-set mapleader=","
 set editor="gvim"
 
-nnoremap j 3j
-nnoremap k 3k
-nnoremap ; :
+nmap -b j 3j
+nmap -b k 3k
+nmap -b ; :
 
-nmap <Leader>m :open mail.parantapa.net<CR>
-nmap <Leader>n :open slashdot.org | boingboing.net | news.ycombinator.org | reddit.com<CR>
+nmap ,m :open mail.parantapa.net<CR>
+nmap ,n :open slashdot.org | boingboing.net | news.ycombinator.org | reddit.com<CR>
 
-nmap <Leader>fb :open facebook.com<CR>
-nmap <Leader>gh :open github.com<CR>
-nmap <Leader>gs :open scholar.google.com<CR>
-nmap <Leader>ma :open academic.research.microsoft.com<CR>
+nmap ,fb :open facebook.com<CR>
+nmap ,gh :open github.com<CR>
+nmap ,gs :open scholar.google.com<CR>
+nmap ,ma :open academic.research.microsoft.com<CR>
 
-nmap <Leader>c1 :open dilbert.com/fast | xkcd.com<CR>
-nmap <Leader>c2 :open gocomics.com/calvinandhobbes | gocomics.com/garfield | gocomics.com/broomhilda | gocomics.com/bc | gocomics.com/wizardofid<CR>
-nmap <Leader>c3 :open arcamax.com/thefunnies/hagarthehorrible | arcamax.com/thefunnies/beetlebailey | arcamax.com/thefunnies/peanuts<CR>
+nmap ,c1 :open dilbert.com/fast | xkcd.com<CR>
+nmap ,c2 :open gocomics.com/calvinandhobbes | gocomics.com/garfield | gocomics.com/broomhilda | gocomics.com/bc | gocomics.com/wizardofid<CR>
+nmap ,c3 :open arcamax.com/thefunnies/hagarthehorrible | arcamax.com/thefunnies/beetlebailey | arcamax.com/thefunnies/peanuts<CR>
 
