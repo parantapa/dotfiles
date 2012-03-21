@@ -102,3 +102,8 @@ if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
     . /usr/bin/virtualenvwrapper.sh
 fi
 
+alias gc="git commit"
+alias gs="git status"
+alias gd="git diff"
+alias gl="git log"
+
