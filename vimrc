@@ -97,7 +97,7 @@ syntax on
 set background=dark
 
 colorscheme molokai
-if &t_Co < 256
+if !has('gui_running') && &t_Co < 256
     colorscheme desert
 end
 
