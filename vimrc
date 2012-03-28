@@ -217,6 +217,14 @@ augroup ft_c
 augroup END
 
 " }}}
+" HTML {{{
+
+augroup ft_html
+    au!
+    au FileType html setlocal sw=2 sts=2
+augroup END
+
+" }}}
 " ReStructuredText {{{
 
 augroup ft_rest
