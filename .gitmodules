@@ -25,9 +25,6 @@
 [submodule "vim/bundle/pydoc"]
 	path = vim/bundle/pydoc
 	url = https://github.com/parantapa/pydoc.vim.git
-[submodule "vim/bundle/pep8"]
-	path = vim/bundle/pep8
-	url = https://github.com/nvie/vim-pep8.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
