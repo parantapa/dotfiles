@@ -41,7 +41,7 @@ export VISUAL=vim
 # Make tmux always use unicode
 alias tmux="tmux -u"
 alias diff="colordiff"
-# alias pacman="pacman-color"
+alias pacman="pacman-color"
 
 # List of colors
 txtblk='\[\e[0;30m\]' # Black - Regular
