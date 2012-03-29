@@ -20,7 +20,7 @@ HISTTIMEFORMAT="%F %T "
 shopt -s checkwinsize
 
 # colorize ls
-LS_OPTIONS='--color=auto -h --group-directories-first'
+LS_OPTIONS='--color=auto -h'
 
 alias ls="ls $LS_OPTIONS"
 alias ll="ls $LS_OPTIONS -l -v"
@@ -40,8 +40,8 @@ export VISUAL=vim
 
 # Make tmux always use unicode
 alias tmux="tmux -u"
-alias diff="colordiff"
-alias pacman="pacman-color"
+# alias diff="colordiff"
+# alias pacman="pacman-color"
 
 # List of colors
 txtblk='\[\e[0;30m\]' # Black - Regular
@@ -96,10 +96,10 @@ fi
 psg () { ps -f $(pgrep "$@") ; }
 
 # Use virtualenvwrapper
-if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
+if [ -r $HOME/local/bin/virtualenvwrapper.sh ] ; then
     export WORKON_HOME=$HOME/.virtualenvs
 
-    . /usr/bin/virtualenvwrapper.sh
+    . $HOME/local/bin/virtualenvwrapper.sh
 fi
 
 alias gc="git commit"
@@ -107,3 +107,13 @@ alias gs="git status"
 alias gd="git diff"
 alias gl="git log"
 alias gca="git commit -a"
+
+# Provide a local install space
+export PATH=$HOME/local/bin:$PATH
+export MANPATH=$HOME/local/share/man
+export LD_LIBRARY_PATH=$HOME/local/lib
+
+export C_INCLUDE_PATH=$HOME/local/include
+export CPLUS_INCLUDE_PATH=$HOME/local/include
+export LIBRARY_PATH=$HOME/local/lib
+
