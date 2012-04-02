@@ -95,13 +95,6 @@ fi
 # Shortcut for ps-ing pgrep output
 psg () { ps -f $(pgrep "$@") ; }
 
-# Use virtualenvwrapper
-if [ -r $HOME/local/bin/virtualenvwrapper.sh ] ; then
-    export WORKON_HOME=$HOME/.virtualenvs
-
-    . $HOME/local/bin/virtualenvwrapper.sh
-fi
-
 alias gc="git commit"
 alias gs="git status"
 alias gd="git diff"
@@ -116,4 +109,11 @@ export LD_LIBRARY_PATH=$HOME/local/lib
 export C_INCLUDE_PATH=$HOME/local/include
 export CPLUS_INCLUDE_PATH=$HOME/local/include
 export LIBRARY_PATH=$HOME/local/lib
+
+# Use virtualenvwrapper
+if [ -r $HOME/local/bin/virtualenvwrapper.sh ] ; then
+    export WORKON_HOME=$HOME/.virtualenvs
+
+    . $HOME/local/bin/virtualenvwrapper.sh
+fi
 
