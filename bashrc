@@ -79,13 +79,13 @@ bakwht='\[\e[47m\]'   # White
 txtrst='\[\e[0m\]'    # Text Reset
 
 # Time to set a fancy prompt
-if [ -r /etc/bash_completion.d/git ] ; then
+if [ -r /usr/share/bash-completion/completions/git ] ; then
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=1
     export GIT_PS1_SHOWUPSTREAM="auto"
 
-    . /etc/bash_completion.d/git
+    . /usr/share/bash-completion/completions/git
 
     PS1="${txtcyn}\u@\h${txtred}: ${txtgrn}\W ${txtylw}\$(__git_ps1 \"(%s)\")${txtred}\\\$ ${txtrst}"
 else
