@@ -217,6 +217,15 @@ augroup ft_c
 augroup END
 
 " }}}
+" CPP {{{
+
+augroup ft_cpp
+    au!
+    au FileType cpp setlocal foldmethod=syntax
+    au FileType cpp setlocal noet sw=8 sts=8
+augroup END
+
+" }}}
 " HTML {{{
 
 augroup ft_html
