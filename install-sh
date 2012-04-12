@@ -7,7 +7,7 @@ else
 	dstdir="$HOME"
 fi
 
-dotfiles=(profile bash_logout bashrc
+dotfiles=(profile bash_logout bashrc_private
     vimrc vim tmux.conf gitconfig cvsignore
     pylintrc Xresources latexmkrc
     pentadactylrc)
