@@ -32,16 +32,16 @@ alias cp="cp -i"
 alias mv="mv -i"
 
 # Set the environmetal veriables to something I like
-export GREP_OPTIONS='--color=auto'
-export LESS='-niRS'
+export GREP_OPTIONS="--color=auto"
+export LESS=-niRS
 export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
 
 # Make tmux always use unicode
 alias tmux="tmux -u"
-alias diff="colordiff"
-alias pacman="pacman-color"
+alias diff=colordiff
+alias pacman=pacman-color
 
 # List of colors
 txtblk='\[\e[0;30m\]' # Black - Regular
@@ -83,7 +83,7 @@ if [ -r /etc/bash_completion.d/git ] ; then
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=1
-    export GIT_PS1_SHOWUPSTREAM="auto"
+    export GIT_PS1_SHOWUPSTREAM=auto
 
     . /etc/bash_completion.d/git
 

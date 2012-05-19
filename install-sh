@@ -14,8 +14,7 @@ dotfiles=(profile bash_logout bashrc
 
 cd "$dstdir"
 for file in "${dotfiles[@]}" ; do
-    [ -a ".$file" ] && rm -i ".$file"
-    [ -a ".$file" ] || ln -s "$srcdir/$file" ".$file"
+    ln -siT "$srcdir/$file" ".$file"
 done
 
 cd "$dstdir/.vim"
