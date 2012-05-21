@@ -365,20 +365,6 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     nnoremap <Leader>a :Ack!
 
 " }}}
-" Pydoc {{{
-
-    let g:pydoc_cmd = 'pydoc'
-    let g:pydoc_open_cmd = 'split'
-    let g:pydoc_highlight = 0
-    autocmd FileType python nnoremap <Leader>pyd :Pydoc
-
-" }}}
-" Pep8 {{{
-
-    let g:no_pep8_maps = 1
-    autocmd FileType python nnoremap <Leader>pep :call Pep8()<CR>
-
-" }}}
 " Tabbing {{{
 
     nnoremap <Leader>T :Tab /\v
