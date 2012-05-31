@@ -32,8 +32,8 @@ alias cp="cp -i"
 alias mv="mv -i"
 
 # Set the environmetal veriables to something I like
-export GREP_OPTIONS='--color=auto'
-export LESS='-niRS'
+export GREP_OPTIONS="--color=auto"
+export LESS=-niRS
 export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
@@ -83,7 +83,7 @@ if [ -r /etc/bash_completion.d/git ] ; then
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=1
-    export GIT_PS1_SHOWUPSTREAM="auto"
+    export GIT_PS1_SHOWUPSTREAM=auto
 
     . /etc/bash_completion.d/git
 
