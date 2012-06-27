@@ -105,5 +105,5 @@ fi
 alias gc="git commit"
 alias gs="git status"
 alias gd="git diff"
-alias gl="git log"
 alias gca="git commit -a"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
