@@ -102,8 +102,12 @@ if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
     . /usr/bin/virtualenvwrapper.sh
 fi
 
+# Git shortcuts
 alias gc="git commit"
 alias gs="git status"
 alias gd="git diff"
 alias gca="git commit -a"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+
+# GVim alias
+alias g="gvim --remote-silent"
