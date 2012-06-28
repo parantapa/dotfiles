@@ -95,6 +95,7 @@ fi
 # Shortcut for ps-ing pgrep output
 psg () { ps -f $(pgrep "$@") ; }
 
+# Git shortcuts
 alias gc="git commit"
 alias gs="git status"
 alias gd="git diff"
@@ -118,3 +119,5 @@ if [ -r $HOME/local/bin/virtualenvwrapper.sh ] ; then
     . $HOME/local/bin/virtualenvwrapper.sh
 fi
 
+# GVim alias
+alias g="gvim --remote-silent"
