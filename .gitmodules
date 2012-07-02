@@ -52,3 +52,6 @@
 [submodule "vim/bundle/viewdoc"]
 	path = vim/bundle/viewdoc
 	url = https://github.com/powerman/vim-plugin-viewdoc.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
