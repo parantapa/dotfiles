@@ -1,3 +1,3 @@
-set guifont=Inconsolata\ Medium\ 12
+set guifont=Inconsolata\ Medium\ 14
 set guioptions=aegirLt
 colorscheme molokai

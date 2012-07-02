@@ -21,11 +21,11 @@ URxvt*foreground: White
 URxvt*background: Black
 
 ! Set base fonts Inconsolata and DejaVu Sans Mono
-URxvt*font: xft:Inconsolata:pixelsize=16:antialias=true:hinting=true,\
-            xft:DejaVu Sans Mono:pixelsize=16:antialias=true:hinting=true
+URxvt*font: xft:Inconsolata:pixelsize=18:antialias=true:hinting=true,\
+            xft:DejaVu Sans Mono:pixelsize=18:antialias=true:hinting=true
 
-URxvt*boldFont: xft:Inconsolata:bold:pixelsize=16:antialias=true:hinting=true,\
-                xft:DejaVu Sans Mono:bold:pixelsize=126:antialias=true:hinting=true
+URxvt*boldFont: xft:Inconsolata:bold:pixelsize=18:antialias=true:hinting=true,\
+                xft:DejaVu Sans Mono:bold:pixelsize=18:antialias=true:hinting=true
 !
 ! Traditional fonts - a more traditional font setup in lieu of xft
 !URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
