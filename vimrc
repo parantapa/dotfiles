@@ -384,6 +384,11 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     let g:ctrlp_working_path_mode = 2
 
 " }}}
+" Rainbow Parenthesis {{{
+
+    nmap <Leader>R :RainbowParenthesesToggleAll<CR>
+
+" }}}
 "
 " }}}
 
