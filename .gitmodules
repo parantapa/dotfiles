@@ -58,3 +58,6 @@
 [submodule "vim/bundle/rainbow-parentheses"]
 	path = vim/bundle/rainbow-parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "vim/bundle/ipython"]
+	path = vim/bundle/ipython
+	url = https://github.com/ivanov/vim-ipython.git
