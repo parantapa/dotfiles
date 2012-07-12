@@ -389,6 +389,11 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     nmap <Leader>R :RainbowParenthesesToggleAll<CR>
 
 " }}}
+" SuperTab {{{
+
+    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+
+" }}}
 "
 " }}}
 
