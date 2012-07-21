@@ -121,3 +121,8 @@ fi
 
 # GVim alias
 alias g="gvim --remote-silent"
+
+# Places alias
+alias cdns="cd /NS/twitter/work/parantapa/"
+alias cssc="cd /scratch/NS/parantapa"
+alias cdlo="cd /local/parantapa"
