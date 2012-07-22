@@ -394,6 +394,12 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 
 " }}}
+" IPython {{{
+
+    let g:ipy_perform_mappings = 0
+    let g:ipy_completefunc = 'local'
+
+" }}}
 "
 " }}}
 
