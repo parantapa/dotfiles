@@ -389,6 +389,7 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " SuperTab {{{
 
     let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+    let g:SuperTabDefaultCompletionType = "context"
 
 " }}}
 "
