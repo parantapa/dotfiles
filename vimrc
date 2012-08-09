@@ -379,9 +379,7 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " }}}
 " Ctrl-P {{{
 
-    let g:ctrlp_match_window_reversed = 0
-    let g:ctrlp_dotfiles = 0
-    let g:ctrlp_working_path_mode = 2
+    let g:ctrlp_dotfiles = 1
 
 " }}}
 " Rainbow Parenthesis {{{
