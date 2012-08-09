@@ -331,16 +331,20 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
-" NERDTree {{{
+" Ctrl-P {{{
 
-    nmap <F2> :NERDTreeToggle<CR>
+    let g:ctrlp_dotfiles = 1
 
 " }}}
 " Gundo {{{
 
-    nmap <F5> :GundoToggle<CR>
-    let g:gundo_debug = 1
-    let g:gundo_preview_bottom = 1
+    nnoremap <F5> :GundoToggle<CR>
+    let g:gundo_right = 1
+
+" }}}
+" NERDTree {{{
+
+    nmap <F2> :NERDTreeToggle<CR>
 
 " }}}
 " Latex {{{
@@ -375,11 +379,6 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " TagBar {{{
 
     nmap <F8> :TagbarToggle<CR>
-
-" }}}
-" Ctrl-P {{{
-
-    let g:ctrlp_dotfiles = 1
 
 " }}}
 " Rainbow Parenthesis {{{
