@@ -95,11 +95,7 @@ let maplocalleader = "\\"
 
 syntax on
 set background=dark
-
-colorscheme molokai
-if !has('gui_running') && &t_Co < 256
-    colorscheme desert
-end
+colorscheme desert
 
 " }}}
 " Status line ------------------------------------------------------------- {{{
@@ -335,16 +331,20 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
-" NERDTree {{{
+" Ctrl-P {{{
 
-    nmap <F2> :NERDTreeToggle<CR>
+    let g:ctrlp_dotfiles = 1
 
 " }}}
 " Gundo {{{
 
-    nmap <F5> :GundoToggle<CR>
-    let g:gundo_debug = 1
-    let g:gundo_preview_bottom = 1
+    nnoremap <F5> :GundoToggle<CR>
+    let g:gundo_right = 1
+
+" }}}
+" NERDTree {{{
+
+    nmap <F2> :NERDTreeToggle<CR>
 
 " }}}
 " Latex {{{
@@ -381,11 +381,15 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     nmap <F8> :TagbarToggle<CR>
 
 " }}}
-" Ctrl-P {{{
+" Rainbow Parenthesis {{{
 
-    let g:ctrlp_match_window_reversed = 0
-    let g:ctrlp_dotfiles = 0
-    let g:ctrlp_working_path_mode = 2
+    nmap <Leader>R :RainbowParenthesesToggleAll<CR>
+
+" }}}
+" SuperTab {{{
+
+    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+    let g:SuperTabDefaultCompletionType = "context"
 
 " }}}
 "
