@@ -102,6 +102,9 @@ alias gd="git diff"
 alias gca="git commit -a"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
+# GVim alias
+alias g="gvim --remote-silent"
+
 # Provide a local install space
 export PATH=$HOME/local/bin:$PATH
 export MANPATH=$HOME/local/share/man:/usr/man:/usr/share/man:/usr/local/share/man
@@ -119,10 +122,8 @@ if [ -r $HOME/local/bin/virtualenvwrapper.sh ] ; then
     . $HOME/local/bin/virtualenvwrapper.sh
 fi
 
-# GVim alias
-alias g="gvim --remote-silent"
-
 # Places alias
 alias cdns="cd /NS/twitter/work/parantapa/"
+alias cdns2="cd /NS/twitter/work/parantapa/"
 alias cssc="cd /scratch/NS/parantapa"
 alias cdlo="cd /local/parantapa"

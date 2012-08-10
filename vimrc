@@ -331,16 +331,20 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
-" NERDTree {{{
+" Ctrl-P {{{
 
-    nmap <F2> :NERDTreeToggle<CR>
+    let g:ctrlp_dotfiles = 1
 
 " }}}
 " Gundo {{{
 
-    nmap <F5> :GundoToggle<CR>
-    let g:gundo_debug = 1
-    let g:gundo_preview_bottom = 1
+    nnoremap <F5> :GundoToggle<CR>
+    let g:gundo_right = 1
+
+" }}}
+" NERDTree {{{
+
+    nmap <F2> :NERDTreeToggle<CR>
 
 " }}}
 " Latex {{{
@@ -377,13 +381,6 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
     nmap <F8> :TagbarToggle<CR>
 
 " }}}
-" Ctrl-P {{{
-
-    let g:ctrlp_match_window_reversed = 0
-    let g:ctrlp_dotfiles = 0
-    let g:ctrlp_working_path_mode = 2
-
-" }}}
 " Rainbow Parenthesis {{{
 
     nmap <Leader>R :RainbowParenthesesToggleAll<CR>
@@ -392,12 +389,7 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 " SuperTab {{{
 
     let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-
-" }}}
-" IPython {{{
-
-    let g:ipy_perform_mappings = 0
-    let g:ipy_completefunc = 'local'
+    let g:SuperTabDefaultCompletionType = "context"
 
 " }}}
 "

@@ -34,9 +34,6 @@
 [submodule "vim/bundle/snipmate-snippets"]
 	path = vim/bundle/snipmate-snippets
 	url = https://github.com/parantapa/snipmate-snippets.git
-[submodule "vim/bundle/latex-box"]
-	path = vim/bundle/latex-box
-	url = https://github.com/olivierverdier/vim-latex-box.git
 [submodule "vim/bundle/mako"]
 	path = vim/bundle/mako
 	url = https://github.com/sophacles/vim-bundle-mako.git
@@ -58,6 +55,3 @@
 [submodule "vim/bundle/rainbow-parentheses"]
 	path = vim/bundle/rainbow-parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
-[submodule "vim/bundle/ipython"]
-	path = vim/bundle/ipython
-	url = https://github.com/ivanov/vim-ipython.git
