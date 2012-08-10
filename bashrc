@@ -95,13 +95,6 @@ fi
 # Shortcut for ps-ing pgrep output
 psg () { ps -f $(pgrep "$@") ; }
 
-# Use virtualenvwrapper
-if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
-    export WORKON_HOME=$HOME/.virtualenvs
-
-    . /usr/bin/virtualenvwrapper.sh
-fi
-
 # Git shortcuts
 alias gc="git commit"
 alias gs="git status"
@@ -111,3 +104,10 @@ alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 
 # GVim alias
 alias g="gvim --remote-silent"
+
+# Use virtualenvwrapper
+if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
+    export WORKON_HOME=$HOME/.virtualenvs
+
+    . /usr/bin/virtualenvwrapper.sh
+fi
