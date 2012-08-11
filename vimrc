@@ -320,13 +320,16 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " Sudo to write
-cmap w!! w !sudo tee % >/dev/null
+cnoremap w!! w !sudo tee % >/dev/null
 
 " Toggle paste
 set pastetoggle=<F6>
 
 " Toggle spell
-nmap <F3> :setlocal spell! spelllang=en_us<CR>
+nnoremap <F3> :setlocal spell! spelllang=en_us<CR>
+
+" Dont use Syntastic when exiting
+nnoremap :wq :au! syntastic<cr>:wq
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
@@ -390,6 +393,13 @@ nmap <F3> :setlocal spell! spelllang=en_us<CR>
 
     let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
     let g:SuperTabDefaultCompletionType = "context"
+
+" }}}
+" Virtualenv {{{
+
+    if $VIRTUAL_ENV
+        VirtualEnvActivate
+    endif
 
 " }}}
 "
