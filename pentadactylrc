@@ -1,5 +1,3 @@
-set editor="gvim"
-
 nmap -b j 3j
 nmap -b k 3k
 nmap -b ; :
