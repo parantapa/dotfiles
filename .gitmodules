@@ -58,3 +58,6 @@
 [submodule "vim/bundle/moin"]
 	path = vim/bundle/moin
 	url = https://github.com/parantapa/moin.vim.git
+[submodule "vim/bundle/virtualenv"]
+	path = vim/bundle/virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv.git

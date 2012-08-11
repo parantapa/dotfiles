@@ -395,6 +395,13 @@ nnoremap :wq :au! syntastic<cr>:wq
     let g:SuperTabDefaultCompletionType = "context"
 
 " }}}
+" Virtualenv {{{
+
+    if $VIRTUAL_ENV
+        VirtualEnvActivate
+    endif
+
+" }}}
 "
 " }}}
 
