@@ -320,7 +320,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " Sudo to write
-cnoremap w!! w !sudo tee % >/dev/null
+cnoremap w!! set buftype=nowrite <bar> w !sudo tee % >/dev/null
 
 " Toggle paste
 set pastetoggle=<F6>
