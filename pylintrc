@@ -1,6 +1,6 @@
 [MESSAGES CONTROL]
 
-disable=C0103,W0142
+disable=C0103,W0142,C0321
 
 [BASIC]
 
