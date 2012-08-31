@@ -105,21 +105,27 @@ alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 # GVim alias
 alias g="gvim --servername G --remote-silent"
 
-# Provide a local install space
-export PATH=$HOME/local/bin:$PATH
-export MANPATH=$HOME/local/share/man:/usr/man:/usr/share/man:/usr/local/share/man
-export LD_LIBRARY_PATH=$HOME/local/lib
+# Decide the local directory
+if [[ $(hostname) =~ ^swsao ]] ; then
+    LOCAL=$HOME/local-odin
+else
+    LOCAL=$HOME/local
 
-export C_INCLUDE_PATH=$HOME/local/include
-export CPLUS_INCLUDE_PATH=$HOME/local/include
-export LIBRARY_PATH=$HOME/local/lib
-export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig
+# Provide a local install space
+export PATH=$LOCAL/bin:$PATH
+export MANPATH=$LOCAL/share/man:/usr/man:/usr/share/man:/usr/local/share/man
+export LD_LIBRARY_PATH=$LOCAL/lib
+
+export C_INCLUDE_PATH=$LOCAL/include
+export CPLUS_INCLUDE_PATH=$LOCAL/include
+export LIBRARY_PATH=$LOCAL/lib
+export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
 
 # Use virtualenvwrapper
-if [ -r $HOME/local/bin/virtualenvwrapper.sh ] ; then
+if [ -r $LOCAL/bin/virtualenvwrapper.sh ] ; then
     export WORKON_HOME=$HOME/.virtualenvs
 
-    . $HOME/local/bin/virtualenvwrapper.sh
+    . $LOCAL/bin/virtualenvwrapper.sh
 fi
 
 # Places alias
