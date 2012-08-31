@@ -320,7 +320,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " Sudo to write
-cnoremap w!! w !sudo tee % >/dev/null
+cnoremap w!! set buftype=nowrite <bar> w !sudo tee % >/dev/null
 
 " Toggle paste
 set pastetoggle=<F6>
@@ -330,6 +330,9 @@ nnoremap <F3> :setlocal spell! spelllang=en_us<CR>
 
 " Dont use Syntastic when exiting
 nnoremap :wq :au! syntastic<cr>:wq
+
+" Use MoinMoin wiki syntax
+nnoremap <Leader>moin :se ft=moin<CR>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
