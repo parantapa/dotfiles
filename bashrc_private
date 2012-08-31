@@ -124,7 +124,7 @@ export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
 
 # Use virtualenvwrapper
 if [ -r $LOCAL/bin/virtualenvwrapper.sh ] ; then
-    export WORKON_HOME=$HOME/.virtualenvs
+    export WORKON_HOME=$LOCAL/virtualenvs
 
     . $LOCAL/bin/virtualenvwrapper.sh
 fi
