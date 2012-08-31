@@ -129,7 +129,7 @@ if [ -r $LOCAL/bin/virtualenvwrapper.sh ] ; then
 fi
 
 # Places alias
-alias cdns="cd /NS/twitter/work/parantapa/"
-alias cdns2="cd /NS/twitter/work/parantapa/"
+alias cdt="cd /NS/twitter/work/parantapa/"
+alias cdt2="cd /NS/twitter-2/work/parantapa/"
 alias cssc="cd /scratch/NS/parantapa"
 alias cdlo="cd /local/parantapa"
