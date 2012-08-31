@@ -110,6 +110,7 @@ if [[ $(hostname) =~ ^swsao ]] ; then
     LOCAL=$HOME/local-odin
 else
     LOCAL=$HOME/local
+fi
 
 # Provide a local install space
 export PATH=$LOCAL/bin:$PATH
