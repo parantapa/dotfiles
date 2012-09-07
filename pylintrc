@@ -1,7 +1,9 @@
 [MESSAGES CONTROL]
 
-disable=C0103,W0142,C0321
+disable=C0103,W0142,C0321,E1103
 
 [BASIC]
 
 no-docstring-rgx=(__.*__|^main)
+
+bad-functions=filter,apply,input
