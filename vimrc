@@ -95,7 +95,11 @@ let maplocalleader = "\\"
 
 syntax on
 set background=dark
-colorscheme desert
+if has("gui_running") || &t_Co == 256
+    colorscheme molokai
+else
+    colorscheme desert
+endif
 
 " }}}
 " Status line ------------------------------------------------------------- {{{
