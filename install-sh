@@ -10,7 +10,7 @@ fi
 dotfiles=(profile bash_logout bashrc_private
     vimrc gvimrc vim tmux.conf gitconfig cvsignore
     pylintrc Xresources latexmkrc
-    pentadactylrc)
+    pentadactylrc sqliterc)
 
 cd "$dstdir"
 for file in "${dotfiles[@]}" ; do

@@ -257,21 +257,6 @@ augroup ft_vim
 augroup END
 
 " }}}
-" Python {{{
-
-fun! Exec_python()
-    write
-    execute "Shell python %"
-    wincmd h
-endf
-
-augroup ft_python
-    au!
-
-    au FileType python nnoremap <F10> :call Exec_python()<CR>
-augroup END
-
-" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
@@ -372,13 +357,13 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " Ack {{{
 
-    nnoremap <Leader>a :Ack!
+    nmap <Leader>a :Ack!
 
 " }}}
 " Tabbing {{{
 
-    nnoremap <Leader>T :Tab /\v
-    vnoremap <Leader>T :Tab /\v
+    nmap <Leader>T :Tab /\v
+    vmap <Leader>T :Tab /\v
 
 " }}}
 " Snippets {{{
@@ -400,6 +385,7 @@ nnoremap <Leader>moin :se ft=moin<CR>
 
     let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
     let g:SuperTabDefaultCompletionType = "context"
+    let g:SuperTabClosePreviewOnPopupClose = 1
 
 " }}}
 " Virtualenv {{{
@@ -409,6 +395,20 @@ nnoremap <Leader>moin :se ft=moin<CR>
     endif
 
 " }}}
+" RopeVim {{{
+
+    let g:ropevim_enable_shortcuts = 0
+    let g:ropevim_guess_project = 1
+    autocmd FileType python setlocal omnifunc=RopeCompleteFunc
+
+" }}}
+" NERD Commenter {{{
+
+    let g:NERDCreateDefaultMappings = 0
+    nmap <Leader>c <Plug>NERDCommenterToggle
+    vmap <Leader>c <Plug>NERDCommenterToggle
+
+"}}}
 "
 " }}}
 
