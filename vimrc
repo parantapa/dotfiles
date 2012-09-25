@@ -399,7 +399,7 @@ nnoremap <Leader>moin :se ft=moin<CR>
 
     let g:ropevim_enable_shortcuts = 0
     let g:ropevim_guess_project = 1
-    autocmd FileType python setlocal omnifunc=RopeCompleteFunc
+    " autocmd FileType python setlocal omnifunc=RopeCompleteFunc
 
 " }}}
 " NERD Commenter {{{
