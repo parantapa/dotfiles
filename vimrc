@@ -392,7 +392,6 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " SuperTab {{{
 
-    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
     let g:SuperTabDefaultCompletionType = "context"
     let g:SuperTabClosePreviewOnPopupClose = 1
 
