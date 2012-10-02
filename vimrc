@@ -226,6 +226,15 @@ augroup ft_cpp
 augroup END
 
 " }}}
+" GO {{{
+
+augroup ft_go
+    au!
+    au FileType go setlocal foldmethod=syntax
+    au FileType go setlocal noet sw=8 sts=8
+augroup END
+
+" }}}
 " HTML {{{
 
 augroup ft_html
