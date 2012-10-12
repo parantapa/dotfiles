@@ -226,6 +226,15 @@ augroup ft_cpp
 augroup END
 
 " }}}
+" GO {{{
+
+augroup ft_go
+    au!
+    au FileType go setlocal foldmethod=syntax
+    au FileType go setlocal noet sw=8 sts=8
+augroup END
+
+" }}}
 " HTML {{{
 
 augroup ft_html
@@ -383,7 +392,6 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " SuperTab {{{
 
-    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
     let g:SuperTabDefaultCompletionType = "context"
     let g:SuperTabClosePreviewOnPopupClose = 1
 
@@ -399,7 +407,7 @@ nnoremap <Leader>moin :se ft=moin<CR>
 
     let g:ropevim_enable_shortcuts = 0
     let g:ropevim_guess_project = 1
-    autocmd FileType python setlocal omnifunc=RopeCompleteFunc
+    " autocmd FileType python setlocal omnifunc=RopeCompleteFunc
 
 " }}}
 " NERD Commenter {{{
