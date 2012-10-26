@@ -175,6 +175,17 @@ nnoremap <C-k> :lprev<CR>
 " nnoremap <M-k> :cnext<CR>
 " nnoremap <M-l> :cprev<CR>
 
+" Continuous window resizing
+nmap         <C-W>+     <C-W>+<SID>winsize
+nmap         <C-W>-     <C-W>-<SID>winsize
+nmap         <C-W><     <C-W><<SID>winsize
+nmap         <C-W>>     <C-W>><SID>winsize
+nn <script>  <SID>winsize+   <C-W>+<SID>winsize
+nn <script>  <SID>winsize-   <C-W>-<SID>winsize
+nn <script>  <SID>winsize<   5<C-W><<SID>winsize
+nn <script>  <SID>winsize>   5<C-W>><SID>winsize
+nmap         <SID>winsize    <Nop>
+
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
