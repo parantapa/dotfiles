@@ -175,6 +175,17 @@ nnoremap <C-k> :lprev<CR>
 " nnoremap <M-k> :cnext<CR>
 " nnoremap <M-l> :cprev<CR>
 
+" Continuous window resizing
+nmap         <C-W>+     <C-W>+<SID>winsize
+nmap         <C-W>-     <C-W>-<SID>winsize
+nmap         <C-W><     <C-W><<SID>winsize
+nmap         <C-W>>     <C-W>><SID>winsize
+nn <script>  <SID>winsize+   <C-W>+<SID>winsize
+nn <script>  <SID>winsize-   <C-W>-<SID>winsize
+nn <script>  <SID>winsize<   5<C-W><<SID>winsize
+nn <script>  <SID>winsize>   5<C-W>><SID>winsize
+nmap         <SID>winsize    <Nop>
+
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
@@ -270,8 +281,9 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-fun! Open_ft_snippets()
-    let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/" . &ft . ".snippets"
+function! Open_ft_snippets()
+    let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/%s.snippets"
+    let cmd = printf(cmd, &ft)
     execute cmd
 endf
 
@@ -279,7 +291,13 @@ nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
 nnoremap <Leader>es :call Open_ft_snippets()<CR>
 
-autocmd BufWritePost .vimrc source %
+autocmd BufWritePost .vimrc source ~/.vimrc
+autocmd BufWritePost vimrc source ~/.vimrc
+
+if has("gui_running")
+    autocmd BufWritePost .gvimrc source ~/.gvimrc
+    autocmd BufWritePost gvimrc source ~/.gvimrc
+endif
 
 " }}}
 " Shell ------------------------------------------------------------------- {{{

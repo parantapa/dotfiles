@@ -95,11 +95,14 @@ fi
 
 # Shortcut for ps-ing pgrep output
 psg () { ps -f $(pgrep "$@") ; }
+psu () { ps -f -u $USER "$@" ; }
+topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
 alias gc="git commit"
 alias gs="git status"
 alias gd="git diff"
+alias gdt="git difftool"
 alias gca="git commit -a"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
