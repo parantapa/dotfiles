@@ -107,7 +107,11 @@ alias gca="git commit -a"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
 # GVim alias
-alias g="gvim --servername G --remote-silent"
+if [ -n "$DISPLAY" ] ; then
+    alias g="gvim --servername G --remote-silent"
+else
+    alias g=vim
+fi
 
 # Use virtualenvwrapper
 if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
