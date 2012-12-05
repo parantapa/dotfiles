@@ -95,6 +95,8 @@ fi
 
 # Shortcut for ps-ing pgrep output
 psg () { ps -f $(pgrep "$@") ; }
+psu () { ps -f -u $USER "$@" ; }
+topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
 alias gc="git commit"
