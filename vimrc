@@ -277,6 +277,11 @@ augroup ft_vim
 augroup END
 
 " }}}
+" Markdown {{{
+
+    autocmd BufReadPost *.md setlocal filetype=markdown
+
+" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
