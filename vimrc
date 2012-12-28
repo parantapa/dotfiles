@@ -186,6 +186,12 @@ nn <script>  <SID>winsize<   5<C-W><<SID>winsize
 nn <script>  <SID>winsize>   5<C-W>><SID>winsize
 nmap         <SID>winsize    <Nop>
 
+" Open using firefox
+nmap <Leader>o :silent !firefox "<cfile>"<CR>
+
+" Redefine gf
+nnoremap gf :edit <cfile><CR>
+
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
@@ -281,7 +287,7 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-function! Open_ft_snippets()
+function! OpenFiletypeSnippets()
     let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/%s.snippets"
     let cmd = printf(cmd, &ft)
     execute cmd
@@ -289,7 +295,7 @@ endf
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :call Open_ft_snippets()<CR>
+nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
 
 autocmd BufWritePost .vimrc source ~/.vimrc
 autocmd BufWritePost vimrc source ~/.vimrc
@@ -298,6 +304,7 @@ if has("gui_running")
     autocmd BufWritePost .gvimrc source ~/.gvimrc
     autocmd BufWritePost gvimrc source ~/.gvimrc
 endif
+
 
 " }}}
 " Shell ------------------------------------------------------------------- {{{
