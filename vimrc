@@ -272,6 +272,15 @@ augroup ft_rest
 augroup END
 
 " }}}
+" Markdown {{{
+
+augroup ft_markdown
+    au!
+
+    au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
+    au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
+augroup END
+" }}}
 " Vim {{{
 
 augroup ft_vim
