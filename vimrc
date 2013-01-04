@@ -189,8 +189,9 @@ nmap         <SID>winsize    <Nop>
 " Open using firefox
 nmap <Leader>o :silent !firefox "<cfile>"<CR>
 
-" Redefine gf
-nnoremap gf :edit <cfile><CR>
+" Open a new file
+nnoremap <Leader>n :edit <cfile><CR>
+
 
 " }}}
 " Folding ----------------------------------------------------------------- {{{
