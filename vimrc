@@ -196,6 +196,7 @@ nnoremap gf :edit <cfile><CR>
 " Folding ----------------------------------------------------------------- {{{
 
 set foldlevelstart=0
+set nofoldenable
 
 " Space to toggle folds.
 nnoremap <Space> za
@@ -279,6 +280,7 @@ augroup ft_markdown
 
     au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
     au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype mkd setlocal nofoldenable
 augroup END
 " }}}
 " Vim {{{
