@@ -158,5 +158,7 @@ fi
 # Places alias
 alias cdt="cd /NS/twitter/work/parantapa/"
 alias cdt2="cd /NS/twitter-2/work/parantapa/"
+alias cdt3="cd /NS/twitter-3/work/parantapa/"
 alias cdsc="cd /scratch/NS/parantapa"
 alias cdlo="cd /local/parantapa"
+alias cdlg="cd /var/tmp/parantapa/logs"
