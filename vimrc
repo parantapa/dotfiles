@@ -186,10 +186,18 @@ nn <script>  <SID>winsize<   5<C-W><<SID>winsize
 nn <script>  <SID>winsize>   5<C-W>><SID>winsize
 nmap         <SID>winsize    <Nop>
 
+" Open using firefox
+nmap <Leader>o :silent !firefox "<cfile>"<CR>
+
+" Open a new file
+nnoremap <Leader>n :edit <cfile><CR>
+
+
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
 set foldlevelstart=0
+set nofoldenable
 
 " Space to toggle folds.
 nnoremap <Space> za
@@ -266,6 +274,16 @@ augroup ft_rest
 augroup END
 
 " }}}
+" Markdown {{{
+
+augroup ft_markdown
+    au!
+
+    au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
+    au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype mkd setlocal nofoldenable
+augroup END
+" }}}
 " Vim {{{
 
 augroup ft_vim
@@ -281,7 +299,7 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-function! Open_ft_snippets()
+function! OpenFiletypeSnippets()
     let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/%s.snippets"
     let cmd = printf(cmd, &ft)
     execute cmd
@@ -289,7 +307,7 @@ endf
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :call Open_ft_snippets()<CR>
+nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
 
 autocmd BufWritePost .vimrc source ~/.vimrc
 autocmd BufWritePost vimrc source ~/.vimrc
@@ -298,6 +316,7 @@ if has("gui_running")
     autocmd BufWritePost .gvimrc source ~/.gvimrc
     autocmd BufWritePost gvimrc source ~/.gvimrc
 endif
+
 
 " }}}
 " Shell ------------------------------------------------------------------- {{{
