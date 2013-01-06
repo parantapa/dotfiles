@@ -136,9 +136,9 @@ set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 " }}}
 " Searching and movement -------------------------------------------------- {{{
 
-" Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
+" Use plain text search by default.
+nnoremap / /\V
+vnoremap / /\V
 
 set ignorecase
 set smartcase
@@ -408,8 +408,8 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " Tabbing {{{
 
-    nmap <Leader>T :Tab /\v
-    vmap <Leader>T :Tab /\v
+    nmap <Leader>T :Tab /\V
+    vmap <Leader>T :Tab /\V
 
 " }}}
 " Snippets {{{
