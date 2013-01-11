@@ -295,6 +295,17 @@ augroup ft_vim
 augroup END
 
 " }}}
+" MoinMoin {{{
+
+augroup ft_moin
+    au!
+
+    au Filetype moin nnoremap <buffer> <localleader>1 0i= <Esc>$a =<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
+augroup END
+" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
