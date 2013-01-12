@@ -281,6 +281,10 @@ augroup ft_markdown
 
     au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
     au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
+    au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
+    au Filetype mkd vnoremap <buffer> <localleader>i di**<Esc>hp
+    au Filetype mkd vnoremap <buffer> <localleader>b di****<Esc>hhp
     au Filetype mkd setlocal nofoldenable
 augroup END
 " }}}
