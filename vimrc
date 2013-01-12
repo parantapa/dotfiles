@@ -315,7 +315,7 @@ augroup END
 " Quick editing ----------------------------------------------------------- {{{
 
 function! OpenFiletypeSnippets()
-    let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/%s.snippets"
+    let cmd = "edit ~/.vim/snippets/%s.snippets"
     let cmd = printf(cmd, &ft)
     execute cmd
 endf
