@@ -31,9 +31,6 @@
 [submodule "vim/bundle/mw-utils"]
 	path = vim/bundle/mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "vim/bundle/snipmate-snippets"]
-	path = vim/bundle/snipmate-snippets
-	url = https://github.com/parantapa/snipmate-snippets.git
 [submodule "vim/bundle/mako"]
 	path = vim/bundle/mako
 	url = https://github.com/sophacles/vim-bundle-mako.git
