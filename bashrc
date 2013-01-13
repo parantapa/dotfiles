@@ -112,8 +112,9 @@ else
 fi
 
 # Shortcut for ps-ing pgrep output
-psg () { ps -f $(pgrep "$@") ; }
-psu () { ps -f -u $USER "$@" ; }
+alias psf="ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem"
+psu () { psf -u $USER "$@" ; }
+psg () { psf $(pgrep "$@") ; }
 topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
