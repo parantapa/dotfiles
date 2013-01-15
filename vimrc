@@ -136,9 +136,9 @@ set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 " }}}
 " Searching and movement -------------------------------------------------- {{{
 
-" Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
+" Use plain text search by default.
+nnoremap / /\V
+vnoremap / /\V
 
 set ignorecase
 set smartcase
@@ -281,6 +281,10 @@ augroup ft_markdown
 
     au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
     au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
+    au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
+    au Filetype mkd vnoremap <buffer> <localleader>i di**<Esc>hp
+    au Filetype mkd vnoremap <buffer> <localleader>b di****<Esc>hhp
     au Filetype mkd setlocal nofoldenable
 augroup END
 " }}}
@@ -295,12 +299,23 @@ augroup ft_vim
 augroup END
 
 " }}}
+" MoinMoin {{{
+
+augroup ft_moin
+    au!
+
+    au Filetype moin nnoremap <buffer> <localleader>1 0i= <Esc>$a =<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
+augroup END
+" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
 function! OpenFiletypeSnippets()
-    let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/%s.snippets"
+    let cmd = "edit ~/.vim/snippets/%s.snippets"
     let cmd = printf(cmd, &ft)
     execute cmd
 endf
@@ -408,8 +423,8 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " Tabbing {{{
 
-    nmap <Leader>T :Tab /\v
-    vmap <Leader>T :Tab /\v
+    nmap <Leader>T :Tab /\V
+    vmap <Leader>T :Tab /\V
 
 " }}}
 " Snippets {{{
