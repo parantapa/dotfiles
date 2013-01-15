@@ -159,6 +159,19 @@ snippet fut
 	from __future__ import ${1}
 snippet futd
 	from __future__ import division
+# My shortcuts
 snippet log
 	from logbook import Logger
 	log = Logger(__name__)
+snippet p.ld
+	with open(${1:fname}, "rb") as ${2:fobj}:
+		${3:var} = cPickle.load(${4:$2})
+snippet p.sv
+	with open(${1:fname}, "wb") as ${2:fobj}:
+		cPickle.save(${3:var}, ${4:$2}, -1)
+snippet j.ld
+	with open(${1:fname}, "r") as ${2:fobj}:
+		${3:var} = json.load(${4:$2})
+snippet j.sv
+	with open(${1:fname}, "w") as ${2:fobj}:
+		json.save(${3:var}, ${4:$2})
