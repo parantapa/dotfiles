@@ -163,15 +163,15 @@ snippet futd
 snippet log
 	from logbook import Logger
 	log = Logger(__name__)
-snippet p.ld
+snippet p.load
 	with open(${1:fname}, "rb") as ${2:fobj}:
 		${3:var} = cPickle.load(${4:$2})
-snippet p.sv
+snippet p.dump
 	with open(${1:fname}, "wb") as ${2:fobj}:
-		cPickle.save(${3:var}, ${4:$2}, -1)
-snippet j.ld
+		cPickle.dump(${3:var}, ${4:$2}, -1)
+snippet j.load
 	with open(${1:fname}, "r") as ${2:fobj}:
 		${3:var} = json.load(${4:$2})
-snippet j.sv
+snippet j.dump
 	with open(${1:fname}, "w") as ${2:fobj}:
-		json.save(${3:var}, ${4:$2})
+		json.dump(${3:var}, ${4:$2})
