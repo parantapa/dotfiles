@@ -175,3 +175,6 @@ snippet j.load
 snippet j.dump
 	with open(${1:fname}, "w") as ${2:fobj}:
 		json.dump(${3:var}, ${4:$2})
+snippet open
+	with open(${1:fname}, "${2:r}") as ${3:fobj}:
+		${4:pass}
