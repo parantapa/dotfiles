@@ -308,6 +308,9 @@ augroup ft_moin
     au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
     au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
     au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
+    au Filetype moin vnoremap <buffer> <localleader>i di''''<Esc>hhp
+    au Filetype moin vnoremap <buffer> <localleader>b di''''''<Esc>hhhp
+    au Filetype moin vnoremap <buffer> <localleader>c di{{{}}}<Esc>hhhp
 augroup END
 " }}}
 
