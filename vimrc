@@ -285,6 +285,8 @@ augroup ft_markdown
     au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
     au Filetype mkd vnoremap <buffer> <localleader>i di**<Esc>hp
     au Filetype mkd vnoremap <buffer> <localleader>b di****<Esc>hhp
+    au Filetype mkd nnoremap <buffer> <localleader>i diw**<Esc>hp
+    au Filetype mkd nnoremap <buffer> <localleader>b diw****<Esc>hhp
     au Filetype mkd setlocal nofoldenable
 augroup END
 " }}}
@@ -310,7 +312,20 @@ augroup ft_moin
     au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
     au Filetype moin vnoremap <buffer> <localleader>i di''''<Esc>hhp
     au Filetype moin vnoremap <buffer> <localleader>b di''''''<Esc>hhhp
-    au Filetype moin vnoremap <buffer> <localleader>c di{{{}}}<Esc>hhhp
+    au Filetype moin nnoremap <buffer> <localleader>i diw''''<Esc>hhp
+    au Filetype moin nnoremap <buffer> <localleader>b diw''''''<Esc>hhhp
+augroup END
+" }}}
+" Latex {{{
+
+augroup ft_tex
+    au!
+
+    au Filetype tex nnoremap <buffer> <localleader>i diw\textit{}<Esc>hp
+    au Filetype tex nnoremap <buffer> <localleader>b diw\textbf{}<Esc>hp
+    au Filetype tex vnoremap <buffer> <localleader>i di\textit{}<Esc>hp
+    au Filetype tex vnoremap <buffer> <localleader>b di\textbf{}<Esc>hp
+    au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
 augroup END
 " }}}
 
@@ -474,4 +489,3 @@ nnoremap <Leader>moin :se ft=moin<CR>
 "}}}
 "
 " }}}
-
