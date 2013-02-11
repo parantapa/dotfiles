@@ -472,6 +472,11 @@ nnoremap <Leader>moin :se ft=moin<CR>
     vmap <Leader>c <Plug>NERDCommenterToggle
 
 "}}}
+" ViewDoc {{{
+
+    let g:viewdoc_pydoc_cmd="python -m pydoc"
+
+" }}}
 "
 " }}}
 
