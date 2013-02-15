@@ -328,6 +328,11 @@ augroup ft_tex
     au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
 augroup END
 " }}}
+" Gnuplot {{{
+
+    autocmd BufReadPost *.plot setlocal ft=gnuplot
+
+" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
