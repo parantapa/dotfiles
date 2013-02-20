@@ -187,7 +187,7 @@ nn <script>  <SID>winsize>   5<C-W>><SID>winsize
 nmap         <SID>winsize    <Nop>
 
 " Open using firefox
-nmap <Leader>o :silent !firefox "<cfile>"<CR>
+nmap <Leader>o yiW:execute "silent !firefox " . @"<CR>
 
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
