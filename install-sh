@@ -10,9 +10,12 @@ fi
 dotfiles=(profile bash_logout bashrc
     vimrc gvimrc vim tmux.conf gitconfig cvsignore
     pylintrc Xresources latexmkrc ackrc
-    pentadactyl pentadactylrc sqliterc)
+    pentadactyl pentadactylrc sqliterc
+    i3/config i3status.conf config/dunstrc)
 
 cd "$dstdir"
+[ -d .i3 ]     || mkdir .i3
+[ -d .config ] || mkdir .config
 for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
 done
