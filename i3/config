@@ -155,9 +155,14 @@ bindsym Control+Mod1+bracketleft exec "urxvt"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+backslash exec "~/workspace/quickrefs/edit.sh"
 
-bindsym Control+Mod1+Left exec "mpc prev"
+bindsym Control+Mod1+Left  exec "mpc prev"
 bindsym Control+Mod1+Right exec "mpc next"
-bindsym Control+Mod1+Down exec "mpc toggle"
+bindsym Control+Mod1+Down  exec "mpc toggle"
+bindsym Control+Mod1+Up    exec "mpc stop"
+
+bindsym Control+Mod1+period exec "amixer set Master 5%+"
+bindsym Control+Mod1+comma  exec "amixer set Master 5%-"
+bindsym Control+Mod1+m      exec "amixer set Master toggle"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [class="Skype"] floating enable
