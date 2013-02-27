@@ -24,6 +24,9 @@ font pango:Inconsolata 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Default workspace layout
+workspace_layout tabbed
+
 # start a terminal
 bindsym $mod+Return exec "urxvt"
 
@@ -154,6 +157,7 @@ bindsym Control+Mod1+Delete exec "xscreensaver-command --lock"
 bindsym Control+Mod1+bracketleft exec "urxvt"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+backslash exec "~/workspace/quickrefs/edit.sh"
+bindsym Control+Mod1+q exec "import -window root ~/screenshot.jpg"
 
 bindsym Control+Mod1+Left  exec "mpc prev"
 bindsym Control+Mod1+Right exec "mpc next"
