@@ -1,9 +1,5 @@
 snippet #!
 	#!/usr/bin/env python
-snippet imp
-	import ${1:module}
-snippet from
-	from ${1:package} import ${2:module}
 # Module Docstring
 snippet docs
 	"""
@@ -13,20 +9,8 @@ snippet docs
 	from __future__ import division
 
 	__author__  = "${2:`g:snips_author`}"
-snippet wh
-	while ${1:condition}:
-		${2:# code...}
-# dowh - does the same as do...while in other languages
-snippet dowh
-	while True:
-		${1:# code...}
-		if ${2:condition}:
-			break
-snippet with
-	with ${1:expr} as ${2:var}:
-		${3:# code...}
 # New Class
-snippet cl
+snippet class
 	class ${1:ClassName}(${2:object}):
 		"""
 		${3:docstring for $1}
@@ -65,20 +49,6 @@ snippet property
 			${3:return self._$1}
 		def fset(self, value):
 			${4:self._$1 = value}
-# Ifs
-snippet if
-	if ${1:condition}:
-		${2:code...}
-snippet el
-	else:
-		${1:code...}
-snippet ei
-	elif ${1:condition}:
-		${2:code...}
-# For
-snippet for
-	for ${1:item} in ${2:items}:
-		${3:code...}
 # Encodes
 snippet cutf8
 	# -*- coding: utf-8 -*-
@@ -143,10 +113,6 @@ snippet pdbbb
 	import pdbpp; pdbpp.set_trace()
 snippet pprint
 	import pprint; pprint.pprint(${1})${2}
-snippet "
-	"""
-	${1:doc}
-	"""
 # test function/method
 snippet test
 	def test_${1:description}(${2:`indent('.') ? 'self' : ''`}):
@@ -158,9 +124,7 @@ snippet testcase
 		def test_${2:description}(self):
 			${3:pass}
 snippet fut
-	from __future__ import ${1}
-snippet futd
-	from __future__ import division
+	from __future__ import ${1:division}
 # My shortcuts
 snippet log
 	from logbook import Logger
