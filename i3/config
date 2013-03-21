@@ -68,7 +68,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+bar split h
 
 # split in vertical orientation
-bindsym $mod+quotedbl split v
+bindsym $mod+Shift+apostrophe split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -158,6 +158,7 @@ bindsym Control+Mod1+bracketleft exec "urxvt"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+backslash exec "~/workspace/quickrefs/edit.sh"
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
+bindsym Control+Mod1+p exec "thunar"
 
 bindsym Control+Mod1+Left  exec "mpc prev"
 bindsym Control+Mod1+Right exec "mpc next"
