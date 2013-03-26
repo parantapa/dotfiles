@@ -94,7 +94,7 @@ bakblu='\[\e[44m\]'   # Blue
 bakpur='\[\e[45m\]'   # Purple
 bakcyn='\[\e[46m\]'   # Cyan
 bakwht='\[\e[47m\]'   # White
-txtrst='\[\e[0m\]'    # Text Reset
+txtrst='\e[0m\]'    # Text Reset
 
 # Time to set a fancy prompt
 GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
@@ -105,11 +105,24 @@ if [ -r $GIT_PROMPT ] ; then
     export GIT_PS1_SHOWUPSTREAM=auto
 
     . $GIT_PROMPT
-
-    PS1="${txtcyn}\u@\h${txtred}: ${txtgrn}\W ${txtylw}\$(__git_ps1 \"(%s)\")${txtred}\\\$ ${txtrst}"
 else
-    PS1="${txtcyn}\u@\h${txtred}: ${txtgrn}\W ${txtred}\\\$ ${txtrst}"
+    alias __git_ps1=true
 fi
+
+function __my_ps1() {
+    x0="${txtcyn}\\u@\\h${txtpur}: "
+    x1="${txtylw}\\w${txtpur} - "
+    x2="\$([ \$? == 0 ] && echo \"${txtgrn}:)\" )"
+    x3="\$([ \$? != 0 ] && echo \"${txtred}:(\" )"
+    x4="${txtpur} - "
+    x5="${txtcyn}\$(date -u '+%F %T')${txtpur} "
+    x6="${txtylw}\$(__git_ps1 \"(%s)\")${txtpur}"
+
+    dollar="\\[\\n\\]\\\$ ${txtrst}"
+    echo -e "${x0}${x1}${x2}${x3}${x4}${x5}${x6}${dollar}"
+}
+
+PS1="$(__my_ps1)"
 
 # Shortcut for ps-ing pgrep output
 alias psf="ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem"
