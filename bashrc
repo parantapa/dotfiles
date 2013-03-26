@@ -94,7 +94,7 @@ bakblu='\[\e[44m\]'   # Blue
 bakpur='\[\e[45m\]'   # Purple
 bakcyn='\[\e[46m\]'   # Cyan
 bakwht='\[\e[47m\]'   # White
-txtrst='\e[0m\]'    # Text Reset
+txtrst='\[\e[0m\]'    # Text Reset
 
 # Time to set a fancy prompt
 GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
@@ -118,7 +118,7 @@ function __my_ps1() {
     x5="${txtcyn}\$(date '+%F %T')${txtpur} "
     x6="${txtylw}\$(__git_ps1 \"(%s)\")${txtpur}"
 
-    dollar="\\[\\n\\]\\\$ ${txtrst}"
+    dollar="\\n\\\$ ${txtrst}"
     echo -e "${x0}${x1}${x2}${x3}${x4}${x5}${x6}${dollar}"
 }
 
