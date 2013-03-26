@@ -111,7 +111,7 @@ fi
 
 function __my_ps1() {
     x0="${txtcyn}\\u@\\h${txtpur}: "
-    x1="${txtylw}\\w${txtpur} - "
+    x1="${txtylw}\\W${txtpur} - "
     x2="\$([ \$? == 0 ] && echo \"${txtgrn}:)\" )"
     x3="\$([ \$? != 0 ] && echo \"${txtred}:(\" )"
     x4="${txtpur} - "
