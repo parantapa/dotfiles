@@ -115,7 +115,7 @@ function __my_ps1() {
     x2="\$([ \$? == 0 ] && echo \"${txtgrn}:)\" )"
     x3="\$([ \$? != 0 ] && echo \"${txtred}:(\" )"
     x4="${txtpur} - "
-    x5="${txtcyn}\$(date -u '+%F %T')${txtpur} "
+    x5="${txtcyn}\$(date '+%F %T')${txtpur} "
     x6="${txtylw}\$(__git_ps1 \"(%s)\")${txtpur}"
 
     dollar="\\[\\n\\]\\\$ ${txtrst}"
