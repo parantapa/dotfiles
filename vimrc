@@ -497,5 +497,12 @@ nnoremap <Leader>moin :se ft=moin<CR>
     let g:viewdoc_pydoc_cmd="python -m pydoc"
 
 " }}}
+" Slime {{{
+
+    let g:slime_target = "tmux"
+    let g:slime_paste_file = "$HOME/.slime_paste"
+
+" }}}
 "
 " }}}
+"
