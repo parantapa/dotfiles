@@ -1,3 +1,7 @@
+colorscheme molokai
+
+set hintkeys=asdfg;lkjhertyui
+
 nmap -b j 3j
 nmap -b k 3k
 nmap -b ; :

@@ -136,9 +136,9 @@ set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 " }}}
 " Searching and movement -------------------------------------------------- {{{
 
-" Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
+" Use plain text search by default.
+nnoremap / /\V
+vnoremap / /\V
 
 set ignorecase
 set smartcase
@@ -186,10 +186,18 @@ nn <script>  <SID>winsize<   5<C-W><<SID>winsize
 nn <script>  <SID>winsize>   5<C-W>><SID>winsize
 nmap         <SID>winsize    <Nop>
 
+" Open using firefox
+nmap <Leader>o yiW:execute "silent !firefox " . @"<CR>
+
+" Open a new file
+nnoremap <Leader>n :edit <cfile><CR>
+
+
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
 set foldlevelstart=0
+set nofoldenable
 
 " Space to toggle folds.
 nnoremap <Space> za
@@ -266,6 +274,22 @@ augroup ft_rest
 augroup END
 
 " }}}
+" Markdown {{{
+
+augroup ft_markdown
+    au!
+
+    au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
+    au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
+    au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
+    au Filetype mkd vnoremap <buffer> <localleader>i di**<Esc>hp
+    au Filetype mkd vnoremap <buffer> <localleader>b di****<Esc>hhp
+    au Filetype mkd nnoremap <buffer> <localleader>i diw**<Esc>hp
+    au Filetype mkd nnoremap <buffer> <localleader>b diw****<Esc>hhp
+    au Filetype mkd setlocal nofoldenable
+augroup END
+" }}}
 " Vim {{{
 
 augroup ft_vim
@@ -277,19 +301,51 @@ augroup ft_vim
 augroup END
 
 " }}}
+" MoinMoin {{{
+
+augroup ft_moin
+    au!
+
+    au Filetype moin nnoremap <buffer> <localleader>1 0i= <Esc>$a =<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
+    au Filetype moin vnoremap <buffer> <localleader>i di''''<Esc>hhp
+    au Filetype moin vnoremap <buffer> <localleader>b di''''''<Esc>hhhp
+    au Filetype moin nnoremap <buffer> <localleader>i diw''''<Esc>hhp
+    au Filetype moin nnoremap <buffer> <localleader>b diw''''''<Esc>hhhp
+augroup END
+" }}}
+" Latex {{{
+
+augroup ft_tex
+    au!
+
+    au Filetype tex nnoremap <buffer> <localleader>i diw\textit{}<Esc>hp
+    au Filetype tex nnoremap <buffer> <localleader>b diw\textbf{}<Esc>hp
+    au Filetype tex vnoremap <buffer> <localleader>i di\textit{}<Esc>hp
+    au Filetype tex vnoremap <buffer> <localleader>b di\textbf{}<Esc>hp
+    au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
+augroup END
+" }}}
+" Gnuplot {{{
+
+    autocmd BufReadPost *.plot setlocal ft=gnuplot
+
+" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-function! Open_ft_snippets()
-    let cmd = "edit ~/.vim/bundle/snipmate-snippets/snippets/%s.snippets"
+function! OpenFiletypeSnippets()
+    let cmd = "edit ~/.vim/snippets/%s.snippets"
     let cmd = printf(cmd, &ft)
     execute cmd
 endf
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :call Open_ft_snippets()<CR>
+nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
 
 autocmd BufWritePost .vimrc source ~/.vimrc
 autocmd BufWritePost vimrc source ~/.vimrc
@@ -298,6 +354,7 @@ if has("gui_running")
     autocmd BufWritePost .gvimrc source ~/.gvimrc
     autocmd BufWritePost gvimrc source ~/.gvimrc
 endif
+
 
 " }}}
 " Shell ------------------------------------------------------------------- {{{
@@ -389,8 +446,8 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " Tabbing {{{
 
-    nmap <Leader>T :Tab /\v
-    vmap <Leader>T :Tab /\v
+    nmap <Leader>T :Tab /\V
+    vmap <Leader>T :Tab /\V
 
 " }}}
 " Snippets {{{
@@ -435,6 +492,17 @@ nnoremap <Leader>moin :se ft=moin<CR>
     vmap <Leader>c <Plug>NERDCommenterToggle
 
 "}}}
+" ViewDoc {{{
+
+    let g:viewdoc_pydoc_cmd="python -m pydoc"
+
+" }}}
+" Slime {{{
+
+    let g:slime_target = "tmux"
+    let g:slime_paste_file = "$HOME/.slime_paste"
+
+" }}}
 "
 " }}}
-
+"

@@ -43,6 +43,24 @@ alias tmux="tmux -u"
 # alias diff="colordiff"
 # alias pacman="pacman-color"
 
+# Fabric completion
+function __fab_completion() {
+    # Return if "fab" command doesn't exists
+    [[ -e `which fab 2> /dev/null` ]] || return 0
+
+    # Try generate a shortlist
+    local tasks=$(fab --shortlist 2> /dev/null)
+    [[ $? -eq 0 ]] || return 0
+
+    # Generate the long options
+    local opts=$(fab --help 2>&1 | egrep -o "\-\-[A-Za-z_\-]+\=?" | sort -u)
+
+    # Set of possible completions
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=($(compgen -W "${tasks} ${opts}" -- ${cur}))
+}
+complete -o default -o nospace -F __fab_completion fab
+
 # List of colors
 txtblk='\[\e[0;30m\]' # Black - Regular
 txtred='\[\e[0;31m\]' # Red
@@ -87,15 +105,29 @@ if [ -r $GIT_PROMPT ] ; then
     export GIT_PS1_SHOWUPSTREAM=auto
 
     . $GIT_PROMPT
-
-    PS1="${txtcyn}\u@\h${txtred}: ${txtgrn}\W ${txtylw}\$(__git_ps1 \"(%s)\")${txtred}\\\$ ${txtrst}"
 else
-    PS1="${txtcyn}\u@\h${txtred}: ${txtgrn}\W ${txtred}\\\$ ${txtrst}"
+    alias __git_ps1=true
 fi
 
+function __my_ps1() {
+    x0="${txtcyn}\\u@\\h${txtpur}: "
+    x1="${txtylw}\\W${txtpur} - "
+    x2="\$([ \$? == 0 ] && echo \"${txtgrn}:)\" )"
+    x3="\$([ \$? != 0 ] && echo \"${txtred}:(\" )"
+    x4="${txtpur} - "
+    x5="${txtcyn}\$(date '+%F %T')${txtpur} "
+    x6="${txtylw}\$(__git_ps1 \"(%s)\")${txtpur}"
+
+    dollar="\\n\\\$ ${txtrst}"
+    echo -e "${x0}${x1}${x2}${x3}${x4}${x5}${x6}${dollar}"
+}
+
+PS1="$(__my_ps1)"
+
 # Shortcut for ps-ing pgrep output
-psg () { ps -f $(pgrep "$@") ; }
-psu () { ps -f -u $USER "$@" ; }
+alias psf="ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem"
+psu () { psf -u $USER "$@" ; }
+psg () { psf $(pgrep "$@") ; }
 topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
@@ -131,6 +163,7 @@ export LIBRARY_PATH=$LOCAL/lib
 export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
 
 # Use virtualenvwrapper
+export VIRTUALENV_DISTRIBUTE=1
 if [ -r $LOCAL/bin/virtualenvwrapper.sh ] ; then
     export WORKON_HOME=$LOCAL/virtualenvs
 
