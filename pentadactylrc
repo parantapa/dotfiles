@@ -1,7 +1,7 @@
 colorscheme molokai
 
 set hintkeys=asdfg;lkjhertyui
-:set! browser.tabs.closeWindowWithLastTab=false
+set! browser.tabs.closeWindowWithLastTab=false
 
 nmap -b j 3j
 nmap -b k 3k
