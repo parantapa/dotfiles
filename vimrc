@@ -176,18 +176,18 @@ nnoremap <C-k> :lprev<CR>
 " nnoremap <M-l> :cprev<CR>
 
 " Continuous window resizing
-nmap         <C-W>+     <C-W>+<SID>winsize
-nmap         <C-W>-     <C-W>-<SID>winsize
-nmap         <C-W><     <C-W><<SID>winsize
-nmap         <C-W>>     <C-W>><SID>winsize
-nn <script>  <SID>winsize+   <C-W>+<SID>winsize
-nn <script>  <SID>winsize-   <C-W>-<SID>winsize
-nn <script>  <SID>winsize<   5<C-W><<SID>winsize
-nn <script>  <SID>winsize>   5<C-W>><SID>winsize
-nmap         <SID>winsize    <Nop>
+nnoremap          <C-W>+          <C-W>+<SID>winsize
+nnoremap          <C-W>-          <C-W>-<SID>winsize
+nnoremap          <C-W><          <C-W><<SID>winsize
+nnoremap          <C-W>>          <C-W>><SID>winsize
+nnoremap <script> <SID>winsize+   <C-W>+<SID>winsize
+nnoremap <script> <SID>winsize-   <C-W>-<SID>winsize
+nnoremap <script> <SID>winsize<   5<C-W><<SID>winsize
+nnoremap <script> <SID>winsize>   5<C-W>><SID>winsize
+nnoremap          <SID>winsize    <Nop>
 
 " Open using firefox
-nmap <Leader>o yiW:execute "silent !firefox " . @"<CR>
+nnoremap <Leader>o yiW:execute "silent !firefox " . @"<CR>
 
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
@@ -330,7 +330,11 @@ augroup END
 " }}}
 " Gnuplot {{{
 
+augroup ft_gnuplot
+    au!
+
     autocmd BufReadPost *.plot setlocal ft=gnuplot
+augroup END
 
 " }}}
 
@@ -347,14 +351,17 @@ nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
 nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
 
-autocmd BufWritePost .vimrc source ~/.vimrc
-autocmd BufWritePost vimrc source ~/.vimrc
+augroup ft_vimrc_autoread:
+    au!
 
-if has("gui_running")
-    autocmd BufWritePost .gvimrc source ~/.gvimrc
-    autocmd BufWritePost gvimrc source ~/.gvimrc
-endif
+    autocmd BufWritePost .vimrc source ~/.vimrc
+    autocmd BufWritePost vimrc source ~/.vimrc
 
+    if has("gui_running")
+        autocmd BufWritePost .gvimrc source ~/.gvimrc
+        autocmd BufWritePost gvimrc source ~/.gvimrc
+    endif
+augroup END
 
 " }}}
 " Shell ------------------------------------------------------------------- {{{
@@ -380,10 +387,10 @@ nnoremap <Leader>! :Shell
 " Convenience mappings ---------------------------------------------------- {{{
 
 " I dont use ex mode
-map Q gq
+nnoremap Q gq
 
 " Clean whitespace
-map <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Substitute
 nnoremap <Leader>s :%s/\v
@@ -423,7 +430,7 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " NERDTree {{{
 
-    nmap <F2> :NERDTreeToggle<CR>
+    nnoremap <F2> :NERDTreeToggle<CR>
 
 " }}}
 " Latex {{{
@@ -441,13 +448,13 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " Ack {{{
 
-    nmap <Leader>a :Ack!
+    nnoremap <Leader>a :Ack!
 
 " }}}
 " Tabbing {{{
 
-    nmap <Leader>T :Tab /\V
-    vmap <Leader>T :Tab /\V
+    nnoremap <Leader>T :Tab /\V
+    vnoremap <Leader>T :Tab /\V
 
 " }}}
 " Snippets {{{
@@ -457,12 +464,12 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " TagBar {{{
 
-    nmap <F8> :TagbarToggle<CR>
+    nnoremap <F8> :TagbarToggle<CR>
 
 " }}}
 " Rainbow Parenthesis {{{
 
-    nmap <Leader>R :RainbowParenthesesToggleAll<CR>
+    nnoremap <Leader>R :RainbowParenthesesToggleAll<CR>
 
 " }}}
 " SuperTab {{{
@@ -488,8 +495,8 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " NERD Commenter {{{
 
     let g:NERDCreateDefaultMappings = 0
-    nmap <Leader>c <Plug>NERDCommenterToggle
-    vmap <Leader>c <Plug>NERDCommenterToggle
+    nnoremap <Leader>c <Plug>NERDCommenterToggle
+    vnoremap <Leader>c <Plug>NERDCommenterToggle
 
 "}}}
 " ViewDoc {{{
