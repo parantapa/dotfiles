@@ -65,7 +65,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+bar split h
+bindsym $mod+Shift+backslash split h
 
 # split in vertical orientation
 bindsym $mod+Shift+apostrophe split v
