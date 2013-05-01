@@ -41,7 +41,6 @@ export VISUAL=vim
 # Make tmux always use unicode
 alias tmux="tmux -u"
 alias diff=colordiff
-alias pacman=pacman-color
 
 # Fabric completion
 function __fab_completion() {
