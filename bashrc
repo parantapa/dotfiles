@@ -131,11 +131,11 @@ topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
 alias gc="git commit"
-alias gs="git status"
 alias gd="git diff"
 alias gdt="git difftool"
 alias gca="git commit -a"
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+alias gs="tig status"
+alias gl="tig"
 
 # GVim alias
 if [ -n "$DISPLAY" ] ; then
