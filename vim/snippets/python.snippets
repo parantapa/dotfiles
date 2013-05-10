@@ -121,3 +121,7 @@ snippet li
 	log.info("${1}")
 snippet lp
 	"/local/parantapa/${1}"
+snippet dmn
+	from pypb import daemonize
+	from rconfig import LOGDIR
+	daemonize(LOGDIR)
