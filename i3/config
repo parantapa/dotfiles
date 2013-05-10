@@ -154,7 +154,7 @@ bar {
 }
 
 bindsym Control+Mod1+Delete exec "xscreensaver-command --lock"
-bindsym Control+Mod1+bracketleft exec "urxvt"
+bindsym Control+Mod1+bracketleft exec "urxvtc"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+backslash exec "~/workspace/quickrefs/edit.sh"
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
