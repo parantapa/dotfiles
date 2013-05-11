@@ -1,6 +1,7 @@
 colorscheme molokai
 
 set hintkeys=asdfg;lkjhertyui
+set! browser.tabs.closeWindowWithLastTab=false
 
 nmap -b j 3j
 nmap -b k 3k
@@ -23,3 +24,29 @@ nmap ,pgdoc :open file:///usr/share/doc/postgresql/html/index.html<CR>
 nmap ,pydoc :open file:///usr/share/doc/python2/html/index.html<CR>
 nmap ,py3doc :open file:///usr/share/doc/python/html/index.html<CR>
 nmap ,phpdoc :open file:///usr/share/doc/php/php-chunked-xhtml/index.html<CR>
+
+" I like to store all my bookmarks into a simple text file which can put
+" under version control and sync across systems and can also look at it and
+" clean it up as a regular text file. Following pieces of code does the job.
+
+" Define the javascript function to actually do the writing to bookmark file.
+" FIXME: The bookmark file location is hardcoded.
+javascript <<EOF
+dactyl.my_bmark = function(url, title) {
+    var bmark_file = "~/.bookmarks.txt";
+    var ofile = File(bmark_file);
+    ofile.write(title + "\n", ">>");
+    ofile.write(url + "\n\n", ">>");
+};
+EOF
+
+" Define a command that calls the above function.
+command -javascript -nargs=+ xbmark dactyl.my_bmark(args[0], args[1])
+
+" Define a mapping that creates the command line args for the command.
+nmap ,a :js CommandExMode().open(
+    \ commands.commandToString({ command: "xbmark", options: [],
+    \ arguments: [buffer.win.location.href, buffer.win.document.title] }));<CR>
+
+" Remove the regular bookmarking shortcut.
+nmap -b a <nop>

@@ -67,3 +67,6 @@
 [submodule "vim/bundle/vim-slime"]
 	path = vim/bundle/vim-slime
 	url = https://github.com/jpalardy/vim-slime.git
+[submodule "vim/bundle/indent-object"]
+	path = vim/bundle/indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
