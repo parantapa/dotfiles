@@ -494,9 +494,7 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " NERD Commenter {{{
 
-    let g:NERDCreateDefaultMappings = 0
-    nmap <Leader>c <Plug>NERDCommenterToggle
-    vmap <Leader>c <Plug>NERDCommenterToggle
+    let g:NERDCreateDefaultMappings = 1
 
 "}}}
 " ViewDoc {{{
