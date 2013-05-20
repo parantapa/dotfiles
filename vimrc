@@ -144,7 +144,7 @@ set ignorecase
 set smartcase
 set incsearch
 set showmatch
-set hlsearch
+set nohlsearch
 set gdefault
 
 set scrolloff=3
