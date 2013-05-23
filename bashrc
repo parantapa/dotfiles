@@ -109,19 +109,21 @@ else
 fi
 
 function __my_ps1() {
-    x0="${txtcyn}\\u@\\h${txtpur}: "
-    x1="${txtylw}\\W${txtpur} - "
-    x2="\$([ \$? == 0 ] && echo \"${txtgrn}:)\" )"
-    x3="\$([ \$? != 0 ] && echo \"${txtred}:(\" )"
-    x4="${txtpur} - "
-    x5="${txtcyn}\$(date '+%F %T')${txtpur} "
-    x6="${txtylw}\$(__git_ps1 \"(%s)\")${txtpur}"
+    ret="$?"
 
-    dollar="\\n\\\$ ${txtrst}"
-    echo -e "${x0}${x1}${x2}${x3}${x4}${x5}${x6}${dollar}"
+    printf '%s\\u@\\h%s: ' "${txtcyn}" "${txtpur}"
+    printf '%s\\W%s - '   "${txtylw}" "${txtpur}"
+    if [ "$ret" -eq 0 ] ; then
+        printf '%s:)%s - ' "${txtgrn}" "${txtpur}"
+    else
+        printf '%s:( (%s)%s - ' "${txtred}" "${ret}" "${txtpur}"
+    fi
+    printf '%s%s%s ' "${txtcyn}" "$(date '+%F %T')" "${txtpur}"
+    printf '%s%s%s ' "${txtylw}" "$(__git_ps1 '(%s)')" "${txtpur}"
+    printf '%s\\n\\$ %s' "${txtpur}" "${txtrst}"
 }
 
-PS1="$(__my_ps1)"
+PROMPT_COMMAND='PS1="$(__my_ps1)"'
 
 # Shortcut for ps-ing pgrep output
 alias psf="ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem"
