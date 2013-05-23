@@ -112,15 +112,15 @@ function __my_ps1() {
     ret="$?"
 
     printf '%s\\u@\\h%s: ' "${txtcyn}" "${txtpur}"
-    printf '%s\\W%s - '   "${txtylw}" "${txtpur}"
+    printf '%s\\W %s- '   "${txtylw}" "${txtpur}"
     if [ "$ret" -eq 0 ] ; then
-        printf '%s:)%s - ' "${txtgrn}" "${txtpur}"
+        printf '%s:) %s- ' "${txtgrn}" "${txtpur}"
     else
-        printf '%s:( (%s)%s - ' "${txtred}" "${ret}" "${txtpur}"
+        printf '%s:( %s %s- ' "${txtred}" "${ret}" "${txtpur}"
     fi
     printf '%s%s%s ' "${txtcyn}" "$(date '+%F %T')" "${txtpur}"
     printf '%s%s%s ' "${txtylw}" "$(__git_ps1 '(%s)')" "${txtpur}"
-    printf '%s\\n\\$ %s' "${txtpur}" "${txtrst}"
+    printf '\\n%s\\$ %s' "${txtpur}" "${txtrst}"
 }
 
 PROMPT_COMMAND='PS1="$(__my_ps1)"'
