@@ -11,7 +11,8 @@ dotfiles=(profile bash_logout bashrc_private
     vimrc gvimrc vim tmux.conf gitconfig cvsignore
     pylintrc Xresources latexmkrc ackrc
     pentadactyl pentadactylrc sqliterc
-    i3/config i3status.conf config/dunstrc)
+    i3/config i3status.conf config/dunstrc
+    git-prompt.sh)
 
 cd "$dstdir"
 [ -d .i3 ]     || mkdir .i3
