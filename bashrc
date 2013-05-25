@@ -111,6 +111,9 @@ fi
 function __my_ps1() {
     ret="$?"
 
+    if [ -n "$VIRTUAL_ENV" ] ; then
+        printf '%s(%s)%s ' "${txtgrn}" "$(basename $VIRTUAL_ENV)" "${txtpur}"
+    fi
     printf '%s\\u@\\h%s: ' "${txtcyn}" "${txtpur}"
     printf '%s\\W %s- '   "${txtylw}" "${txtpur}"
     if [ "$ret" -eq 0 ] ; then
