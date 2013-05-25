@@ -96,17 +96,12 @@ bakwht='\[\e[47m\]'   # White
 txtrst='\[\e[0m\]'    # Text Reset
 
 # Time to set a fancy prompt
-GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
-if [ -r $GIT_PROMPT ] ; then
-    export GIT_PS1_SHOWDIRTYSTATE=1
-    export GIT_PS1_SHOWSTASHSTATE=1
-    export GIT_PS1_SHOWUNTRACKEDFILES=1
-    export GIT_PS1_SHOWUPSTREAM=auto
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM=auto
 
-    . $GIT_PROMPT
-else
-    alias __git_ps1=true
-fi
+. "$HOME/.git-prompt.sh"
 
 function __my_ps1() {
     ret="$?"
