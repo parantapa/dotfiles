@@ -103,6 +103,9 @@ export GIT_PS1_SHOWUPSTREAM=auto
 
 . "$HOME/.git-prompt.sh"
 
+# Add My Cabal to path
+export PATH="$HOME/.cabal/bin:$PATH"
+
 function __my_ps1() {
     ret="$?"
 
