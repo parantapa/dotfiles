@@ -166,9 +166,6 @@ noremap L g_
 inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
 
-" Too many shifts
-nnoremap ; :
-
 nnoremap <C-h> :lrewind<CR>
 nnoremap <C-j> :lnext<CR>
 nnoremap <C-k> :lprev<CR>

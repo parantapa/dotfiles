@@ -5,7 +5,6 @@ set! browser.tabs.closeWindowWithLastTab=false
 
 nmap -b j 3j
 nmap -b k 3k
-nmap -b ; :
 
 nmap ,m :open gmail.com<CR>
 nmap ,n :open slashdot.org | news.ycombinator.org | telegraphindia.com<CR>
