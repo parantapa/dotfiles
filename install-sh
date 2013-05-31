@@ -12,7 +12,7 @@ dotfiles=(profile bash_logout bashrc
     pylintrc Xresources latexmkrc ackrc
     pentadactyl pentadactylrc sqliterc
     i3/config i3status.conf config/dunstrc
-    git-prompt.sh clip-copy.sh)
+    git-prompt.sh clip-copy.sh capslock-esc)
 
 cd "$dstdir"
 [ -d .i3 ]     || mkdir .i3

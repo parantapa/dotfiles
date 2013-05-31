@@ -13,6 +13,7 @@ fi
 
 # Setup i3
 xrdb ~/.Xresources
+xmodmap ~/.capslock-esc
 eval `ssh-agent -s -t 1d`
 dunst &
 nitrogen --restore &
