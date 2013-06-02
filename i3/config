@@ -174,4 +174,5 @@ bindsym Control+Mod1+9      exec "~/.clip-copy.sh -clip-to-sel"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
+for_window [title="Firefox Preferences"] floating enable
 
