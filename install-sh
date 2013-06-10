@@ -20,6 +20,8 @@ for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
 done
 
+ln -siT "$srcdir/profile" ".bash_profile"
+
 cd "$dstdir/.vim"
 [ -d tmp ]        || mkdir tmp
 [ -d tmp/backup ] || mkdir tmp/backup
