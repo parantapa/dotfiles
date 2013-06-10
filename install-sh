@@ -9,7 +9,7 @@ fi
 
 dotfiles=(profile bash_logout bashrc
     vimrc gvimrc vim tmux.conf gitconfig cvsignore
-    pylintrc Xresources latexmkrc ackrc
+    pylintrc latexmkrc ackrc
     pentadactyl pentadactylrc sqliterc
     i3/config i3status.conf config/dunstrc)
 
