@@ -101,7 +101,7 @@ export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM=auto
 
-. "$HOME/.git-prompt.sh"
+. "$HOME/.dotfiles/git-prompt.sh"
 
 # Add My Cabal to path
 export PATH="$HOME/.cabal/bin:$PATH"
@@ -150,7 +150,7 @@ fi
 # Use virtualenvwrapper
 export VIRTUALENV_DISTRIBUTE=1
 if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
-    export WORKON_HOME=$HOME/.virtualenvs
+    export WORKON_HOME="$HOME/.virtualenvs"
 
     . /usr/bin/virtualenvwrapper.sh
 fi

@@ -27,18 +27,8 @@ floating_modifier $mod
 # Default workspace layout
 workspace_layout tabbed
 
-# start a terminal
-bindsym $mod+Return exec "urxvtc"
-
 # kill focused window
 bindsym Mod1+F4 kill
-
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -118,9 +108,6 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "~/.xexit.sh"
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -153,6 +140,19 @@ bar {
         status_command i3status
 }
 
+# start a terminal
+bindsym $mod+Return exec "urxvtc"
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+q exec "~/.dotfiles/xexit.sh"
+
 bindsym Control+Mod1+Delete exec "xscreensaver-command --lock"
 bindsym Control+Mod1+bracketleft exec "urxvtc"
 bindsym Control+Mod1+bracketright exec "firefox"
@@ -169,8 +169,8 @@ bindsym Control+Mod1+period exec "amixer set Master 5%+"
 bindsym Control+Mod1+comma  exec "amixer set Master 5%-"
 bindsym Control+Mod1+m      exec "amixer set Master toggle"
 
-bindsym Control+Mod1+0      exec "~/.clip-copy.sh -sel-to-clip"
-bindsym Control+Mod1+9      exec "~/.clip-copy.sh -clip-to-sel"
+bindsym Control+Mod1+0      exec "~/.dotfiles/clip-copy.sh -sel-to-clip"
+bindsym Control+Mod1+9      exec "~/.dotfiles/clip-copy.sh -clip-to-sel"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
