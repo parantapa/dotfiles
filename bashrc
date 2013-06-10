@@ -31,6 +31,10 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 
+# Known places
+alias cd.="cd $HOME/.dotfiles"
+alias cdw="cd $HOME/workspace"
+
 # Set the environmetal veriables to something I like
 export GREP_OPTIONS="--color=auto"
 export LESS=-niRS
@@ -128,8 +132,8 @@ PROMPT_COMMAND='PS1="$(__my_ps1)"'
 
 # Shortcut for ps-ing pgrep output
 alias psf="ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem"
-psu () { psf -u $USER "$@" ; }
-psg () { psf $(pgrep "$@") ; }
+psu ()  { psf -u $USER "$@" ; }
+psg ()  { psf $(pgrep "$@") ; }
 topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
