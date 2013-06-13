@@ -162,6 +162,9 @@ nnoremap * *<C-o>
 noremap H ^
 noremap L g_
 
+" Replacement for , as movement shortcut
+nnoremap - ,
+
 " Heresy
 inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
