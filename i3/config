@@ -153,7 +153,7 @@ bindsym $mod+d exec dmenu_run
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec "~/.dotfiles/xexit.sh"
 
-bindsym Control+Mod1+Delete exec "xscreensaver-command --lock"
+bindsym Control+Mod1+Delete exec "~/.dotfiles/mute-n-lock.sh"
 bindsym Control+Mod1+bracketleft exec "urxvtc"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+backslash exec "~/workspace/quickrefs/edit.sh"
