@@ -23,6 +23,7 @@ nmap -b ,pgdoc :open file:///usr/share/doc/postgresql/html/index.html<CR>
 nmap -b ,pydoc :open file:///usr/share/doc/python2/html/index.html<CR>
 nmap -b ,py3doc :open file:///usr/share/doc/python/html/index.html<CR>
 nmap -b ,phpdoc :open file:///usr/share/doc/php/php-chunked-xhtml/index.html<CR>
+nmap -b ,sqldoc :open file:///usr/share/doc/sqlite/index.html<CR>
 
 nmap -b ,zz :set guioptions+=mT<CR>:extdisable Pentadactyl<CR>
 
