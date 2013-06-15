@@ -151,9 +151,9 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "~/.dotfiles/xexit.sh"
+bindsym $mod+Shift+q exec "xexit.sh"
 
-bindsym Control+Mod1+Delete exec "~/.dotfiles/mute-n-lock.sh"
+bindsym Control+Mod1+Delete exec "mute-n-lock.sh"
 bindsym Control+Mod1+bracketleft exec "urxvtc"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+backslash exec "~/workspace/quickrefs/edit.sh"
@@ -169,8 +169,8 @@ bindsym Control+Mod1+period exec "amixer set Master 5%+"
 bindsym Control+Mod1+comma  exec "amixer set Master 5%-"
 bindsym Control+Mod1+m      exec "amixer set Master toggle"
 
-bindsym Control+Mod1+0      exec "~/.dotfiles/clip-copy.sh -sel-to-clip"
-bindsym Control+Mod1+9      exec "~/.dotfiles/clip-copy.sh -clip-to-sel"
+bindsym Control+Mod1+0      exec "clip-copy.sh -sel-to-clip"
+bindsym Control+Mod1+9      exec "clip-copy.sh -clip-to-sel"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
