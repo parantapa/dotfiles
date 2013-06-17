@@ -1,7 +1,7 @@
 # ~/.profile: executed by Bourne-compatible login shells.
 
 # Add My Cabal to path
-PATH="$HOME/.cabal/bin:$HOME/.dotfiles/bin:$PATH"
+PATH="$HOME/.dotfiles/bin:$HOME/.cabal/bin:$PATH"
 export PATH
 
 if [ "$BASH" ] ; then
