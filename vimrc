@@ -187,7 +187,7 @@ nnoremap <script> <SID>winsize>   5<C-W>><SID>winsize
 nnoremap          <SID>winsize    <Nop>
 
 " Open using firefox
-nnoremap <Leader>o yiW:execute "silent !firefox " . @"<CR>
+nnoremap <Leader>o yiW:call system("firefox " . shellescape(@"))<CR>
 
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
