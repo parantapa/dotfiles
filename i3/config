@@ -165,9 +165,9 @@ bindsym Control+Mod1+Right exec "mpc next"
 bindsym Control+Mod1+Down  exec "mpc toggle"
 bindsym Control+Mod1+Up    exec "mpc stop"
 
-bindsym Control+Mod1+period exec "amixer set Master 5%+"
-bindsym Control+Mod1+comma  exec "amixer set Master 5%-"
-bindsym Control+Mod1+m      exec "amixer set Master toggle"
+bindsym Control+Mod1+period exec "amixer set Master 5%+ ; killall -USR1 i3status"
+bindsym Control+Mod1+comma  exec "amixer set Master 5%- ; killall -USR1 i3status"
+bindsym Control+Mod1+m      exec "amixer set Master toggle ; killall -USR1 i3status"
 
 bindsym Control+Mod1+0      exec "clip-copy.sh -sel-to-clip"
 bindsym Control+Mod1+9      exec "clip-copy.sh -clip-to-sel"
