@@ -88,7 +88,7 @@ def get_git_code(repo, status):
     repo = os.path.basename(repo)
 
     if status == "!":
-        return "{} !".format(repo)
+        return "{}!".format(repo)
 
     code = ""
     if status["untracked"]:
@@ -104,7 +104,7 @@ def get_git_code(repo, status):
     if code == "":
         return ""
 
-    return "{} {}".format(repo, code)
+    return "{}{}".format(repo, code)
 
 def main():
     repos = get_git_repos(sys.argv[1:])
@@ -117,7 +117,7 @@ def main():
 
         code = get_git_code(repo, status)
         if code:
-            print code
+            print code,
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+i3status | while :
+do
+    read line
+    rstat=$(git-multi-status ~/.dotfiles ~/workspace+)
+    echo "$rstat | $line" || exit 1
+done
+
