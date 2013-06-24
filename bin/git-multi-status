@@ -1,0 +1,124 @@
+#!/usr/bin/env python2.7
+"""
+Get the status of multiple git repositories.
+
+Usage: git-multi-status [DIR|DIR+] ...
+
+It accepts a list of directories as command line argument. If the directory
+name finishes with a "+", then the subdirectories of the given directory
+are used instead of the directory itself.
+
+The directories are then checked for git repositories. For each git repository
+found, this prints out the repos that have un pushed commits in them.
+"""
+
+__author__  = "Parantapa Bhattacharya <pb@parantapa.net>"
+
+import os
+import sys
+import glob
+from subprocess import check_output, CalledProcessError
+
+def get_git_repos(dirs):
+    """
+    Get the git directories from the given directories.
+    """
+
+    ps = [x[:-1] for x in dirs if x[-1] == "+"]
+    qs = [x for x in dirs if x[-1] != "+"]
+
+    ps = [p + "/*/.git" for p in ps]
+    ps = [q for p in ps for q in glob.glob(p)]
+    ps = [p[:-5] for p in ps]
+
+    repos = ps + qs
+    repos = [os.path.abspath(repo) for repo in repos]
+
+    return repos
+
+def get_git_status():
+    """
+    Get some details about git repository.
+    """
+
+    try:
+        cmd = "git branch --list 2>/dev/null"
+        output = check_output(cmd, shell=True).splitlines()
+        
+        line = [x for x in output if x[0] == "*"][0]
+        branch = line.split()[1]
+    except CalledProcessError:
+        return "!"
+
+    try:
+        cmd = "git config --get branch.{}.remote".format(branch)
+        remote = check_output(cmd, shell=True).strip()
+
+        cmd = "git config --get branch.{}.merge".format(branch)
+        remote_branch = check_output(cmd, shell=True).strip()
+        remote_branch = remote_branch.split("/")[-1]
+
+        upstream = "{}/{}".format(remote, remote_branch)
+    except CalledProcessError:
+        return "-"
+   
+    cmd = "git status --porcelain 2>/dev/null"
+    output = check_output(cmd, shell=True).splitlines()
+
+    untracked = sum(1 for x in output if x.startswith("??"))
+    indexed   = sum(1 for x in output if x.startswith("A"))
+    dirty     = sum(1 for x in output if x.startswith(" M"))
+
+    cmd = "git rev-list --count --left-right {}...{}"
+    cmd = cmd.format(branch, upstream)
+    output = check_output(cmd, shell=True)
+
+    forward, behind = output.split()
+    forward, behind = int(forward), int(behind)
+
+    keys = "branch upstream untracked indexed dirty forward behind".split()
+    vals = locals()
+    return {k: vals[k] for k in keys}
+
+def get_git_code(repo, status):
+    """
+    Create a display code from the git status.
+    """
+
+    repo = os.path.basename(repo)
+
+    if status == "!":
+        return "{} !".format(repo)
+
+    code = ""
+    if status["untracked"]:
+        code += "%"
+    if status["indexed"]:
+        code += "+"
+    if status["dirty"]:
+        code += "*"
+    if status["behind"]:
+        code += "<"
+    if status["forward"]:
+        code += ">"
+    if code == "":
+        return ""
+
+    return "{} {}".format(repo, code)
+
+def main():
+    repos = get_git_repos(sys.argv[1:])
+
+    for repo in repos:
+        os.chdir(repo)
+        status = get_git_status()
+        if status == "-":
+            continue
+
+        code = get_git_code(repo, status)
+        if code:
+            print code
+
+if __name__ == '__main__':
+    main()
+
