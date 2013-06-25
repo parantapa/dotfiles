@@ -110,7 +110,12 @@ def main():
     repos = get_git_repos(sys.argv[1:])
 
     for repo in repos:
-        os.chdir(repo)
+        try:
+            os.chdir(repo)
+        except OSError:
+            print os.path.basename(repo) + "!!",
+            continue
+
         status = get_git_status()
         if status == "-":
             continue
@@ -118,6 +123,8 @@ def main():
         code = get_git_code(repo, status)
         if code:
             print code,
+
+    print ""
 
 if __name__ == '__main__':
     main()
