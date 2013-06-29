@@ -66,8 +66,8 @@ def get_git_status():
     output = check_output(cmd, shell=True).splitlines()
 
     untracked = sum(1 for x in output if x.startswith("??"))
-    indexed   = sum(1 for x in output if x.startswith("A"))
-    dirty     = sum(1 for x in output if x.startswith(" M"))
+    indexed   = sum(1 for x in output if x[0] == "A")
+    dirty     = sum(1 for x in output if x[1] == "M")
 
     cmd = "git rev-list --count --left-right {}...{}"
     cmd = cmd.format(branch, upstream)
