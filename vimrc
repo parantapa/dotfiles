@@ -393,7 +393,7 @@ nnoremap Q gq
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Substitute
-nnoremap <Leader>s :%s/\v
+nnoremap <Leader>s :%s/\V
 
 " Emacs bindings in command line mode
 cnoremap <C-a> <Home>
@@ -413,6 +413,9 @@ nnoremap :wq :au! syntastic<cr>:wq
 
 " Use MoinMoin wiki syntax
 nnoremap <Leader>moin :se ft=moin<CR>
+
+" Do a repo sync
+nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
