@@ -167,15 +167,15 @@ noremap L g_
 " Replacement for , as movement shortcut
 nnoremap - ,
 
-" Heresy
-inoremap <C-a> <esc>I
-inoremap <C-e> <esc>A
+nnoremap ]q :lnext<CR>
+nnoremap [q :lprev<CR>
+nnoremap ]Q :lfirst<CR>
+nnoremap [Q :llast<CR>
 
-nnoremap <C-h> :lrewind<CR>
-nnoremap <C-j> :lnext<CR>
-nnoremap <C-k> :lprev<CR>
-" nnoremap <M-k> :cnext<CR>
-" nnoremap <M-l> :cprev<CR>
+" nnoremap ]w :cnext<CR>
+" nnoremap [w :cprev<CR>
+" nnoremap ]W :cfirst<CR>
+" nnoremap [W :clast<CR>
 
 " Continuous window resizing
 nnoremap          <C-W>+          <C-W>+<SID>winsize
@@ -193,7 +193,6 @@ nnoremap <Leader>o yiW:call system("firefox " . shellescape(@"))<CR>
 
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
-
 
 " }}}
 " Folding ----------------------------------------------------------------- {{{
