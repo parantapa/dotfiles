@@ -73,3 +73,9 @@
 [submodule "vim/bundle/yankstack"]
 	path = vim/bundle/yankstack
 	url = https://github.com/maxbrunsfeld/vim-yankstack
+[submodule "vim/bundle/repeat"]
+	path = vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim/bundle/surround"]
+	path = vim/bundle/surround
+	url = https://github.com/tpope/vim-surround
