@@ -497,11 +497,6 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
     " autocmd FileType python setlocal omnifunc=RopeCompleteFunc
 
 " }}}
-" NERD Commenter {{{
-
-    let g:NERDCreateDefaultMappings = 1
-
-"}}}
 " ViewDoc {{{
 
     let g:viewdoc_pydoc_cmd="python -m pydoc"
@@ -511,6 +506,13 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 
     let g:slime_target = "tmux"
     let g:slime_paste_file = "$HOME/.slime_paste"
+
+" }}}
+" YankStack {{{
+
+   let g:yankstack_map_keys = 0
+   nmap <leader>p <Plug>yankstack_substitute_older_paste
+   nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " }}}
 "
