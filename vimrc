@@ -9,6 +9,8 @@ call pathogen#infect()
 call pathogen#helptags()
 filetype plugin indent on
 
+call yankstack#setup()
+
 set nocompatible
 set nomodeline
 
