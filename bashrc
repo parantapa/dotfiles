@@ -129,9 +129,9 @@ function __my_ps1() {
 PROMPT_COMMAND='PS1="$(__my_ps1)"'
 
 # Shortcut for ps-ing pgrep output
-alias psf="ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem"
-psu ()  { psf -u $USER "$@" ; }
-psg ()  { psf $(pgrep "$@") ; }
+psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
+psg  () { psf $( pgrep "$@" ) ; }
+psu  () { psf -u $USER "$@" ; }
 topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
@@ -143,11 +143,17 @@ alias gs="tig status"
 alias gl="tig"
 
 # GVim alias
-if [ -n "$DISPLAY" ] ; then
-    alias g="gvim --servername G --remote-silent"
-else
-    alias g=vim
-fi
+g () {
+    if [ -n "$DISPLAY" ] ; then
+        if [ "$#" -eq 0 ] ; then
+            gvim --servername G
+        else
+            gvim --servername G --remote-silent "$@"
+        fi
+    else
+        vim "$@"
+    fi
+}
 
 # Use virtualenvwrapper
 export VIRTUALENV_DISTRIBUTE=1
