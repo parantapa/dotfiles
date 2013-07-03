@@ -41,13 +41,13 @@ else
 fi
 
 echo "Syncing with server ..."
-git pull
+git pull --ff-only
 if [ "$?" -ne "0" ] ; then
     msg_normal "Failed to pull!"
     exit 3
 fi
 
-changes=$(git rev-list --count HEAD ^origin)
+changes=$(git rev-list --count HEAD ^origin/master)
 if [ "$changes" -ne "0" ] ; then
     echo "Pushing updates to remote server ..."
     git push
