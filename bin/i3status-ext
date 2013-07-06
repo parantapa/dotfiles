@@ -3,7 +3,7 @@
 i3status | while :
 do
     read line
-    rstat=$(git-multi-status ~/.dotfiles ~/workspace+)
+    rstat=$(git-multi-status ~/.dotfiles ~/workspace+ ~/workspace/drafts+)
     echo "$rstat | $line" || exit 1
 done
 

@@ -60,6 +60,17 @@ def get_git_status():
 
         upstream = "{}/{}".format(remote, remote_branch)
     except CalledProcessError:
+        upstream = None
+
+    if upstream is None:
+        try:
+            cmd = "git config --get svn-remote.svn.fetch"
+            svn_refs = check_output(cmd, shell=True).strip()
+            upstream = svn_refs.split("/")[-1]
+        except CalledProcessError:
+            pass
+
+    if upstream is None:
         return "-"
    
     cmd = "git status --porcelain 2>/dev/null"
