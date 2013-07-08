@@ -177,6 +177,10 @@ nnoremap [Q :llast<CR>
 " nnoremap ]W :cfirst<CR>
 " nnoremap [W :clast<CR>
 
+" Hitting parenthesis is hard
+nnoremap \] )
+nnoremap \[ (
+
 " Continuous window resizing
 nnoremap          <C-W>+          <C-W>+<SID>winsize
 nnoremap          <C-W>-          <C-W>-<SID>winsize
@@ -284,10 +288,8 @@ augroup ft_markdown
     au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
     au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
     au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
-    au Filetype mkd vnoremap <buffer> <localleader>i di**<Esc>hp
-    au Filetype mkd vnoremap <buffer> <localleader>b di****<Esc>hhp
-    au Filetype mkd nnoremap <buffer> <localleader>i diw**<Esc>hp
-    au Filetype mkd nnoremap <buffer> <localleader>b diw****<Esc>hhp
+    au Filetype mkd let b:surround_105 = "*\r*"
+    au Filetype mkd let b:surround_98 = "**\r**"
     au Filetype mkd setlocal nofoldenable
 augroup END
 " }}}
@@ -311,10 +313,8 @@ augroup ft_moin
     au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
     au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
     au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
-    au Filetype moin vnoremap <buffer> <localleader>i di''''<Esc>hhp
-    au Filetype moin vnoremap <buffer> <localleader>b di''''''<Esc>hhhp
-    au Filetype moin nnoremap <buffer> <localleader>i diw''''<Esc>hhp
-    au Filetype moin nnoremap <buffer> <localleader>b diw''''''<Esc>hhhp
+    au Filetype moin let b:surround_105 = "''\r''"
+    au Filetype moin let b:surround_98 = "'''\r'''"
 augroup END
 " }}}
 " Latex {{{
@@ -322,10 +322,9 @@ augroup END
 augroup ft_tex
     au!
 
-    au Filetype tex nnoremap <buffer> <localleader>i diw\textit{}<Esc>hp
-    au Filetype tex nnoremap <buffer> <localleader>b diw\textbf{}<Esc>hp
-    au Filetype tex vnoremap <buffer> <localleader>i di\textit{}<Esc>hp
-    au Filetype tex vnoremap <buffer> <localleader>b di\textbf{}<Esc>hp
+    au FileType tex setlocal sw=2 sts=2
+    au Filetype tex let b:surround_105 = "\\textit{\r}"
+    au Filetype tex let b:surround_98 = "\\textbf{\r}"
     au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
 augroup END
 " }}}
