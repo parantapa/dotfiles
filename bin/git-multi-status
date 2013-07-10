@@ -14,27 +14,23 @@ found, this prints out the repos that have un pushed commits in them.
 
 __author__  = "Parantapa Bhattacharya <pb@parantapa.net>"
 
-import os
 import sys
-import glob
+from os import chdir
+from os.path import join, abspath, basename, dirname
+from glob import glob
 from subprocess import check_output, CalledProcessError
 
-def get_git_repos(dirs):
+def get_git_repos(xs):
     """
     Get the git directories from the given directories.
     """
 
-    ps = [x[:-1] for x in dirs if x[-1] == "+"]
-    qs = [x for x in dirs if x[-1] != "+"]
-
-    ps = [p + "/*/.git" for p in ps]
-    ps = [q for p in ps for q in glob.glob(p)]
-    ps = [p[:-5] for p in ps]
-
-    repos = ps + qs
-    repos = [os.path.abspath(repo) for repo in repos]
-
-    return repos
+    xs = [join(x, ".git") for x in xs]
+    xs = [glob(x) for x in xs]
+    xs = [y for ys in xs for y in ys]
+    xs = [dirname(x) for x in xs]
+    xs = [abspath(x) for x in xs]
+    return xs
 
 def get_git_status():
     """
@@ -78,7 +74,7 @@ def get_git_status():
 
     untracked = sum(1 for x in output if x.startswith("??"))
     indexed   = sum(1 for x in output if x[0] == "A")
-    dirty     = sum(1 for x in output if x[1] == "M" or x[1] == "D")
+    dirty     = sum(1 for x in output if x[1] in "MD")
 
     cmd = "git rev-list --count --left-right {}...{}"
     cmd = cmd.format(branch, upstream)
@@ -96,7 +92,7 @@ def get_git_code(repo, status):
     Create a display code from the git status.
     """
 
-    repo = os.path.basename(repo)
+    repo = basename(repo)
 
     if status == "!":
         return "{}!".format(repo)
@@ -121,11 +117,7 @@ def main():
     repos = get_git_repos(sys.argv[1:])
 
     for repo in repos:
-        try:
-            os.chdir(repo)
-        except OSError:
-            print os.path.basename(repo) + "!!",
-            continue
+        chdir(repo)
 
         status = get_git_status()
         if status == "-":
