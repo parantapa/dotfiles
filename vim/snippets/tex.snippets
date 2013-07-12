@@ -23,6 +23,7 @@ snippet table
 		\caption{${3}}
 	\end{center}
 	\label{tab:${4}}
+	\end{table}
 snippet center
 	\begin{center}
 		${1}
@@ -51,7 +52,11 @@ snippet ssubsection
 	\subsubsection{${1:subsubsection name}}
 	\label{ssub:${2:$1}}
 	${3}
-snippet it
+snippet equation
+	\begin{equation}
+		${1}
+	\end{equation}
+snippet item
 	\item[${1:description}] ${2:item}
 snippet fig
 	${1:Figure}~\ref{${2:fig:}}${3}
