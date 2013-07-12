@@ -172,10 +172,10 @@ nnoremap [q :lprev<CR>
 nnoremap ]Q :lfirst<CR>
 nnoremap [Q :llast<CR>
 
-" nnoremap ]w :cnext<CR>
-" nnoremap [w :cprev<CR>
-" nnoremap ]W :cfirst<CR>
-" nnoremap [W :clast<CR>
+nnoremap ]w :cnext<CR>
+nnoremap [w :cprev<CR>
+nnoremap ]W :cfirst<CR>
+nnoremap [W :clast<CR>
 
 " Hitting parenthesis is hard
 nnoremap \] )
