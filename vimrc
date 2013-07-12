@@ -169,13 +169,13 @@ nnoremap - ,
 
 nnoremap ]q :lnext<CR>
 nnoremap [q :lprev<CR>
-nnoremap ]Q :lfirst<CR>
-nnoremap [Q :llast<CR>
+nnoremap ]]q :lfirst<CR>
+nnoremap [[q :llast<CR>
 
 nnoremap ]w :cnext<CR>
 nnoremap [w :cprev<CR>
-nnoremap ]W :cfirst<CR>
-nnoremap [W :clast<CR>
+nnoremap ]]w :cfirst<CR>
+nnoremap [[w :clast<CR>
 
 " Hitting parenthesis is hard
 nnoremap \] )
