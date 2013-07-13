@@ -9,6 +9,8 @@ call pathogen#infect()
 call pathogen#helptags()
 filetype plugin indent on
 
+" Setup yankstack early.
+" Otherwise it interferes with surround.
 call yankstack#setup()
 
 set nocompatible
@@ -75,7 +77,7 @@ set colorcolumn=+1
 set shiftround
 
 " }}}
-" Backups ----------------------------------------------------------------- {{{
+" Backups and Spell Files ------------------------------------------------- {{{
 
 set undodir=~/.vim/tmp/undo//
 set undofile
@@ -85,6 +87,12 @@ set backupdir=~/.vim/tmp/backup//
 set backup
 
 set directory=~/.vim/tmp/swap//
+
+set spellfile=~/.myspell.utf-8.add
+set spelllang=en_us
+
+" The spell file may be updated outside of vim
+execute "silent mkspell! " . &spellfile
 
 " }}}
 " Leader ------------------------------------------------------------------ {{{
@@ -406,7 +414,7 @@ cnoremap w!! set buftype=nowrite <bar> w !sudo tee % >/dev/null
 set pastetoggle=<F6>
 
 " Toggle spell
-nnoremap <F3> :setlocal spell! spelllang=en_us<CR>
+nnoremap <F3> :setlocal spell!<CR>
 
 " Dont use Syntastic when exiting
 nnoremap :wq :au! syntastic<cr>:wq
