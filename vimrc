@@ -526,6 +526,11 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
     nmap W <Plug>Commentary
 
 " }}}
+" LanguageTool {{{
+
+    let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
+
+" }}}
 "
 " }}}
 "
