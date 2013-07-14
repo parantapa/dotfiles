@@ -173,7 +173,7 @@ noremap H ^
 noremap L g_
 
 " Replacement for , as movement shortcut
-nnoremap - ,
+noremap - ,
 
 nnoremap ]q :lnext<CR>
 nnoremap [q :lprev<CR>
@@ -186,8 +186,10 @@ nnoremap ]]w :cfirst<CR>
 nnoremap [[w :clast<CR>
 
 " Hitting parenthesis is hard
-nnoremap \] )
-nnoremap \[ (
+noremap } )
+noremap { (
+noremap \] }
+noremap \[ {
 
 " Continuous window resizing
 nnoremap          <C-W>+          <C-W>+<SID>winsize
@@ -211,6 +213,7 @@ nnoremap <Leader>n :edit <cfile><CR>
 
 set foldlevelstart=0
 set nofoldenable
+set foldmethod=marker
 
 " Space to toggle folds.
 nnoremap <Space> za
