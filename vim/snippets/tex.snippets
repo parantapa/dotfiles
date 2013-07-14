@@ -42,16 +42,22 @@ snippet desc
 	\end{description}
 snippet section
 	\section{${1:section name}}
-	\label{sec:${2:$1}}
+	\label{sec:${2:$1}} % {{{
 	${3}
+
+	% }}}
 snippet subsection
 	\subsection{${1:subsection name}}
-	\label{sub:${2:$1}}
+	\label{sub:${2:$1}} % {{{
 	${3}
-snippet ssubsection
+
+	% }}}
+snippet subsubsection
 	\subsubsection{${1:subsubsection name}}
-	\label{ssub:${2:$1}}
+	\label{ssub:${2:$1}} % {{{
 	${3}
+
+	% }}}
 snippet equation
 	\begin{equation}
 		${1}
