@@ -111,7 +111,8 @@ export GIT_PS1_SHOWUPSTREAM=auto
 function __my_ps1() {
     ret="$?"
 
-    if [ -n "$VIRTUAL_ENV" ] ; then
+    type deactivate >/dev/null 2>&1
+    if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
         printf '%s(%s)%s ' "${txtgrn}" "$(basename $VIRTUAL_ENV)" "${txtpur}"
     fi
     printf '%s\\u@\\h%s: ' "${txtcyn}" "${txtpur}"
