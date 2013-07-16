@@ -153,6 +153,10 @@ g () {
     fi
 }
 
+# Setup the rubygem locations
+export GEM_HOME=~/.gem
+export GEM_PATH=~/.gem
+
 # Use virtualenvwrapper
 export VIRTUALENV_DISTRIBUTE=1
 if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
