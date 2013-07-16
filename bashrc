@@ -3,9 +3,6 @@
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# Hack to consistantly update history when using multiple sessions
-PROMPT_COMMAND="history -a"
-
 # set hist size 500 is too small
 HISTSIZE=5000
 
@@ -107,7 +104,6 @@ export GIT_PS1_SHOWUPSTREAM=auto
 
 . "$HOME/.dotfiles/git-prompt.sh"
 
-
 function __my_ps1() {
     ret="$?"
 
@@ -127,7 +123,8 @@ function __my_ps1() {
     printf '\\n%s\\$ %s' "${txtpur}" "${txtrst}"
 }
 
-PROMPT_COMMAND='PS1="$(__my_ps1)"'
+# Hack to consistantly update history when using multiple sessions
+PROMPT_COMMAND='history -a; PS1="$(__my_ps1)"'
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
