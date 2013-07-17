@@ -488,7 +488,7 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 " }}}
 " SuperTab {{{
 
-    let g:SuperTabDefaultCompletionType = "context"
+    let g:SuperTabDefaultCompletionType = "<c-p>"
     let g:SuperTabClosePreviewOnPopupClose = 1
 
 " }}}
