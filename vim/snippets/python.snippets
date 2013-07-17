@@ -63,9 +63,12 @@ snippet try Try/Except
 	except ${2:Exception} as ${3:e}:
 		${4:raise $3}
 # if __name__ == '__main__':
-snippet ifmain
+snippet main
+	def main():
+		${1}
+
 	if __name__ == '__main__':
-		${1:main()}
+		main()
 
 # if __debug__
 snippet ifdebug
