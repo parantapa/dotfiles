@@ -526,8 +526,9 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 " }}}
 " Commentary {{{
 
-    nmap W <Plug>Commentary
-    vmap W <Plug>Commentary
+    let g:commentary_map_keys = 0
+    xmap W  <Plug>Commentary
+    nmap W  <Plug>Commentary
 
 " }}}
 " LanguageTool {{{
