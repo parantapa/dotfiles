@@ -73,8 +73,7 @@ snippet main
 # if __debug__
 snippet ifdebug
 	if __debug__:
-		${1:pass}
-
+		log.debug("${1:text}")
 # __magic__
 snippet _
 	__${1:init}__${2}
