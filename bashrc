@@ -164,3 +164,9 @@ if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
 
     . /usr/bin/virtualenvwrapper.sh
 fi
+
+# Use a separate file for system specific bashrc
+if [ -r ~/.bashrc_local ] ; then
+    . ~/.bashrc_local
+fi
+
