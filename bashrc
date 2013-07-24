@@ -157,13 +157,8 @@ g () {
 export GEM_HOME=~/.gem
 export GEM_PATH=~/.gem
 
-# Use virtualenvwrapper
+# User Distribute instead of Setuptools
 export VIRTUALENV_DISTRIBUTE=1
-if [ -r /usr/bin/virtualenvwrapper.sh ] ; then
-    export WORKON_HOME="$HOME/.virtualenvs"
-
-    . /usr/bin/virtualenvwrapper.sh
-fi
 
 # Use a separate file for system specific bashrc
 if [ -r ~/.bashrc_local ] ; then
