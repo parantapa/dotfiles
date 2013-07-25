@@ -428,6 +428,10 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " Do a repo sync
 nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 
+" Shortcuts for completion
+inoremap <C-f> <C-x><C-f>
+inoremap <C-o> <C-x><C-o>
+
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
