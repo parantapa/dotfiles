@@ -203,7 +203,12 @@ nnoremap <script> <SID>winsize>   5<C-W>><SID>winsize
 nnoremap          <SID>winsize    <Nop>
 
 " Open using firefox
-nnoremap <Leader>o yiW:call system("firefox " . shellescape(@"))<CR>
+nnoremap <Leader>oo yiW:call system("firefox " . shellescape(@"))<CR>
+vnoremap <Leader>oo y:call system("firefox " . shellescape(@"))<CR>
+nnoremap <Leader>ot yiw:call system("firefox thesaurus.com/browse/" . shellescape(@"))<CR>
+nnoremap <Leader>od yiw:call system("firefox dictionary.reference.com/browse/" . shellescape(@"))<CR>
+nnoremap <Leader>os yiW:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
+vnoremap <Leader>os y:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
 
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
