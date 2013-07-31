@@ -153,10 +153,6 @@ g () {
     fi
 }
 
-# Setup the rubygem locations
-export GEM_HOME=~/.gem
-export GEM_PATH=~/.gem
-
 # User Distribute instead of Setuptools
 export VIRTUALENV_DISTRIBUTE=1
 
