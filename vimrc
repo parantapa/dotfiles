@@ -405,6 +405,9 @@ nnoremap <Leader>! :Shell
 " I dont use ex mode
 nnoremap Q gq
 
+" Better shortcut for copy the rest of the line
+nnoremap Y y$
+
 " Clean whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
