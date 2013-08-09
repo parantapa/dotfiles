@@ -50,6 +50,9 @@ set fillchars=diff:░
 set backspace=indent,eol,start
 set showbreak=↪
 
+" Make dash - 45 part of iskeyword
+set iskeyword=@,48-57,_,192-255,.,45
+
 " }}}
 " Wildmenu completion ----------------------------------------------------- {{{
 
