@@ -7,7 +7,7 @@ nmap -b j 3j
 nmap -b k 3k
 
 nmap -b ,m :open gmail.com<CR>
-nmap -b ,n :open slashdot.org | news.ycombinator.org | telegraphindia.com<CR>
+nmap -b ,n :open slashdot.org | news.ycombinator.com | telegraphindia.com<CR>
 nmap -b ,b :open lifehacker.com | boingboing.net<CR>
 nmap -b ,s :open facebook.com | twitter.com | reddit.com<CR>
 
