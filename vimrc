@@ -383,7 +383,7 @@ augroup ft_vimrc_autoread:
 augroup END
 
 " }}}
-" Shell ------------------------------------------------------------------- {{{
+" Misc -------------------------------------------------------------------- {{{
 
 function! s:ExecuteInShell(command) " {{{
     let command = join(map(split(a:command), 'expand(v:val)'))
@@ -401,6 +401,16 @@ function! s:ExecuteInShell(command) " {{{
 endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 nnoremap <Leader>! :Shell
+
+function! ToggleBrInBuf()
+    normal g0vG$"zy
+    if stridx(@z, "<br>") ==# -1
+        execute "%s/\\V\\n/<br>"
+    else
+        execute "%s/\\V<br>/\\r"
+    endif
+endf
+nnoremap <F7> :call ToggleBrInBuf()<CR>
 
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
