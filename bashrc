@@ -103,6 +103,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM=auto
 
 . "$HOME/.dotfiles/git-prompt.sh"
+. "$HOME/.dotfiles/marks.sh"
 
 function __my_ps1() {
     ret="$?"
