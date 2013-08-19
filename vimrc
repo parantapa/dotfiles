@@ -452,6 +452,7 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 " Shortcuts for completion
 inoremap <C-f> <C-x><C-f>
 inoremap <C-o> <C-x><C-o>
+inoremap <C-l> <C-x><C-l>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
