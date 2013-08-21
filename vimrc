@@ -356,6 +356,26 @@ augroup ft_gnuplot
 augroup END
 
 " }}}
+" Python {{{
+
+augroup ft_python
+    au!
+    
+    au FileType python setlocal foldmethod=indent
+augroup END
+
+" }}}
+" PHP {{{
+
+let g:php_folding = 2
+
+augroup ft_php
+    au!
+    
+    au FileType php setlocal foldmethod=syntax
+augroup END
+
+" }}}
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
