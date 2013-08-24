@@ -1,1 +1,6 @@
 --type-add=js=.jsm
+
+--type-add=json=.json
+--type-add=json=.jsons
+
+--type=nojson
