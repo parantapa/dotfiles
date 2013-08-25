@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # ~/.xinitrc
 #
@@ -26,4 +26,5 @@ urxvtd -q -f -o
 # exec startxfce4
 # ...or the Window Manager of your choice
 
+make-i3-config
 exec i3 -V > "$HOME/.i3/i3log" 2>&1

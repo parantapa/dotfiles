@@ -11,7 +11,7 @@ dotfiles=(profile bash_logout bashrc
     vimrc gvimrc vim tmux.conf gitconfig cvsignore
     pylintrc latexmkrc ackrc ctags
     pentadactyl pentadactylrc sqliterc
-    i3/config i3status.conf config/dunstrc)
+    i3/config.global i3status.conf config/dunstrc)
 
 cd "$dstdir"
 [ -d .i3 ]     || mkdir .i3
@@ -20,6 +20,8 @@ for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
 done
 
+touch .i3/config.local
+touch .repo-dirs
 ln -siT "$srcdir/profile" ".bash_profile"
 
 cd "$dstdir/.vim"

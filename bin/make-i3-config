@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd "$HOME/.i3"
+cat config.global config.local > config
