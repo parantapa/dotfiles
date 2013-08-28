@@ -573,8 +573,10 @@ inoremap <C-l> <C-x><C-l>
 " Commentary {{{
 
     let g:commentary_map_keys = 0
-    xmap W  <Plug>Commentary
-    nmap W  <Plug>Commentary
+    xmap gc  <Plug>Commentary
+    nmap gc  <Plug>Commentary
+    nmap gcc <Plug>CommentaryLine
+    nmap gcu <Plug>CommentaryUndo
 
 " }}}
 " LanguageTool {{{
