@@ -4,7 +4,7 @@
 set -x
 
 filename="${1%.*}"
-dpi="${2:-300}"
+dpi="${2:-600}"
 
 convert -units PixelsPerInch "$1" -resample "$dpi" "$filename".eps
 epstopdf "$filename".eps
