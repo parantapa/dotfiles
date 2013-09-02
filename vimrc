@@ -135,6 +135,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 set statusline+=%=                              " Right align.
+set statusline+=%{virtualenv#statusline()}      " Virtualenv
 set statusline+=(
 set statusline+=%{&ff}                          " Format (unix/DOS).
 set statusline+=/
@@ -548,6 +549,7 @@ inoremap <C-l> <C-x><C-l>
 " }}}
 " Virtualenv {{{
 
+    let g:virtualenv_stl_format = '[%n] '
     if $VIRTUAL_ENV
         VirtualEnvActivate
     endif
