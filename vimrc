@@ -360,7 +360,7 @@ augroup END
 
 augroup ft_python
     au!
-    
+
     au FileType python setlocal foldmethod=indent
 augroup END
 
@@ -371,7 +371,7 @@ let g:php_folding = 2
 
 augroup ft_php
     au!
-    
+
     au FileType php setlocal foldmethod=syntax
 augroup END
 
@@ -421,6 +421,14 @@ function! s:ExecuteInShell(command) " {{{
 endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 nnoremap <Leader>! :Shell
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
 
 function! ToggleBrInBuf()
     normal g0vG$"zy
