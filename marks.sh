@@ -8,7 +8,7 @@ function jump {
 }
 
 function mark {
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+    mkdir -p "$MARKPATH"; ln -sT "$(pwd)" "$MARKPATH/$1"
 }
 
 function unmark {
