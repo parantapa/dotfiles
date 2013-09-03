@@ -556,13 +556,6 @@ inoremap <C-l> <C-x><C-l>
     endif
 
 " }}}
-" RopeVim {{{
-
-    let g:ropevim_enable_shortcuts = 0
-    let g:ropevim_guess_project = 1
-    " autocmd FileType python setlocal omnifunc=RopeCompleteFunc
-
-" }}}
 " ViewDoc {{{
 
     let g:viewdoc_pydoc_cmd="python -m pydoc"

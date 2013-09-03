@@ -55,9 +55,6 @@
 [submodule "vim/bundle/virtualenv"]
 	path = vim/bundle/virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv.git
-[submodule "vim/bundle/rope"]
-	path = vim/bundle/rope
-	url = https://github.com/parantapa/rope-vim.git
 [submodule "vim/bundle/markdown"]
 	path = vim/bundle/markdown
 	url = https://github.com/plasticboy/vim-markdown.git
