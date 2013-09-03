@@ -588,6 +588,12 @@ inoremap <C-l> <C-x><C-l>
     let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
 
 " }}}
+" Jedi Vim {{{
+
+    let g:jedi#use_tabs_not_buffers = 0
+    let g:jedi#popup_on_dot = 0
+
+" }}}
 "
 " }}}
 "
