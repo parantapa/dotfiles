@@ -10,7 +10,7 @@ fi
 dotfiles=(profile bash_logout bashrc
     vimrc gvimrc vim tmux.conf gitconfig cvsignore
     pylintrc latexmkrc ackrc ctags
-    pentadactyl pentadactylrc sqliterc
+    pentadactyl pentadactylrc sqliterc psqlrc
     i3/config.global i3status.conf config/dunstrc)
 
 cd "$dstdir"

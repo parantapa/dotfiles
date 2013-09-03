@@ -141,6 +141,17 @@ alias gca="git commit -a"
 alias gs="tig status"
 alias gl="tig"
 
+# SVN update all
+git-svn-rebase-all () {
+    set -x
+    for i in "$@" ; do
+        cd "$i"
+        git svn rebase
+        cd -
+    done
+    set +x
+}
+
 # GVim alias
 g () {
     if [ -n "$DISPLAY" ] ; then
