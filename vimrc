@@ -311,6 +311,7 @@ augroup ft_markdown
     au Filetype mkd let b:surround_105 = "*\r*"
     au Filetype mkd let b:surround_98 = "**\r**"
     au Filetype mkd setlocal nofoldenable
+    au Filetype mkd setlocal suffixesadd=.md
 augroup END
 " }}}
 " Vim {{{
