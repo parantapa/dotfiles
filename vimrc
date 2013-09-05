@@ -432,15 +432,19 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-function! ToggleBrInBuf()
-    normal g0vG$"zy
+function! ToggleHtmlInBuf()
+    silent! normal g0vG$"zy
     if stridx(@z, "<br>") ==# -1
-        execute "%s/\\V\\n/<br>"
+        silent! execute "%s/\\V>/\\&gt;/"
+        silent! execute "%s/\\V</\\&lt;/"
+        silent! execute "%s/\\V\\n/<br>/"
     else
-        execute "%s/\\V<br>/\\r"
+        silent! execute "%s/\\V<br>/\\r/"
+        silent! execute "%s/\\V&gt;/>/"
+        silent! execute "%s/\\V&lt;/</"
     endif
 endf
-nnoremap <F7> :call ToggleBrInBuf()<CR>
+nnoremap <F7> :call ToggleHtmlInBuf()<CR>
 
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
