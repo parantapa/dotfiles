@@ -158,8 +158,9 @@ set ignorecase
 set smartcase
 set incsearch
 set showmatch
-set nohlsearch
+set hlsearch
 set gdefault
+set nowrapscan
 
 set scrolloff=3
 set sidescrolloff=10
@@ -487,6 +488,9 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 inoremap <C-f> <C-x><C-f>
 inoremap <C-o> <C-x><C-o>
 inoremap <C-l> <C-x><C-l>
+
+" On C-l remove hlsearch
+nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
