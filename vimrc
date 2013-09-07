@@ -365,6 +365,7 @@ augroup ft_python
     au!
 
     au FileType python setlocal foldmethod=indent
+    au FileType python setlocal commentstring=#\ %s
 augroup END
 
 " }}}
