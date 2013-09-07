@@ -14,7 +14,7 @@ fi
 # Setup i3
 xrdb "$HOME/.dotfiles/Xresources"
 xmodmap "$HOME/.dotfiles/capslock-esc"
-eval `ssh-agent -s -t 1d`
+eval `ssh-agent -s -t 16h`
 dunst &
 nitrogen --restore &
 xscreensaver -no-splash &
