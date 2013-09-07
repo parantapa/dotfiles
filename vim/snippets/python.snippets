@@ -127,10 +127,15 @@ snippet li
 snippet lp
 	"/local/parantapa/${1}"
 snippet dmn
-	from pypb import daemonize
-	from rconfig import LOGDIR
-	daemonize(LOGDIR)
+	import pypb.dmn
+	import rconfig
+	pypb.dmn.LOGDIR = rconfig.LOGDIR
+	pypb.dmn.daemonize(LOGDIR)
 snippet sutf
 	import sys
 	import codecs
 	sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
+snippet gpatchall
+	import gevent.monkey
+	gevent.monkey.patch_all()
+
