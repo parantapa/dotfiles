@@ -487,8 +487,8 @@ nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 
 " Shortcuts for completion
 inoremap <C-f> <C-x><C-f>
-inoremap <C-o> <C-x><C-o>
 inoremap <C-l> <C-x><C-l>
+inoremap <C-Space> <C-x><C-o>
 
 " On C-l remove hlsearch
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
@@ -601,8 +601,9 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
     let g:jedi#use_tabs_not_buffers = 0
     let g:jedi#popup_on_dot = 0
+    let g:jedi#show_call_signatures = 0
+    let g:jedi#auto_vim_configuration = 0
 
 " }}}
 "
 " }}}
-"
