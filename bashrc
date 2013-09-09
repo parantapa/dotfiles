@@ -27,6 +27,7 @@ alias l.="ls $LS_OPTIONS -A --ignore='[^.]*'"
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
+alias cpv="rsync -h --progress"
 
 # Known places
 alias cd.="cd $HOME/.dotfiles"
