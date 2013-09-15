@@ -11,7 +11,7 @@ dotfiles=(profile bash_logout bashrc
     vimrc gvimrc vim tmux.conf gitconfig cvsignore
     pylintrc latexmkrc ackrc ctags
     pentadactyl pentadactylrc sqliterc psqlrc
-    i3/config.global i3status.conf config/dunstrc)
+    i3/config.global config/dunstrc)
 
 cd "$dstdir"
 [ -d .i3 ]     || mkdir .i3
@@ -22,6 +22,7 @@ done
 
 touch .i3/config.local
 touch .repo-dirs
+touch .myspell.utf-8.add
 ln -siT "$srcdir/profile" ".bash_profile"
 
 cd "$dstdir/.vim"
