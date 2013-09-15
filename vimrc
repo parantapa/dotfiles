@@ -523,6 +523,8 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
     let g:syntastic_python_checker = 'pylint'
+    let g:syntastic_javascript_checker = 'jslint'
+    let g:syntastic_javascript_jslint_conf = "--white --sloppy --vars --undef"
 
 " }}}
 " Ack {{{

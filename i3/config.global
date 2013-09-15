@@ -27,6 +27,9 @@ floating_modifier $mod
 # Default workspace layout
 workspace_layout tabbed
 
+# Set workspace back and forth
+workspace_auto_back_and_forth yes
+
 # kill focused window
 bindsym Mod1+F4 kill
 
