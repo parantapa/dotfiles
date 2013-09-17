@@ -138,6 +138,7 @@ snippet sutf
 snippet gpatchall
 	import gevent.monkey
 	gevent.monkey.patch_all()
-snippet abortif
+snippet ifabort
 	if ${1:condition}:
 		abort(${2:400}, "${3:Bad request}")
+		return
