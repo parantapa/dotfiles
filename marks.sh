@@ -8,7 +8,14 @@ function jump {
 }
 
 function mark {
-    mkdir -p "$MARKPATH"; ln -sT "$(pwd)" "$MARKPATH/$1"
+    local kw
+    if [ -z "$1" ] ; then
+        kw="$( basename $( pwd ) )"
+    else
+        kw="$1"
+    fi
+
+    mkdir -p "$MARKPATH"; ln -sT "$(pwd)" "$MARKPATH/$kw"
 }
 
 function unmark {
@@ -26,6 +33,7 @@ function _jump {
     return 0
 }
 complete -o default -o nospace -F _jump jump
+complete -o default -o nospace -F _jump unmark
 
 alias j=jump
 complete -o default -o nospace -F _jump j
