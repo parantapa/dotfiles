@@ -28,10 +28,11 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias cpv="rsync -h --progress"
+alias dirs="dirs -v"
 
 # Known places
-alias cd.="cd $HOME/.dotfiles"
-alias cdw="cd $HOME/workspace"
+alias cd.="pushd $HOME/.dotfiles >/dev/null"
+alias cdw="pushd $HOME/workspace >/dev/null"
 
 # Set the environmetal veriables to something I like
 export GREP_OPTIONS="--color=auto"

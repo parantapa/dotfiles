@@ -4,7 +4,7 @@
 export MARKPATH=$HOME/.marks
 
 function jump {
-    cd -P "$MARKPATH/$1" 2> /dev/null || echo "No such mark: $1"
+    { cd -P "$MARKPATH/$1" 2>/dev/null && cd - 2>/dev/null && pushd "$OLDPWD" >/dev/null ; } || echo "No such mark: $1"
 }
 
 function mark {
@@ -23,7 +23,7 @@ function unmark {
 }
 
 function marks {
-    \ls -l "$MARKPATH" | tail -n +2 | sed 's/  / /g' | cut -d' ' -f9- | awk -F ' -> ' '{printf "%-10s -> %s\n", $1, $2}'
+    \ls -l "$MARKPATH" | tail -n +2 | sed 's/ \+/ /g' | cut -d' ' -f9- | sed 's/ -> / /g' | column -t -s ' ' -o ' -> '
 }
 
 function _jump {
