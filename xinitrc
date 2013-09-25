@@ -20,6 +20,7 @@ nitrogen --restore &
 xscreensaver -no-splash &
 mpd
 urxvtd -q -f -o
+unclutter &
 
 # exec gnome-session
 # exec startkde
