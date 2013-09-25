@@ -507,6 +507,10 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 " NERDTree {{{
 
     nnoremap <F2> :NERDTreeToggle<CR>
+    let g:NERDTreeMapActivateNode = "<CR>"
+    let g:NERDTreeMapOpenInTab = "<C-t>"
+    let g:NERDTreeMapOpenSplit = "<C-s>"
+    let g:NERDTreeMapOpenVSplit = "<C-v>"
 
 " }}}
 " Latex {{{
