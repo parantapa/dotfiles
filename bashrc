@@ -127,7 +127,7 @@ function __my_ps1() {
 }
 
 # Hack to consistantly update history when using multiple sessions
-PROMPT_COMMAND='history -a; PS1="$(__my_ps1)"'
+PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
