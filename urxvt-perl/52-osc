@@ -12,6 +12,9 @@
 
 This extension implements OSC 52 for interacting with system clipboard
 
+Most code stolen from:
+http://ailin.tucana.uberspace.de/static/nei/*/Code/urxvt/
+
 =cut
 
 use MIME::Base64;
