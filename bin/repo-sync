@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#set -x
+
+# CD to the repo directory
+if [ -d "$1" ] ; then
+    cd -P "$1"
+fi
+
+# Get the dirname and repo name
+DIR="$( pwd )"
+REPONAME=$( basename "$DIR" )
+
+msg_normal () {
+    echo "$@"
+    notify-send -u normal -t 5000 "$REPONAME" "$@"
+}
+
+msg_critical () {
+    echo "$@"
+    notify-send -u critical -t 5000 "$REPONAME" "$@"
+}
+
+echo "Adding changes to be commited ..."
+git add -A .
+if [ "$?" -ne "0" ] ; then
+    msg_critical "Failed add changes!"
+    exit 1
+fi
+
+git diff --cached --no-ext-diff --quiet --exit-code
+if [ "$?" -eq "1" ] ; then
+    echo "Commiting changes ..."
+    git commit -m "By $(id -un)@$(hostname) on $(date -uR)"
+    if [ "$?" -ne "0" ] ; then
+        msg_critical "Failed commit changes!"
+        exit 2
+    fi
+else
+    echo "Nothing to commit!"
+fi
+
+echo "Syncing with server ..."
+git pull --ff-only
+if [ "$?" -ne "0" ] ; then
+    msg_normal "Failed to pull!"
+    exit 3
+fi
+
+changes=$(git rev-list --count HEAD ^origin/master)
+if [ "$changes" -ne "0" ] ; then
+    echo "Pushing updates to remote server ..."
+    git push
+    if [ "$?" -ne "0" ] ; then
+        msg_critical "Failed push changes!"
+        exit 4
+    fi
+else
+    echo "Nothing to push!"
+fi
+
+exit 0
+

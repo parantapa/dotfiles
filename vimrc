@@ -9,6 +9,10 @@ call pathogen#infect()
 call pathogen#helptags()
 filetype plugin indent on
 
+" Setup yankstack early.
+" Otherwise it interferes with surround.
+call yankstack#setup()
+
 set nocompatible
 set nomodeline
 
@@ -73,7 +77,7 @@ set colorcolumn=+1
 set shiftround
 
 " }}}
-" Backups ----------------------------------------------------------------- {{{
+" Backups and Spell Files ------------------------------------------------- {{{
 
 set undodir=~/.vim/tmp/undo//
 set undofile
@@ -83,6 +87,12 @@ set backupdir=~/.vim/tmp/backup//
 set backup
 
 set directory=~/.vim/tmp/swap//
+
+set spellfile=~/.myspell.utf-8.add
+set spelllang=en_us
+
+" The spell file may be updated outside of vim
+execute "silent mkspell! " . &spellfile
 
 " }}}
 " Leader ------------------------------------------------------------------ {{{
@@ -122,6 +132,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 set statusline+=%=                              " Right align.
+set statusline+=%{virtualenv#statusline()}      " Virtualenv
 set statusline+=(
 set statusline+=%{&ff}                          " Format (unix/DOS).
 set statusline+=/
@@ -144,8 +155,9 @@ set ignorecase
 set smartcase
 set incsearch
 set showmatch
-set nohlsearch
+set hlsearch
 set gdefault
+set nowrapscan
 
 set scrolloff=3
 set sidescrolloff=10
@@ -162,18 +174,24 @@ nnoremap * *<C-o>
 noremap H ^
 noremap L g_
 
-" Heresy
-inoremap <C-a> <esc>I
-inoremap <C-e> <esc>A
+" Replacement for , as movement shortcut
+noremap - ,
 
-" Too many shifts
-nnoremap ; :
+nnoremap ]q :lnext<CR>
+nnoremap [q :lprev<CR>
+nnoremap ]]q :lfirst<CR>
+nnoremap [[q :llast<CR>
 
-nnoremap <C-h> :lrewind<CR>
-nnoremap <C-j> :lnext<CR>
-nnoremap <C-k> :lprev<CR>
-" nnoremap <M-k> :cnext<CR>
-" nnoremap <M-l> :cprev<CR>
+nnoremap ]w :cnext<CR>
+nnoremap [w :cprev<CR>
+nnoremap ]]w :cfirst<CR>
+nnoremap [[w :clast<CR>
+
+" Hitting parenthesis is hard
+noremap } )
+noremap { (
+noremap \] }
+noremap \[ {
 
 " Continuous window resizing
 nnoremap          <C-W>+          <C-W>+<SID>winsize
@@ -187,17 +205,22 @@ nnoremap <script> <SID>winsize>   5<C-W>><SID>winsize
 nnoremap          <SID>winsize    <Nop>
 
 " Open using firefox
-nnoremap <Leader>o yiW:execute "silent !firefox " . @"<CR>
+nnoremap <Leader>oo yiW:call system("firefox " . shellescape(@"))<CR>
+vnoremap <Leader>oo y:call system("firefox " . shellescape(@"))<CR>
+nnoremap <Leader>ot yiw:call system("firefox thesaurus.com/browse/" . shellescape(@"))<CR>
+nnoremap <Leader>od yiw:call system("firefox dictionary.reference.com/browse/" . shellescape(@"))<CR>
+nnoremap <Leader>os yiW:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
+vnoremap <Leader>os y:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
 
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
-
 
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
 set foldlevelstart=0
 set nofoldenable
+set foldmethod=marker
 
 " Space to toggle folds.
 nnoremap <Space> za
@@ -283,11 +306,10 @@ augroup ft_markdown
     au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
     au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
     au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
-    au Filetype mkd vnoremap <buffer> <localleader>i di**<Esc>hp
-    au Filetype mkd vnoremap <buffer> <localleader>b di****<Esc>hhp
-    au Filetype mkd nnoremap <buffer> <localleader>i diw**<Esc>hp
-    au Filetype mkd nnoremap <buffer> <localleader>b diw****<Esc>hhp
+    au Filetype mkd let b:surround_105 = "*\r*"
+    au Filetype mkd let b:surround_98 = "**\r**"
     au Filetype mkd setlocal nofoldenable
+    au Filetype mkd setlocal suffixesadd=.md
 augroup END
 " }}}
 " Vim {{{
@@ -310,10 +332,8 @@ augroup ft_moin
     au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
     au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
     au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
-    au Filetype moin vnoremap <buffer> <localleader>i di''''<Esc>hhp
-    au Filetype moin vnoremap <buffer> <localleader>b di''''''<Esc>hhhp
-    au Filetype moin nnoremap <buffer> <localleader>i diw''''<Esc>hhp
-    au Filetype moin nnoremap <buffer> <localleader>b diw''''''<Esc>hhhp
+    au Filetype moin let b:surround_105 = "''\r''"
+    au Filetype moin let b:surround_98 = "'''\r'''"
 augroup END
 " }}}
 " Latex {{{
@@ -321,10 +341,9 @@ augroup END
 augroup ft_tex
     au!
 
-    au Filetype tex nnoremap <buffer> <localleader>i diw\textit{}<Esc>hp
-    au Filetype tex nnoremap <buffer> <localleader>b diw\textbf{}<Esc>hp
-    au Filetype tex vnoremap <buffer> <localleader>i di\textit{}<Esc>hp
-    au Filetype tex vnoremap <buffer> <localleader>b di\textbf{}<Esc>hp
+    au FileType tex setlocal sw=2 sts=2
+    au Filetype tex let b:surround_105 = "\\textit{\r}"
+    au Filetype tex let b:surround_98 = "\\textbf{\r}"
     au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
 augroup END
 " }}}
@@ -334,6 +353,27 @@ augroup ft_gnuplot
     au!
 
     autocmd BufReadPost *.plot setlocal ft=gnuplot
+augroup END
+
+" }}}
+" Python {{{
+
+augroup ft_python
+    au!
+
+    au FileType python setlocal foldmethod=indent
+    au FileType python setlocal commentstring=#\ %s
+augroup END
+
+" }}}
+" PHP {{{
+
+let g:php_folding = 2
+
+augroup ft_php
+    au!
+
+    au FileType php setlocal foldmethod=syntax
 augroup END
 
 " }}}
@@ -364,7 +404,7 @@ augroup ft_vimrc_autoread:
 augroup END
 
 " }}}
-" Shell ------------------------------------------------------------------- {{{
+" Misc -------------------------------------------------------------------- {{{
 
 function! s:ExecuteInShell(command) " {{{
     let command = join(map(split(a:command), 'expand(v:val)'))
@@ -383,17 +423,42 @@ endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 nnoremap <Leader>! :Shell
 
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+function! ToggleHtmlInBuf()
+    silent! normal g0vG$"zy
+    if stridx(@z, "<br>") ==# -1
+        silent! execute "%s/\\V>/\\&gt;/"
+        silent! execute "%s/\\V</\\&lt;/"
+        silent! execute "%s/\\V\\n/<br>/"
+    else
+        silent! execute "%s/\\V<br>/\\r/"
+        silent! execute "%s/\\V&gt;/>/"
+        silent! execute "%s/\\V&lt;/</"
+    endif
+endf
+nnoremap <F7> :call ToggleHtmlInBuf()<CR>
+
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
 
 " I dont use ex mode
 nnoremap Q gq
 
+" Better shortcut for copy the rest of the line
+nnoremap Y y$
+
 " Clean whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Substitute
-nnoremap <Leader>s :%s/\v
+nnoremap <Leader>s :%s/\V
 
 " Emacs bindings in command line mode
 cnoremap <C-a> <Home>
@@ -406,13 +471,24 @@ cnoremap w!! set buftype=nowrite <bar> w !sudo tee % >/dev/null
 set pastetoggle=<F6>
 
 " Toggle spell
-nnoremap <F3> :setlocal spell! spelllang=en_us<CR>
+nnoremap <F3> :setlocal spell!<CR>
 
 " Dont use Syntastic when exiting
 nnoremap :wq :au! syntastic<cr>:wq
 
 " Use MoinMoin wiki syntax
 nnoremap <Leader>moin :se ft=moin<CR>
+
+" Do a repo sync
+nnoremap <Leader>S :wall <bar> !repo-sync<CR>
+
+" Shortcuts for completion
+inoremap <C-f> <C-x><C-f>
+inoremap <C-l> <C-x><C-l>
+inoremap <C-Space> <C-x><C-o>
+
+" On C-l remove hlsearch
+nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
@@ -431,6 +507,10 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " NERDTree {{{
 
     nnoremap <F2> :NERDTreeToggle<CR>
+    let g:NERDTreeMapActivateNode = "<CR>"
+    let g:NERDTreeMapOpenInTab = "<C-t>"
+    let g:NERDTreeMapOpenSplit = "<C-s>"
+    let g:NERDTreeMapOpenVSplit = "<C-v>"
 
 " }}}
 " Latex {{{
@@ -444,6 +524,8 @@ nnoremap <Leader>moin :se ft=moin<CR>
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
     let g:syntastic_python_checker = 'pylint'
+    let g:syntastic_javascript_checker = 'jslint'
+    let g:syntastic_javascript_jslint_conf = "--sloppy"
 
 " }}}
 " Ack {{{
@@ -474,29 +556,18 @@ nnoremap <Leader>moin :se ft=moin<CR>
 " }}}
 " SuperTab {{{
 
-    let g:SuperTabDefaultCompletionType = "context"
+    let g:SuperTabDefaultCompletionType = "<c-p>"
     let g:SuperTabClosePreviewOnPopupClose = 1
 
 " }}}
 " Virtualenv {{{
 
+    let g:virtualenv_stl_format = '[%n] '
     if $VIRTUAL_ENV
         VirtualEnvActivate
     endif
 
 " }}}
-" RopeVim {{{
-
-    let g:ropevim_enable_shortcuts = 0
-    let g:ropevim_guess_project = 1
-    " autocmd FileType python setlocal omnifunc=RopeCompleteFunc
-
-" }}}
-" NERD Commenter {{{
-
-    let g:NERDCreateDefaultMappings = 1
-
-"}}}
 " ViewDoc {{{
 
     let g:viewdoc_pydoc_cmd="python -m pydoc"
@@ -508,6 +579,34 @@ nnoremap <Leader>moin :se ft=moin<CR>
     let g:slime_paste_file = "$HOME/.slime_paste"
 
 " }}}
-"
+" YankStack {{{
+
+    let g:yankstack_map_keys = 0
+    nmap <leader>p <Plug>yankstack_substitute_older_paste
+    nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+" }}}
+" Commentary {{{
+
+    let g:commentary_map_keys = 0
+    xmap gc  <Plug>Commentary
+    nmap gc  <Plug>Commentary
+    nmap gcc <Plug>CommentaryLine
+    nmap gcu <Plug>CommentaryUndo
+
+" }}}
+" LanguageTool {{{
+
+    let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
+
+" }}}
+" Jedi Vim {{{
+
+    let g:jedi#use_tabs_not_buffers = 0
+    let g:jedi#popup_on_dot = 0
+    let g:jedi#show_call_signatures = 0
+    let g:jedi#auto_vim_configuration = 0
+
 " }}}
 "
+" }}}

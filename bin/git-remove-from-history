@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Remove as specific file from all history
+# History is rewritten in this process
+
+echo "Removing from repo history: $1"
+echo -n "Confirm [y/N] : "
+read ret
+if [ "$ret" != "y" -a "$ret" != "Y" ] ; then
+    exit 0
+fi
+
+set -x
+
+git filter-branch --force --index-filter \
+    "git rm --cached --ignore-unmatch '$1'" \
+    --prune-empty --tag-name-filter cat -- --all

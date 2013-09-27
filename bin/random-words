@@ -1,0 +1,30 @@
+#!/usr/bin/env python2.7
+#
+# Print out some random words from a given Hunspell dictionary.
+
+import sys
+from random import sample
+
+def main():
+    if len(sys.argv) == 3:
+        _, n, dfname = sys.argv
+        n = int(n)
+    elif len(sys.argv) == 2:
+        _, n = sys.argv
+        n = int(n)
+        dfname = "/usr/share/hunspell/en_US.dic"
+    else:
+        n = 10
+        dfname = "/usr/share/hunspell/en_US.dic"
+
+    with open(dfname, "r") as fobj:
+        words = fobj.read().split()
+    words = sample(words, n)
+    words = [word.split("/")[0] for word in words]
+    
+    for word in words:
+        print word
+
+if __name__ == '__main__':
+    main()
+

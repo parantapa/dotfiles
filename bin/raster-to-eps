@@ -1,0 +1,13 @@
+#!/bin/bash
+# Convert a PNG file to an EPS file with decent resolution
+
+set -x
+
+filename="${1%.*}"
+dpi="${2:-600}"
+
+convert -units PixelsPerInch "$1" -resample "$dpi" "$filename".eps
+epstopdf "$filename".eps
+pdf2ps "$filename".pdf
+ps2eps -f "$filename".ps
+

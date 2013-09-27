@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Forcibly free up some memory by dropping the caches.
+
+if [ $(id -u) -ne 0 ] ; then
+    echo "You are not root!"
+    exit 1
+fi
+
+free -m
+echo
+
+echo "Syncing ..."
+sync
+
+echo "Turing off swap ..."
+swapoff -a
+
+echo "Dropping caches ..."
+echo 1 > /proc/sys/vm/drop_caches
+echo 2 > /proc/sys/vm/drop_caches
+echo 3 > /proc/sys/vm/drop_caches
+
+echo "Turing on swap ..."
+swapon -a
+
+echo "Done"
+echo
+
+free -m
+exit 0

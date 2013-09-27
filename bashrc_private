@@ -3,9 +3,6 @@
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# Hack to consistantly update history when using multiple sessions
-PROMPT_COMMAND="history -a"
-
 # set hist size 500 is too small
 HISTSIZE=5000
 
@@ -30,6 +27,12 @@ alias l.="ls $LS_OPTIONS -A --ignore='[^.]*'"
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
+alias cpv="rsync -h --progress"
+alias dirs="dirs -v"
+
+# Known places
+alias cd.="pushd $HOME/.dotfiles >/dev/null"
+alias cdw="pushd $HOME/workspace >/dev/null"
 
 # Set the environmetal veriables to something I like
 export GREP_OPTIONS="--color=auto"
@@ -101,12 +104,14 @@ export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM=auto
 
-. "$HOME/.git-prompt.sh"
+. "$HOME/.dotfiles/git-prompt.sh"
+. "$HOME/.dotfiles/marks.sh"
 
 function __my_ps1() {
     ret="$?"
 
-    if [ -n "$VIRTUAL_ENV" ] ; then
+    type deactivate >/dev/null 2>&1
+    if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
         printf '%s(%s)%s ' "${txtgrn}" "$(basename $VIRTUAL_ENV)" "${txtpur}"
     fi
     printf '%s\\u@\\h%s: ' "${txtcyn}" "${txtpur}"
@@ -121,12 +126,13 @@ function __my_ps1() {
     printf '\\n%s\\$ %s' "${txtpur}" "${txtrst}"
 }
 
-PROMPT_COMMAND='PS1="$(__my_ps1)"'
+# Hack to consistantly update history when using multiple sessions
+PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
 
 # Shortcut for ps-ing pgrep output
-alias psf="ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem"
-psu () { psf -u $USER "$@" ; }
-psg () { psf $(pgrep "$@") ; }
+psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
+psg  () { psf $( pgrep "$@" ) ; }
+psu  () { psf -u $USER "$@" ; }
 topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
@@ -137,42 +143,34 @@ alias gca="git commit -a"
 alias gs="tig status"
 alias gl="tig"
 
+# SVN update all
+git-svn-rebase-all () {
+    set -x
+    for i in "$@" ; do
+        cd "$i"
+        git svn rebase
+        cd -
+    done
+    set +x
+}
+
 # GVim alias
-if [ -n "$DISPLAY" ] ; then
-    alias g="gvim --servername G --remote-silent"
-else
-    alias g=vim
-fi
+g () {
+    if [ -n "$DISPLAY" ] ; then
+        if [ "$#" -eq 0 ] ; then
+            gvim --servername G
+        else
+            gvim --servername G --remote-silent "$@"
+        fi
+    else
+        vim "$@"
+    fi
+}
 
-# Decide the local directory
-if [[ $(hostname) =~ ^swsao ]] ; then
-    LOCAL=$HOME/local-odin
-else
-    LOCAL=$HOME/local
-fi
-
-# Provide a local install space
-export PATH=$LOCAL/bin:$PATH
-export MANPATH=$LOCAL/share/man:/usr/man:/usr/share/man:/usr/local/share/man
-export LD_LIBRARY_PATH=$LOCAL/lib
-
-export C_INCLUDE_PATH=$LOCAL/include
-export CPLUS_INCLUDE_PATH=$LOCAL/include
-export LIBRARY_PATH=$LOCAL/lib
-export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
-
-# Use virtualenvwrapper
+# User Distribute instead of Setuptools
 export VIRTUALENV_DISTRIBUTE=1
-if [ -r $LOCAL/bin/virtualenvwrapper.sh ] ; then
-    export WORKON_HOME=$LOCAL/virtualenvs
 
-    . $LOCAL/bin/virtualenvwrapper.sh
+# Use a separate file for system specific bashrc
+if [ -r ~/.bashrc_local ] ; then
+    . ~/.bashrc_local
 fi
-
-# Places alias
-alias cdt="cd /NS/twitter/work/parantapa/"
-alias cdt2="cd /NS/twitter-2/work/parantapa/"
-alias cdt3="cd /NS/twitter-3/work/parantapa/"
-alias cdsc="cd /scratch/NS/parantapa"
-alias cdlo="cd /local/parantapa"
-alias cdlg="cd /var/tmp/pbhattac/logs"

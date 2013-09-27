@@ -1,0 +1,22 @@
+#!/usr/bin/env python2.7
+#
+# Print out some ascii strings
+
+import sys
+from random import choice
+
+def main():
+    if len(sys.argv) == 2:
+        _, n = sys.argv
+        n = int(n)
+    else:
+        n = 10
+
+    lower = "abcdefghijklmnopqrstuvwxyz"
+    digits = "0123456789"
+
+    print "".join(choice(lower + digits) for _ in range(n))
+
+if __name__ == '__main__':
+    main()
+
