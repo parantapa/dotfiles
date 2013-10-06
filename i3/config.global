@@ -181,4 +181,5 @@ for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
 for_window [title="Firefox Preferences"] floating enable
 for_window [class="Ipython"] floating enable
+for_window [class="R_x11"] floating enable
 
