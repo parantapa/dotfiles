@@ -390,6 +390,7 @@ endf
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
 nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
+nnoremap <Leader>eS :edit ~/.vim/snippets/_.snippets<CR>
 
 augroup ft_vimrc_autoread:
     au!
