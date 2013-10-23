@@ -140,8 +140,8 @@ alias gc="git commit"
 alias gd="git diff"
 alias gdt="git difftool"
 alias gca="git commit -a"
-alias gs="tig status"
-alias gl="tig"
+alias gs="git status"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
 # SVN update all
 git-svn-rebase-all () {
