@@ -1,0 +1,32 @@
+# Enable virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME="$HOME/.virtualenvs"
+. /usr/bin/virtualenvwrapper.sh
+workon default
+
+# Set gem home and gem path paths
+export GEM_HOME="$HOME/.gem/ruby/2.0.0"
+export GEM_PATH="$GEM_HOME"
+
+# Set the R packages directory
+export R_LIBS_USER="$HOME/.r-packages"
+
+# Modify path in login shell only
+if shopt -q login_shell ; then
+    export PATH="$GEM_HOME/bin:$HOME/.cabal/bin:$PATH"
+fi
+
+alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
+
+if [ "$DISPLAY" = ":0.0" ] ; then
+    unalias gc
+    unalias gca
+
+    function gc () {
+        git commit && { aplay ~/.hidden/happykids.wav & }
+    }
+
+    function gca () {
+        git commit -a && { aplay ~/.hidden/happykids.wav & }
+    }
+fi
