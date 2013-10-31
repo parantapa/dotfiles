@@ -7,7 +7,7 @@ else
 	dstdir="$HOME"
 fi
 
-dotfiles=(xinitrc bashrc_local i3/config.local)
+dotfiles=(xinitrc bashrc_local i3/config.local i3status.conf)
 
 cd "$dstdir"
 for file in "${dotfiles[@]}" ; do
