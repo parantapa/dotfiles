@@ -50,9 +50,10 @@ function set-proxy () {
     proxies[247]=http://144.16.192.247:8080
     proxies[211]=http://10.3.100.211:8080
     proxies[212]=http://10.3.100.212:8080
+    proxies[0]=""
 
-    k=${1-245}
+    k=${1-0}
     export http_proxy=${proxies[$k]}
     export https_proxy=${proxies[$k]}
+    echo "Proxy: $http_proxy"
 }
-
