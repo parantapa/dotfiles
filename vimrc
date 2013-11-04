@@ -489,7 +489,7 @@ inoremap <C-l> <C-x><C-l>
 inoremap <C-Space> <C-x><C-o>
 
 " On C-l remove hlsearch
-nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
