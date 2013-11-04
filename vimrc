@@ -381,7 +381,7 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-function! OpenFiletypeSnippets()
+function! s:OpenFiletypeSnippets()
     let cmd = "edit ~/.vim/snippets/%s.snippets"
     let cmd = printf(cmd, &ft)
     execute cmd
@@ -389,7 +389,7 @@ endf
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
+nnoremap <Leader>es :call s:OpenFiletypeSnippets()<CR>
 nnoremap <Leader>eS :edit ~/.vim/snippets/_.snippets<CR>
 
 augroup ft_vimrc_autoread:
@@ -610,4 +610,30 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
 " }}}
 "
+" }}}
+" Wordnet for Viewdoc ----------------------------------------------------- {{{
+
+function! s:ViewDoc_wordnet(topic, ...)
+        return { 'cmd' : printf('wn %s -over | fold -w 78 -s', shellescape(a:topic, 1)),
+                \ 'ft' : 'wordnet' }
+endf
+let g:ViewDoc_wordnet = function('s:ViewDoc_wordnet')
+
+command! -bar -bang -nargs=1 ViewDocWordnet
+	\ call ViewDoc('<bang>'=='' ? 'new' : 'doc', <f-args>, 'wordnet')
+cnoreabbrev wn ViewDocWordnet
+
+augroup au_wordnet
+    au!
+
+    autocmd FileType wordnet mapclear <buffer>
+    autocmd FileType wordnet syn match overviewHeader /^Overview of .\+/
+    autocmd FileType wordnet syn match definitionEntry /\v^[0-9]+\. .+$/ contains=numberedList,word
+    autocmd FileType wordnet syn match numberedList /\v^[0-9]+\. / contained
+    autocmd FileType wordnet syn match word /\v([0-9]+\.[0-9\(\) ]*)@<=[^-]+/ contained
+    autocmd FileType wordnet hi link overviewHeader Title
+    autocmd FileType wordnet hi link numberedList Operator
+    autocmd FileType wordnet hi def word term=bold cterm=bold gui=bold
+augroup end
+
 " }}}
