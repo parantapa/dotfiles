@@ -23,10 +23,25 @@ if [ "$DISPLAY" = ":0.0" ] ; then
     unalias gca
 
     function gc () {
-        git commit && { aplay ~/.hidden/happykids.wav & }
+        git commit && { aplay ~/workspace/sdocs/happykids.wav & }
     }
 
     function gca () {
-        git commit -a && { aplay ~/.hidden/happykids.wav & }
+        git commit -a && { aplay ~/workspace/sdocs/happykids.wav & }
     }
 fi
+
+function set-proxy () {
+    local proxies k
+
+    proxies[245]=http://144.16.192.245:8080
+    proxies[247]=http://144.16.192.247:8080
+    proxies[211]=http://10.3.100.211:8080
+    proxies[212]=http://10.3.100.212:8080
+    proxies[0]=""
+
+    k=${1-0}
+    export http_proxy=${proxies[$k]}
+    export https_proxy=${proxies[$k]}
+    echo "Proxy: $http_proxy"
+}
