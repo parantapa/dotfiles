@@ -381,7 +381,7 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-function! s:OpenFiletypeSnippets()
+function! OpenFiletypeSnippets()
     let cmd = "edit ~/.vim/snippets/%s.snippets"
     let cmd = printf(cmd, &ft)
     execute cmd
@@ -389,7 +389,7 @@ endf
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :call s:OpenFiletypeSnippets()<CR>
+nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
 nnoremap <Leader>eS :edit ~/.vim/snippets/_.snippets<CR>
 
 augroup ft_vimrc_autoread:
