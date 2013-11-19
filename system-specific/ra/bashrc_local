@@ -23,11 +23,11 @@ if [ "$DISPLAY" = ":0.0" ] ; then
     unalias gca
 
     function gc () {
-        git commit && { aplay ~/workspace/sdocs/happykids.wav & }
+        git commit && { aplay ~/workspace/sdocs/misc-files/happykids.wav & }
     }
 
     function gca () {
-        git commit -a && { aplay ~/workspace/sdocs/happykids.wav & }
+        git commit -a && { aplay ~/workspace/sdocs/misc-files/happykids.wav & }
     }
 fi
 
