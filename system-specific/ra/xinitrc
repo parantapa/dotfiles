@@ -20,7 +20,6 @@ nitrogen --restore &
 xscreensaver -no-splash &
 mpd
 urxvtd -q -f -o
-unclutter &
 
 xrandr --setprovideroutputsource 1 0
 xrandr --output DVI-0 --auto --left-of VGA1
