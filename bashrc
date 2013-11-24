@@ -30,10 +30,6 @@ alias mv="mv -i"
 alias cpv="rsync -h --progress"
 alias dirs="dirs -v"
 
-# Known places
-alias cd.="pushd $HOME/.dotfiles >/dev/null"
-alias cdw="pushd $HOME/workspace >/dev/null"
-
 # Set the environmetal veriables to something I like
 export GREP_OPTIONS="--color=auto"
 export LESS=-niRS
@@ -105,7 +101,6 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM=auto
 
 . "$HOME/.dotfiles/git-prompt.sh"
-. "$HOME/.dotfiles/marks.sh"
 
 function __my_ps1() {
     ret="$?"
@@ -128,6 +123,11 @@ function __my_ps1() {
 
 # Hack to consistantly update history when using multiple sessions
 PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
+
+# Known places
+. "$HOME/.dotfiles/marks.sh"
+[[ -h "$MARKPATH/dotfiles" ]] || { cd "$HOME/.dotfiles" && mark dotfiles ; }
+[[ -h "$MARKPATH/workspace" ]] || { cd "$HOME/workspace" && mark workspace ; }
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
