@@ -637,3 +637,17 @@ augroup au_wordnet
 augroup end
 
 " }}}
+" Set filetype for files opened with pentadactyl -------------------------- {{{
+
+augroup au_pentadactyl
+    au!
+
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+    autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+
+    autocmd BufRead */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
+augroup end
+
+" }}}
