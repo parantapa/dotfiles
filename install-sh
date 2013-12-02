@@ -8,7 +8,7 @@ else
 fi
 
 dotfiles=(profile bash_logout bashrc
-    vimrc gvimrc vim tmux.conf gitconfig cvsignore
+    vimrc gvimrc vim tmux.conf gitconfig hgrc cvsignore
     pylintrc latexmkrc ackrc ctags
     pentadactyl pentadactylrc sqliterc psqlrc
     i3/config.global config/dunstrc)
