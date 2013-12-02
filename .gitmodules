@@ -15,7 +15,7 @@
 	url = https://github.com/garbas/vim-snipmate.git
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
-	url = https://github.com/parantapa/syntastic.git
+        url = https://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
