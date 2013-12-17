@@ -22,7 +22,7 @@ mpd
 urxvtd -q -f -o
 
 xrandr --setprovideroutputsource 1 0
-xrandr --output DVI-0 --auto --left-of VGA1
+xrandr --output DVI-1-0 --auto --left-of VGA1
 
 # exec gnome-session
 # exec startkde

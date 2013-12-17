@@ -1,9 +1,9 @@
 assign [class="Skype"] 6
 assign [class="Xchat"] 6
 
-workspace 7 output DVI-0
-workspace 8 output DVI-0
-workspace 9 output DVI-0
+workspace 7 output DVI-1-0
+workspace 8 output DVI-1-0
+workspace 9 output DVI-1-0
 
 workspace 1 output VGA1
 workspace 2 output VGA1
@@ -20,6 +20,6 @@ bar {
 
 bar {
         status_command git-multi-status-loop
-        output DVI-0
+        output DVI-1-0
         tray_output none
 }
