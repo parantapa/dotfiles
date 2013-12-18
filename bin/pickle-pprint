@@ -20,8 +20,11 @@ def main():
 
     x = load(open(fname, "rb"))
     z = eval(filter, {"x": x})
-    pprint(z, indent=2, width=columns)
+
+    try:
+        pprint(z, indent=2, width=columns)
+    except IOError:
+        pass
 
 if __name__ == '__main__':
     main()
-
