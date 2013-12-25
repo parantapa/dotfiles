@@ -1,0 +1,59 @@
+# Enable virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME="$HOME/.virtualenvs"
+. /usr/bin/virtualenvwrapper.sh
+workon default
+
+# Set gem home and gem path paths
+export GEM_HOME="$HOME/.gem/ruby/2.0.0"
+export GEM_PATH="$GEM_HOME"
+
+# Set the R packages directory
+export R_LIBS_USER="$HOME/.r-packages"
+
+# Modify path in login shell only
+if shopt -q login_shell ; then
+    export PATH="$GEM_HOME/bin:$HOME/.cabal/bin:$PATH"
+fi
+
+alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
+
+if [ "$DISPLAY" = ":0.0" ] ; then
+    unalias gc
+    unalias gca
+
+    function gc () {
+        git commit && { aplay ~/workspace/sdocs/misc-files/happykids.wav & }
+    }
+
+    function gca () {
+        git commit -a && { aplay ~/workspace/sdocs/misc-files/happykids.wav & }
+    }
+fi
+
+function forward-start () {
+    ssh -S none -o "ExitOnForwardFailure yes" -NTf -D 1080 "$@"
+    if [ "$?" -eq 0 ] ; then
+        fuser -n tcp -4 1080 2>/dev/null >/tmp/forward-ssh.pid
+    fi
+}
+
+function forward-kill () {
+    psf $(cat /tmp/forward-ssh.pid)
+    fuser -ki -n tcp -4 1080
+}
+
+function set-proxy () {
+    local proxies k
+
+    proxies[245]=http://144.16.192.245:8080
+    proxies[247]=http://144.16.192.247:8080
+    proxies[211]=http://10.3.100.211:8080
+    proxies[212]=http://10.3.100.212:8080
+    proxies[0]=""
+
+    k=${1-0}
+    export http_proxy=${proxies[$k]}
+    export https_proxy=${proxies[$k]}
+    echo "Proxy: $http_proxy"
+}

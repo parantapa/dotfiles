@@ -390,6 +390,7 @@ endf
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
 nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
+nnoremap <Leader>eS :edit ~/.vim/snippets/_.snippets<CR>
 
 augroup ft_vimrc_autoread:
     au!
@@ -488,7 +489,7 @@ inoremap <C-l> <C-x><C-l>
 inoremap <C-Space> <C-x><C-o>
 
 " On C-l remove hlsearch
-nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
@@ -523,8 +524,8 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
     let g:syntastic_enable_signs = 1
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
-    let g:syntastic_python_checker = 'pylint'
-    let g:syntastic_javascript_checker = 'jslint'
+    let g:syntastic_python_checkers = ['pylint']
+    let g:syntastic_javascript_checkers = ['jslint']
     let g:syntastic_javascript_jslint_conf = "--sloppy"
 
 " }}}
@@ -581,9 +582,7 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 " }}}
 " YankStack {{{
 
-    let g:yankstack_map_keys = 0
-    nmap <leader>p <Plug>yankstack_substitute_older_paste
-    nmap <leader>P <Plug>yankstack_substitute_newer_paste
+    let g:yankstack_map_keys = 1
 
 " }}}
 " Commentary {{{
@@ -609,4 +608,80 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
 " }}}
 "
+" }}}
+" Wordnet for Viewdoc ----------------------------------------------------- {{{
+
+function! s:ViewDoc_wordnet(topic, ...)
+        return { 'cmd' : printf('wn %s -over | fold -w 78 -s', shellescape(a:topic, 1)),
+                \ 'ft' : 'wordnet' }
+endf
+let g:ViewDoc_wordnet = function('s:ViewDoc_wordnet')
+
+command! -bar -bang -nargs=1 ViewDocWordnet
+	\ call ViewDoc('<bang>'=='' ? 'new' : 'doc', <f-args>, 'wordnet')
+cnoreabbrev wn ViewDocWordnet
+
+augroup au_wordnet
+    au!
+
+    autocmd FileType wordnet mapclear <buffer>
+    autocmd FileType wordnet syn match overviewHeader /^Overview of .\+/
+    autocmd FileType wordnet syn match definitionEntry /\v^[0-9]+\. .+$/ contains=numberedList,word
+    autocmd FileType wordnet syn match numberedList /\v^[0-9]+\. / contained
+    autocmd FileType wordnet syn match word /\v([0-9]+\.[0-9\(\) ]*)@<=[^-]+/ contained
+    autocmd FileType wordnet hi link overviewHeader Title
+    autocmd FileType wordnet hi link numberedList Operator
+    autocmd FileType wordnet hi def word term=bold cterm=bold gui=bold
+augroup end
+
+" }}}
+" Set filetype for files opened with pentadactyl -------------------------- {{{
+
+augroup au_pentadactyl
+    au!
+
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+    autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+
+    autocmd BufRead */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
+augroup end
+
+" }}}
+" Editing GPG encrypted files --------------------------------------------- {{{
+
+" Following block is copied from
+" http://vim.wikia.com/wiki/Encryption
+
+" Transparent editing of gpg encrypted files.
+" By Wouter Hanegraaff
+augroup encrypted
+  au!
+
+  " First make sure nothing is written to ~/.viminfo while editing
+  " an encrypted file.
+  autocmd BufReadPre,FileReadPre *.gpg set viminfo=
+  " We don't want a various options which write unencrypted data to disk
+  autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
+
+  " Switch to binary mode to read the encrypted file
+  autocmd BufReadPre,FileReadPre *.gpg set bin
+  autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
+  " (If you use tcsh, you may need to alter this line.)
+  autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg -d 2> /dev/null
+
+  " Switch to normal mode for editing
+  autocmd BufReadPost,FileReadPost *.gpg set nobin
+  autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
+  autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
+
+  " Convert all text to encrypted text before writing
+  " (If you use tcsh, you may need to alter this line.)
+  autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg -ac 2>/dev/null
+  " Undo the encryption so we are back in the normal text, directly
+  " after the file has been written.
+  autocmd BufWritePost,FileWritePost *.gpg u
+augroup END
+
 " }}}

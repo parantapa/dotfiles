@@ -1,0 +1,5 @@
+bar {
+        status_command "i3status-ext"
+}
+
+bindsym Control+Mod1+l exec "xrandr --dpi 96 ; nitrogen --restore"

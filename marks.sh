@@ -4,7 +4,7 @@
 export MARKPATH=$HOME/.marks
 
 function jump {
-    { cd -P "$MARKPATH/$1" 2>/dev/null && cd - 2>/dev/null && pushd "$OLDPWD" >/dev/null ; } || echo "No such mark: $1"
+    { cd -P "$MARKPATH/$1" 2>/dev/null && cd - >/dev/null && pushd "$OLDPWD" >/dev/null && pwd ; } || echo "No such mark: $1"
 }
 
 function mark {
