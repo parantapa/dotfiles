@@ -23,7 +23,7 @@ function unmark {
 }
 
 function marks {
-    \ls -l "$MARKPATH" | tail -n +2 | sed 's/ \+/ /g' | cut -d' ' -f9- | sed 's/ -> / /g' | column -t -s ' ' -o ' -> '
+    \ls -l "$MARKPATH" | tail -n +2 | sed 's/ \+/ /g' | cut -d' ' -f9- | sed 's/ -> / /g' | column -t -s ' '
 }
 
 function _jump {
