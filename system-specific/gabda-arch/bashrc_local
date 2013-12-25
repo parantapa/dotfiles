@@ -31,15 +31,15 @@ if [ "$DISPLAY" = ":0.0" ] ; then
     }
 fi
 
-function batul-forward-start () {
-    ssh -S none -o "ExitOnForwardFailure yes" -N -T -f -L 127.0.0.1:1080:127.0.0.1:1080 batul
+function forward-start () {
+    ssh -S none -o "ExitOnForwardFailure yes" -NTf -D 1080 "$@"
     if [ "$?" -eq 0 ] ; then
-        fuser -n tcp -4 1080 2>/dev/null >/tmp/batul-ssh.pid
+        fuser -n tcp -4 1080 2>/dev/null >/tmp/forward-ssh.pid
     fi
 }
 
-function batul-forward-kill () {
-    psf $(cat /tmp/batul-ssh.pid)
+function forward-kill () {
+    psf $(cat /tmp/forward-ssh.pid)
     fuser -ki -n tcp -4 1080
 }
 
