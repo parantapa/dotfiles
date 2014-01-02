@@ -39,12 +39,14 @@ export VISUAL=vim
 
 # Make tmux always use unicode
 alias tmux="tmux -u"
-alias diff=colordiff
+if hash colordiff 2>/dev/null ; then
+    alias diff=colordiff
+fi
 
 # Fabric completion
 function __fab_completion() {
     # Return if "fab" command doesn't exists
-    [[ -e `which fab 2> /dev/null` ]] || return 0
+    hash fab 2>/dev/null || return 0
 
     # Try generate a shortlist
     local tasks=$(fab --shortlist 2> /dev/null)
@@ -105,7 +107,7 @@ export GIT_PS1_SHOWUPSTREAM=auto
 function __my_ps1() {
     ret="$?"
 
-    type deactivate >/dev/null 2>&1
+    hash deactivate 2>/dev/null
     if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
         printf '%s(%s)%s ' "${txtgrn}" "$(basename $VIRTUAL_ENV)" "${txtpur}"
     fi
