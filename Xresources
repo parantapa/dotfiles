@@ -12,7 +12,7 @@ URxvt*tintColor: Blue
 !URxvt*shading: 40
 
 ! scrollback buffer lines - 65535 is max on most machines (64 is default)
-URxvt*saveLines: 12000
+URxvt*saveLines: 50000
 
 ! font color (default is black)
 URxvt*foreground: White

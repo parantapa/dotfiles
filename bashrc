@@ -3,8 +3,8 @@
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# set hist size 500 is too small
-HISTSIZE=5000
+# set hist size; default is too small
+HISTSIZE=100000
 
 # Ignore duplicates and some stupid commands in history
 HISTIGNORE="&:ls:ll:fg:bg:exit"
