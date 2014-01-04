@@ -193,17 +193,6 @@ noremap { (
 noremap \] }
 noremap \[ {
 
-" Continuous window resizing
-nnoremap          <C-W>+          <C-W>+<SID>winsize
-nnoremap          <C-W>-          <C-W>-<SID>winsize
-nnoremap          <C-W><          <C-W><<SID>winsize
-nnoremap          <C-W>>          <C-W>><SID>winsize
-nnoremap <script> <SID>winsize+   <C-W>+<SID>winsize
-nnoremap <script> <SID>winsize-   <C-W>-<SID>winsize
-nnoremap <script> <SID>winsize<   5<C-W><<SID>winsize
-nnoremap <script> <SID>winsize>   5<C-W>><SID>winsize
-nnoremap          <SID>winsize    <Nop>
-
 " Open using firefox
 nnoremap <Leader>oo yiW:call system("firefox " . shellescape(@"))<CR>
 vnoremap <Leader>oo y:call system("firefox " . shellescape(@"))<CR>
