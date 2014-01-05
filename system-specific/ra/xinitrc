@@ -4,6 +4,9 @@
 #
 # Executed by startx (run your window manager from here)
 
+xrandr --setprovideroutputsource 1 0
+xrandr --output DVI-1-0 --auto --left-of VGA1
+
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
     [ -x "$f" ] && . "$f"
@@ -20,9 +23,6 @@ nitrogen --restore &
 xscreensaver -no-splash &
 mpd
 urxvtd -q -f -o
-
-xrandr --setprovideroutputsource 1 0
-xrandr --output DVI-1-0 --auto --left-of VGA1
 
 # exec gnome-session
 # exec startkde
