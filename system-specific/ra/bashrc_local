@@ -1,8 +1,12 @@
-# Enable virtualenvs
+# Setup virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME="$HOME/.virtualenvs"
 . /usr/bin/virtualenvwrapper.sh
-workon default
+
+# Enable virtualenvs by default only inside a non login shell
+if ! shopt -q login_shell ; then
+     workon default
+fi
 
 # Set gem home and gem path paths
 export GEM_HOME="$HOME/.gem/ruby/2.0.0"

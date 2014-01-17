@@ -13,7 +13,7 @@ workspace 5 output VGA1
 workspace 6 output VGA1
 
 bar {
-        status_command i3status
+        status_command /home/parantapa/.dotfiles/system-specific/ra/i3pystatus-run.py
         output VGA1
         tray_output VGA1
 }
