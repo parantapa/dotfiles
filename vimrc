@@ -370,16 +370,9 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-function! OpenFiletypeSnippets()
-    let cmd = "edit ~/.vim/snippets/%s.snippets"
-    let cmd = printf(cmd, &ft)
-    execute cmd
-endf
-
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :call OpenFiletypeSnippets()<CR>
-nnoremap <Leader>eS :edit ~/.vim/snippets/_.snippets<CR>
+nnoremap <Leader>es :UltiSnipsEdit
 
 augroup ft_vimrc_autoread:
     au!
@@ -529,11 +522,6 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
     vnoremap <Leader>T :Tab /\V
 
 " }}}
-" Snippets {{{
-
-    let g:snips_author = "Parantapa Bhattacharya <pb@parantapa.net>"
-
-" }}}
 " TagBar {{{
 
     nnoremap <F8> :TagbarToggle<CR>
@@ -594,6 +582,13 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
     let g:jedi#popup_on_dot = 0
     let g:jedi#show_call_signatures = 0
     let g:jedi#auto_vim_configuration = 0
+
+" }}}
+" UltiSnips {{{
+
+    let g:UltiSnipsUsePythonVersion = 2
+    let g:UltiSnipsEditSplit = "normal"
+    let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
 " }}}
 "
