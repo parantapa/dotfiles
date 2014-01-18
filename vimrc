@@ -588,6 +588,10 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
     let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsEditSplit = "normal"
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-right>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-left>"
+
     let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
 " }}}
