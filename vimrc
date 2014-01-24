@@ -595,6 +595,14 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
     let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
 " }}}
+" Marvim {{{
+
+    let g:marvim_store = $HOME . '/workspace/quickrefs/marvim'
+    let g:marvim_find_key = '<Leader>mf'
+    let g:marvim_store_key = '<Leader>ms'
+    let g:marvim_prefix = 0
+
+" }}}
 "
 " }}}
 " Wordnet for Viewdoc ----------------------------------------------------- {{{
