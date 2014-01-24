@@ -22,7 +22,6 @@ done
 
 touch .i3/config.local
 touch .repo-dirs
-touch .myspell.utf-8.add
 ln -siT "$srcdir/profile" ".bash_profile"
 
 cd "$dstdir/.vim"
