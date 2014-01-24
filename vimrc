@@ -88,7 +88,7 @@ set backup
 
 set directory=~/.vim/tmp/swap//
 
-set spellfile=~/.myspell.utf-8.add
+set spellfile=~/quickrefs/myspell.utf-8.add
 set spelllang=en_us
 
 " The spell file may be updated outside of vim
@@ -597,7 +597,7 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 " }}}
 " Marvim {{{
 
-    let g:marvim_store = $HOME . '/workspace/quickrefs/marvim'
+    let g:marvim_store = $HOME . '/quickrefs/marvim'
     let g:marvim_find_key = '<Leader>mf'
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0

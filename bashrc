@@ -129,8 +129,10 @@ PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
 
 # Known places
 . "$HOME/.dotfiles/marks.sh"
-[[ -h "$MARKPATH/dotfiles" ]] || { cd "$HOME/.dotfiles" && mark dotfiles ; }
+[[ -h "$MARKPATH/dotfiles" ]]  || { cd "$HOME/.dotfiles" && mark dotfiles ; }
 [[ -h "$MARKPATH/workspace" ]] || { cd "$HOME/workspace" && mark workspace ; }
+[[ -h "$MARKPATH/quickrefs" ]] || { cd "$HOME/quickrefs" && mark quickrefs ; }
+[[ -h "$MARKPATH/sdocs" ]]     || { cd "$HOME/sdocs" && mark sdocs ; }
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
