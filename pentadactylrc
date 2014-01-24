@@ -38,7 +38,7 @@ nmap -b ,zz :set guioptions+=mT<CR>:extdisable Pentadactyl<CR>
 " FIXME: The bookmark file location is hardcoded.
 javascript <<EOF
 dactyl.my_bmark = function(url, title) {
-    var bmark_file = "~/.bookmarks.txt";
+    var bmark_file = "~/quickrefs/to-read.md";
     var ofile = File(bmark_file);
     ofile.write(title + "\n", ">>");
     ofile.write(url + "\n\n", ">>");
