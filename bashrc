@@ -31,7 +31,7 @@ alias cpv="rsync --human-readable --progress"
 alias dirs="dirs -v"
 alias grep="grep --color=always"
 alias less="less -niRS"
-alias jq="jq --colour-output"
+alias jq="jq -C"
 
 # Set the environmetal veriables to something I like
 export PAGER="less -niRS"
