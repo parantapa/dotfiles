@@ -17,7 +17,7 @@ HISTTIMEFORMAT="%F %T "
 shopt -s checkwinsize
 
 # colorize ls
-LS_OPTIONS='--color=auto -h --group-directories-first'
+LS_OPTIONS='--color=always -h --group-directories-first'
 
 alias ls="ls $LS_OPTIONS"
 alias ll="ls $LS_OPTIONS -l -v"
@@ -27,13 +27,14 @@ alias l.="ls $LS_OPTIONS -A --ignore='[^.]*'"
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
-alias cpv="rsync -h --progress"
+alias cpv="rsync --human-readable --progress"
 alias dirs="dirs -v"
+alias grep="grep --color=always"
+alias less="less -niRS"
+alias jq="jq --colour-output"
 
 # Set the environmetal veriables to something I like
-export GREP_OPTIONS="--color=auto"
-export LESS=-niRS
-export PAGER=less
+export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL=vim
 
