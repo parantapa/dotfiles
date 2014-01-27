@@ -32,6 +32,7 @@ alias dirs="dirs -v"
 alias grep="grep --color=always"
 alias less="less -niRS"
 alias jq="jq -C"
+alias ack="ack --color"
 
 # Set the environmetal veriables to something I like
 export PAGER="less -niRS"
