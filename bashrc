@@ -34,6 +34,10 @@ alias less="less -niRS"
 alias jq="jq -C"
 alias ack="ack --color"
 
+alias pq="pprint-data pickle"
+alias yq="pprint-data yaml"
+alias jqx="pprint-data json"
+
 # Set the environmetal veriables to something I like
 export PAGER="less -niRS"
 export EDITOR=vim
