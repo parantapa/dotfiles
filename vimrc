@@ -499,6 +499,7 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 " Latex {{{
 
     let g:tex_flavor = 'latex'
+    let g:tex_comment_nospell= 1
 
 " }}}
 " Syntastic {{{
