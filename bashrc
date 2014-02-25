@@ -176,6 +176,7 @@ g () {
             if [[ "$1" == "v" ]] ; then mode="vnew" ; fi
             if [[ "$1" == "t" ]] ; then mode="tabnew" ; fi
             local fname=$(readlink -f "$2")
+            fname=$(printf '%q' "$fname")
             gvim --servername G --remote-send "<Esc>:$mode<CR>:edit $fname<CR>"
         fi
     else
