@@ -111,7 +111,7 @@ export GIT_PS1_SHOWUPSTREAM=auto
 . "$HOME/.dotfiles/git-prompt.sh"
 
 function __my_ps1() {
-    ret="$?"
+    local ret="$?"
 
     hash deactivate 2>/dev/null
     if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
@@ -166,11 +166,17 @@ git-svn-rebase-all () {
 
 # GVim alias
 g () {
-    if [ -n "$DISPLAY" ] ; then
-        if [ "$#" -eq 0 ] ; then
+    if [[ -n "$DISPLAY" ]] ; then
+        if [[ "$#" -eq 0 ]] ; then
             gvim --servername G
-        else
-            gvim --servername G --remote-silent "$@"
+        elif [[ "$#" -eq 1 ]] ; then
+            gvim --servername G --remote-silent "$1"
+        elif [[ "$#" -eq 2 ]] ; then
+            local mode="new"
+            if [[ "$1" == "v" ]] ; then mode="vnew" ; fi
+            if [[ "$1" == "t" ]] ; then mode="tabnew" ; fi
+            local fname=$(readlink -f "$2")
+            gvim --servername G --remote-send "<Esc>:$mode<CR>:edit $fname<CR>"
         fi
     else
         vim "$@"
