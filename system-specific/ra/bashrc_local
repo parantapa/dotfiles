@@ -8,16 +8,15 @@ if ! shopt -q login_shell ; then
      workon default
 fi
 
-# Set gem home and gem path paths
-export GEM_HOME="$HOME/.gem/ruby/2.0.0"
-export GEM_PATH="$GEM_HOME"
-
 # Set the R packages directory
 export R_LIBS_USER="$HOME/.r-packages"
+export GEM_PATH="$(ruby -e 'puts Gem.user_dir')"
+export GEM_HOME="$GEM_PATH"
 
 # Modify path in login shell only
 if shopt -q login_shell ; then
-    export PATH="$GEM_HOME/bin:$HOME/.cabal/bin:$PATH"
+    export PATH="$HOME/.cabal/bin:$PATH"
+    export PATH="$GEM_HOME/bin:$PATH"
 fi
 
 alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"

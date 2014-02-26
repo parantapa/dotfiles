@@ -274,6 +274,14 @@ augroup ft_html
 augroup END
 
 " }}}
+" HAML {{{
+
+augroup ft_haml
+    au!
+    au FileType haml setlocal sw=2 sts=2
+augroup END
+
+" }}}
 " ReStructuredText {{{
 
 augroup ft_rest
