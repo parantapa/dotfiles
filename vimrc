@@ -1,6 +1,6 @@
 " .vimrc
 "
-" Preamble ---------------------------------------------------------------- {{{
+" Preamble {{{1
 
 runtime bundle/pathogen/autoload/pathogen.vim
 
@@ -16,8 +16,7 @@ call yankstack#setup()
 set nocompatible
 set nomodeline
 
-" }}}
-" Basic options ----------------------------------------------------------- {{{
+" Basic options {{{1
 
 set encoding=utf-8
 set autoindent
@@ -50,8 +49,7 @@ set fillchars=diff:░
 set backspace=indent,eol,start
 set showbreak=↪
 
-" }}}
-" Wildmenu completion ----------------------------------------------------- {{{
+" Wildmenu completion {{{1
 
 set wildmenu
 set wildmode=list:longest
@@ -64,8 +62,7 @@ set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.pyc                            " Python byte code
 
-" }}}
-" Tabs, spaces, wrapping -------------------------------------------------- {{{
+" Tabs, spaces, wrapping {{{1
 
 set tabstop=8
 set shiftwidth=4
@@ -76,8 +73,7 @@ set formatoptions=qrn1
 set colorcolumn=+1
 set shiftround
 
-" }}}
-" Backups and Spell Files ------------------------------------------------- {{{
+" Backups and Spell Files {{{1
 
 set undodir=~/.vim/tmp/undo//
 set undofile
@@ -94,14 +90,12 @@ set spelllang=en_us
 " The spell file may be updated outside of vim
 execute "silent mkspell! " . &spellfile
 
-" }}}
-" Leader ------------------------------------------------------------------ {{{
+" Leader {{{1
 
 let mapleader = ","
 let maplocalleader = "\\"
 
-" }}}
-" Color scheme ------------------------------------------------------------ {{{
+" Color scheme {{{1
 
 syntax on
 set background=dark
@@ -111,8 +105,7 @@ else
     colorscheme desert
 endif
 
-" }}}
-" Status line ------------------------------------------------------------- {{{
+" Status line {{{1
 
 augroup ft_statuslinecolor
     au!
@@ -144,8 +137,7 @@ set statusline+=)
 " Line and column position and counts.
 set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 
-" }}}
-" Searching and movement -------------------------------------------------- {{{
+" Searching and movement {{{1
 
 " Use plain text search by default.
 nnoremap / /\V
@@ -204,8 +196,7 @@ vnoremap <Leader>os y:call system("firefox google.com/search?q=" . shellescape(@
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
 
-" }}}
-" Folding ----------------------------------------------------------------- {{{
+" Folding {{{1
 
 set foldlevelstart=0
 set nofoldenable
@@ -219,27 +210,9 @@ vnoremap <Space> za
 " cursor happens to be.
 nnoremap zO zCzO
 
-function! MyFoldText() " {{{
-   let line = getline(v:foldstart)
+" Various filetype-specific stuff {{{1
 
-   let nucolwidth = &fdc + &number * &numberwidth
-   let windowwidth = winwidth(0) - nucolwidth - 3
-   let foldedlinecount = v:foldend - v:foldstart
-
-   " expand tabs into spaces
-   let onetab = strpart('          ', 0, &tabstop)
-   let line = substitute(line, '\t', onetab, 'g')
-
-   let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-   let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-   return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction " }}}
-set foldtext=MyFoldText()
-
-" }}}
-" Various filetype-specific stuff ----------------------------------------- {{{
-
-" C {{{
+" C {{{2
 
 augroup ft_c
     au!
@@ -247,8 +220,7 @@ augroup ft_c
     au FileType c setlocal noet sw=8 sts=8
 augroup END
 
-" }}}
-" CPP {{{
+" CPP {{{2
 
 augroup ft_cpp
     au!
@@ -256,8 +228,7 @@ augroup ft_cpp
     au FileType cpp setlocal noet sw=8 sts=8
 augroup END
 
-" }}}
-" GO {{{
+" GO {{{2
 
 augroup ft_go
     au!
@@ -265,24 +236,21 @@ augroup ft_go
     au FileType go setlocal noet sw=8 sts=8
 augroup END
 
-" }}}
-" HTML {{{
+" HTML {{{2
 
 augroup ft_html
     au!
     au FileType html setlocal sw=2 sts=2
 augroup END
 
-" }}}
-" HAML {{{
+" HAML {{{2
 
 augroup ft_haml
     au!
     au FileType haml setlocal sw=2 sts=2
 augroup END
 
-" }}}
-" ReStructuredText {{{
+" ReStructuredText {{{2
 
 augroup ft_rest
     au!
@@ -293,8 +261,7 @@ augroup ft_rest
     au Filetype rst nnoremap <buffer> <localleader>4 yypVr`
 augroup END
 
-" }}}
-" Markdown {{{
+" Markdown {{{2
 
 augroup ft_markdown
     au!
@@ -308,8 +275,8 @@ augroup ft_markdown
     au Filetype mkd setlocal nofoldenable
     au Filetype mkd setlocal suffixesadd=.md
 augroup END
-" }}}
-" Vim {{{
+
+" Vim {{{2
 
 augroup ft_vim
     au!
@@ -319,8 +286,7 @@ augroup ft_vim
     " au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 
-" }}}
-" MoinMoin {{{
+" MoinMoin {{{2
 
 augroup ft_moin
     au!
@@ -332,8 +298,8 @@ augroup ft_moin
     au Filetype moin let b:surround_105 = "''\r''"
     au Filetype moin let b:surround_98 = "'''\r'''"
 augroup END
-" }}}
-" Latex {{{
+
+" Latex {{{2
 
 augroup ft_tex
     au!
@@ -343,8 +309,8 @@ augroup ft_tex
     au Filetype tex let b:surround_98 = "\\textbf{\r}"
     au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
 augroup END
-" }}}
-" Gnuplot {{{
+
+" Gnuplot {{{2
 
 augroup ft_gnuplot
     au!
@@ -352,8 +318,7 @@ augroup ft_gnuplot
     autocmd BufReadPost *.plot setlocal ft=gnuplot
 augroup END
 
-" }}}
-" Python {{{
+" Python {{{2
 
 augroup ft_python
     au!
@@ -362,8 +327,7 @@ augroup ft_python
     au FileType python setlocal commentstring=#\ %s
 augroup END
 
-" }}}
-" PHP {{{
+" PHP {{{2
 
 let g:php_folding = 2
 
@@ -373,10 +337,7 @@ augroup ft_php
     au FileType php setlocal foldmethod=syntax
 augroup END
 
-" }}}
-
-" }}}
-" Quick editing ----------------------------------------------------------- {{{
+" Quick editing {{{1
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
@@ -394,10 +355,9 @@ augroup ft_vimrc_autoread:
     endif
 augroup END
 
-" }}}
-" Misc -------------------------------------------------------------------- {{{
+" Misc {{{1
 
-function! s:ExecuteInShell(command) " {{{
+function! s:ExecuteInShell(command)
     let command = join(map(split(a:command), 'expand(v:val)'))
     let winnr = bufwinnr('^' . command . '$')
     silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(command) : winnr . 'wincmd w'
@@ -410,7 +370,7 @@ function! s:ExecuteInShell(command) " {{{
     silent! execute 'nnoremap <silent> <buffer> <LocalLeader>q :q<CR>'
     silent! execute 'AnsiEsc'
     echo 'Shell command ' . command . ' executed.'
-endfunction " }}}
+endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 nnoremap <Leader>! :Shell
 
@@ -436,8 +396,7 @@ function! ToggleHtmlInBuf()
 endf
 nnoremap <F7> :call ToggleHtmlInBuf()<CR>
 
-" }}}
-" Convenience mappings ---------------------------------------------------- {{{
+" Convenience mappings {{{1
 
 " I dont use ex mode
 nnoremap Q gq
@@ -481,21 +440,18 @@ inoremap <C-Space> <C-x><C-o>
 " On C-l remove hlsearch
 nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
-" }}}
-" Plugin settings --------------------------------------------------------- {{{
+" Plugin settings {{{1
 
-" Ctrl-P {{{
+" Ctrl-P {{{2
 
     let g:ctrlp_dotfiles = 1
 
-" }}}
-" Gundo {{{
+" Gundo {{{2
 
     nnoremap <F5> :GundoToggle<CR>
     let g:gundo_right = 1
 
-" }}}
-" NERDTree {{{
+" NERDTree {{{2
 
     nnoremap <F2> :NERDTreeToggle<CR>
     let g:NERDTreeMapActivateNode = "<CR>"
@@ -503,14 +459,12 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
     let g:NERDTreeMapOpenSplit = "<C-s>"
     let g:NERDTreeMapOpenVSplit = "<C-v>"
 
-" }}}
-" Latex {{{
+" Latex {{{2
 
     let g:tex_flavor = 'latex'
     let g:tex_comment_nospell= 1
 
-" }}}
-" Syntastic {{{
+" Syntastic {{{2
 
     let g:syntastic_enable_signs = 1
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
@@ -519,59 +473,49 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
     let g:syntastic_javascript_checkers = ['jslint']
     let g:syntastic_javascript_jslint_conf = "--sloppy"
 
-" }}}
-" Ack {{{
+" Ack {{{2
 
     nnoremap <Leader>a :Ack!
 
-" }}}
-" Tabbing {{{
+" Tabbing {{{2
 
     nnoremap <Leader>T :Tab /\V
     vnoremap <Leader>T :Tab /\V
 
-" }}}
-" TagBar {{{
+" TagBar {{{2
 
     nnoremap <F8> :TagbarToggle<CR>
 
-" }}}
-" Rainbow Parenthesis {{{
+" Rainbow Parenthesis {{{2
 
     nnoremap <Leader>R :RainbowParenthesesToggleAll<CR>
 
-" }}}
-" SuperTab {{{
+" SuperTab {{{2
 
     let g:SuperTabDefaultCompletionType = "<c-p>"
     let g:SuperTabClosePreviewOnPopupClose = 1
 
-" }}}
-" Virtualenv {{{
+" Virtualenv {{{2
 
     let g:virtualenv_stl_format = '[%n] '
     if $VIRTUAL_ENV
         VirtualEnvActivate
     endif
 
-" }}}
-" ViewDoc {{{
+" ViewDoc {{{2
 
     let g:viewdoc_pydoc_cmd="python -m pydoc"
 
-" }}}
-" Slime {{{
+" Slime {{{2
 
     let g:slime_target = "tmux"
     let g:slime_paste_file = "$HOME/.slime_paste"
 
-" }}}
-" YankStack {{{
+" YankStack {{{2
 
     let g:yankstack_map_keys = 1
 
-" }}}
-" Commentary {{{
+" Commentary {{{2
 
     let g:commentary_map_keys = 0
     xmap gc  <Plug>Commentary
@@ -579,21 +523,18 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
     nmap gcc <Plug>CommentaryLine
     nmap gcu <Plug>CommentaryUndo
 
-" }}}
-" LanguageTool {{{
+" LanguageTool {{{2
 
     let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
 
-" }}}
-" Jedi Vim {{{
+" Jedi Vim {{{2
 
     let g:jedi#use_tabs_not_buffers = 0
     let g:jedi#popup_on_dot = 0
     let g:jedi#show_call_signatures = 0
     let g:jedi#auto_vim_configuration = 0
 
-" }}}
-" UltiSnips {{{
+" UltiSnips {{{2
 
     let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsEditSplit = "normal"
@@ -603,18 +544,14 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
     let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
-" }}}
-" Marvim {{{
+" Marvim {{{2
 
     let g:marvim_store = $HOME . '/quickrefs/marvim'
     let g:marvim_find_key = '<Leader>mf'
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0
 
-" }}}
-"
-" }}}
-" Wordnet for Viewdoc ----------------------------------------------------- {{{
+" Wordnet for Viewdoc {{{1
 
 function! s:ViewDoc_wordnet(topic, ...)
         return { 'cmd' : printf('wn %s -over | fold -w 78 -s', shellescape(a:topic, 1)),
@@ -639,8 +576,7 @@ augroup au_wordnet
     autocmd FileType wordnet hi def word term=bold cterm=bold gui=bold
 augroup end
 
-" }}}
-" Set filetype for files opened with pentadactyl -------------------------- {{{
+" Set filetype for files opened with pentadactyl {{{1
 
 augroup au_pentadactyl
     au!
@@ -653,8 +589,7 @@ augroup au_pentadactyl
     autocmd BufRead */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
 augroup end
 
-" }}}
-" Editing GPG encrypted files --------------------------------------------- {{{
+" Editing GPG encrypted files {{{1
 
 " Following block is copied from
 " http://vim.wikia.com/wiki/Encryption
@@ -689,4 +624,3 @@ augroup encrypted
   autocmd BufWritePost,FileWritePost *.gpg u
 augroup END
 
-" }}}
