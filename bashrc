@@ -173,15 +173,20 @@ g () {
             gvim --servername G --remote-silent "$1"
         elif [[ "$#" -eq 2 ]] ; then
             local mode="new"
-            if [[ "$1" == "v" ]] ; then mode="vnew" ; fi
-            if [[ "$1" == "t" ]] ; then mode="tabnew" ; fi
-            local fname=$(readlink -f "$2")
+            if [[ "$2" == "v" ]] ; then mode="vnew" ; fi
+            if [[ "$2" == "t" ]] ; then mode="tabnew" ; fi
+            local fname=$(readlink -f "$1")
             fname=$(printf '%q' "$fname")
             gvim --servername G --remote-send "<Esc>:$mode<CR>:edit $fname<CR>"
         fi
     else
         vim "$@"
     fi
+}
+
+# Find alias
+f () {
+    find . -name "*$1*"
 }
 
 # Java Font settings
