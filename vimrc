@@ -210,133 +210,6 @@ vnoremap <Space> za
 " cursor happens to be.
 nnoremap zO zCzO
 
-" Various filetype-specific stuff {{{1
-
-" C {{{2
-
-augroup ft_c
-    au!
-    au FileType c setlocal foldmethod=syntax
-    au FileType c setlocal noet sw=8 sts=8
-augroup END
-
-" CPP {{{2
-
-augroup ft_cpp
-    au!
-    au FileType cpp setlocal foldmethod=syntax
-    au FileType cpp setlocal noet sw=8 sts=8
-augroup END
-
-" GO {{{2
-
-augroup ft_go
-    au!
-    au FileType go setlocal foldmethod=syntax
-    au FileType go setlocal noet sw=8 sts=8
-augroup END
-
-" HTML {{{2
-
-augroup ft_html
-    au!
-    au FileType html setlocal sw=2 sts=2
-augroup END
-
-" HAML {{{2
-
-augroup ft_haml
-    au!
-    au FileType haml setlocal sw=2 sts=2
-augroup END
-
-" ReStructuredText {{{2
-
-augroup ft_rest
-    au!
-
-    au Filetype rst nnoremap <buffer> <localleader>1 yypVr=
-    au Filetype rst nnoremap <buffer> <localleader>2 yypVr-
-    au Filetype rst nnoremap <buffer> <localleader>3 yypVr~
-    au Filetype rst nnoremap <buffer> <localleader>4 yypVr`
-augroup END
-
-" Markdown {{{2
-
-augroup ft_markdown
-    au!
-
-    au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
-    au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
-    au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
-    au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
-    au Filetype mkd let b:surround_105 = "*\r*"
-    au Filetype mkd let b:surround_98 = "**\r**"
-    au Filetype mkd setlocal nofoldenable
-    au Filetype mkd setlocal suffixesadd=.md
-augroup END
-
-" Vim {{{2
-
-augroup ft_vim
-    au!
-
-    au FileType vim setlocal foldmethod=marker
-    au FileType help setlocal textwidth=78
-    " au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
-augroup END
-
-" MoinMoin {{{2
-
-augroup ft_moin
-    au!
-
-    au Filetype moin nnoremap <buffer> <localleader>1 0i= <Esc>$a =<Esc>
-    au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
-    au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
-    au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
-    au Filetype moin let b:surround_105 = "''\r''"
-    au Filetype moin let b:surround_98 = "'''\r'''"
-augroup END
-
-" Latex {{{2
-
-augroup ft_tex
-    au!
-
-    au FileType tex setlocal sw=2 sts=2
-    au Filetype tex let b:surround_105 = "\\textit{\r}"
-    au Filetype tex let b:surround_98 = "\\textbf{\r}"
-    au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
-augroup END
-
-" Gnuplot {{{2
-
-augroup ft_gnuplot
-    au!
-
-    autocmd BufReadPost *.plot setlocal ft=gnuplot
-augroup END
-
-" Python {{{2
-
-augroup ft_python
-    au!
-
-    au FileType python setlocal foldmethod=indent
-    au FileType python setlocal commentstring=#\ %s
-augroup END
-
-" PHP {{{2
-
-let g:php_folding = 2
-
-augroup ft_php
-    au!
-
-    au FileType php setlocal foldmethod=syntax
-augroup END
-
 " Quick editing {{{1
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
@@ -439,6 +312,207 @@ inoremap <C-Space> <C-x><C-o>
 
 " On C-l remove hlsearch
 nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
+
+" Wordnet for Viewdoc {{{1
+
+function! s:ViewDoc_wordnet(topic, ...)
+        return { 'cmd' : printf('wn %s -over | fold -w 78 -s', shellescape(a:topic, 1)),
+                \ 'ft' : 'wordnet' }
+endf
+let g:ViewDoc_wordnet = function('s:ViewDoc_wordnet')
+
+command! -bar -bang -nargs=1 ViewDocWordnet
+	\ call ViewDoc('<bang>'=='' ? 'new' : 'doc', <f-args>, 'wordnet')
+cnoreabbrev wn ViewDocWordnet
+
+augroup au_wordnet
+    au!
+
+    autocmd FileType wordnet mapclear <buffer>
+    autocmd FileType wordnet syn match overviewHeader /^Overview of .\+/
+    autocmd FileType wordnet syn match definitionEntry /\v^[0-9]+\. .+$/ contains=numberedList,word
+    autocmd FileType wordnet syn match numberedList /\v^[0-9]+\. / contained
+    autocmd FileType wordnet syn match word /\v([0-9]+\.[0-9\(\) ]*)@<=[^-]+/ contained
+    autocmd FileType wordnet hi link overviewHeader Title
+    autocmd FileType wordnet hi link numberedList Operator
+    autocmd FileType wordnet hi def word term=bold cterm=bold gui=bold
+augroup end
+
+" Set filetype for files opened with pentadactyl {{{1
+
+augroup au_pentadactyl
+    au!
+
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+    autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+
+    autocmd BufRead */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
+augroup end
+
+" Editing GPG encrypted files {{{1
+
+" Following block is copied from
+" http://vim.wikia.com/wiki/Encryption
+
+" Transparent editing of gpg encrypted files.
+" By Wouter Hanegraaff
+augroup encrypted
+  au!
+
+  " First make sure nothing is written to ~/.viminfo while editing
+  " an encrypted file.
+  autocmd BufReadPre,FileReadPre *.gpg set viminfo=
+  " We don't want a various options which write unencrypted data to disk
+  autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
+
+  " Switch to binary mode to read the encrypted file
+  autocmd BufReadPre,FileReadPre *.gpg set bin
+  autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
+  " (If you use tcsh, you may need to alter this line.)
+  autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg -d 2> /dev/null
+
+  " Switch to normal mode for editing
+  autocmd BufReadPost,FileReadPost *.gpg set nobin
+  autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
+  autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
+
+  " Convert all text to encrypted text before writing
+  " (If you use tcsh, you may need to alter this line.)
+  autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg -ac 2>/dev/null
+  " Undo the encryption so we are back in the normal text, directly
+  " after the file has been written.
+  autocmd BufWritePost,FileWritePost *.gpg u
+augroup END
+
+" Various filetype-specific stuff {{{1
+
+" C {{{2
+
+augroup ft_c
+    au!
+    au FileType c setlocal foldmethod=syntax
+    au FileType c setlocal noet sw=8 sts=8
+augroup END
+
+" CPP {{{2
+
+augroup ft_cpp
+    au!
+    au FileType cpp setlocal foldmethod=syntax
+    au FileType cpp setlocal noet sw=8 sts=8
+augroup END
+
+" GO {{{2
+
+augroup ft_go
+    au!
+    au FileType go setlocal foldmethod=syntax
+    au FileType go setlocal noet sw=8 sts=8
+augroup END
+
+" HTML {{{2
+
+augroup ft_html
+    au!
+    au FileType html setlocal sw=2 sts=2
+augroup END
+
+" HAML {{{2
+
+augroup ft_haml
+    au!
+    au FileType haml setlocal sw=2 sts=2
+augroup END
+
+" ReStructuredText {{{2
+
+augroup ft_rest
+    au!
+
+    au Filetype rst nnoremap <buffer> <localleader>1 yypVr=
+    au Filetype rst nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype rst nnoremap <buffer> <localleader>3 yypVr~
+    au Filetype rst nnoremap <buffer> <localleader>4 yypVr`
+augroup END
+
+" Markdown {{{2
+
+augroup ft_markdown
+    au!
+
+    au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
+    au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
+    au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
+    au Filetype mkd let b:surround_105 = "*\r*"
+    au Filetype mkd let b:surround_98 = "**\r**"
+    au Filetype mkd setlocal nofoldenable
+    au Filetype mkd setlocal suffixesadd=.md
+augroup END
+
+" Vim {{{2
+
+augroup ft_vim
+    au!
+
+    au FileType vim setlocal foldmethod=marker
+    au FileType help setlocal textwidth=78
+    " au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+" MoinMoin {{{2
+
+augroup ft_moin
+    au!
+
+    au Filetype moin nnoremap <buffer> <localleader>1 0i= <Esc>$a =<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
+    au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
+    au Filetype moin let b:surround_105 = "''\r''"
+    au Filetype moin let b:surround_98 = "'''\r'''"
+augroup END
+
+" Latex {{{2
+
+augroup ft_tex
+    au!
+
+    au FileType tex setlocal sw=2 sts=2
+    au Filetype tex let b:surround_105 = "\\textit{\r}"
+    au Filetype tex let b:surround_98 = "\\textbf{\r}"
+    au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
+    au Filetype tex set makeprg=latexmk\ %
+augroup END
+
+" Gnuplot {{{2
+
+augroup ft_gnuplot
+    au!
+
+    autocmd BufReadPost *.plot setlocal ft=gnuplot
+augroup END
+
+" Python {{{2
+
+augroup ft_python
+    au!
+
+    au FileType python setlocal foldmethod=indent
+    au FileType python setlocal commentstring=#\ %s
+augroup END
+
+" PHP {{{2
+
+let g:php_folding = 2
+
+augroup ft_php
+    au!
+
+    au FileType php setlocal foldmethod=syntax
+augroup END
 
 " Plugin settings {{{1
 
@@ -550,77 +624,4 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
     let g:marvim_find_key = '<Leader>mf'
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0
-
-" Wordnet for Viewdoc {{{1
-
-function! s:ViewDoc_wordnet(topic, ...)
-        return { 'cmd' : printf('wn %s -over | fold -w 78 -s', shellescape(a:topic, 1)),
-                \ 'ft' : 'wordnet' }
-endf
-let g:ViewDoc_wordnet = function('s:ViewDoc_wordnet')
-
-command! -bar -bang -nargs=1 ViewDocWordnet
-	\ call ViewDoc('<bang>'=='' ? 'new' : 'doc', <f-args>, 'wordnet')
-cnoreabbrev wn ViewDocWordnet
-
-augroup au_wordnet
-    au!
-
-    autocmd FileType wordnet mapclear <buffer>
-    autocmd FileType wordnet syn match overviewHeader /^Overview of .\+/
-    autocmd FileType wordnet syn match definitionEntry /\v^[0-9]+\. .+$/ contains=numberedList,word
-    autocmd FileType wordnet syn match numberedList /\v^[0-9]+\. / contained
-    autocmd FileType wordnet syn match word /\v([0-9]+\.[0-9\(\) ]*)@<=[^-]+/ contained
-    autocmd FileType wordnet hi link overviewHeader Title
-    autocmd FileType wordnet hi link numberedList Operator
-    autocmd FileType wordnet hi def word term=bold cterm=bold gui=bold
-augroup end
-
-" Set filetype for files opened with pentadactyl {{{1
-
-augroup au_pentadactyl
-    au!
-
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
-    autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
-
-    autocmd BufRead */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
-augroup end
-
-" Editing GPG encrypted files {{{1
-
-" Following block is copied from
-" http://vim.wikia.com/wiki/Encryption
-
-" Transparent editing of gpg encrypted files.
-" By Wouter Hanegraaff
-augroup encrypted
-  au!
-
-  " First make sure nothing is written to ~/.viminfo while editing
-  " an encrypted file.
-  autocmd BufReadPre,FileReadPre *.gpg set viminfo=
-  " We don't want a various options which write unencrypted data to disk
-  autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
-
-  " Switch to binary mode to read the encrypted file
-  autocmd BufReadPre,FileReadPre *.gpg set bin
-  autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
-  " (If you use tcsh, you may need to alter this line.)
-  autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg -d 2> /dev/null
-
-  " Switch to normal mode for editing
-  autocmd BufReadPost,FileReadPost *.gpg set nobin
-  autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
-  autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
-
-  " Convert all text to encrypted text before writing
-  " (If you use tcsh, you may need to alter this line.)
-  autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg -ac 2>/dev/null
-  " Undo the encryption so we are back in the normal text, directly
-  " after the file has been written.
-  autocmd BufWritePost,FileWritePost *.gpg u
-augroup END
 
