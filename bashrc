@@ -23,16 +23,22 @@ alias ls="ls $LS_OPTIONS"
 alias ll="ls $LS_OPTIONS -l -v"
 alias l.="ls $LS_OPTIONS -A --ignore='[^.]*'"
 
-# Some more alias to avoid making mistakes:
+# Some more aliases to avoid stupid mistakes
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
+
+# More alias for convenience
 alias cpv="rsync --human-readable --progress"
 alias dirs="dirs -v"
 alias grep="grep --color=always"
 alias less="less -niRS"
 alias jq="jq -C"
 alias ack="ack --color"
+alias tmux="tmux -u"
+if hash colordiff 2>/dev/null ; then
+    alias diff=colordiff
+fi
 
 alias pq="pprint-data pickle"
 alias yq="pprint-data yaml"
@@ -42,12 +48,6 @@ alias jqx="pprint-data json"
 export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL=vim
-
-# Make tmux always use unicode
-alias tmux="tmux -u"
-if hash colordiff 2>/dev/null ; then
-    alias diff=colordiff
-fi
 
 # Fabric completion
 function __fab_completion() {
