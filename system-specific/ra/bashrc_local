@@ -15,8 +15,8 @@ export GEM_HOME="$GEM_PATH"
 
 # Modify path in login shell only
 if shopt -q login_shell ; then
-    export PATH="$HOME/.cabal/bin:$PATH"
-    export PATH="$GEM_HOME/bin:$PATH"
+    PATH="$HOME/.cabal/bin:$PATH"
+    PATH="$GEM_HOME/bin:$PATH"
 fi
 
 alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"

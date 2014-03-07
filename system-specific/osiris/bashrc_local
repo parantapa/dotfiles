@@ -13,7 +13,7 @@ export R_LIBS_USER="$HOME/.r-packages"
 
 # Modify path in login shell only
 if shopt -q login_shell ; then
-    export PATH="$GEM_HOME/bin:$HOME/.cabal/bin:$PATH"
+    PATH="$GEM_HOME/bin:$HOME/.cabal/bin:$PATH"
 fi
 
 alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
