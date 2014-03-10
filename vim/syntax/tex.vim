@@ -373,10 +373,10 @@ endif
 " particular support for bold and italic {{{1
 if s:tex_fast =~ 'b'
   if s:tex_conceal =~ 'b'
-   syn region texBoldStyle	matchgroup=texTypeStyle start="\\textbf\s*{" end="}" concealends contains=@texBoldGroup
-   syn region texBoldItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" end="}" concealends contains=@texItalGroup
-   syn region texItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" end="}" concealends contains=@texItalGroup
-   syn region texItalBoldStyle	matchgroup=texTypeStyle start="\\textbf\s*{" end="}" concealends contains=@texBoldGroup
+   syn region texBoldStyle	matchgroup=texTypeStyle start="\\textbf\s*{" end="}" concealends contains=@texBoldGroup,@Spell
+   syn region texBoldItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" end="}" concealends contains=@texItalGroup,@Spell
+   syn region texItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" end="}" concealends contains=@texItalGroup,@Spell
+   syn region texItalBoldStyle	matchgroup=texTypeStyle start="\\textbf\s*{" end="}" concealends contains=@texBoldGroup,@Spell
   endif
 endif
 
