@@ -185,4 +185,7 @@ for_window [title="Firefox Preferences"] floating enable
 for_window [class="Ipython"] floating enable
 for_window [class="R_x11"] floating enable
 for_window [title="Starting Gephi"] floating enable
+for_window [class="Yad"] floating enable
 
+# All vim windows in workspace 1
+assign [class="Gvim"] 1
