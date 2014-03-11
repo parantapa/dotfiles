@@ -43,7 +43,7 @@ def get_git_status():
         
         line = [x for x in output if x[0] == "*"][0]
         branch = line.split()[1]
-    except CalledProcessError:
+    except (CalledProcessError, IndexError):
         return "!"
 
     try:
