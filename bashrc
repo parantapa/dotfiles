@@ -141,7 +141,7 @@ PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
-psg  () { psf $( pgrep "$@" ) ; }
+psg  () { psf $( pgrep -f "$@" ) ; }
 psu  () { psf -u $USER "$@" ; }
 topu () { top -u $USER "$@" ; }
 
