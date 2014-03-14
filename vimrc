@@ -484,7 +484,9 @@ augroup ft_tex
     au Filetype tex let b:surround_105 = "\\textit{\r}"
     au Filetype tex let b:surround_98 = "\\textbf{\r}"
     au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
-    au Filetype tex set makeprg=latexmk\ %
+    if ! (filereadable("makefile") || filereadable("Makefile"))
+        au Filetype tex set makeprg=latexmk\ %
+    endif
 augroup END
 
 " Gnuplot {{{2
