@@ -615,8 +615,8 @@ augroup END
     let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsEditSplit = "normal"
     let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    let g:UltiSnipsJumpForwardTrigger="<s-tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-c-tab>"
 
     let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
