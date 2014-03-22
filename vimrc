@@ -386,6 +386,21 @@ augroup encrypted
   autocmd BufWritePost,FileWritePost *.gpg u
 augroup END
 
+" Search for Visually selected text with * {{{1
+" http://vim.wikia.com/wiki/VimTip171
+
+function! VSetSearch()
+    let old_reg = @"
+    normal! gvy
+    let @/ = '\V' . @"
+    normal! gV
+    let @" = old_reg
+endfunction
+
+" Set the search pattern register and do a search with last pattern
+" Then return to the previous position
+vnoremap <silent> * :<C-U>call VSetSearch()<CR>/<CR><C-o>
+
 " Various filetype-specific stuff {{{1
 
 " C {{{2
