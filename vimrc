@@ -466,6 +466,7 @@ augroup ft_markdown
     au Filetype mkd setlocal nofoldenable
     au Filetype mkd setlocal suffixesadd=.md
     au Filetype mkd setlocal iskeyword+=-
+    au Filetype mkd setlocal formatoptions-=n
 augroup END
 
 " Vim {{{2
