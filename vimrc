@@ -484,9 +484,9 @@ augroup ft_tex
     au FileType tex setlocal sw=2 sts=2
     au Filetype tex let b:surround_105 = "\\textit{\r}"
     au Filetype tex let b:surround_98 = "\\textbf{\r}"
-    au Filetype tex nmap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
+    au Filetype tex nnoremap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
     if ! (filereadable("makefile") || filereadable("Makefile"))
-        au Filetype tex set makeprg=latexmk\ %
+        au Filetype tex setlocal makeprg=latexmk\ %
     endif
 augroup END
 
@@ -556,8 +556,8 @@ augroup END
 
 " Tabbing {{{2
 
-    nnoremap <Leader>T :Tab /\V
-    vnoremap <Leader>T :Tab /\V
+    nnoremap <Leader>T :Tabularize /\V
+    vnoremap <Leader>T :Tabularize /\V
 
 " TagBar {{{2
 
