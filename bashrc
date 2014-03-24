@@ -153,17 +153,6 @@ alias gca="git commit -a"
 alias gs="git status"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
-# SVN update all
-git-svn-rebase-all () {
-    set -x
-    for i in "$@" ; do
-        cd "$i"
-        git svn rebase
-        cd -
-    done
-    set +x
-}
-
 # GVim alias
 g () {
     if [[ -n "$DISPLAY" ]] ; then
@@ -187,6 +176,52 @@ g () {
 # Find alias
 f () {
     find . -name "*$1*"
+}
+
+# Execute git svn pull in all the folders
+pb-git-svn-rebase-all () {
+    set -x
+    for i in "$@" ; do
+        if [[ -d "$i/.git" ]] ; then
+            cd "$i"
+            git svn rebase
+            cd -
+        fi
+    done
+    set +x
+}
+
+# Execute git pull in master branch in all the folders
+pb-git-pull-in-master-all () {
+    set -x
+    for i in "$@" ; do
+        if [[ -d "$i/.git" ]] || [[ -f "$i/.git" ]] ; then
+            cd "$i"
+            git checkout master
+            git pull
+            cd -
+        fi
+    done
+    set +x
+}
+
+# Setup PyGTK in the current virtualenv
+# Assume pygkt is installed in system at /usr/lib/python2.7
+pb-pygtk-setup-virtualenv () {
+    local fromdir="${1-/usr/lib/python2.7/site-packages}"
+    local files=(glib gobject cairo gtk-2.0 pygtk.pth pygtk.py)
+    local f
+
+    cdsitepackages
+    echo "cdsitepackages"
+
+    set -x
+    pwd
+
+    for f in "${files[@]}" ; do
+        ln -s "${fromdir}/${f}"
+    done
+    set +x
 }
 
 # Java Font settings
