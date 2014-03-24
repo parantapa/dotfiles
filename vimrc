@@ -504,6 +504,7 @@ augroup ft_tex
     if ! (filereadable("makefile") || filereadable("Makefile"))
         au Filetype tex setlocal makeprg=latexmk\ %
     endif
+    au Filetype tex setlocal formatoptions-=n
 augroup END
 
 " Gnuplot {{{2
@@ -531,6 +532,14 @@ augroup ft_php
     au!
 
     au FileType php setlocal foldmethod=syntax
+augroup END
+
+" Text {{{2
+
+augroup ft_text
+    au!
+
+    au Filetype text setlocal formatoptions-=n
 augroup END
 
 " Plugin settings {{{1
