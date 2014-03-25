@@ -575,9 +575,9 @@ augroup END
     let g:syntastic_javascript_checkers = ['jslint']
     let g:syntastic_javascript_jslint_conf = "--sloppy"
 
-" Ack {{{2
+" Ag.vim {{{2
 
-    nnoremap <Leader>a :Ack!
+    nnoremap <Leader>a :Ag!
 
 " Tabbing {{{2
 

@@ -82,3 +82,6 @@
 [submodule "vim/bundle/marvim"]
 	path = vim/bundle/marvim
 	url = https://github.com/vim-scripts/marvim.git
+[submodule "vim/bundle/ag.vim"]
+	path = vim/bundle/ag.vim
+	url = https://github.com/rking/ag.vim
