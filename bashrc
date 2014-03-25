@@ -5,6 +5,7 @@ shopt -s histappend
 
 # set hist size; default is too small
 HISTSIZE=100000
+HISTFILESIZE=1000000
 
 # Ignore duplicates and some stupid commands in history
 HISTIGNORE="&:ls:ll:fg:bg:exit"
