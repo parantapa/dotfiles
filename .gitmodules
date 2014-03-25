@@ -13,9 +13,6 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
         url = https://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/ack"]
-	path = vim/bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
 [submodule "vim/bundle/large-file"]
 	path = vim/bundle/large-file
 	url = https://github.com/vim-scripts/LargeFile.git
