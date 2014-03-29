@@ -8,14 +8,28 @@ function jump {
 }
 
 function mark {
-    local kw
-    if [ -z "$1" ] ; then
-        kw="$( basename $( pwd ) )"
-    else
+    local kw xdir
+
+    mkdir -p "$MARKPATH"
+    if [[ "$#" -eq 0 ]] ; then
+        xdir="$(pwd)"
+        kw="$(basename ${xdir})"
+    elif [[ "$#" -eq 1 ]] ; then
+        xdir="$(pwd)"
         kw="$1"
+    elif [[ "$#" -eq 2 ]] ; then
+        xdir="$2"
+        kw="$1"
+        if ! [[ -d "${xdir}" ]] ; then
+            echo "Directory doesn't exist: {$xdir}"
+            return
+        fi
+    else
+        echo "Usage: mark [markname [markdir]]"
+        return
     fi
 
-    mkdir -p "$MARKPATH"; ln -sT "$(pwd)" "$MARKPATH/$kw"
+    ln -sT "${xdir}" "${MARKPATH}/${kw}"
 }
 
 function unmark {
