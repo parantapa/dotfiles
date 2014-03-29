@@ -1,15 +1,15 @@
 # Provide a local install space
-if [ -z "$LOCAL" ] ; then
-    export LOCAL=$HOME/local
+export LOCAL=$HOME/local
+export MANPATH=$LOCAL/share/man:/usr/man:/usr/share/man:/usr/local/share/man
+export LD_LIBRARY_PATH=$LOCAL/lib
 
-    export PATH=$LOCAL/bin:$PATH
-    export MANPATH=$LOCAL/share/man:/usr/man:/usr/share/man:/usr/local/share/man
-    export LD_LIBRARY_PATH=$LOCAL/lib
+export C_INCLUDE_PATH=$LOCAL/include
+export CPLUS_INCLUDE_PATH=$LOCAL/include
+export LIBRARY_PATH=$LOCAL/lib
+export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
 
-    export C_INCLUDE_PATH=$LOCAL/include
-    export CPLUS_INCLUDE_PATH=$LOCAL/include
-    export LIBRARY_PATH=$LOCAL/lib
-    export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
+if ! shopt -q login_shell ; then
+    PATH=$LOCAL/bin:$PATH
 fi
 
 export PYTHONUSERBASE="$LOCAL"
@@ -18,7 +18,11 @@ export PYTHONUSERBASE="$LOCAL"
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 export WORKON_HOME=$LOCAL/virtualenvs
 . $LOCAL/bin/virtualenvwrapper.sh
-workon default
+
+# Enable virtualenvs by default only inside a non login shell
+if ! shopt -q login_shell ; then
+     workon default
+fi
 
 AUTOPATH="$HOME/.autopath.bash."`uname -s`
 if [ -f $AUTOPATH ] ; then
