@@ -185,14 +185,6 @@ noremap { (
 noremap \] }
 noremap \[ {
 
-" Open using firefox
-nnoremap <Leader>oo yiW:call system("firefox " . shellescape(@"))<CR>
-vnoremap <Leader>oo y:call system("firefox " . shellescape(@"))<CR>
-nnoremap <Leader>ot yiw:call system("firefox thesaurus.com/browse/" . shellescape(@"))<CR>
-nnoremap <Leader>od yiw:call system("firefox dictionary.reference.com/browse/" . shellescape(@"))<CR>
-nnoremap <Leader>os yiW:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
-vnoremap <Leader>os y:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
-
 " Open a new file
 nnoremap <Leader>n :edit <cfile><CR>
 
@@ -255,6 +247,7 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" Toggle simple html in buffer
 function! ToggleHtmlInBuf()
     silent! normal g0vG$"zy
     if stridx(@z, "<br>") ==# -1
@@ -268,6 +261,44 @@ function! ToggleHtmlInBuf()
     endif
 endf
 nnoremap <F7> :call ToggleHtmlInBuf()<CR>
+
+" Open using firefox
+nnoremap <Leader>oo yiW:call system("firefox " . shellescape(@"))<CR>
+vnoremap <Leader>oo y:call system("firefox " . shellescape(@"))<CR>
+nnoremap <Leader>ot yiw:call system("firefox thesaurus.com/browse/" . shellescape(@"))<CR>
+nnoremap <Leader>od yiw:call system("firefox dictionary.reference.com/browse/" . shellescape(@"))<CR>
+nnoremap <Leader>os yiW:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
+vnoremap <Leader>os y:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
+
+" Search and open pdf files
+fun! CopyAlnumKeyword()
+    let oldkwd = &iskeyword
+    set iskeyword=a-z,A-Z,48-57,_,-
+    normal! yiw
+    let &iskeyword = oldkwd
+endf
+
+function! Strip(input_string)
+    return substitute(a:input_string, '\v^\s*(.\{-})\s*$', '\1', '')
+endfunction
+
+fun! SearchAndOpenPdf(keyword)
+    let cmd = printf("find %s/sdocs -name *%s*.pdf", $HOME, a:keyword)
+    let fnames_str = system(cmd)
+    let fnames = split(fnames_str, "\n", 0)
+    let fnames = map(fnames, 'Strip(v:val)')
+
+    if len(fnames) >= 1
+        let cmd = printf("evince %s &", fnames[0])
+        echom printf("Found %d files ...", len(fnames))
+        echom printf("Opening '%s' ...", fnames[0])
+        call system(cmd)
+    else
+        echom printf("No pdf files found matching '%s'", a:keyword)
+    endif
+endf
+nnoremap <Leader>oe :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
+vnoremap <Leader>oe y:call SearchAndOpenPdf(@")<CR>
 
 " Convenience mappings {{{1
 
