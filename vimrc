@@ -283,15 +283,16 @@ function! Strip(input_string)
 endfunction
 
 fun! SearchAndOpenPdf(keyword)
-    let cmd = printf("find %s/sdocs -name *%s*.pdf", $HOME, a:keyword)
+    let cmd = printf("find %s/sdocs -name *%s*.pdf", fnameescape($HOME), shellescape(a:keyword))
     let fnames_str = system(cmd)
     let fnames = split(fnames_str, "\n", 0)
     let fnames = map(fnames, 'Strip(v:val)')
 
     if len(fnames) >= 1
-        let cmd = printf("evince %s &", fnames[0])
         echom printf("Found %d files ...", len(fnames))
         echom printf("Opening '%s' ...", fnames[0])
+
+        let cmd = printf("evince %s &", fnameescape(fnames[0]))
         call system(cmd)
     else
         echom printf("No pdf files found matching '%s'", a:keyword)
