@@ -262,13 +262,47 @@ function! ToggleHtmlInBuf()
 endf
 nnoremap <F7> :call ToggleHtmlInBuf()<CR>
 
-" Open using firefox
-nnoremap <Leader>oo yiW:call system("firefox " . shellescape(@"))<CR>
-vnoremap <Leader>oo y:call system("firefox " . shellescape(@"))<CR>
-nnoremap <Leader>ot yiw:call system("firefox thesaurus.com/browse/" . shellescape(@"))<CR>
-nnoremap <Leader>od yiw:call system("firefox dictionary.reference.com/browse/" . shellescape(@"))<CR>
-nnoremap <Leader>os yiW:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
-vnoremap <Leader>os y:call system("firefox google.com/search?q=" . shellescape(@"))<CR>
+" Extract web url form string
+fun! ExtractUrl(text)
+python << EOF
+import vim, misc
+
+text = vim.eval("a:text")
+urls = misc.WEB_URL_RE.findall(text)
+ret = urls[0] if urls else ""
+vim.command("return '%s'" % ret)
+EOF
+endf
+
+function! OpenWithFirefoxOperator(type)
+    let saved_unnamed_register = @"
+    let saved_winview = winsaveview()
+
+    if a:type ==# 'v'
+        normal! >y
+    elseif a:type ==# 'char'
+        normal! ]y
+    elseif a:type ==# ''
+        let @" = getline('.')
+    else
+        return
+    endif
+
+    let url = ExtractUrl(@")
+    if url ==# ''
+        echom printf("Cant find url in '%s'", @")
+    else
+        echom printf("Opening '%s' ...", url)
+        call system("firefox " . shellescape(url) . " &")
+    endif
+
+    call winrestview(saved_winview)
+    let @" = saved_unnamed_register
+endfunction
+
+nnoremap <leader>f :set operatorfunc=OpenWithFirefoxOperator<cr>g@
+vnoremap <leader>f :<c-u>call OpenWithFirefoxOperator(visualmode())<cr>
+nnoremap <leader>ff :call OpenWithFirefoxOperator('')<cr>
 
 " Search and open pdf files
 fun! CopyAlnumKeyword()
@@ -278,6 +312,7 @@ fun! CopyAlnumKeyword()
     let &iskeyword = oldkwd
 endf
 
+" Strip whitespace
 function! Strip(input_string)
     return substitute(a:input_string, '\v^\s*(.\{-})\s*$', '\1', '')
 endfunction
@@ -298,8 +333,8 @@ fun! SearchAndOpenPdf(keyword)
         echom printf("No pdf files found matching '%s'", a:keyword)
     endif
 endf
-nnoremap <Leader>oe :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
-vnoremap <Leader>oe y:call SearchAndOpenPdf(@")<CR>
+nnoremap <Leader>w :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
+vnoremap <Leader>w y:call SearchAndOpenPdf(@")<CR>
 
 " Convenience mappings {{{1
 
