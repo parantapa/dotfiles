@@ -8,7 +8,7 @@ export CPLUS_INCLUDE_PATH="$LOCAL/include"
 export LIBRARY_PATH="$LOCAL/lib"
 export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
 
-if ! shopt -q login_shell ; then
+if shopt -q login_shell ; then
     PATH=$LOCAL/bin:$PATH
 fi
 
