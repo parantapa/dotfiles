@@ -84,7 +84,9 @@ set backup
 
 set directory=~/.vim/tmp/swap//
 
-set spellfile=~/quickrefs/myspell.utf-8.add
+if filereadable($HOME . "/quickrefs/myspell.utf-8.add")
+    set spellfile=~/quickrefs/myspell.utf-8.add
+endif
 set spelllang=en_us
 
 " The spell file may be updated outside of vim
