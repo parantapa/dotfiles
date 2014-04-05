@@ -526,16 +526,17 @@ augroup END
 augroup ft_markdown
     au!
 
-    au Filetype mkd nnoremap <buffer> <localleader>1 yypVr=
-    au Filetype mkd nnoremap <buffer> <localleader>2 yypVr-
-    au Filetype mkd nnoremap <buffer> <localleader>3 0i### <Esc>
-    au Filetype mkd nnoremap <buffer> <localleader>4 0i#### <Esc>
-    au Filetype mkd let b:surround_105 = "*\r*"
-    au Filetype mkd let b:surround_98 = "**\r**"
-    au Filetype mkd setlocal nofoldenable
-    au Filetype mkd setlocal suffixesadd=.md
-    au Filetype mkd setlocal iskeyword+=-
-    au Filetype mkd setlocal formatoptions-=n
+    autocmd BufReadPost *.md setlocal ft=markdown
+    au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
+    au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype markdown nnoremap <buffer> <localleader>3 0i### <Esc>
+    au Filetype markdown nnoremap <buffer> <localleader>4 0i#### <Esc>
+    au Filetype markdown let b:surround_105 = "*\r*"
+    au Filetype markdown let b:surround_98 = "**\r**"
+    au Filetype markdown setlocal nofoldenable
+    au Filetype markdown setlocal suffixesadd=.md
+    au Filetype markdown setlocal iskeyword+=-
+    au Filetype markdown setlocal formatoptions-=n
 augroup END
 
 " Vim {{{2
