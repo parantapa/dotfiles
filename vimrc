@@ -337,6 +337,7 @@ fun! SearchAndOpenPdf(keyword)
 endf
 nnoremap <Leader>w :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
 vnoremap <Leader>w y:call SearchAndOpenPdf(@")<CR>
+command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
 
 " Convenience mappings {{{1
 
