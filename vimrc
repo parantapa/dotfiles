@@ -601,8 +601,9 @@ let g:php_folding = 2
 
 augroup ft_php
     au!
-
+    
     au FileType php setlocal foldmethod=syntax
+    au BufReadPost *.php setlocal ft=php.html
 augroup END
 
 " Text {{{2
