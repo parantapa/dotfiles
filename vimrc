@@ -86,7 +86,7 @@ set directory=~/.vim/tmp/swap//
 
 if filereadable($HOME . "/quickrefs/myspell.utf-8.add")
     set spellfile=~/quickrefs/myspell.utf-8.add
-    
+
     " The spell file may be updated outside of vim
     execute "silent mkspell! " . &spellfile
 endif
@@ -372,8 +372,6 @@ nnoremap :wq :au! syntastic<cr>:wq
 " Use MoinMoin wiki syntax
 nnoremap <Leader>moin :se ft=moin<CR>
 
-" Do a repo sync
-nnoremap <Leader>S :wall <bar> !repo-sync<CR>
 
 " Shortcuts for completion
 inoremap <C-f> <C-x><C-f>
@@ -601,7 +599,7 @@ let g:php_folding = 2
 
 augroup ft_php
     au!
-    
+
     au FileType php setlocal foldmethod=syntax
     au BufReadPost *.php setlocal ft=php.html
 augroup END
@@ -724,4 +722,13 @@ augroup END
     let g:marvim_find_key = '<Leader>mf'
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0
+
+" File Specific Mappings {{{1
+
+augroup ft_reposync
+    au!
+
+    autocmd BufReadPost /home/parantapa/quickrefs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
+    autocmd BufReadPost /home/parantapa/sdocs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
+augroup END
 
