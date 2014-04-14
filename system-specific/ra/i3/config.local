@@ -1,5 +1,6 @@
 assign [class="Skype"] 6
 assign [class="Xchat"] 6
+assign [title="Oracle VM VirtualBox"] 5
 
 workspace 7 output DVI-1-0
 workspace 8 output DVI-1-0
