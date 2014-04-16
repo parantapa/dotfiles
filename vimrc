@@ -611,6 +611,19 @@ augroup ft_text
 
     au Filetype text setlocal formatoptions-=n
 augroup END
+" Snippets {{{2
+augroup ft_snip
+    au!
+
+    au FileType snippets setlocal noet sw=4 sts=4 ts=4
+augroup end
+
+" Javascript {{{2
+augroup ft_javascript
+    au!
+
+    autocmd BufReadPost *.jsx setlocal ft=javascript
+augroup end
 
 " Plugin settings {{{1
 
