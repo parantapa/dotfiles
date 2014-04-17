@@ -167,9 +167,17 @@ g () {
         elif [[ "$#" -eq 1 ]] ; then
             gvim --servername G --remote-silent "$1"
         elif [[ "$#" -eq 2 ]] ; then
-            local mode="new"
-            if [[ "$2" == "v" ]] ; then mode="vnew" ; fi
-            if [[ "$2" == "t" ]] ; then mode="tabnew" ; fi
+            local mode
+            if [[ "$2" == "s" ]] ; then
+                mode="new"
+            elif [[ "$2" == "v" ]] ; then
+                mode="vnew"
+            elif [[ "$2" == "t" ]] ; then
+                mode="tabnew"
+            else
+                echo "Invalid open mode '$2'"
+                return
+            fi
             local fname=$(readlink -f "$1")
             fname=$(printf '%q' "$fname")
             gvim --servername G --remote-send "<Esc>:$mode<CR>:edit $fname<CR>"
