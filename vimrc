@@ -716,8 +716,9 @@ augroup ft_setup
     autocmd BufReadPost *.plot setlocal ft=gnuplot
     autocmd BufReadPost *.php setlocal ft=php.html
     autocmd BufReadPost *.jsx setlocal ft=javascript
-    autocmd BufReadPost *.html.jinja2 setlocal ft=htmljinja
     autocmd BufReadPost *.jinja2 setlocal ft=jinja
+
+    autocmd BufReadPost *.html.jinja2 setlocal ft=htmljinja
 
     " These files get the \S shortcut to repo sync
     autocmd BufReadPost /home/parantapa/quickrefs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
