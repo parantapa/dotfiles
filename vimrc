@@ -406,19 +406,6 @@ augroup au_wordnet
     autocmd FileType wordnet hi def word term=bold cterm=bold gui=bold
 augroup end
 
-" Set filetype for files opened with pentadactyl {{{1
-
-augroup au_pentadactyl
-    au!
-
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
-    autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
-
-    autocmd BufRead */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
-augroup end
-
 " Editing GPG encrypted files {{{1
 
 " Following block is copied from
@@ -525,7 +512,6 @@ augroup END
 augroup ft_markdown
     au!
 
-    autocmd BufReadPost *.md setlocal ft=markdown
     au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
     au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-
     au Filetype markdown nnoremap <buffer> <localleader>3 0i### <Esc>
@@ -576,13 +562,6 @@ augroup ft_tex
     au Filetype tex setlocal formatoptions-=n
 augroup END
 
-" Gnuplot {{{2
-
-augroup ft_gnuplot
-    au!
-
-    autocmd BufReadPost *.plot setlocal ft=gnuplot
-augroup END
 
 " Python {{{2
 
@@ -601,7 +580,6 @@ augroup ft_php
     au!
 
     au FileType php setlocal foldmethod=syntax
-    au BufReadPost *.php setlocal ft=php.html
 augroup END
 
 " Text {{{2
@@ -617,14 +595,6 @@ augroup ft_snip
 
     au FileType snippets setlocal noet sw=4 sts=4 ts=4
 augroup end
-
-" Javascript {{{2
-augroup ft_javascript
-    au!
-
-    autocmd BufReadPost *.jsx setlocal ft=javascript
-augroup end
-
 " Plugin settings {{{1
 
 " Ctrl-P {{{2
@@ -736,12 +706,29 @@ augroup end
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0
 
-" File Specific Mappings {{{1
 
-augroup ft_reposync
+" Setup stuff depending on filename/extension {{{1
+augroup ft_setup
     au!
 
+    " Setup the proper filetype
+    autocmd BufReadPost *.md setlocal ft=markdown
+    autocmd BufReadPost *.plot setlocal ft=gnuplot
+    autocmd BufReadPost *.php setlocal ft=php.html
+    autocmd BufReadPost *.jsx setlocal ft=javascript
+    autocmd BufReadPost *.html.jinja2 setlocal ft=htmljinja
+    autocmd BufReadPost *.jinja2 setlocal ft=jinja
+
+    " These files get the \S shortcut to repo sync
     autocmd BufReadPost /home/parantapa/quickrefs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
     autocmd BufReadPost /home/parantapa/sdocs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
-augroup END
 
+    " Files opened via pentadacytl need some special setup
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+    autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+
+    autocmd BufReadPost */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
+
+augroup END
