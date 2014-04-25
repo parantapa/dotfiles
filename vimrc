@@ -712,17 +712,17 @@ augroup ft_setup
     au!
 
     " Setup the proper filetype
-    autocmd BufReadPost *.md setlocal ft=markdown
-    autocmd BufReadPost *.plot setlocal ft=gnuplot
-    autocmd BufReadPost *.php setlocal ft=php.html
-    autocmd BufReadPost *.jsx setlocal ft=javascript
-    autocmd BufReadPost *.jinja2 setlocal ft=jinja
+    autocmd BufReadPost,BufNewFile *.md setlocal ft=markdown
+    autocmd BufReadPost,BufNewFile *.plot setlocal ft=gnuplot
+    autocmd BufReadPost,BufNewFile *.php setlocal ft=php.html
+    autocmd BufReadPost,BufNewFile *.jsx setlocal ft=javascript
+    autocmd BufReadPost,BufNewFile *.jinja2 setlocal ft=jinja
 
-    autocmd BufReadPost *.html.jinja2 setlocal ft=htmljinja
+    autocmd BufReadPost,BufNewFile *.html.jinja2 setlocal ft=htmljinja
 
     " These files get the \S shortcut to repo sync
-    autocmd BufReadPost /home/parantapa/quickrefs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
-    autocmd BufReadPost /home/parantapa/sdocs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
+    autocmd BufReadPost,BufNewFile /home/parantapa/quickrefs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
+    autocmd BufReadPost,BufNewFile /home/parantapa/sdocs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
 
     " Files opened via pentadacytl need some special setup
     autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
