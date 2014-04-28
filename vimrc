@@ -717,6 +717,7 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile *.php setlocal ft=php.html
     autocmd BufReadPost,BufNewFile *.jsx setlocal ft=javascript
     autocmd BufReadPost,BufNewFile *.jinja2 setlocal ft=jinja
+    autocmd BufReadPost,BufNewFile *.blog setlocal ft=markdown
 
     autocmd BufReadPost,BufNewFile *.html.jinja2 setlocal ft=htmljinja
 
