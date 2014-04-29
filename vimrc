@@ -462,7 +462,6 @@ vnoremap <silent> * :<C-U>call VSetSearch()<CR>/<CR><C-o>
 
 augroup ft_c
     au!
-    au FileType c setlocal foldmethod=syntax
     au FileType c setlocal noet sw=8 sts=8
 augroup END
 
@@ -470,7 +469,6 @@ augroup END
 
 augroup ft_cpp
     au!
-    au FileType cpp setlocal foldmethod=syntax
     au FileType cpp setlocal noet sw=8 sts=8
 augroup END
 
@@ -478,7 +476,6 @@ augroup END
 
 augroup ft_go
     au!
-    au FileType go setlocal foldmethod=syntax
     au FileType go setlocal noet sw=8 sts=8
 augroup END
 
@@ -529,7 +526,6 @@ augroup END
 augroup ft_vim
     au!
 
-    au FileType vim setlocal foldmethod=marker
     au FileType help setlocal textwidth=78
     " au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
@@ -568,18 +564,16 @@ augroup END
 augroup ft_python
     au!
 
-    au FileType python setlocal foldmethod=indent
     au FileType python setlocal commentstring=#\ %s
 augroup END
 
 " PHP {{{2
 
-let g:php_folding = 2
+" let g:php_folding = 2
 
 augroup ft_php
     au!
 
-    au FileType php setlocal foldmethod=syntax
 augroup END
 
 " Text {{{2
