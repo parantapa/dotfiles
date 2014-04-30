@@ -7,9 +7,13 @@ else
 	dstdir="$HOME"
 fi
 
-dotfiles=(xinitrc bashrc_local i3/config.local i3status.conf)
+dotfiles=(xinitrc bashrc_local i3/config.local i3status.conf
+    mpdconf config/ario/options.xml)
 
 cd "$dstdir"
 for file in "${dotfiles[@]}" ; do
+    if [[ "$(dirname ".$file")" != "." ]] ; then
+        mkdir -p "$(dirname ".$file")"
+    fi
     ln -siT "$srcdir/$file" ".$file"
 done
