@@ -6,10 +6,10 @@ export LD_LIBRARY_PATH="$LOCAL/lib"
 export C_INCLUDE_PATH="$LOCAL/include"
 export CPLUS_INCLUDE_PATH="$LOCAL/include"
 export LIBRARY_PATH="$LOCAL/lib"
-export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig
+export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig"
 
 if shopt -q login_shell ; then
-    PATH=$LOCAL/bin:$PATH
+    PATH="$LOCAL/bin:$PATH"
 fi
 
 export PYTHONUSERBASE="$LOCAL"
@@ -17,7 +17,7 @@ export PYTHONUSERBASE="$LOCAL"
 # Use virtualenvwrapper
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 export WORKON_HOME=$LOCAL/virtualenvs
-. $LOCAL/bin/virtualenvwrapper.sh
+. "$LOCAL/bin/virtualenvwrapper.sh"
 
 # Enable virtualenvs by default only inside a non login shell
 if ! shopt -q login_shell ; then
