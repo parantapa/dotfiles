@@ -1,8 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # set hist size; default is too small
 HISTSIZE=100000
 HISTFILESIZE=1000000
@@ -13,9 +10,14 @@ HISTIGNORE="&:ls:ll:fg:bg:exit"
 # Save time along with command in history
 HISTTIMEFORMAT="%F %T "
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Set the list of updated bash options
+shopt -s extglob
+shopt -s autocd
 shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s globstar
+shopt -s histappend
+shopt -s no_empty_cmd_completion
 
 # colorize ls
 LS_OPTIONS='--color=always -h --group-directories-first'
