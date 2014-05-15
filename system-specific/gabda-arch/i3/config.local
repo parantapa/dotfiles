@@ -3,3 +3,6 @@ bar {
 }
 
 bindsym Control+Mod1+l exec --no-startup-id "xrandr --dpi 96 ; nitrogen --restore"
+
+exec keepassx
+exec ario --minimized
