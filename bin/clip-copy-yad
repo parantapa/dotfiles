@@ -1,0 +1,22 @@
+#!/bin/bash
+# Copy X11 clipboard to selection and vice versa
+# Use yad for GUI
+
+yad --form --title "Clip Copy" \
+    --button="Primary to Selection:5" \
+    --button="Selection to Primary:6"
+ret=$?
+
+if [[ "$ret" -eq 5 ]] ; then
+    xclip -o -selection primary | xclip -i -selection clipboard
+    notify-send -u normal -t 5000 "clip-copy" "primary -> clipboard"
+    exit 0
+fi
+
+if [[ "$ret" -eq 6 ]] ; then
+    xclip -o -selection clipboard | xclip -i -selection primary
+    notify-send -u normal -t 5000 "clip-copy" "clipboard -> primary"
+    exit 0
+fi
+
+exit $ret

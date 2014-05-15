@@ -176,8 +176,8 @@ bindsym Control+Mod1+period exec --no-startup-id "amixer set Master 5%+ ; killal
 bindsym Control+Mod1+comma  exec --no-startup-id "amixer set Master 5%- ; killall -USR1 i3status"
 bindsym Control+Mod1+m      exec --no-startup-id "amixer set Master toggle ; killall -USR1 i3status"
 
-bindsym Control+Mod1+0      exec --no-startup-id "clip-copy -sel-to-clip"
-bindsym Control+Mod1+9      exec --no-startup-id "clip-copy -clip-to-sel"
+bindsym Control+Mod1+0      exec "clip-copy-yad"
+bindsym Control+Mod1+9      exec "clip-copy-yad"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
