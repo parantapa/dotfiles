@@ -265,7 +265,7 @@ endf
 nnoremap <F7> :call ToggleHtmlInBuf()<CR>
 
 " Extract web url form string
-fun! ExtractUrl(text)
+function! ExtractUrl(text)
 python << EOF
 import vim, misc
 
@@ -274,20 +274,25 @@ urls = misc.WEB_URL_RE.findall(text)
 ret = urls[0] if urls else ""
 vim.command("return '%s'" % ret)
 EOF
-endf
+endfunction
 
 function! OpenWithFirefoxOperator(type)
     let saved_unnamed_register = @"
     let saved_winview = winsaveview()
+    let saved_selection = &selection
 
-    if a:type ==# 'v'
-        normal! >y
-    elseif a:type ==# 'char'
-        normal! ]y
-    elseif a:type ==# ''
-        let @" = getline('.')
-    else
-        return
+    let &selection = "inclusive"
+
+    if a:type == '__whole_line__'
+        silent exe "normal! yy"
+    elseif a:type == 'line'
+        silent exe "normal! '[V']y"
+    elseif a:type == 'block'
+        silent exe "normal! `[\<C-V>`]y"
+    elseif a:type == 'char'
+        silent exe "normal! `[v`]y"
+    else " Invoked from Visual mode, use '< and '> marks.
+        silent exe "normal! `<" . a:type . "`>y"
     endif
 
     let url = ExtractUrl(@")
@@ -300,11 +305,12 @@ function! OpenWithFirefoxOperator(type)
 
     call winrestview(saved_winview)
     let @" = saved_unnamed_register
+    let &selection = saved_selection
 endfunction
 
 nnoremap <leader>f :set operatorfunc=OpenWithFirefoxOperator<cr>g@
 vnoremap <leader>f :<c-u>call OpenWithFirefoxOperator(visualmode())<cr>
-nnoremap <leader>ff :call OpenWithFirefoxOperator('')<cr>
+nnoremap <leader>ff :call OpenWithFirefoxOperator('__whole_line__')<cr>
 
 " Search and open pdf files
 fun! CopyAlnumKeyword()
