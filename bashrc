@@ -133,19 +133,21 @@ function __my_ps1() {
 }
 
 # Hack to consistantly update history when using multiple sessions
+# NOTE: May be reset in .bashrc_local
 PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
 
 # Known places
 . "$HOME/.dotfiles/marks.sh"
-_try_mark () {
+try_mark () {
     if ! [[ -h "$MARKPATH/$1" ]] && [[ -d "$2" ]] ; then
         mark "$1" "$2"
     fi
 }
-_try_mark dotfiles "$HOME/.dotfiles"
-_try_mark workspace "$HOME/workspace"
-_try_mark quickrefs "$HOME/quickrefs"
-_try_mark sdocs "$HOME/sdocs"
+try_mark dotfiles "$HOME/.dotfiles"
+try_mark workspace "$HOME/workspace"
+try_mark quickrefs "$HOME/quickrefs"
+try_mark sdocs "$HOME/sdocs"
+unset -f try_mark
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
