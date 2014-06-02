@@ -723,6 +723,8 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile *.html.jinja2 setlocal ft=htmljinja
 
+    autocmd BufReadPost,BufNewFile bashrc_* setlocal ft=sh
+
     " These files get the \S shortcut to repo sync
     autocmd BufReadPost,BufNewFile /home/parantapa/quickrefs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
     autocmd BufReadPost,BufNewFile /home/parantapa/sdocs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
