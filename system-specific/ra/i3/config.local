@@ -24,3 +24,9 @@ bar {
         output DVI-1-0
         tray_output none
 }
+
+exec keepassx
+exec ario
+exec dropboxd
+exec cd /home/parantapa/workspace/reddit-bg && ./reddit-bg >> log
+exec skype
