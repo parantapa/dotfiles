@@ -1,8 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # set hist size; default is too small
 HISTSIZE=100000
 HISTFILESIZE=1000000
@@ -13,9 +10,14 @@ HISTIGNORE="&:ls:ll:fg:bg:exit"
 # Save time along with command in history
 HISTTIMEFORMAT="%F %T "
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Set the list of updated bash options
+shopt -s extglob
+shopt -s autocd
 shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s globstar
+shopt -s histappend
+shopt -s no_empty_cmd_completion
 
 # colorize ls
 LS_OPTIONS='--color=always -h --group-directories-first'
@@ -131,19 +133,21 @@ function __my_ps1() {
 }
 
 # Hack to consistantly update history when using multiple sessions
+# NOTE: May be reset in .bashrc_local
 PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
 
 # Known places
 . "$HOME/.dotfiles/marks.sh"
-_try_mark () {
+try_mark () {
     if ! [[ -h "$MARKPATH/$1" ]] && [[ -d "$2" ]] ; then
         mark "$1" "$2"
     fi
 }
-_try_mark dotfiles "$HOME/.dotfiles"
-_try_mark workspace "$HOME/workspace"
-_try_mark quickrefs "$HOME/quickrefs"
-_try_mark sdocs "$HOME/sdocs"
+try_mark dotfiles "$HOME/.dotfiles"
+try_mark workspace "$HOME/workspace"
+try_mark quickrefs "$HOME/quickrefs"
+try_mark sdocs "$HOME/sdocs"
+unset -f try_mark
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
@@ -158,6 +162,47 @@ alias gdt="git difftool"
 alias gca="git commit -a"
 alias gs="git status"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+alias gclone="git clone"
+alias gpull="git pull"
+alias gpush="git push"
+
+# Git SVN shortcuts
+gsclone () {
+    if [[ -z "$1" ]] ; then
+        echo "Must provide url to clone from"
+        return 1
+    fi
+
+    local logfile="$(mktemp -t gsclone.XXXXXX)"
+    echo "$logfile"
+    svn log "$1" > "$logfile"
+    if [[ $? -ne 0 ]] ; then
+        echo "Failed to get repo log"
+        return 1
+        rm -f "$logfile"
+    fi
+
+    local frev=$(\grep -P '^r\d+' "$logfile" | tail -n 1 | cut -d \| -f 1)
+    rm -f "$logfile"
+    if [[ -z "$frev" ]] ; then
+        echo "Failed to get first revision"
+        return 1
+    fi
+
+    # Git clone
+    git svn clone -$frev "$1"
+    if [[ $? -ne 0 ]] ; then
+        echo "Falied to clone repo"
+        return 1
+    fi
+
+    # Get into the directory and download the stuff
+    pushd "$(basename "$1")"
+    git svn rebase
+    popd
+}
+alias gspull="git svn rebase"
+alias gspush="git svn dcommit"
 
 # GVim alias
 g () {

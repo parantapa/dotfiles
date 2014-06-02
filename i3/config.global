@@ -156,9 +156,9 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "i3exit"
+bindsym $mod+Shift+q exec --no-startup-id "i3exit"
 
-bindsym Control+Mod1+Delete exec "mute-n-lock"
+bindsym Control+Mod1+Delete exec --no-startup-id "mute-n-lock"
 bindsym Control+Mod1+bracketleft exec "urxvtc"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
@@ -167,17 +167,17 @@ bindsym Control+Mod1+p exec "thunar"
 bindsym Control+Mod1+backslash exec "repo-edit ~/quickrefs index.md"
 bindsym Control+Mod1+equal exec "dmenu-repo-sync ~/sdocs ~/quickrefs"
 
-bindsym Control+Mod1+Left  exec "mpc prev"
-bindsym Control+Mod1+Right exec "mpc next"
-bindsym Control+Mod1+Down  exec "mpc toggle"
-bindsym Control+Mod1+Up    exec "mpc stop"
+bindsym Control+Mod1+Left  exec --no-startup-id "mpc prev"
+bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
+bindsym Control+Mod1+Down  exec --no-startup-id "mpc toggle"
+bindsym Control+Mod1+Up    exec --no-startup-id "mpc stop"
 
-bindsym Control+Mod1+period exec "amixer set Master 5%+ ; killall -USR1 i3status"
-bindsym Control+Mod1+comma  exec "amixer set Master 5%- ; killall -USR1 i3status"
-bindsym Control+Mod1+m      exec "amixer set Master toggle ; killall -USR1 i3status"
+bindsym Control+Mod1+period exec --no-startup-id "amixer set Master 5%+ ; killall -USR1 i3status"
+bindsym Control+Mod1+comma  exec --no-startup-id "amixer set Master 5%- ; killall -USR1 i3status"
+bindsym Control+Mod1+m      exec --no-startup-id "amixer set Master toggle ; killall -USR1 i3status"
 
-bindsym Control+Mod1+0      exec "clip-copy -sel-to-clip"
-bindsym Control+Mod1+9      exec "clip-copy -clip-to-sel"
+bindsym Control+Mod1+0      exec "clip-copy-yad"
+bindsym Control+Mod1+9      exec "clip-copy-yad"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable

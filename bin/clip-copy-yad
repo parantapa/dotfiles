@@ -1,18 +1,22 @@
 #!/bin/bash
 # Copy X11 clipboard to primary and vice versa
+# Use yad for GUI
 
-if [ "$1" == "-prim-to-clip" ] ; then
+yad --form --title "Clip Copy" \
+    --button="Primary to Clipboard:5" \
+    --button="Clipboard to Primary:6"
+ret=$?
+
+if [[ "$ret" -eq 5 ]] ; then
     xclip -o -selection primary | xclip -i -selection clipboard
     notify-send -u normal -t 5000 "clip-copy" "primary -> clipboard"
     exit 0
 fi
 
-if [ "$1" == "-clip-to-prim" ] ; then
+if [[ "$ret" -eq 6 ]] ; then
     xclip -o -selection clipboard | xclip -i -selection primary
     notify-send -u normal -t 5000 "clip-copy" "clipboard -> primary"
     exit 0
 fi
 
-printf "Usage ./clip-copy.sh [-prim-to-clip|-clip-to-prim]\n"
-exit 1
-
+exit $ret

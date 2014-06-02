@@ -8,6 +8,10 @@ dpi="${2:-600}"
 
 convert -units PixelsPerInch "$1" -resample "$dpi" "$filename".eps
 epstopdf "$filename".eps
-pdf2ps "$filename".pdf
-ps2eps -f "$filename".ps
 
+# This creates bigger files
+# pdf2ps "$filename".pdf
+# ps2eps -f "$filename".ps
+
+# This creates smaller files
+pdftops -eps "$filename".pdf

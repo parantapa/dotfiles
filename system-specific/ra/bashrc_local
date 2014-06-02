@@ -3,12 +3,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME="$HOME/.virtualenvs"
 . /usr/bin/virtualenvwrapper.sh
 
-# Enable virtualenvs by default only inside a non login shell
-if ! shopt -q login_shell ; then
-     workon default
-fi
-
-# Set the R packages directory
+# Set gem home and gem path paths and R packages
 export R_LIBS_USER="$HOME/.r-packages"
 export GEM_PATH="$(ruby -e 'puts Gem.user_dir')"
 export GEM_HOME="$GEM_PATH"
@@ -21,7 +16,7 @@ fi
 
 alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
 
-if [ "$DISPLAY" = ":0.0" ] ; then
+if [[ "$DISPLAY" = ":0.0" ]] ; then
     unalias gc
     unalias gca
 

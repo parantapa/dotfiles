@@ -2,4 +2,7 @@ bar {
         status_command "i3status-ext"
 }
 
-bindsym Control+Mod1+l exec "xrandr --dpi 96 ; nitrogen --restore"
+bindsym Control+Mod1+l exec --no-startup-id "xrandr --dpi 96 ; nitrogen --restore"
+
+exec keepassx
+exec ario --minimized

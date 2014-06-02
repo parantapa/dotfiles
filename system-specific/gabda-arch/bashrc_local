@@ -1,24 +1,52 @@
-# Enable virtualenvs
+# Setup virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME="$HOME/.virtualenvs"
 . /usr/bin/virtualenvwrapper.sh
-workon default
 
-# Set gem home and gem path paths
-export GEM_HOME="$HOME/.gem/ruby/2.0.0"
-export GEM_PATH="$GEM_HOME"
+# Automatically switch virtualenv
+auto_switch_venv () {
+    if [[ ! -r ".venv" ]] ; then
+        return
+    fi
+    local venv="$(< .venv)"
+    if [[ -z "$venv" ]] ; then
+        return
+    fi
+    hash deactivate 2>/dev/null
+    local xvenv="$( basename "$VIRTUAL_ENV" )"
+    if [[ "$?" -eq 0 ]] && [[ -n "$xvenv" ]] ; then
+        if [[ "$SWITCH_VENV_AUTO" == "$xvenv" ]] && [[ "$venv" != "$xvenv" ]]; then
+            workon "$venv"
+            local yvenv="$( basename "$VIRTUAL_ENV" )"
+            if [[ "$yvenv" == "$venv" ]] ; then
+                export SWITCH_VENV_AUTO="$venv"
+            fi
+        fi
+    else
+        workon "$venv"
+        local yvenv="$( basename "$VIRTUAL_ENV" )"
+        if [[ "$yvenv" == "$venv" ]] ; then
+            export SWITCH_VENV_AUTO="$venv"
+        fi
+    fi
+}
 
-# Set the R packages directory
+PROMPT_COMMAND='auto_switch_venv ; PS1="$(__my_ps1)" ; history -a'
+
+# Set gem home and gem path paths and R packages
 export R_LIBS_USER="$HOME/.r-packages"
+export GEM_PATH="$(ruby -e 'puts Gem.user_dir')"
+export GEM_HOME="$GEM_PATH"
 
 # Modify path in login shell only
 if shopt -q login_shell ; then
-    PATH="$GEM_HOME/bin:$HOME/.cabal/bin:$PATH"
+    PATH="$HOME/.cabal/bin:$PATH"
+    PATH="$GEM_HOME/bin:$PATH"
 fi
 
 alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
 
-if [ "$DISPLAY" = ":0.0" ] ; then
+if [[ "$DISPLAY" = ":0.0" ]] ; then
     unalias gc
     unalias gca
 
@@ -30,18 +58,6 @@ if [ "$DISPLAY" = ":0.0" ] ; then
         git commit -a && { aplay ~/sdocs/misc-files/happykids.wav & }
     }
 fi
-
-function forward-start () {
-    ssh -S none -o "ExitOnForwardFailure yes" -NTf -D 1080 "$@"
-    if [ "$?" -eq 0 ] ; then
-        fuser -n tcp -4 1080 2>/dev/null >/tmp/forward-ssh.pid
-    fi
-}
-
-function forward-kill () {
-    psf $(cat /tmp/forward-ssh.pid)
-    fuser -ki -n tcp -4 1080
-}
 
 function set-proxy () {
     local proxies k
