@@ -156,6 +156,7 @@ psu  () { psf -u $USER "$@" ; }
 topu () { top -u $USER "$@" ; }
 
 # Git shortcuts
+alias ga="git add"
 alias gc="git commit"
 alias gd="git diff"
 alias gdt="git difftool"
@@ -285,9 +286,6 @@ pb-pygtk-setup-virtualenv () {
 
 # Java Font settings
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-
-# User Distribute instead of Setuptools
-export VIRTUALENV_DISTRIBUTE=1
 
 # Use a separate file for system specific bashrc
 if [ -r ~/.bashrc_local ] ; then

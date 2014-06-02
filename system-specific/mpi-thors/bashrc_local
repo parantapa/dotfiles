@@ -16,6 +16,8 @@ export PYTHONUSERBASE="$LOCAL"
 
 # Use virtualenvwrapper
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+# User Distribute instead of Setuptools
+export VIRTUALENV_DISTRIBUTE=1
 export WORKON_HOME=$LOCAL/virtualenvs
 . "$LOCAL/bin/virtualenvwrapper.sh"
 
