@@ -206,12 +206,13 @@ alias gspull="git svn rebase"
 alias gspush="git svn dcommit"
 
 # GVim alias
+GVIM_SERVER=G
 g () {
     if [[ -n "$DISPLAY" ]] ; then
         if [[ "$#" -eq 0 ]] ; then
-            gvim --servername G
+            gvim --servername "$GVIM_SERVER"
         elif [[ "$#" -eq 1 ]] ; then
-            gvim --servername G --remote-silent "$1"
+            gvim --servername "$GVIM_SERVER" --remote-silent "$1"
         elif [[ "$#" -eq 2 ]] ; then
             local mode
             if [[ "$2" == "s" ]] ; then
@@ -226,7 +227,7 @@ g () {
             fi
             local fname=$(readlink -f "$1")
             fname=$(printf '%q' "$fname")
-            gvim --servername G --remote-send "<Esc>:$mode<CR>:edit $fname<CR>"
+            gvim --servername "$GVIM_SERVER" --remote-send "<Esc>:$mode<CR>:edit $fname<CR>"
         fi
     else
         vim "$@"
