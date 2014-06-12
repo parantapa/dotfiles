@@ -90,7 +90,7 @@ if filereadable($HOME . "/quickrefs/myspell.utf-8.add")
     " The spell file may be updated outside of vim
     execute "silent mkspell! " . &spellfile
 endif
-set spelllang=en_us
+set spelllang=en
 
 " Leader {{{1
 
