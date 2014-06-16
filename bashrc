@@ -46,6 +46,9 @@ fi
 alias pq="pprint-data pickle"
 alias yq="pprint-data yaml"
 alias jqx="pprint-data json"
+alias pqi="prepl-data pickle"
+alias yqi="prepl-data yaml"
+alias jqi="prepl-data json"
 
 # Set the environmetal veriables to something I like
 export PAGER="less -niRS"

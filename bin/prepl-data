@@ -1,0 +1,46 @@
+#!/usr/bin/env python2
+"""
+Load the pickle/yaml/json file and drop to python repl.
+"""
+
+import sys
+
+def main():
+    if len(sys.argv) == 3:
+        dtype, fname = sys.argv[1], sys.argv[2]
+    else:
+        print("prepl-data - Explore data file from python repl")
+        print("Usage: prepl-data <dtype> <file>")
+        sys.exit(1)
+
+    # Select the proper load function
+    if dtype == "yaml":
+        from yaml import load
+    elif dtype == "pickle":
+        from cPickle import load
+    elif dtype == "json":
+        from json import load
+    else:
+        print("Unknown data type: ", dtype)
+        sys.exit(1)
+
+    # Load the file
+    if fname == "-":
+        x = sys.stdin
+    else:
+        x = open(fname, "rb")
+    x = load(x)
+
+    # Drop to repl
+    try:
+        # Try IPython first
+        import IPython
+        IPython.start_ipython(argv=[], user_ns={"x": x})
+    except ImportError:
+        # We dont have it
+        # So use the standard code module
+        import code
+        code.InteractiveConsole(locals={"x": x}).interact()
+
+if __name__ == '__main__':
+    main()
