@@ -512,11 +512,25 @@ augroup END
 
 " Markdown {{{2
 
+function! MarkdownLevel()
+    if getline(v:lnum) =~ '^# .*$'
+        return ">1"
+    elseif getline(v:lnum) =~ '^## .*$'
+        return ">2"
+    elseif getline(v:lnum) =~ '^### .*$'
+        return ">3"
+    elseif getline(v:lnum) =~ '^#### .*$'
+        return ">4"
+    else
+        return "="
+    endif
+endfunction
+
 augroup ft_markdown
     au!
 
-    au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
-    au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype markdown nnoremap <buffer> <localleader>1 0i# <Esc>
+    au Filetype markdown nnoremap <buffer> <localleader>2 0i## <Esc>
     au Filetype markdown nnoremap <buffer> <localleader>3 0i### <Esc>
     au Filetype markdown nnoremap <buffer> <localleader>4 0i#### <Esc>
     au Filetype markdown let b:surround_105 = "*\r*"
@@ -715,6 +729,9 @@ augroup ft_setup
 
     " Setup the proper filetype
     autocmd BufReadPost,BufNewFile *.md setlocal ft=markdown
+    au BufEnter *.md setlocal foldexpr=MarkdownLevel()
+    au BufEnter *.md setlocal foldmethod=expr
+
     autocmd BufReadPost,BufNewFile *.plot setlocal ft=gnuplot
     autocmd BufReadPost,BufNewFile *.php setlocal ft=php.html
     autocmd BufReadPost,BufNewFile *.jsx setlocal ft=javascript
