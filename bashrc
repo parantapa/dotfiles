@@ -117,7 +117,13 @@ GIT_PS1_SHOWUPSTREAM=auto
 . "$HOME/.dotfiles/git-prompt.sh"
 
 function __my_ps1() {
-    local ret="$?"
+    local ret
+
+    if [[ -n "$LAST_RET" ]] ; then
+        ret="$LAST_RET"
+    else
+        ret="$?"
+    fi
 
     hash deactivate 2>/dev/null
     if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
