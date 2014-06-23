@@ -55,9 +55,6 @@
 [submodule "vim/bundle/indent-object"]
 	path = vim/bundle/indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule "vim/bundle/commentary"]
-	path = vim/bundle/commentary
-	url = https://github.com/parantapa/vim-commentary.git
 [submodule "vim/bundle/yankstack"]
 	path = vim/bundle/yankstack
 	url = https://github.com/maxbrunsfeld/vim-yankstack
