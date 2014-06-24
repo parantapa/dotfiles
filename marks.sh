@@ -49,5 +49,4 @@ function _jump {
 complete -o default -o nospace -F _jump jump
 complete -o default -o nospace -F _jump unmark
 
-alias j=jump
-complete -o default -o nospace -F _jump j
+export CDPATH=":$MARKPATH"
