@@ -4,6 +4,10 @@
 
 runtime bundle/pathogen/autoload/pathogen.vim
 
+if !has("python")
+    let g:pathogen_disabled = ["ultisnips"]
+endif
+
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
@@ -266,6 +270,7 @@ nnoremap <F7> :call ToggleHtmlInBuf()<CR>
 
 " Extract web url form string
 function! ExtractUrl(text)
+    if has("python")
 python << EOF
 import vim, misc
 
@@ -274,6 +279,11 @@ urls = misc.WEB_URL_RE.findall(text)
 ret = urls[0] if urls else ""
 vim.command("return '%s'" % ret)
 EOF
+    endif
+
+    " NOTE: We dont have python so return what ever text we were given
+    " Should work if the text was the url
+    return text
 endfunction
 
 function! OpenWithFirefoxOperator(type)
