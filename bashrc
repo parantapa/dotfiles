@@ -17,6 +17,7 @@ shopt -s checkwinsize
 shopt -s cmdhist
 shopt -s globstar
 shopt -s histappend
+shopt -s histverify
 shopt -s no_empty_cmd_completion
 
 # colorize ls
