@@ -1,31 +1,16 @@
-# Provide a local install space
-export LOCAL="$HOME/local"
-export MANPATH="$LOCAL/share/man:/usr/man:/usr/share/man:/usr/local/share/man"
-export LD_LIBRARY_PATH="$LOCAL/lib"
+# Setup the guest environment to install stuff
+. ~/.dotfiles/system-specific/common/guest-local-vars.sh
 
-export C_INCLUDE_PATH="$LOCAL/include"
-export CPLUS_INCLUDE_PATH="$LOCAL/include"
-export LIBRARY_PATH="$LOCAL/lib"
-export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig"
+# Setup virtualenvs
+. ~/.dotfiles/system-specific/common/virtualenvwrapper-thors.sh
 
-if shopt -q login_shell ; then
-    PATH="$LOCAL/bin:$PATH"
-fi
+# Setup auto-switch-venv
+. ~/.dotfiles/system-specific/common/auto-switch-venv.sh
 
-export PYTHONUSERBASE="$LOCAL"
+# Setup program specific directories
+. ~/.dotfiles/system-specific/common/lang-path.sh
 
-# Use virtualenvwrapper
-#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
-# User Distribute instead of Setuptools
-export VIRTUALENV_DISTRIBUTE=1
-export WORKON_HOME=$LOCAL/virtualenvs
-. "$LOCAL/bin/virtualenvwrapper.sh"
-
-# Enable virtualenvs by default only inside a non login shell
-if ! shopt -q login_shell ; then
-     workon default
-fi
-
+# Somesuff copied from thor's original bashrc
 AUTOPATH="$HOME/.autopath.bash."`uname -s`
 if [ -f "$AUTOPATH" ] ; then
     . "$AUTOPATH"
