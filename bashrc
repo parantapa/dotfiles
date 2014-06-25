@@ -216,29 +216,9 @@ alias gspull="git svn rebase"
 alias gspush="git svn dcommit"
 
 # GVim alias
-GVIM_SERVER=G
 g () {
     if [[ -n "$DISPLAY" ]] ; then
-        if [[ "$#" -eq 0 ]] ; then
-            gvim --servername "$GVIM_SERVER"
-        elif [[ "$#" -eq 1 ]] ; then
-            gvim --servername "$GVIM_SERVER" --remote-silent "$1"
-        elif [[ "$#" -eq 2 ]] ; then
-            local mode
-            if [[ "$2" == "s" ]] ; then
-                mode="new"
-            elif [[ "$2" == "v" ]] ; then
-                mode="vnew"
-            elif [[ "$2" == "t" ]] ; then
-                mode="tabnew"
-            else
-                echo "Invalid open mode '$2'"
-                return
-            fi
-            local fname=$(readlink -f "$1")
-            fname=$(printf '%q' "$fname")
-            gvim --servername "$GVIM_SERVER" --remote-send "<Esc>:$mode<CR>:edit $fname<CR>"
-        fi
+        gvim "$@"
     else
         vim "$@"
     fi
@@ -246,7 +226,21 @@ g () {
 
 # Find alias
 f () {
-    find . -name "*$1*"
+    local n fname
+
+    if [[ $# -eq 1 ]] ; then
+        find . -iname "*$1*" | nl
+    elif [[ $# -eq 2 ]] ; then
+        n="$2"
+        fname="$( find . -iname "*$1*" | sed "${n}q;d" )"
+        if [[ -f "${fname}" ]] ; then
+            xdg-open "${fname}" 2>/dev/null &
+        else
+            printf "No files found: PATTERN='%s' N='%s'\n" "$1" "$2"
+        fi
+    else
+        echo "Usage: f PATTERN [N]"
+    fi
 }
 
 # Execute git svn pull in all the folders
@@ -293,6 +287,8 @@ pb-pygtk-setup-virtualenv () {
         ln -s "${fromdir}/${f}"
     done
     set +x
+
+    cd -
 }
 
 # Java Font settings
