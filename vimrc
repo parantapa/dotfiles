@@ -624,6 +624,7 @@ augroup end
 " Ctrl-P {{{2
 
     let g:ctrlp_dotfiles = 1
+    let g:ctrlp_cmd = 'CtrlPBuffer'
 
 " Gundo {{{2
 
