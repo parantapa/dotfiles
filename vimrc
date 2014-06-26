@@ -707,14 +707,6 @@ augroup end
 
     let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
 
-" Jedi Vim {{{2
-
-    let g:jedi#squelch_py_warning = 1
-    let g:jedi#use_tabs_not_buffers = 0
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#show_call_signatures = 0
-    let g:jedi#auto_vim_configuration = 0
-
 " UltiSnips {{{2
 
     let g:UltiSnipsNoPythonWarning = 1
