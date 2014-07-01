@@ -125,7 +125,7 @@ set statusline+=%m      " Modified flag.
 set statusline+=%r      " Readonly flag.
 set statusline+=%w      " Preview window flag.
 
-set statusline+=\ 
+set statusline+=\       " Add blank space
 set statusline+=%#redbar#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -670,11 +670,6 @@ augroup end
 
     nnoremap <Leader>R :RainbowParenthesesToggleAll<CR>
 
-" SuperTab {{{2
-
-    let g:SuperTabDefaultCompletionType = "<c-p>"
-    let g:SuperTabClosePreviewOnPopupClose = 1
-
 " Virtualenv {{{2
 
     let g:virtualenv_stl_format = '[%n] '
@@ -709,10 +704,9 @@ augroup end
 
 " UltiSnips {{{2
 
-    let g:UltiSnipsNoPythonWarning = 1
     let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsEditSplit = "normal"
-    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsExpandTrigger="<s-cr>"
     let g:UltiSnipsJumpForwardTrigger="<s-tab>"
     let g:UltiSnipsJumpBackwardTrigger="<s-c-tab>"
 
@@ -725,6 +719,34 @@ augroup end
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0
 
+" NeoComplete {{{2
+
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#disable_auto_complete = 0
+
+    let g:neocomplete#enable_ignore_case = 1
+    let g:neocomplete#enable_auto_delimiter = 1
+    let g:neocomplete#enable_fuzzy_completion = 1
+
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+        return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    endfunction
+
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
+    inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
+
+    " For smart TAB completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ neocomplete#start_manual_complete()
+    function! s:check_back_space()
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup

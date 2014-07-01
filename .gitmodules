@@ -37,9 +37,6 @@
 [submodule "vim/bundle/viewdoc"]
 	path = vim/bundle/viewdoc
 	url = https://github.com/powerman/vim-plugin-viewdoc.git
-[submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
 [submodule "vim/bundle/rainbow-parentheses"]
 	path = vim/bundle/rainbow-parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
@@ -91,3 +88,6 @@
 [submodule "vim/bundle/vim-commentary"]
 	path = vim/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "vim/bundle/neocomplete.vim"]
+	path = vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim.git
