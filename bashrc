@@ -115,7 +115,7 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM=auto
 
-. "$HOME/.dotfiles/git-prompt.sh"
+. "$HOME_DOTFILES/git-prompt.sh"
 
 function __my_ps1() {
     local ret
@@ -147,16 +147,15 @@ function __my_ps1() {
 PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
 
 # Known places
-. "$HOME/.dotfiles/marks.sh"
+. "$HOME_DOTFILES/marks.sh"
 try_mark () {
     if ! [[ -h "$MARKPATH/$1" ]] && [[ -d "$2" ]] ; then
         mark "$1" "$2"
     fi
 }
-try_mark dotfiles "$HOME/.dotfiles"
-try_mark workspace "$HOME/workspace"
-try_mark quickrefs "$HOME/quickrefs"
-try_mark sdocs "$HOME/sdocs"
+try_mark dotfiles "$HOME_DOTFILES"
+try_mark quickrefs "$HOME_QUICKREFS"
+try_mark sdocs "$HOME_SDOCS"
 unset -f try_mark
 
 # Shortcut for ps-ing pgrep output

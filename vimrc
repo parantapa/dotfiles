@@ -88,8 +88,8 @@ set backup
 
 set directory=~/.vim/tmp/swap//
 
-if filereadable($HOME . "/quickrefs/myspell.utf-8.add")
-    set spellfile=~/quickrefs/myspell.utf-8.add
+if filereadable($HOME_QUICKREFS . "/myspell.utf-8.add")
+    execute "set spellfile=" . $HOME_QUICKREFS . "/myspell.utf-8.add"
 
     " The spell file may be updated outside of vim
     execute "silent mkspell! " . &spellfile
@@ -336,7 +336,7 @@ function! Strip(input_string)
 endfunction
 
 fun! SearchAndOpenPdf(keyword)
-    let cmd = printf("find %s/sdocs -name *%s*.pdf", fnameescape($HOME), shellescape(a:keyword))
+    let cmd = printf("find %s -name *%s*.pdf", fnameescape($HOME_SDOCS), shellescape(a:keyword))
     let fnames_str = system(cmd)
     let fnames = split(fnames_str, "\n", 0)
     let fnames = map(fnames, 'Strip(v:val)')
@@ -714,7 +714,7 @@ augroup end
 
 " Marvim {{{2
 
-    let g:marvim_store = $HOME . '/quickrefs/marvim'
+    let g:marvim_store = $HOME_QUICKREFS . '/marvim'
     let g:marvim_find_key = '<Leader>mf'
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0
@@ -768,8 +768,8 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile bashrc_* setlocal ft=sh
 
     " These files get the \S shortcut to repo sync
-    autocmd BufReadPost,BufNewFile /home/parantapa/quickrefs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
-    autocmd BufReadPost,BufNewFile /home/parantapa/sdocs/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>
+    execute "autocmd BufReadPost,BufNewFile " . $HOME_QUICKREFS . "/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>"
+    execute "autocmd BufReadPost,BufNewFile " . $HOME_SDOCS . "/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>"
 
     " Files opened via pentadacytl need some special setup
     autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
