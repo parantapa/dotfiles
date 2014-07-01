@@ -93,6 +93,7 @@ if filereadable($HOME_QUICKREFS . "/myspell.utf-8.add")
 
     " The spell file may be updated outside of vim
     execute "silent mkspell! " . &spellfile
+    let &dictionary = &spellfile
 endif
 set spelllang=en
 
@@ -706,7 +707,7 @@ augroup end
 
     let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsEditSplit = "normal"
-    let g:UltiSnipsExpandTrigger="<s-cr>"
+    let g:UltiSnipsExpandTrigger="<tab>"
     let g:UltiSnipsJumpForwardTrigger="<s-tab>"
     let g:UltiSnipsJumpBackwardTrigger="<s-c-tab>"
 
@@ -728,6 +729,21 @@ augroup end
     let g:neocomplete#enable_auto_delimiter = 1
     let g:neocomplete#enable_fuzzy_completion = 1
 
+    " By default use all buffers
+    if !exists('g:neocomplete#same_filetypes')
+        let g:neocomplete#same_filetypes = {}
+    endif
+    let g:neocomplete#same_filetypes._ = '_'
+
+    " By default use all sources
+    if !exists('g:neocomplete#sources')
+        let g:neocomplete#sources = {}
+    endif
+    let g:neocomplete#sources._ = ["_"]
+
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = { '_' : &spellfile }
+
     " Recommended key-mappings.
     " <CR>: close popup and save indent.
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -739,14 +755,16 @@ augroup end
     inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
     inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
 
-    " For smart TAB completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ neocomplete#start_manual_complete()
-    function! s:check_back_space()
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
+    " " For smart TAB completion.
+    " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+    "     \ <SID>check_back_space() ? "\<TAB>" :
+    "     \ neocomplete#start_manual_complete()
+    " function! s:check_back_space()
+    "     let col = col('.') - 1
+    "     return !col || getline('.')[col - 1]  =~ '\s'
+    " endfunction
+
+    nnoremap <F9> :NeoCompleteToggle<CR>
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
