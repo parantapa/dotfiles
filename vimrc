@@ -243,7 +243,7 @@ function! s:ExecuteInShell(command)
     silent! execute 'AnsiEsc'
     echo 'Shell command ' . command . ' executed.'
 endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+command! -complete=shellcmd -nargs=+ Shell call <SID>ExecuteInShell(<q-args>)
 nnoremap <Leader>! :Shell
 
 " Convenient command to see the difference between the current buffer and the
@@ -355,6 +355,26 @@ endf
 nnoremap <Leader>w :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
 vnoremap <Leader>w y:call SearchAndOpenPdf(@")<CR>
 command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
+
+let g:modescript_fname = "./.modescript.vim"
+function! LoadModeScript()
+    if filereadable(g:modescript_fname)
+        exe "source " . g:modescript_fname
+    endif
+endfunction
+command! -nargs=0 LoadModeScript call LoadModeScript()
+
+augroup ft_modescript
+    au!
+
+    autocmd BufReadPost,BufNewFile * LoadModeScript
+augroup END
+command! -nargs=0 Make execute ":!" . b:makeprg
+command! -nargs=0 Make1 execute ":!" . b:makeprg1
+command! -nargs=0 Make2 execute ":!" . b:makeprg2
+command! -nargs=0 Make3 execute ":!" . b:makeprg3
+command! -nargs=0 Make4 execute ":!" . b:makeprg4
+command! -nargs=0 Make5 execute ":!" . b:makeprg5
 
 " Convenience mappings {{{1
 
