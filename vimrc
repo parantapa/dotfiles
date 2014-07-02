@@ -333,7 +333,7 @@ endf
 
 " Strip whitespace
 function! Strip(input_string)
-    return substitute(a:input_string, '\v^\s*(.\{-})\s*$', '\1', '')
+    return substitute(a:input_string, '\v^[ \t\n\r]*(.{-})[ \t\n\r]*$', '\1', '')
 endfunction
 
 fun! SearchAndOpenPdf(keyword)
@@ -356,8 +356,20 @@ nnoremap <Leader>w :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
 vnoremap <Leader>w y:call SearchAndOpenPdf(@")<CR>
 command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
 
-let g:modescript_fname = "./.modescript.vim"
+let g:modescript_fname = ".modescript.vim"
 function! LoadModeScript()
+    " Load the repository top modescript if available first
+    if executable("git")
+        let reporoot=Strip(system("git rev-parse --show-toplevel 2>/dev/null"))
+        if len(reporoot) > 0
+            let repo_modescript_fname = reporoot . "/" . g:modescript_fname
+            if filereadable(reporoot . "/" . g:modescript_fname)
+                exe "source " . repo_modescript_fname
+            endif
+        endif
+    endif
+
+    " Load the directory local modescript if available second
     if filereadable(g:modescript_fname)
         exe "source " . g:modescript_fname
     endif
