@@ -32,6 +32,9 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 
+# Alias sudo to work with other aliases
+alias sudo="sudo "
+
 # More alias for convenience
 alias cpv="rsync --human-readable --progress"
 alias dirs="dirs -v"
