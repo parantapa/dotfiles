@@ -4,7 +4,7 @@
 
 runtime bundle/pathogen/autoload/pathogen.vim
 
-let g:pathogen_disabled = ["ultisnips"]
+let g:pathogen_disabled = []
 if !has("python")
     call add(g:pathogen_disabled, "ultisnips")
 endif
