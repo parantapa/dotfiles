@@ -6,10 +6,10 @@ runtime bundle/pathogen/autoload/pathogen.vim
 
 let g:pathogen_disabled = ["ultisnips"]
 if !has("python")
-    add(g:pathogen_disabled, "ultisnips")
+    call add(g:pathogen_disabled, "ultisnips")
 endif
 if !has("lua")
-    add(g:pathogen_disabled, "neocomplete.vim")
+    call add(g:pathogen_disabled, "neocomplete.vim")
 endif
 
 filetype off
