@@ -4,8 +4,12 @@
 
 runtime bundle/pathogen/autoload/pathogen.vim
 
+let g:pathogen_disabled = ["ultisnips"]
 if !has("python")
-    let g:pathogen_disabled = ["ultisnips"]
+    add(g:pathogen_disabled, "ultisnips")
+endif
+if !has("lua")
+    add(g:pathogen_disabled, "neocomplete.vim")
 endif
 
 filetype off
@@ -227,7 +231,7 @@ augroup ft_vimrc_autoread:
     endif
 augroup END
 
-" Misc {{{1
+" ExecuteInShell {{{1
 
 function! s:ExecuteInShell(command)
     let command = join(map(split(a:command), 'expand(v:val)'))
@@ -246,6 +250,8 @@ endfunction
 command! -complete=shellcmd -nargs=+ Shell call <SID>ExecuteInShell(<q-args>)
 nnoremap <Leader>! :Shell
 
+" DiffOrig {{{1
+
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -253,6 +259,8 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
+" ToggleHtml {{{1
 
 " Toggle simple html in buffer
 function! ToggleHtmlInBuf()
@@ -268,6 +276,8 @@ function! ToggleHtmlInBuf()
     endif
 endf
 nnoremap <F7> :call ToggleHtmlInBuf()<CR>
+
+" Open URL with Firefox {{{1
 
 " Extract web url form string
 function! ExtractUrl(text)
@@ -323,6 +333,8 @@ nnoremap <leader>f :set operatorfunc=OpenWithFirefoxOperator<cr>g@
 vnoremap <leader>f :<c-u>call OpenWithFirefoxOperator(visualmode())<cr>
 nnoremap <leader>ff :call OpenWithFirefoxOperator('__whole_line__')<cr>
 
+" Search and Open PDFs {{{1
+
 " Search and open pdf files
 fun! CopyAlnumKeyword()
     let oldkwd = &iskeyword
@@ -355,6 +367,8 @@ endf
 nnoremap <Leader>w :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
 vnoremap <Leader>w y:call SearchAndOpenPdf(@")<CR>
 command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
+
+" Modescript {{{1
 
 let g:modescript_fname = ".modescript.vim"
 function! LoadModeScript()
@@ -776,25 +790,27 @@ augroup end
     " Define dictionary.
     let g:neocomplete#sources#dictionary#dictionaries = { '_' : &spellfile }
 
-    " Recommended key-mappings.
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-        return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-    endfunction
+    if has("lua")
+        " Recommended key-mappings.
+        " <CR>: close popup and save indent.
+        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+        function! s:my_cr_function()
+            return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+        endfunction
 
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
-    inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
+        " <C-h>, <BS>: close popup and delete backword char.
+        inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
+        inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
 
-    " " For smart TAB completion.
-    " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-    "     \ <SID>check_back_space() ? "\<TAB>" :
-    "     \ neocomplete#start_manual_complete()
-    " function! s:check_back_space()
-    "     let col = col('.') - 1
-    "     return !col || getline('.')[col - 1]  =~ '\s'
-    " endfunction
+        " " For smart TAB completion.
+        " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+        "     \ <SID>check_back_space() ? "\<TAB>" :
+        "     \ neocomplete#start_manual_complete()
+        " function! s:check_back_space()
+        "     let col = col('.') - 1
+        "     return !col || getline('.')[col - 1]  =~ '\s'
+        " endfunction
+    endif
 
     nnoremap <F9> :NeoCompleteToggle<CR>
 
