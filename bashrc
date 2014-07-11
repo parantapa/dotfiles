@@ -1,5 +1,20 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
+export HOME_DOTFILES="$HOME/.dotfiles"
+export HOME_QUICKREFS="$HOME/quickrefs"
+export HOME_SDOCS="$HOME/sdocs"
+
+# Add to path if not already exists
+# NOTE: dont expect path to be empty
+pathadd() {
+    if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1:$PATH"
+    fi
+}
+
+# Add dotfiles bin to path
+pathadd "$HOME_DOTFILES/bin"
+
 # set hist size; default is too small
 HISTSIZE=100000
 HISTFILESIZE=1000000
