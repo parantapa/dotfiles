@@ -570,14 +570,12 @@ augroup END
 " Markdown {{{2
 
 function! MarkdownLevel()
-    if getline(v:lnum) =~ '^# .*$'
+    if strpart(getline(v:lnum), 0, 3) ==# "## "
         return ">1"
-    elseif getline(v:lnum) =~ '^## .*$'
+    elseif strpart(getline(v:lnum), 0, 4) ==# "### "
         return ">2"
-    elseif getline(v:lnum) =~ '^### .*$'
+    elseif strpart(getline(v:lnum), 0, 5) ==# "#### "
         return ">3"
-    elseif getline(v:lnum) =~ '^#### .*$'
-        return ">4"
     else
         return "="
     endif
