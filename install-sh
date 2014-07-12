@@ -1,21 +1,30 @@
 #!/bin/bash
 
-srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-if [ -d "$1" ] ; then
+srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
+if [[ -d "$1" ]] ; then
 	dstdir="$1"
 else
 	dstdir="$HOME"
 fi
 
 dotfiles=(profile bash_logout bashrc
-    vimrc gvimrc vim tmux.conf gitconfig hgrc cvsignore
+    vimrc gvimrc vim/bundle vim/python2 vim/syntax
+    tmux.conf gitconfig hgrc cvsignore
     pylintrc latexmkrc ackrc ctags
     pentadactyl pentadactylrc sqliterc psqlrc
     i3/config.global config/dunstrc)
 
 cd "$dstdir"
+
 [ -d .i3 ]     || mkdir .i3
 [ -d .config ] || mkdir .config
+
+[[ -d .vim ]]            || mkdir .vim
+[[ -d .vim/tmp ]]        || mkdir .vim/tmp
+[[ -d .vim/tmp/backup ]] || mkdir .vim/tmp/backup
+[[ -d .vim/tmp/undo ]]   || mkdir .vim/tmp/undo
+[[ -d .vim/tmp/swap ]]   || mkdir .vim/tmp/swap
+
 for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
 done
@@ -23,12 +32,6 @@ done
 touch .i3/config.local
 touch .repo-dirs
 ln -siT "$srcdir/profile" ".bash_profile"
-
-cd "$dstdir/.vim"
-[ -d tmp ]        || mkdir tmp
-[ -d tmp/backup ] || mkdir tmp/backup
-[ -d tmp/undo ]   || mkdir tmp/undo
-[ -d tmp/swap ]   || mkdir tmp/swap
 
 cd "$srcdir"
 git submodule sync
