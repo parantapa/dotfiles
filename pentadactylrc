@@ -40,7 +40,7 @@ javascript <<EOF
 dactyl.my_bmark = function(url, title) {
     var bmark_file = "~/quickrefs/bookmarks.yaml";
     var ofile = File(bmark_file);
-    ofile.write("-\n  title: >\n    " + title + "\n  url: >\n    " + url + "\n  tags:\n  note:\n\n")
+    ofile.write("-\n  title: >\n    " + title + "\n  url: >\n    " + url + "\n  tags:\n  note:\n\n", ">>")
 };
 EOF
 
