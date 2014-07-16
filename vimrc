@@ -843,4 +843,6 @@ augroup ft_setup
 
     autocmd BufReadPost */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
 
+    autocmd BufReadPost */pentadactyl.requester.mturk.com.txt setlocal ft=html
+
 augroup END
