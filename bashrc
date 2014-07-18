@@ -50,6 +50,9 @@ alias mv="mv -i"
 # Alias sudo to work with other aliases
 alias sudo="sudo "
 
+# Alias cd to resolve symlinks
+alias cd="cd -P"
+
 # More alias for convenience
 alias cpv="rsync --human-readable --progress"
 alias dirs="dirs -v"
