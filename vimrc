@@ -837,7 +837,7 @@ augroup ft_setup
 
     " Files opened via pentadacytl need some special setup
     autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=78
     autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
     autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
 
