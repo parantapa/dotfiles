@@ -28,5 +28,5 @@ bar {
 exec keepassx
 exec ario
 exec dropboxd
-exec cd /home/parantapa/workspace/reddit-bg && ./reddit-bg >> log
+exec /home/parantapa/.pbapps/reddit-bg/reddit-bg
 exec skype
