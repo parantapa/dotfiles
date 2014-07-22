@@ -91,3 +91,6 @@
 [submodule "vim/bundle/neocomplete.vim"]
 	path = vim/bundle/neocomplete.vim
 	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule "vim/bundle/qfenter"]
+	path = vim/bundle/qfenter
+	url = https://github.com/yssl/QFEnter.git

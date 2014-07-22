@@ -812,6 +812,12 @@ augroup end
 
     nnoremap <F9> :NeoCompleteToggle<CR>
 
+" QFEnter {{{2
+
+    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+    let g:qfenter_vopen_map = ['<C-V>']
+    let g:qfenter_hopen_map = ['<C-S>']
+    let g:qfenter_topen_map = ['<C-T>']
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
