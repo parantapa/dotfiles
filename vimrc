@@ -576,6 +576,12 @@ function! MarkdownLevel()
         return ">2"
     elseif strpart(getline(v:lnum), 0, 5) ==# "#### "
         return ">3"
+    elseif strpart(getline(v:lnum), 0, 6) ==# "##### "
+        return ">4"
+    elseif strpart(getline(v:lnum), 0, 7) ==# "###### "
+        return ">5"
+    elseif strpart(getline(v:lnum), 0, 8) ==# "####### "
+        return ">6"
     else
         return "="
     endif
