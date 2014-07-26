@@ -236,13 +236,11 @@ alias gspull="git svn rebase"
 alias gspush="git svn dcommit"
 
 # GVim alias
-g () {
-    if [[ -n "$DISPLAY" ]] ; then
-        gvim "$@"
-    else
-        vim "$@"
-    fi
-}
+if [[ -n "$DISPLAY" ]] ; then
+    alias g=gvim
+else
+    alias g=vim
+fi
 
 # Find alias
 f () {

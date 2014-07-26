@@ -576,6 +576,12 @@ function! MarkdownLevel()
         return ">2"
     elseif strpart(getline(v:lnum), 0, 5) ==# "#### "
         return ">3"
+    elseif strpart(getline(v:lnum), 0, 6) ==# "##### "
+        return ">4"
+    elseif strpart(getline(v:lnum), 0, 7) ==# "###### "
+        return ">5"
+    elseif strpart(getline(v:lnum), 0, 8) ==# "####### "
+        return ">6"
     else
         return "="
     endif
@@ -812,6 +818,12 @@ augroup end
 
     nnoremap <F9> :NeoCompleteToggle<CR>
 
+" QFEnter {{{2
+
+    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+    let g:qfenter_vopen_map = ['<C-V>']
+    let g:qfenter_hopen_map = ['<C-S>']
+    let g:qfenter_topen_map = ['<C-T>']
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
@@ -837,7 +849,7 @@ augroup ft_setup
 
     " Files opened via pentadacytl need some special setup
     autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=72
+    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=78
     autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
     autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
 
