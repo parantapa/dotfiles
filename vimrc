@@ -670,6 +670,14 @@ augroup ft_snip
 
     au FileType snippets setlocal noet sw=4 sts=4 ts=4
 augroup end
+
+" Mail {{{2
+augroup ft_mail
+    au!
+
+    au FileType mail setlocal tw=78
+augroup end
+
 " Plugin settings {{{1
 
 " Ctrl-P {{{2
@@ -849,11 +857,11 @@ augroup ft_setup
 
     " Files opened via pentadacytl need some special setup
     autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal tw=78
     autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
     autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
 
     autocmd BufReadPost */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
+    autocmd BufReadPost */pentadactyl.cnerg.iitkgp.ac.in.txt setlocal ft=moin
 
     autocmd BufReadPost */pentadactyl.requester.mturk.com.txt setlocal ft=html
 
