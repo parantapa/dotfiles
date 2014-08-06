@@ -7,7 +7,7 @@ export HOME_SDOCS="$HOME/sdocs"
 # Add to path if not already exists
 # NOTE: dont expect path to be empty
 pathadd() {
-    if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+    if [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="$1:$PATH"
     fi
 }
