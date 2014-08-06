@@ -10,6 +10,12 @@
 # Setup program specific directories
 . ~/.dotfiles/system-specific/common/lang-path.sh
 
+alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
+
+if [[ -f /etc/bash_completion ]] ; then
+    . /etc/bash_completion
+fi
+
 # Somesuff copied from thor's original bashrc
 AUTOPATH="$HOME/.autopath.bash."`uname -s`
 if [ -f "$AUTOPATH" ] ; then

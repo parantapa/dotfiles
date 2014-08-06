@@ -1,5 +1,5 @@
 # Provide a local install space
-export LOCAL="$HOME/local"
+export LOCAL="$HOME/.pb-local"
 
 # So that gcc can find stuff at compile time
 export C_INCLUDE_PATH="$LOCAL/include"
@@ -13,6 +13,4 @@ export MANPATH="$LOCAL/share/man:/usr/man:/usr/share/man:/usr/local/share/man"
 
 export PYTHONUSERBASE="$LOCAL"
 
-if shopt -q login_shell ; then
-    PATH="$LOCAL/bin:$PATH"
-fi
+pathadd "$LOCAL/bin"
