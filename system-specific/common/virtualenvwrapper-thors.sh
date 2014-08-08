@@ -1,5 +1,5 @@
 # Setup virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 export WORKON_HOME=$LOCAL/virtualenvs
 
 if [[ -r "$LOCAL/bin/virtualenvwrapper.sh" ]] ; then
