@@ -1,3 +1,7 @@
+if [[ $(hostname) == swscontact* ]] ; then
+    return
+fi
+
 # Setup the guest environment to install stuff
 . ~/.dotfiles/system-specific/common/guest-local-vars.sh
 
