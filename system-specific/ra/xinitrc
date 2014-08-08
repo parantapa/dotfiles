@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # ~/.xinitrc
 #
@@ -15,8 +15,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # Setup i3
-xrdb "$HOME/.dotfiles/Xresources"
-#xmodmap "$HOME/.dotfiles/capslock-esc"
+xrdb "$HOME_DOTFILES/Xresources"
+xrdb -merge <(echo "URxvt*perl-lib: $HOME_DOTFILES/urxvt-perl/")
+xrdb -merge <(echo "URxvt*perl-ext-common: 52-osc")
+
+#xmodmap "$HOME_DOTFILES/capslock-esc"
 eval `ssh-agent -s -t 16h`
 dunst &
 nitrogen --restore &
