@@ -1,8 +1,13 @@
 assign [class="Skype"] 9
 assign [class="Xchat"] 9
 
+
+bindsym Control+Mod1+period exec --no-startup-id "pactl -- set-sink-volume 3 +5%"
+bindsym Control+Mod1+comma  exec --no-startup-id "pactl -- set-sink-volume 3 -5%"
+bindsym Control+Mod1+m      exec --no-startup-id "pactl-set-sink-mute-toggle 3"
+
 bar {
-        status_command i3status-ext
+        status_command i3status-ext 3
 }
 
 exec keepassx
