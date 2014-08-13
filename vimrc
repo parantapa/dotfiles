@@ -213,24 +213,6 @@ vnoremap <Space> za
 " cursor happens to be.
 nnoremap zO zCzO
 
-" Quick editing {{{1
-
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
-nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :UltiSnipsEdit
-
-augroup ft_vimrc_autoread:
-    au!
-
-    autocmd BufWritePost .vimrc source ~/.vimrc
-    autocmd BufWritePost vimrc source ~/.vimrc
-
-    if has("gui_running")
-        autocmd BufWritePost .gvimrc source ~/.gvimrc
-        autocmd BufWritePost gvimrc source ~/.gvimrc
-    endif
-augroup END
-
 " ExecuteInShell {{{1
 
 function! s:ExecuteInShell(command)
@@ -371,36 +353,49 @@ command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
 " Modescript {{{1
 
 let g:modescript_fname = ".modescript.vim"
-function! LoadModeScript()
-    " Load the repository top modescript if available first
+
+function! GetModeScriptFname()
+    " If local modescript exists, return that first
+    if filereadable(g:modescript_fname)
+        return  g:modescript_fname
+    endif
+
+    " If repo modescript exists, return that next
     if executable("git")
         let reporoot=Strip(system("git rev-parse --show-toplevel 2>/dev/null"))
         if len(reporoot) > 0
             let repo_modescript_fname = reporoot . "/" . g:modescript_fname
-            if filereadable(reporoot . "/" . g:modescript_fname)
-                exe "source " . repo_modescript_fname
+            if filereadable(repo_modescript_fname)
+                return repo_modescript_fname
             endif
         endif
     endif
 
-    " Load the directory local modescript if available second
-    if filereadable(g:modescript_fname)
-        exe "source " . g:modescript_fname
+    return g:modescript_fname
+endfunction
+
+function! LoadModeScript()
+    let fname = GetModeScriptFname()
+    if filereadable(fname)
+        exe "source " . fname
     endif
 endfunction
+
 command! -nargs=0 LoadModeScript call LoadModeScript()
 
 augroup ft_modescript
     au!
 
     autocmd BufReadPost,BufNewFile * LoadModeScript
+    exe "autocmd BufWritePost " . g:modescript_fname . " LoadModeScript"
 augroup END
-command! -nargs=0 Make execute ":!" . b:makeprg
-command! -nargs=0 Make1 execute ":!" . b:makeprg1
-command! -nargs=0 Make2 execute ":!" . b:makeprg2
-command! -nargs=0 Make3 execute ":!" . b:makeprg3
-command! -nargs=0 Make4 execute ":!" . b:makeprg4
-command! -nargs=0 Make5 execute ":!" . b:makeprg5
+
+command! -nargs=0 Make execute  ":!" . g:makeprg
+command! -nargs=0 Make1 execute ":!" . g:makeprg1
+command! -nargs=0 Make2 execute ":!" . g:makeprg2
+command! -nargs=0 Make3 execute ":!" . g:makeprg3
+command! -nargs=0 Make4 execute ":!" . g:makeprg4
+command! -nargs=0 Make5 execute ":!" . g:makeprg5
 
 " Convenience mappings {{{1
 
@@ -866,3 +861,23 @@ augroup ft_setup
     autocmd BufReadPost */pentadactyl.requester.mturk.com.txt setlocal ft=html
 
 augroup END
+
+" Quick editing {{{1
+
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>et :edit ~/.tmux.conf<CR>
+nnoremap <Leader>es :UltiSnipsEdit
+nnoremap <Leader>em :exe "exe \"edit \" . GetModeScriptFname()"<CR>
+
+augroup ft_vimrc_autoread:
+    au!
+
+    autocmd BufWritePost .vimrc source ~/.vimrc
+    autocmd BufWritePost vimrc source ~/.vimrc
+
+    if has("gui_running")
+        autocmd BufWritePost .gvimrc source ~/.gvimrc
+        autocmd BufWritePost gvimrc source ~/.gvimrc
+    endif
+augroup END
+
