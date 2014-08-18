@@ -379,6 +379,9 @@ function! LoadModeScript()
     if filereadable(fname)
         exe "source " . fname
     endif
+    if exists("g:makeprg")
+        let &makeprg = g:makeprg
+    endif
 endfunction
 
 command! -nargs=0 LoadModeScript call LoadModeScript()
@@ -390,12 +393,14 @@ augroup ft_modescript
     exe "autocmd BufWritePost " . g:modescript_fname . " LoadModeScript"
 augroup END
 
-command! -nargs=0 Make execute  ":!" . g:makeprg
-command! -nargs=0 Make1 execute ":!" . g:makeprg1
-command! -nargs=0 Make2 execute ":!" . g:makeprg2
-command! -nargs=0 Make3 execute ":!" . g:makeprg3
-command! -nargs=0 Make4 execute ":!" . g:makeprg4
-command! -nargs=0 Make5 execute ":!" . g:makeprg5
+" NOTE: Changing built in command
+command! -nargs=0 Mk execute  ":!" . g:makeprg
+
+command! -nargs=0 Mk1 execute ":!" . g:makeprg1
+command! -nargs=0 Mk2 execute ":!" . g:makeprg2
+command! -nargs=0 Mk3 execute ":!" . g:makeprg3
+command! -nargs=0 Mk4 execute ":!" . g:makeprg4
+command! -nargs=0 Mk5 execute ":!" . g:makeprg5
 
 " Convenience mappings {{{1
 
