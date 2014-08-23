@@ -1,17 +1,11 @@
 #!/bin/bash
 
-psink="$1"
-
 i3status | while :
 do
     read line
     rstat=$( git-multi-status $( cat ~/.repo-dirs ) )
-    if [[ -n "$psink" ]] ; then
-        vol=$(pactl list sinks | \grep -P '^\s+Volume\:' | sed -n 3p | cut -d ':' -f 3 | cut -d ' ' -f 3)
-        mute=$(pactl list sinks | \grep -P '^\s+Mute\:' | sed -n 3p | cut -d ':' -f 2)
-        echo "$rstat | Mute:$mute, $vol | $line" || exit 1
-    else
-        echo "$rstat | $line" || exit 1
-    fi
+    vol=$(sound-ctrl vol)
+    mute=$(sound-ctrl ismute)
+    echo "$rstat | Mute: $mute, $vol | $line" || exit 1
 done
 

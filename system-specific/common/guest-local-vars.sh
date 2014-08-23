@@ -2,8 +2,9 @@
 if [[ $(hostname) == "srv-76-"* ]] ; then
     export LOCAL="$HOME/.pb-local-thor"
 else
-    export LOCAL="$HOME/.pb-local"
+    export LOCAL="$HOME/.pb-local/$(hostname)"
 fi
+mkdir -p "$LOCAL"
 
 # So that gcc can find stuff at compile time
 export C_INCLUDE_PATH="$LOCAL/include"

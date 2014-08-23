@@ -158,7 +158,7 @@ bindsym $mod+d exec dmenu_run
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec --no-startup-id "i3exit"
 
-bindsym Control+Mod1+Delete exec --no-startup-id "mute-n-lock"
+bindsym Control+Mod1+Delete exec --no-startup-id "sound-ctrl mute && xscreensaver-command --lock"
 bindsym Control+Mod1+bracketleft exec "urxvtc"
 bindsym Control+Mod1+bracketright exec "firefox"
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
@@ -176,8 +176,8 @@ bindsym Control+Mod1+Up    exec --no-startup-id "mpc stop"
 # bindsym Control+Mod1+comma  exec --no-startup-id "amixer set Master 5%- ; killall -USR1 i3status"
 # bindsym Control+Mod1+m      exec --no-startup-id "amixer set Master toggle ; killall -USR1 i3status"
 
-bindsym Control+Mod1+0      exec "clip-copy-yad"
-bindsym Control+Mod1+9      exec "clip-copy-yad"
+bindsym Control+Mod1+0 exec "clip-copy-yad"
+bindsym Control+Mod1+9 exec "clip-copy-yad"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
