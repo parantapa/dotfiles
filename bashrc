@@ -5,14 +5,14 @@ export HOME_QUICKREFS="$HOME/quickrefs"
 export HOME_SDOCS="$HOME/sdocs"
 
 # Add to path if not already exists
-# NOTE: dont expect path to be empty
+# NOTE: don't expect path to be empty
 pathadd() {
     if [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="$1:$PATH"
     fi
 }
 
-# Add dotfiles bin to path
+# Add dotfiles/bin to path
 pathadd "$HOME_DOTFILES/bin"
 
 # set hist size; default is too small
@@ -72,7 +72,7 @@ alias pqi="prepl-data pickle"
 alias yqi="prepl-data yaml"
 alias jqi="prepl-data json"
 
-# Set the environmetal veriables to something I like
+# Set the environment variables to something I like
 export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL=vim
@@ -138,14 +138,8 @@ GIT_PS1_SHOWUPSTREAM=auto
 
 . "$HOME_DOTFILES/git-prompt.sh"
 
-function __my_ps1() {
-    local ret
-
-    if [[ -n "$LAST_RET" ]] ; then
-        ret="$LAST_RET"
-    else
-        ret="$?"
-    fi
+__my_ps1 () {
+    local ret="$1"
 
     hash deactivate 2>/dev/null
     if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
@@ -163,9 +157,16 @@ function __my_ps1() {
     printf '\\n%s\\$ %s' "${txtpur}" "${txtrst}"
 }
 
-# Hack to consistantly update history when using multiple sessions
+prompt_fn () {
+    local ret="$1"
+
+    PS1="$(__my_ps1 $ret)"
+    history -a
+}
+
+# Hack to consistently update history when using multiple sessions
 # NOTE: May be reset in .bashrc_local
-PROMPT_COMMAND='PS1="$(__my_ps1)" ; history -a'
+PROMPT_COMMAND='prompt_fn $?'
 
 # Known places
 . "$HOME_DOTFILES/marks.sh"
