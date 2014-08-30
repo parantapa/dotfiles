@@ -17,10 +17,6 @@ call pathogen#infect()
 call pathogen#helptags()
 filetype plugin indent on
 
-" Setup yankstack early.
-" Otherwise it interferes with surround.
-call yankstack#setup()
-
 set nocompatible
 set nomodeline
 
@@ -675,11 +671,6 @@ augroup end
 
 " Plugin settings {{{1
 
-" Ctrl-P {{{2
-
-    let g:ctrlp_dotfiles = 1
-    let g:ctrlp_cmd = 'CtrlPBuffer'
-
 " Gundo {{{2
 
     nnoremap <F5> :GundoToggle<CR>
@@ -743,10 +734,6 @@ augroup end
     function! SlimeSendText(text)
         execute "SlimeSend1 " . a:text
     endfunction
-
-" YankStack {{{2
-
-    let g:yankstack_map_keys = 1
 
 " Commentary {{{2
 
@@ -831,6 +818,39 @@ augroup end
     let g:qfenter_vopen_map = ['<C-V>']
     let g:qfenter_hopen_map = ['<C-S>']
     let g:qfenter_topen_map = ['<C-T>']
+
+" Unite {{{2
+
+    let g:unite_source_history_yank_enable = 1
+
+    " Like ctrlp.vim settings.
+    call unite#custom#profile('default', 'context', {
+        \   'start_insert': 1,
+        \   'winheight': 10,
+        \   'direction': 'botright',
+        \ })
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+    nnoremap <C-P>f :<C-u>Unite -start-insert file_rec<CR>
+    nnoremap <C-P>m :<C-u>Unite -start-insert mru<CR>
+    nnoremap <C-P>p :<C-u>Unite -start-insert buffer<CR>
+    nnoremap <C-P>y :<C-u>Unite -start-insert history/yank<CR>
+
+    autocmd FileType unite call s:unite_my_settings()
+    function! s:unite_my_settings()
+
+	inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+	inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
+	inoremap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+	nnoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+	nnoremap <silent><buffer><expr> <C-s> unite#do_action('split')
+	nnoremap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+        nmap <silent><buffer> <Esc> <Plug>(unite_exit)
+
+    endfunction
+
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
