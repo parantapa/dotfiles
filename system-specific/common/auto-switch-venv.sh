@@ -26,5 +26,12 @@ auto_switch_venv () {
     fi
 }
 
-PROMPT_COMMAND='LAST_RET=$? ; auto_switch_venv ; PS1="$(__my_ps1)" ; unset LAST_RET ; history -a'
+prompt_fn2 () {
+    local ret="$1"
 
+    auto_switch_venv
+    PS1="$(__my_ps1 $ret)"
+    history -a
+}
+
+PROMPT_COMMAND='prompt_fn2 $?'
