@@ -379,11 +379,15 @@ function! LoadModeScript()
     if filereadable(fname)
         exe "source " . fname
     endif
-    if exists("g:makeprg")
-        let &makeprg = g:makeprg
-    endif
-endfunction
 
+    " NOTE: Changing built in command
+    command! -nargs=0 Mk execute g:makecmd
+    command! -nargs=0 Mk1 execute g:makecmd1
+    command! -nargs=0 Mk2 execute g:makecmd2
+    command! -nargs=0 Mk3 execute g:makecmd3
+    command! -nargs=0 Mk4 execute g:makecmd4
+    command! -nargs=0 Mk5 execute g:makecmd5
+endfunction
 command! -nargs=0 LoadModeScript call LoadModeScript()
 
 augroup ft_modescript
@@ -392,15 +396,6 @@ augroup ft_modescript
     autocmd BufReadPost,BufNewFile * LoadModeScript
     exe "autocmd BufWritePost " . g:modescript_fname . " LoadModeScript"
 augroup END
-
-" NOTE: Changing built in command
-command! -nargs=0 Mk execute  ":!" . g:makeprg
-
-command! -nargs=0 Mk1 execute ":!" . g:makeprg1
-command! -nargs=0 Mk2 execute ":!" . g:makeprg2
-command! -nargs=0 Mk3 execute ":!" . g:makeprg3
-command! -nargs=0 Mk4 execute ":!" . g:makeprg4
-command! -nargs=0 Mk5 execute ":!" . g:makeprg5
 
 " Convenience mappings {{{1
 
@@ -744,6 +739,10 @@ augroup end
 
     let g:slime_target = "tmux"
     let g:slime_paste_file = "$HOME/.slime_paste"
+
+    function! SlimeSendText(text)
+        execute "SlimeSend1 " . a:text
+    endfunction
 
 " YankStack {{{2
 
