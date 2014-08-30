@@ -1,6 +1,6 @@
 # Provide a local install space
 if [[ $(hostname) == "srv-76-"* ]] ; then
-    export LOCAL="$HOME/.pb-local-thor"
+    export LOCAL="$HOME/.pb-local/thor"
 else
     export LOCAL="$HOME/.pb-local/$(hostname)"
 fi
