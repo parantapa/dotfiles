@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 """
-Print the pickle/yaml/json file from stdin to stdout.
+Print the pickle/yaml/json/msgpack file from stdin to stdout.
 """
 
 import os
@@ -90,6 +90,8 @@ def main():
         from cPickle import load
     elif dtype == "json":
         from json import load
+    elif dtype == "msgpack":
+        from msgpack import load
     else:
         print("Unknown data type: ", dtype)
         sys.exit(1)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 """
-Load the pickle/yaml/json file and drop to python repl.
+Load the pickle/yaml/json/msgpack file and drop to python repl.
 """
 
 import sys
@@ -20,6 +20,8 @@ def main():
         from cPickle import load
     elif dtype == "json":
         from json import load
+    elif dtype == "msgpack":
+        from msgpack import load
     else:
         print("Unknown data type: ", dtype)
         sys.exit(1)
