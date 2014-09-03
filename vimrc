@@ -12,6 +12,17 @@ if !has("lua")
     call add(g:pathogen_disabled, "neocomplete.vim")
 endif
 
+if has("python")
+python << EOF
+import vim
+import sys
+
+if "_vim_path_" not in sys.path:
+    sys.path.append(vim.eval("$HOME . '/.vim/python2'"))
+import pyvimrc
+EOF
+endif
+
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
@@ -209,6 +220,24 @@ vnoremap <Space> za
 " cursor happens to be.
 nnoremap zO zCzO
 
+" DefaultPyCall {{{1
+
+" Call the python function if python is available
+" Otherwise just return the default value
+function! DefaultPyCall(default, funcname, ...)
+    if has("python")
+python << EOF
+funcname = vim.eval("a:funcname")
+func = getattr(pyvimrc, funcname)
+
+args = vim.eval("a:000")
+ret = func(*args)
+EOF
+        return pyeval("ret")
+    else
+        return a:default
+endfunction
+
 " ExecuteInShell {{{1
 
 function! s:ExecuteInShell(command)
@@ -258,23 +287,6 @@ nnoremap <F7> :call ToggleHtmlInBuf()<CR>
 " Open URL with Firefox {{{1
 
 " Extract web url form string
-function! ExtractUrl(text)
-    if has("python")
-python << EOF
-import vim, misc
-
-text = vim.eval("a:text")
-urls = misc.WEB_URL_RE.findall(text)
-ret = urls[0] if urls else ""
-vim.command("return '%s'" % ret)
-EOF
-    endif
-
-    " NOTE: We dont have python so return what ever text we were given
-    " Should work if the text was the url
-    return text
-endfunction
-
 function! OpenWithFirefoxOperator(type)
     let saved_unnamed_register = @"
     let saved_winview = winsaveview()
@@ -294,7 +306,7 @@ function! OpenWithFirefoxOperator(type)
         silent exe "normal! `<" . a:type . "`>y"
     endif
 
-    let url = ExtractUrl(@")
+    let url = DefaultPyCall(@", "extract_url", @")
     if url ==# ''
         echom printf("Cant find url in '%s'", @")
     else

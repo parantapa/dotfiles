@@ -3,7 +3,13 @@
 Misc python entities used from vimrc
 """
 
+import vim
 import re
+
+try:
+    import yaml
+except ImportError:
+    yaml = None
 
 # Liberal Regex Pattern for Web URLs
 # https://gist.github.com/gruber/8891611
@@ -49,3 +55,34 @@ WEB_URL_RE = re.compile("""
     )
 )
 """.strip(), re.I | re.X)
+
+def bookmark_fold_text(fstart, fend, flevel):
+    """
+    Return a fold text for bookmark yaml display.
+    """
+
+    fstart = int(fstart)
+    fend = int(fend)
+    flevel = int(flevel)
+    buf = vim.current.buffer
+
+    if flevel != 1:
+        return "--"
+
+    if yaml is None:
+        return "--"
+
+    text = "\n".join(buf[fstart -1:fend])
+    bmark = yaml.load(text)
+    ret = bmark[0]["title"].strip()
+    return ret
+
+def extract_url(text):
+    """
+    Extract url from text.
+    """
+
+    urls = WEB_URL_RE.findall(text)
+    ret = urls[0] if urls else ""
+    return ret
+
