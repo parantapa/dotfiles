@@ -746,7 +746,8 @@ endfunction
 
 " ViewDoc {{{2
 
-    let g:viewdoc_pydoc_cmd="python -m pydoc"
+    let g:viewdoc_pydoc_cmd = "python -m pydoc"
+    let g:viewdoc_open = "tab drop [ViewDoc]"
 
 " Slime {{{2
 
