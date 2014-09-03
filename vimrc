@@ -681,6 +681,16 @@ augroup ft_mail
     au FileType mail setlocal tw=78
 augroup end
 
+" Bookmark {{{2
+
+function! BookmarkLevel()
+    if getline(v:lnum) ==# "-"
+        return ">1"
+    else
+        return "="
+    endif
+endfunction
+
 " Plugin settings {{{1
 
 " Gundo {{{2
@@ -871,6 +881,10 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile *.md setlocal ft=markdown
     au BufEnter *.md setlocal foldexpr=MarkdownLevel()
     au BufEnter *.md setlocal foldmethod=expr
+
+    au BufEnter bookmarks.yaml setlocal foldexpr=BookmarkLevel()
+    au BufEnter bookmarks.yaml setlocal foldmethod=expr
+    au BufEnter bookmarks.yaml setlocal foldtext=DefaultPyCall('--','bookmark_fold_text',v:foldstart,v:foldend,v:foldlevel)
 
     autocmd BufReadPost,BufNewFile *.plot setlocal ft=gnuplot
     autocmd BufReadPost,BufNewFile *.php setlocal ft=php.html
