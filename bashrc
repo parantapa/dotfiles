@@ -265,6 +265,11 @@ f () {
     fi
 }
 
+# Evince alias
+e () {
+    evince $@ 2>/dev/null &
+}
+
 # Execute git svn pull in all the folders
 pb-git-svn-rebase-all () {
     set -x
