@@ -901,14 +901,14 @@ augroup ft_setup
     execute "autocmd BufReadPost,BufNewFile " . $HOME_SDOCS . "/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>"
 
     " Files opened via pentadacytl need some special setup
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt setlocal ft=mail
-    autocmd BufReadPost */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
-    autocmd BufWritePre */pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+    autocmd BufReadPost pentadactyl.mail.google.com.txt setlocal ft=mail
+    autocmd BufReadPost pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
+    autocmd BufWritePre pentadactyl.mail.google.com.txt call ToggleHtmlInBuf()
 
-    autocmd BufReadPost */pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
-    autocmd BufReadPost */pentadactyl.cnerg.iitkgp.ac.in.txt setlocal ft=moin
+    autocmd BufReadPost pentadactyl.wiki.mpi-sws.org.txt setlocal ft=moin
+    autocmd BufReadPost pentadactyl.cnerg.iitkgp.ac.in.txt setlocal ft=moin
 
-    autocmd BufReadPost */pentadactyl.requester.mturk.com.txt setlocal ft=html
+    autocmd BufReadPost pentadactyl.requester.mturk.com.txt setlocal ft=html
 
 augroup END
 
@@ -918,16 +918,18 @@ nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
 nnoremap <Leader>es :UltiSnipsEdit
 nnoremap <Leader>em :exe "exe \"edit \" . GetModeScriptFname()"<CR>
+nnoremap <Leader>r :call ReloadConfigs()<CR>
 
-augroup ft_vimrc_autoread:
-    au!
+if !exists("*ReloadConfigs")
+    function! ReloadConfigs()
+        source ~/.vimrc
 
-    autocmd BufWritePost .vimrc source ~/.vimrc
-    autocmd BufWritePost vimrc source ~/.vimrc
+        if has("gui_running")
+            source ~/.gvimrc
+        endif
 
-    if has("gui_running")
-        autocmd BufWritePost .gvimrc source ~/.gvimrc
-        autocmd BufWritePost gvimrc source ~/.gvimrc
-    endif
-augroup END
-
+        if has("python")
+            python reload(pyvimrc)
+        endif
+    endfunction
+endif
