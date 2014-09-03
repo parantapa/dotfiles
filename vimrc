@@ -8,7 +8,7 @@ let g:pathogen_disabled = []
 if !has("python")
     call add(g:pathogen_disabled, "ultisnips")
 endif
-if !has("lua")
+if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
     call add(g:pathogen_disabled, "neocomplete.vim")
 endif
 
