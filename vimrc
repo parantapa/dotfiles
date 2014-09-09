@@ -558,6 +558,28 @@ function! TextEnableCodeSnip(filetype, start, end, textSnipHl)
     execute cmd
 endfunction
 
+" Quick editing {{{1
+
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>et :edit ~/.tmux.conf<CR>
+nnoremap <Leader>es :UltiSnipsEdit
+nnoremap <Leader>em :exe "exe \"edit \" . GetModeScriptFname()"<CR>
+nnoremap <Leader>r :call ReloadConfigs()<CR>
+
+if !exists("*ReloadConfigs")
+    function! ReloadConfigs()
+        source ~/.vimrc
+
+        if has("gui_running")
+            source ~/.gvimrc
+        endif
+
+        if has("python")
+            python reload(pyvimrc)
+        endif
+    endfunction
+endif
+
 " Various filetype-specific stuff {{{1
 
 " C {{{2
@@ -726,6 +748,7 @@ function! BookmarkLevel()
         return "="
     endif
 endfunction
+
 
 " Plugin settings {{{1
 
@@ -966,24 +989,3 @@ augroup ft_setup
 
 augroup END
 
-" Quick editing {{{1
-
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
-nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-nnoremap <Leader>es :UltiSnipsEdit
-nnoremap <Leader>em :exe "exe \"edit \" . GetModeScriptFname()"<CR>
-nnoremap <Leader>r :call ReloadConfigs()<CR>
-
-if !exists("*ReloadConfigs")
-    function! ReloadConfigs()
-        source ~/.vimrc
-
-        if has("gui_running")
-            source ~/.gvimrc
-        endif
-
-        if has("python")
-            python reload(pyvimrc)
-        endif
-    endfunction
-endif
