@@ -522,6 +522,42 @@ endfunction
 " Then return to the previous position
 vnoremap <silent> * :<C-U>call VSetSearch()<CR>/<CR><C-o>
 
+" Multiple Syntax Highlight {{{1
+" Code copied from
+" http://vim.wikia.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
+
+function! TextEnableCodeSnip(filetype, start, end, textSnipHl)
+    let ft = toupper(a:filetype)
+    let group = 'textGroup' . ft
+
+    if exists('b:current_syntax')
+        let s:current_syntax=b:current_syntax
+        " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+        " do nothing if b:current_syntax is defined.
+        unlet b:current_syntax
+    endif
+
+    let cmd = 'syntax include @%s syntax/%s.vim'
+    let cmd = printf(cmd, group, a:filetype)
+    execute cmd
+    try
+        let cmd = 'syntax include @%s after/syntax/%s.vim'
+        let cmd = printf(cmd, group, a:filetype)
+        execute cmd
+    catch
+    endtry
+
+    if exists('s:current_syntax')
+        let b:current_syntax = s:current_syntax
+    else
+        unlet b:current_syntax
+    endif
+
+    let cmd = 'syntax region textSnip%s matchgroup=%s start="%s" end="%s" contains=@%s'
+    let cmd = printf(cmd, ft, a:textSnipHl, a:start, a:end, group)
+    execute cmd
+endfunction
+
 " Various filetype-specific stuff {{{1
 
 " C {{{2
@@ -911,6 +947,8 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile *.html.jinja2 setlocal ft=htmljinja
 
     autocmd BufReadPost,BufNewFile bashrc_* setlocal ft=sh
+
+    autocmd BufReadPost,BufNewFile *.blog call TextEnableCodeSnip("yaml", '\v%^', '\V...', "yaml")
 
     " These files get the \S shortcut to repo sync
     execute "autocmd BufReadPost,BufNewFile " . $HOME_QUICKREFS . "/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>"
