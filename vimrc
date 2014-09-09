@@ -854,10 +854,10 @@ endfunction
         \ })
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-    nnoremap <C-P><C-P> :<C-u>Unite -start-insert buffer<CR>
-    nnoremap <C-P>f :<C-u>Unite -start-insert file_rec<CR>
-    nnoremap <C-P>m :<C-u>Unite -start-insert file_mru<CR>
-    nnoremap <C-P>y :<C-u>Unite history/yank<CR>
+    " nnoremap <C-P><C-P> :<C-u>Unite -start-insert buffer<CR>
+    " nnoremap <C-P>f :<C-u>Unite -start-insert file_rec<CR>
+    " nnoremap <C-P>m :<C-u>Unite -start-insert file_mru<CR>
+    " nnoremap <C-P>y :<C-u>Unite history/yank<CR>
 
     autocmd FileType unite call s:unite_my_settings()
     function! s:unite_my_settings()
@@ -873,6 +873,19 @@ endfunction
         nmap <silent><buffer> <Esc> <Plug>(unite_exit)
 
     endfunction
+
+    let g:unite_source_menu_menus = {}
+    let g:unite_source_menu_menus.index = {
+        \ 'description' : 'Unite Index',
+        \ }
+    let g:unite_source_menu_menus.index.command_candidates = {
+        \ 'file' : 'Unite -start-insert file_rec',
+        \ 'mru' : 'Unite -start-insert file_mru',
+        \ 'buffer' : 'Unite -start-insert buffer',
+        \ 'yank' : 'Unite history/yank',
+        \ }
+
+    nnoremap <C-P> :<C-u>Unite menu:index<CR>
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
