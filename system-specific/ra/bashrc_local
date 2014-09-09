@@ -14,3 +14,5 @@
 . ~/.dotfiles/system-specific/common/kgp-proxies.sh
 
 alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'

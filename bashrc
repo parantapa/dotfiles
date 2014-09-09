@@ -318,9 +318,6 @@ pb-pygtk-setup-virtualenv () {
     cd -
 }
 
-# Java Font settings
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-
 # Use a separate file for system specific bashrc
 if [ -r ~/.bashrc_local ] ; then
     . ~/.bashrc_local
