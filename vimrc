@@ -795,6 +795,7 @@ endfunction
     let g:neocomplete#enable_ignore_case = 1
     let g:neocomplete#enable_auto_delimiter = 1
     let g:neocomplete#enable_fuzzy_completion = 1
+    let g:neocomplete#enable_refresh_always = 1
 
     " By default use all buffers
     if !exists('g:neocomplete#same_filetypes')
@@ -811,7 +812,7 @@ endfunction
     " Define dictionary.
     let g:neocomplete#sources#dictionary#dictionaries = { '_' : &spellfile }
 
-    if has("lua")
+    if index(g:pathogen_disabled, "neocomplete.vim") == -1
         " Recommended key-mappings.
         " <CR>: close popup and save indent.
         inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
