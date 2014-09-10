@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 # default mode is alsa
 mode=${MY_SOUND_SYSTEM:-alsa}
 
