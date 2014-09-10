@@ -1,16 +1,16 @@
 # Setup virtualenvs
-. ~/.dotfiles/system-specific/common/virtualenvwrapper-arch.sh
+. "$myrc_d/virtualenvwrapper-arch.sh"
 
 # Setup auto-switch-venv
-. ~/.dotfiles/system-specific/common/auto-switch-venv.sh
+. "$myrc_d/auto-switch-venv.sh"
 
 # Setup program specific directories
-. ~/.dotfiles/system-specific/common/lang-path.sh
+. "$myrc_d/lang-path.sh"
 
 # Git commit happy music
-. ~/.dotfiles/system-specific/common/git-commit-happy.sh
+. "$myrc_d/git-commit-happy.sh"
 
 # KGP Proxies
-. ~/.dotfiles/system-specific/common/kgp-proxies.sh
+. "$myrc_d/kgp-proxies.sh"
 
 alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"

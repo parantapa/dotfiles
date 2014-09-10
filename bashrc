@@ -320,6 +320,8 @@ pb-pygtk-setup-virtualenv () {
 
 # Use a separate file for system specific bashrc
 if [ -r ~/.bashrc_local ] ; then
+    myrc_d="$HOME_DOTFILES/system-specific/common"
     . ~/.bashrc_local
+    unset -v myrc_d
 fi
 

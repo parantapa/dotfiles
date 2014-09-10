@@ -3,16 +3,16 @@ if [[ $(hostname) == swscontact* ]] ; then
 fi
 
 # Setup the guest environment to install stuff
-. ~/.dotfiles/system-specific/common/guest-local-vars.sh
+. "$myrc_d/guest-local-vars.sh"
 
 # Setup virtualenvs
-. ~/.dotfiles/system-specific/common/virtualenvwrapper-thors.sh
+. "$myrc_d/virtualenvwrapper-thors.sh"
 
 # Setup auto-switch-venv
-. ~/.dotfiles/system-specific/common/auto-switch-venv.sh
+. "$myrc_d/auto-switch-venv.sh"
 
 # Setup program specific directories
-. ~/.dotfiles/system-specific/common/lang-path.sh
+. "$myrc_d/lang-path.sh"
 
 export MY_SOUND_SYSTEM=pulse:1
 
