@@ -403,6 +403,16 @@ augroup ft_modescript
 
     autocmd BufReadPost,BufNewFile * LoadModeScript
     exe "autocmd BufWritePost " . g:modescript_fname . " LoadModeScript"
+
+    " Redefine mk with abbrev
+    " I dont use mk[exrc]
+    cnoreabbrev mk Mk
+    cnoreabbrev mk1 Mk1
+    cnoreabbrev mk2 Mk2
+    cnoreabbrev mk3 Mk3
+    cnoreabbrev mk4 Mk4
+    cnoreabbrev mk5 Mk5
+
 augroup END
 
 " Convenience mappings {{{1
