@@ -99,39 +99,39 @@ function __fab_completion() {
 complete -o default -o nospace -F __fab_completion fab
 
 # List of colors
-txtblk='\[\e[0;30m\]' # Black - Regular
-txtred='\[\e[0;31m\]' # Red
-txtgrn='\[\e[0;32m\]' # Green
-txtylw='\[\e[0;33m\]' # Yellow
-txtblu='\[\e[0;34m\]' # Blue
-txtpur='\[\e[0;35m\]' # Purple
-txtcyn='\[\e[0;36m\]' # Cyan
-txtwht='\[\e[0;37m\]' # White
-bldblk='\[\e[1;30m\]' # Black - Bold
-bldred='\[\e[1;31m\]' # Red
-bldgrn='\[\e[1;32m\]' # Green
-bldylw='\[\e[1;33m\]' # Yellow
-bldblu='\[\e[1;34m\]' # Blue
-bldpur='\[\e[1;35m\]' # Purple
-bldcyn='\[\e[1;36m\]' # Cyan
-bldwht='\[\e[1;37m\]' # White
-unkblk='\[\e[4;30m\]' # Black - Underline
-undred='\[\e[4;31m\]' # Red
-undgrn='\[\e[4;32m\]' # Green
-undylw='\[\e[4;33m\]' # Yellow
-undblu='\[\e[4;34m\]' # Blue
-undpur='\[\e[4;35m\]' # Purple
-undcyn='\[\e[4;36m\]' # Cyan
-undwht='\[\e[4;37m\]' # White
-bakblk='\[\e[40m\]'   # Black - Background
-bakred='\[\e[41m\]'   # Red
-badgrn='\[\e[42m\]'   # Green
-bakylw='\[\e[43m\]'   # Yellow
-bakblu='\[\e[44m\]'   # Blue
-bakpur='\[\e[45m\]'   # Purple
-bakcyn='\[\e[46m\]'   # Cyan
-bakwht='\[\e[47m\]'   # White
-txtrst='\[\e[0m\]'    # Text Reset
+_mycolor_txtblk='\[\e[0;30m\]' # Black - Regular
+_mycolor_txtred='\[\e[0;31m\]' # Red
+_mycolor_txtgrn='\[\e[0;32m\]' # Green
+_mycolor_txtylw='\[\e[0;33m\]' # Yellow
+_mycolor_txtblu='\[\e[0;34m\]' # Blue
+_mycolor_txtpur='\[\e[0;35m\]' # Purple
+_mycolor_txtcyn='\[\e[0;36m\]' # Cyan
+_mycolor_txtwht='\[\e[0;37m\]' # White
+# _mycolor_bldblk='\[\e[1;30m\]' # Black - Bold
+# _mycolor_bldred='\[\e[1;31m\]' # Red
+# _mycolor_bldgrn='\[\e[1;32m\]' # Green
+# _mycolor_bldylw='\[\e[1;33m\]' # Yellow
+# _mycolor_bldblu='\[\e[1;34m\]' # Blue
+# _mycolor_bldpur='\[\e[1;35m\]' # Purple
+# _mycolor_bldcyn='\[\e[1;36m\]' # Cyan
+# _mycolor_bldwht='\[\e[1;37m\]' # White
+# _mycolor_unkblk='\[\e[4;30m\]' # Black - Underline
+# _mycolor_undred='\[\e[4;31m\]' # Red
+# _mycolor_undgrn='\[\e[4;32m\]' # Green
+# _mycolor_undylw='\[\e[4;33m\]' # Yellow
+# _mycolor_undblu='\[\e[4;34m\]' # Blue
+# _mycolor_undpur='\[\e[4;35m\]' # Purple
+# _mycolor_undcyn='\[\e[4;36m\]' # Cyan
+# _mycolor_undwht='\[\e[4;37m\]' # White
+# _mycolor_bakblk='\[\e[40m\]'   # Black - Background
+# _mycolor_bakred='\[\e[41m\]'   # Red
+# _mycolor_badgrn='\[\e[42m\]'   # Green
+# _mycolor_bakylw='\[\e[43m\]'   # Yellow
+# _mycolor_bakblu='\[\e[44m\]'   # Blue
+# _mycolor_bakpur='\[\e[45m\]'   # Purple
+# _mycolor_bakcyn='\[\e[46m\]'   # Cyan
+# _mycolor_bakwht='\[\e[47m\]'   # White
+_mycolor_txtrst='\[\e[0m\]'    # Text Reset
 
 # Time to set a fancy prompt
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -141,29 +141,29 @@ GIT_PS1_SHOWUPSTREAM=auto
 
 . "$HOME_DOTFILES/git-prompt.sh"
 
-__my_ps1 () {
+my_ps1 () {
     local ret="$1"
 
     hash deactivate 2>/dev/null
     if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
-        printf '%s(%s)%s ' "${txtgrn}" "$(basename $VIRTUAL_ENV)" "${txtpur}"
+        printf '%s(%s)%s ' "${_mycolor_txtgrn}" "$(basename $VIRTUAL_ENV)" "${_mycolor_txtpur}"
     fi
-    printf '%s\\u@\\h%s: ' "${txtcyn}" "${txtpur}"
-    printf '%s\\W %s- '   "${txtylw}" "${txtpur}"
+    printf '%s\\u@\\h%s: ' "${_mycolor_txtcyn}" "${_mycolor_txtpur}"
+    printf '%s\\W %s- '   "${_mycolor_txtylw}" "${_mycolor_txtpur}"
     if [ "$ret" -eq 0 ] ; then
-        printf '%s:) %s- ' "${txtgrn}" "${txtpur}"
+        printf '%s:) %s- ' "${_mycolor_txtgrn}" "${_mycolor_txtpur}"
     else
-        printf '%s:( %s %s- ' "${txtred}" "${ret}" "${txtpur}"
+        printf '%s:( %s %s- ' "${_mycolor_txtred}" "${ret}" "${_mycolor_txtpur}"
     fi
-    printf '%s%s%s ' "${txtcyn}" "$(date '+%F %T')" "${txtpur}"
-    printf '%s%s%s ' "${txtylw}" "$(__git_ps1 '(%s)')" "${txtpur}"
-    printf '\\n%s\\$ %s' "${txtpur}" "${txtrst}"
+    printf '%s%s%s ' "${_mycolor_txtcyn}" "$(date '+%F %T')" "${_mycolor_txtpur}"
+    printf '%s%s%s ' "${_mycolor_txtylw}" "$(__git_ps1 '(%s)')" "${_mycolor_txtpur}"
+    printf '\\n%s\\$ %s' "${_mycolor_txtpur}" "${_mycolor_txtrst}"
 }
 
 prompt_fn () {
     local ret="$1"
 
-    PS1="$(__my_ps1 $ret)"
+    PS1="$(my_ps1 $ret)"
     history -a
 }
 
@@ -318,4 +318,4 @@ if [[ -r ~/.myvars.sh ]] ; then
     source ~/.myvars.sh
 fi
 alias emv="$EDITOR ~/.myvars.sh ; source ~/.myvars.sh"
-
+alias smv="declare -p | \grep -P '^declare\ \-\-\ [a-z]' | sed -e 's/declare\ \-\-\ //'"
