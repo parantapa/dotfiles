@@ -348,7 +348,7 @@ fun! SearchAndOpenPdf(keyword)
         echom printf("Found %d files ...", len(fnames))
         echom printf("Opening '%s' ...", fnames[0])
 
-        let cmd = printf("okular %s &", fnameescape(fnames[0]))
+        let cmd = printf("evince %s 2>/dev/null &", fnameescape(fnames[0]))
         call system(cmd)
     else
         echom printf("No pdf files found matching '%s'", a:keyword)
