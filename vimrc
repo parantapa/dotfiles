@@ -641,18 +641,20 @@ augroup END
 " Markdown {{{2
 
 function! MarkdownLevel()
-    if strpart(getline(v:lnum), 0, 3) ==# "## "
+    if strpart(getline(v:lnum), 0, 2) ==# "# "
         return ">1"
-    elseif strpart(getline(v:lnum), 0, 4) ==# "### "
+    elseif strpart(getline(v:lnum), 0, 3) ==# "## "
         return ">2"
-    elseif strpart(getline(v:lnum), 0, 5) ==# "#### "
+    elseif strpart(getline(v:lnum), 0, 4) ==# "### "
         return ">3"
-    elseif strpart(getline(v:lnum), 0, 6) ==# "##### "
+    elseif strpart(getline(v:lnum), 0, 5) ==# "#### "
         return ">4"
-    elseif strpart(getline(v:lnum), 0, 7) ==# "###### "
+    elseif strpart(getline(v:lnum), 0, 6) ==# "##### "
         return ">5"
-    elseif strpart(getline(v:lnum), 0, 8) ==# "####### "
+    elseif strpart(getline(v:lnum), 0, 7) ==# "###### "
         return ">6"
+    elseif strpart(getline(v:lnum), 0, 8) ==# "####### "
+        return ">7"
     else
         return "="
     endif
