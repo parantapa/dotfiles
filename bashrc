@@ -171,18 +171,6 @@ prompt_fn () {
 # NOTE: May be reset in .bashrc_local
 PROMPT_COMMAND='prompt_fn $?'
 
-# Known places
-. "$HOME_DOTFILES/marks.sh"
-try_mark () {
-    if ! [[ -h "$MARKPATH/$1" ]] && [[ -d "$2" ]] ; then
-        mark "$1" "$2"
-    fi
-}
-try_mark dotfiles "$HOME_DOTFILES"
-try_mark quickrefs "$HOME_QUICKREFS"
-try_mark sdocs "$HOME_SDOCS"
-unset -f try_mark
-
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
 psg  () { psf $( pgrep -f "$@" ) ; }
@@ -319,9 +307,15 @@ pb-pygtk-setup-virtualenv () {
 }
 
 # Use a separate file for system specific bashrc
-if [ -r ~/.bashrc_local ] ; then
+if [[ -r ~/.bashrc_local ]] ; then
     myrc_d="$HOME_DOTFILES/system-specific/common"
     . ~/.bashrc_local
     unset -v myrc_d
 fi
+
+# Use as separate file for system specific variables
+if [[ -r ~/.myvars.sh ]] ; then
+    source ~/.myvars.sh
+fi
+alias emv="$EDITOR ~/.myvars.sh ; source ~/.myvars.sh"
 
