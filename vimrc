@@ -563,7 +563,7 @@ function! TextEnableCodeSnip(filetype, start, end, textSnipHl)
         unlet b:current_syntax
     endif
 
-    let cmd = 'syntax region textSnip%s matchgroup=%s start="%s" end="%s" contains=@%s'
+    let cmd = 'syntax region textSnip%s matchgroup=%s start=%s end=%s contains=@%s'
     let cmd = printf(cmd, ft, a:textSnipHl, a:start, a:end, group)
     execute cmd
 endfunction
@@ -981,7 +981,7 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile bashrc_* setlocal ft=sh
 
-    autocmd BufReadPost,BufNewFile *.blog call TextEnableCodeSnip("yaml", '\v%^', '\V...', "yaml")
+    autocmd BufReadPost,BufNewFile *.blog call TextEnableCodeSnip("yaml", '/\v%^/', '/\V.../', "yaml")
 
     " These files get the \S shortcut to repo sync
     execute "autocmd BufReadPost,BufNewFile " . $HOME_QUICKREFS . "/* nnoremap <buffer> <Localleader>S :wall <bar> !repo-sync<CR>"
