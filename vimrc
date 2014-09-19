@@ -216,9 +216,19 @@ set foldmethod=marker
 nnoremap <Space> za
 vnoremap <Space> za
 
+function! ToggleFolding()
+    if &foldenable == 1
+        normal zRzn
+    else
+        normal zMzN
+    endif
+endfunction
+
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
-nnoremap zO zCzO
+" nnoremap zO zCzO
+
+nnoremap <Leader>z :call ToggleFolding()<CR>
 
 " DefaultPyCall {{{1
 
