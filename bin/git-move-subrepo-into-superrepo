@@ -1,0 +1,60 @@
+#!/usr/bin/python2
+"""
+Moving One Git Repository Into Another As A Subdirectory
+
+Basic commands taken from:
+http://www.nomachetejuggling.com/2011/09/12/moving-one-git-repo-into-another-as-subdirectory/
+"""
+
+import os
+import sys
+import glob
+from subprocess import call as subp_call
+
+RAND_REMOTE = "a6ed6oaqyo"
+
+def call(cmd, *args):
+    """
+    Call the command in shell.
+    """
+
+    if args:
+        args = tuple(["'%s'" % a for a in args])
+        cmd = cmd % args
+    print(cmd)
+    subp_call(cmd, shell=True)
+
+def main():
+    try:
+        _, subrepo, superrepo, subdir = sys.argv
+    except ValueError:
+        print("Usage: git-move-subrepo-into-superrepo <subrepo> <superrepo> <subdir>")
+        return
+
+    subrepo = os.path.abspath(subrepo)
+    superrepo = os.path.abspath(superrepo)
+
+    print("cd %s" % subrepo)
+    os.chdir(subrepo)
+
+    files = glob.glob("*") + glob.glob(".*")
+    files = set(files) - set([".git", ".", ".."])
+    files = sorted(files)
+
+    call("mkdir -p %s", subdir)
+    for file in files:
+        call("mv %s %s", file, subdir)
+
+    call("git add -A .")
+    call("git commit -m 'Prepare for move as subdir'")
+
+    print("cd %s" % superrepo)
+    os.chdir(superrepo)
+
+    call("git remote add %s %s", RAND_REMOTE, subrepo)
+    call("git fetch %s", RAND_REMOTE)
+    call("git merge -m 'Added subrepo as subdir' %s/master", RAND_REMOTE)
+    call("git remote rm %s", RAND_REMOTE)
+
+if __name__ == '__main__':
+    main()
