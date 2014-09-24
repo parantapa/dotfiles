@@ -91,3 +91,6 @@
 [submodule "vim/bundle/neomru"]
 	path = vim/bundle/neomru
 	url = https://github.com/Shougo/neomru.vim.git
+[submodule "vim/bundle/indent-guides"]
+	path = vim/bundle/indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git

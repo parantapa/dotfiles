@@ -969,6 +969,10 @@ endfunction
 
     nnoremap <C-P> :<C-u>Unite menu:index<CR>
 
+" Indent Guides {{{2
+
+    nnoremap <Leader>I :IndentGuidesToggle<CR>
+
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
