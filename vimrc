@@ -157,9 +157,9 @@ set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 
 " Searching and movement {{{1
 
-" Use plain text search by default.
-nnoremap / /\V
-vnoremap / /\V
+" Use plain text match case search by default.
+nnoremap / /\V\C
+vnoremap / /\V\C
 
 set ignorecase
 set smartcase
@@ -248,34 +248,21 @@ EOF
         return a:default
 endfunction
 
-" ExecuteInShell {{{1
-
-function! s:ExecuteInShell(command)
-    let command = join(map(split(a:command), 'expand(v:val)'))
-    let winnr = bufwinnr('^' . command . '$')
-    silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(command) : winnr . 'wincmd w'
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
-    echo 'Execute ' . command . '...'
-    silent! execute 'silent %!'. command
-    silent! redraw
-    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>q :q<CR>'
-    silent! execute 'AnsiEsc'
-    echo 'Shell command ' . command . ' executed.'
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call <SID>ExecuteInShell(<q-args>)
-nnoremap <Leader>! :Shell
-
 " DiffOrig {{{1
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
+command! DiffOrig
+    \ let g:difforig_ft = &ft |
+    \ vert new |
+    \ set bt=nofile |
+    \ read ++edit # |
+    \ 0d_ |
+    \ let &ft = g:difforig_ft |
+    \ diffthis |
+    \ wincmd p |
+    \ diffthis
 
 " ToggleHtml {{{1
 
@@ -344,9 +331,9 @@ fun! CopyAlnumKeyword()
 endf
 
 " Strip whitespace
-function! Strip(input_string)
+fun! Strip(input_string)
     return substitute(a:input_string, '\v^[ \t\n\r]*(.{-})[ \t\n\r]*$', '\1', '')
-endfunction
+endf
 
 fun! SearchAndOpenPdf(keyword)
     let cmd = printf("find %s -name *%s*.pdf", fnameescape($HOME_SDOCS), shellescape(a:keyword))
@@ -437,7 +424,7 @@ nnoremap Y y$
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Substitute
-nnoremap <Leader>s :%s/\V
+nnoremap <Leader>s :%s/\V\C
 
 " Emacs bindings in command line mode
 cnoremap <C-a> <Home>
@@ -464,7 +451,7 @@ inoremap <C-f> <C-x><C-f>
 inoremap <C-l> <C-x><C-l>
 inoremap <C-Space> <C-x><C-o>
 
-" On C-l remove hlsearch
+" On C-l also set nohlsearch and diffupdate
 nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
 " Wordnet for Viewdoc {{{1
@@ -533,7 +520,7 @@ augroup END
 function! VSetSearch()
     let old_reg = @"
     normal! gvy
-    let @/ = '\V' . @"
+    let @/ = '\V\C' . @"
     normal! gV
     let @" = old_reg
 endfunction
@@ -747,6 +734,7 @@ augroup ft_text
 
     au Filetype text setlocal formatoptions-=n
 augroup END
+
 " Snippets {{{2
 augroup ft_snip
     au!
