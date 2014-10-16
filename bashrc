@@ -14,6 +14,7 @@ pathadd() {
 
 # Add dotfiles/bin to path
 pathadd "$HOME_DOTFILES/bin"
+pathadd "$HOME_DOTFILES/cmd-compiled"
 
 # set hist size; default is too small
 HISTSIZE=100000
