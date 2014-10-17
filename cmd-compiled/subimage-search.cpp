@@ -94,20 +94,29 @@ int main(int argc, char *argv[])
     cv::Mat dst;
     fastMatchTemplate(ref_gray, tpl_gray, dst, 2);
 
-    double minval, maxval;
-    cv::Point minloc, maxloc;
-    cv::minMaxLoc(dst, &minval, &maxval, &minloc, &maxloc);
+    while (true)
+    {
+        double minval, maxval;
+        cv::Point minloc, maxloc;
+        cv::minMaxLoc(dst, &minval, &maxval, &minloc, &maxloc);
 
-    if (maxval < 0.9) {
-        return -1;
+        if (maxval < 0.99) {
+            break;
+        }
+
+        double poix, poiy;
+        poix = maxloc.x + tpl.cols / 2.0;
+        poiy = maxloc.y + tpl.rows / 2.0;
+        poix = round(poix);
+        poiy = round(poiy);
+
+        std::cout << poix << " " << poiy << " " << maxval << "\n";
+
+        // Change the currently selected region, so that the next region
+	// is slected on the following pass.
+        cv::floodFill(dst, maxloc,
+                cv::Scalar(0), 0, cv::Scalar(.1), cv::Scalar(1.));
     }
 
-    double poix, poiy;
-    poix = maxloc.x + tpl.cols / 2.0;
-    poiy = maxloc.y + tpl.rows / 2.0;
-    poix = round(poix);
-    poiy = round(poiy);
-
-    std::cout << poix << " " << poiy << "\n";
     return 0;
 }
