@@ -15,7 +15,7 @@ nmap -b ,gh :open github.com<CR>
 nmap -b ,gs :open scholar.google.com<CR>
 nmap -b ,ma :open academic.research.microsoft.com<CR>
 
-nmap -b ,c1 :open dilbert.com/fast | xkcd.com<CR>
+nmap -b ,c1 :open dilbert.com/fast | xkcd.com | phdcomics.com/comics.php<CR>
 nmap -b ,c2 :open gocomics.com/calvinandhobbes | gocomics.com/garfield | gocomics.com/broomhilda | gocomics.com/bc | gocomics.com/wizardofid<CR>
 nmap -b ,c3 :open arcamax.com/thefunnies/hagarthehorrible | arcamax.com/thefunnies/beetlebailey | arcamax.com/thefunnies/peanuts<CR>
 
