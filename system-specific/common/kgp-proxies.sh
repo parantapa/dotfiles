@@ -9,6 +9,7 @@ function set-proxy () {
     proxies[217]=http://144.16.192.217:8080
     proxies[211]=http://10.3.100.211:8080
     proxies[212]=http://10.3.100.212:8080
+    proxies[207]=http://10.3.100.207:8080
     
     proxies[0]=""
 
