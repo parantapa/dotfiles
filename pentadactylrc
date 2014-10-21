@@ -1,4 +1,4 @@
-colorscheme molokai
+" colorscheme molokai
 
 set hintkeys=asdfg;lkjhertyui
 set! browser.tabs.closeWindowWithLastTab=false
