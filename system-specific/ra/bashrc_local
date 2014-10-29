@@ -15,6 +15,6 @@
 
 export MY_SOUND_SYSTEM=pulse:0
 
-alias ssh-add-twitter-app="ssh-add ~/.ssh/twitter-app-key"
+alias ssh-add-twitter-app="ssh-add $HOME_SDOCS/dotfiles-x/ssh-keys/labda-key-rsa"
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
