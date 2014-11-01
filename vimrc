@@ -158,8 +158,8 @@ set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 " Searching and movement {{{1
 
 " Use plain text match case search by default.
-nnoremap / /\V\C
-vnoremap / /\V\C
+nnoremap / /\V
+vnoremap / /\V
 
 set ignorecase
 set smartcase
@@ -424,7 +424,7 @@ nnoremap Y y$
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Substitute
-nnoremap <Leader>s :%s/\V\C
+nnoremap <Leader>s :%s/\V
 
 " Emacs bindings in command line mode
 cnoremap <C-a> <Home>
@@ -520,7 +520,7 @@ augroup END
 function! VSetSearch()
     let old_reg = @"
     normal! gvy
-    let @/ = '\V\C' . @"
+    let @/ = '\V' . @"
     normal! gV
     let @" = old_reg
 endfunction
