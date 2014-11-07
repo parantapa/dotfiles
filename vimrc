@@ -759,6 +759,13 @@ function! BookmarkLevel()
     endif
 endfunction
 
+" Sass {{{2
+
+augroup ft_sass
+    au!
+
+    au FileType sass setlocal et sw=4 sts=4
+augroup end
 
 " Plugin settings {{{1
 
