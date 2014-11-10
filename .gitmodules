@@ -94,3 +94,6 @@
 [submodule "vim/bundle/indent-guides"]
 	path = vim/bundle/indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "vim/bundle/vim-easy-align"]
+	path = vim/bundle/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git

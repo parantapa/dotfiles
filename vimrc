@@ -968,6 +968,10 @@ augroup end
 
     nnoremap <Leader>I :IndentGuidesToggle<CR>
 
+" EasyAlign {{{1
+
+    vmap <Enter> <Plug>(EasyAlign)
+
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
