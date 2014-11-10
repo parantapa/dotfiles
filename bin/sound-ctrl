@@ -1,20 +1,19 @@
 #!/bin/bash
 
 # default mode is alsa
-mode=${MY_SOUND_SYSTEM:-alsa}
+mode=${MY_SOUND_SYSTEM:-pulse}
 
 # If pulseaudio
-if [[ "$mode" == pulse:* ]] ; then
-    pa_sink=$(echo $mode | cut -d ':' -f 2)
-    let "pa_idx = pa_sink + 1"
-    ismute="$(pactl list sinks | \grep -P '^\s+Mute\:' | tr -d '\t ' | sed -n ${pa_idx}p | cut -d ':' -f 2)"
+if [[ "$mode" == pulse ]] ; then
+    pa_sink=$( pacmd list-sinks | awk '/\* index:/{ print $3 }' )
+    pa_ismute=$( pacmd list-sinks | \grep -A 15 '* index'| awk '/muted:/{ print $2 }' )
 
     case "$1" in
         incvol )
-            pactl -- set-sink-volume $pa_sink +5%
+            pactl set-sink-volume $pa_sink -- +5%
             ;;
         decvol )
-            pactl -- set-sink-volume $pa_sink -5%
+            pactl set-sink-volume $pa_sink -- -5%
             ;;
         mute )
             pactl set-sink-mute $pa_sink 1
@@ -23,17 +22,17 @@ if [[ "$mode" == pulse:* ]] ; then
             pactl set-sink-mute $pa_sink 0
             ;;
         toggle )
-            if [[ "$ismute" == "no" ]] ; then
+            if [[ "$pa_ismute" == "no" ]] ; then
                 pactl set-sink-mute $pa_sink 1
             else
                 pactl set-sink-mute $pa_sink 0
             fi
             ;;
         vol )
-            echo $(pactl list sinks | \grep -P '^\s+Volume\:' | tr -d '\t' | sed -n ${pa_idx}p | cut -d ':' -f 3 | tr -s ' ' | cut -d ' ' -f 2)
+            echo $( pacmd list-sinks | \grep -A 15 '* index'| awk '/volume: front/{ print $5 }' | sed 's/%//g' )
             ;;
         ismute )
-            echo $ismute
+            echo $pa_ismute
             ;;
     esac
 
