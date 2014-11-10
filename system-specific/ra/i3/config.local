@@ -33,3 +33,5 @@ exec skype
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol ; killall -USR1 i3status"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol ; killall -USR1 i3status"
 bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle ; killall -USR1 i3status"
+
+bindsym Control+Mod1+Delete exec --no-startup-id "sound-ctrl mute ; xscreensaver-command --lock"

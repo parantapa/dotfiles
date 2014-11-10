@@ -13,7 +13,7 @@
 # KGP Proxies
 . "$myrc_d/kgp-proxies.sh"
 
-export MY_SOUND_SYSTEM=pulse:0
+export MY_SOUND_SYSTEM=pulse
 
 alias ssh-add-twitter-app="ssh-add $HOME_SDOCS/dotfiles-x/ssh-keys/labda-key-rsa"
 
