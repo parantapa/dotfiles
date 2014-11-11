@@ -307,6 +307,9 @@ pb-pygtk-setup-virtualenv () {
     cd -
 }
 
+# http://stackoverflow.com/questions/2720014/upgrading-all-packages-with-pip
+alias pip-upgrade-all='pip freeze --local | \grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
+
 # Use a separate file for system specific bashrc
 if [[ -r ~/.bashrc_local ]] ; then
     myrc_d="$HOME_DOTFILES/system-specific/common"
