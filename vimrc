@@ -355,6 +355,15 @@ nnoremap <Leader>w :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
 vnoremap <Leader>w y:call SearchAndOpenPdf(@")<CR>
 command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
 
+" External Filters {{{1
+
+" Replace current dl.acm.org paper url with bib and abstract
+
+fun! DlacmRead(url)
+    execute "read !" . $HOME_QUICKREFS . "/scripts/parse-dlacm.sh '" . Strip(a:url) . "'"
+endfunction
+command! -nargs=1 DlacmRead call DlacmRead(<f-args>)
+
 " Modescript {{{1
 
 let g:modescript_fname = ".modescript.vim"
