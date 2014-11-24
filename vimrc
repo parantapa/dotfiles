@@ -970,6 +970,7 @@ augroup end
         \ 'mru' : 'Unite -start-insert file_mru',
         \ 'buffer' : 'Unite -start-insert buffer',
         \ 'yank' : 'Unite history/yank',
+        \ 'outline' : 'Unite outline'
         \ }
 
     nnoremap <C-P> :<C-u>Unite menu:index<CR>
