@@ -939,6 +939,7 @@ augroup end
         \   'direction': 'botright',
         \ })
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#filters#sorter_default#use(['sorter_rank'])
 
     " nnoremap <C-P><C-P> :<C-u>Unite -start-insert buffer<CR>
     " nnoremap <C-P>f :<C-u>Unite -start-insert file_rec<CR>
