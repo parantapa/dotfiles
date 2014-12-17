@@ -362,7 +362,12 @@ command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
 fun! DlacmRead(url)
     execute "read !" . $HOME_QUICKREFS . "/scripts/parse-dlacm.sh '" . Strip(a:url) . "'"
 endfunction
-command! -nargs=1 DlacmRead call DlacmRead(<f-args>)
+nnoremap <Leader>Xda yy:call DlacmRead(@")<CR>
+
+fun! AaaiRead(url)
+    execute "read !" . $HOME_QUICKREFS . "/scripts/parse-aaai.sh '" . Strip(a:url) . "'"
+endfunction
+nnoremap <Leader>Xaa yy:call AaaiRead(@")<CR>
 
 " Modescript {{{1
 
