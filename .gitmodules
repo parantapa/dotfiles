@@ -100,3 +100,6 @@
 [submodule "vim/bundle/unite-outline"]
 	path = vim/bundle/unite-outline
 	url = https://github.com/Shougo/unite-outline
+[submodule "vim/bundle/vim-toml"]
+	path = vim/bundle/vim-toml
+	url = https://github.com/cespare/vim-toml
