@@ -730,6 +730,9 @@ augroup ft_python
     au!
 
     au FileType python setlocal commentstring=#\ %s
+
+    " NOTE: Depends on Slime plugin
+    au FileType python nnoremap <buffer> <LocalLeader>v :call SlimeSendText("%cpaste\n" . @" . "\n--\n")<CR>
 augroup END
 
 " PHP {{{2
@@ -843,10 +846,15 @@ augroup end
 
     let g:slime_target = "tmux"
     let g:slime_paste_file = "$HOME/.slime_paste"
+    let g:slime_no_mappings = 1
 
     function! SlimeSendText(text)
         execute "SlimeSend1 " . a:text
     endfunction
+
+    nmap <Leader>v <Plug>SlimeMotionSend
+    vmap <Leader>v <Plug>SlimeRegionSend
+    nmap <Leader>vv <Plug>SlimeLineSend
 
 " Commentary {{{2
 
