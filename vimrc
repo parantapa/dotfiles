@@ -732,7 +732,37 @@ augroup ft_python
     au FileType python setlocal commentstring=#\ %s
 
     " NOTE: Depends on Slime plugin
-    au FileType python nnoremap <buffer> <LocalLeader>v :call SlimeSendText("%cpaste\n" . @" . "\n--\n")<CR>
+    function! IPythonSlimeSendText(type, ...)
+        let saved_unnamed_register = @"
+        let saved_winview = winsaveview()
+        let saved_selection = &selection
+
+        let &selection = "inclusive"
+
+        " Invoked from Visual mode, use gv command.
+        if a:0
+            silent exe "normal! gvy"
+        " Invoked for the whole line
+        elseif a:type ==# '__whole_line__'
+            silent exe "normal! ^yg_"
+        " linewise operator
+        elseif a:type ==# 'line'
+            silent exe "normal! '[V']y"
+        " charwise operator
+        else
+            silent exe "normal! `[v`]y"
+        endif
+
+        call SlimeSendText("%cpaste\n" . Strip(@") . "\n--")
+
+        call winrestview(saved_winview)
+        let @" = saved_unnamed_register
+        let &selection = saved_selection
+    endfunction
+
+    au FileType python nnoremap <buffer> <LocalLeader>v :set operatorfunc=IPythonSlimeSendText<cr>g@
+    au FileType python vnoremap <buffer> <LocalLeader>v :<c-u>call IPythonSlimeSendText(visualmode(), 1)<cr>
+    au FileType python nnoremap <buffer> <LocalLeader>vv :call IPythonSlimeSendText('__whole_line__')<cr>
 augroup END
 
 " PHP {{{2
