@@ -99,9 +99,7 @@ def main():
     # Minor cleaning up of the filter
     fltr = fltr.strip()
     if fltr == ".":
-        fltr = "x"
-    elif fltr.startswith(".") or fltr.startswith("["):
-        fltr = "x" + fltr
+        fltr = "_"
 
     # Load the file
     if fname == "-":
@@ -112,7 +110,7 @@ def main():
     x = attr_convert(x)
 
     # Evaluate the expression
-    z = eval(fltr, {"x": x})
+    z = eval(fltr, {"_": x})
 
     _, columns = get_terminal_size()
     try:
