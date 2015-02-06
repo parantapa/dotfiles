@@ -176,11 +176,14 @@ bindsym Control+Mod1+9 exec "clip-copy-yad"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
-for_window [title="Firefox Preferences"] floating enable
-for_window [class="Ipython"] floating enable
 for_window [class="R_x11"] floating enable
 for_window [title="Starting Gephi"] floating enable
 for_window [class="Yad"] floating enable
-for_window [title="Matplotlib"] floating enable
 for_window [title="Gnuplot"] floating enable
 for_window [class="Pavucontrol"] floating enable
+
+for_window [title="Firefox Preferences"] floating enable
+for_window [class="Firefox" instance="Devtools" title="Scratchpad"] floating enable
+
+for_window [class="Ipython"] floating enable
+for_window [title="Matplotlib"] floating enable
