@@ -31,6 +31,8 @@ filetype plugin indent on
 set nocompatible
 set nomodeline
 
+cnoreabbrev wq write <bar> echomsg 'run quit separately'<cr>
+
 " Basic options {{{1
 
 set encoding=utf-8
