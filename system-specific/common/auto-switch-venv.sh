@@ -1,28 +1,36 @@
 # Automatically switch virtualenv
 auto_switch_venv () {
+    # Get the current directory's venv
     if [[ ! -r ".venv" ]] ; then
         return
     fi
-    local venv="$(< .venv)"
-    if [[ -z "$venv" ]] ; then
+    local dvenv="$(< .venv)"
+    if [[ -z "$dvenv" ]] ; then
         return
     fi
-    local xvenv="$( basename "$VIRTUAL_ENV" )"
+
+    # Check if a venv is currently active
+    local avenv="$( basename "$VIRTUAL_ENV" )"
     hash deactivate 2>/dev/null
-    if [[ "$?" -eq 0 ]] && [[ -n "$xvenv" ]] ; then
-        if [[ "$SWITCH_VENV_AUTO" == "$xvenv" ]] && [[ "$venv" != "$xvenv" ]]; then
-            workon "$venv"
-            local yvenv="$( basename "$VIRTUAL_ENV" )"
-            if [[ "$yvenv" == "$venv" ]] ; then
-                SWITCH_VENV_AUTO="$venv"
-            fi
-        fi
-    else
-        workon "$venv"
-        local yvenv="$( basename "$VIRTUAL_ENV" )"
-        if [[ "$yvenv" == "$venv" ]] ; then
-            SWITCH_VENV_AUTO="$venv"
-        fi
+    if [[ "$?" -eq 1 ]] ; then
+        avenv=""
+    fi
+
+    # If the currently active venv and it is not an auto switched venv: return
+    if [[ -n "$avenv" ]] && [[ "$SWITCH_VENV_AUTO" != "$avenv" ]] ; then
+        return
+    fi
+
+    # If the directory's venv is same as active venv: return
+    if [[ -n "$avenv" ]] && [[ "$dvenv" == "$avenv" ]] ; then
+        return
+    fi
+
+    workon "$dvenv" 2>/dev/null
+    # Check if the correct venv was activted
+    local tmp="$( basename "$VIRTUAL_ENV" )"
+    if [[ "$tmp" == "$dvenv" ]] ; then
+        SWITCH_VENV_AUTO="$dvenv"
     fi
 }
 
