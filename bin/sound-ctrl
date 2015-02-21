@@ -11,10 +11,10 @@ if [[ "$mode" == pulse ]] ; then
     for i in "$@" ; do
         case "$i" in
             incvol )
-                pactl set-sink-volume $pa_sink -- +5%
+                pactl set-sink-volume $pa_sink +5%
                 ;;
             decvol )
-                pactl set-sink-volume $pa_sink -- -5%
+                pactl set-sink-volume $pa_sink -5%
                 ;;
             mute )
                 pactl set-sink-mute $pa_sink 1
