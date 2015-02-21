@@ -1,0 +1,13 @@
+#!/bin/bash
+# Wrapper for dmenu
+
+set -x
+
+DMENU_OPTS="-fn Inconsolata:14 -z -b -l 10 -p >"
+
+if [[ "$1" == "-run" ]] ; then
+    shift 1
+    exec dmenu_run $DMENU_OPTS "$@"
+else
+    exec dmenu $DMENU_OPTS "$@"
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+# Copy X11 clipboard to primary and vice versa
+# Use dmenu for GUI
+
+opt=$(echo -e "a: Primary to Clipboard\nb: Clipboard to Primary" | dmenu-wrap)
+code=${opt:0:1}
+
+if [[ "$code" == "a" ]] ; then
+    xclip -o -selection primary | xclip -i -selection clipboard
+    notify-send -u normal -t 5000 "clip-copy" "primary -> clipboard"
+    exit 0
+elif [[ "$code" == "b" ]] ; then
+    xclip -o -selection clipboard | xclip -i -selection primary
+    notify-send -u normal -t 5000 "clip-copy" "clipboard -> primary"
+    exit 0
+fi

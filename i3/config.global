@@ -149,7 +149,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Return exec "urxvtc"
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu-wrap -run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -164,15 +164,14 @@ bindsym Control+Mod1+q exec "xfce4-screenshooter"
 bindsym Control+Mod1+o exec "ario"
 bindsym Control+Mod1+p exec "thunar"
 bindsym Control+Mod1+backslash exec "repo-edit ~/quickrefs index.md"
-bindsym Control+Mod1+equal exec "dmenu-repo-sync ~/sdocs ~/quickrefs"
 
 bindsym Control+Mod1+Left  exec --no-startup-id "mpc prev"
 bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
 bindsym Control+Mod1+Down  exec --no-startup-id "mpc toggle"
 bindsym Control+Mod1+Up    exec --no-startup-id "mpc stop"
 
-bindsym Control+Mod1+0 exec "clip-copy-yad"
-bindsym Control+Mod1+9 exec "clip-copy-yad"
+bindsym Control+Mod1+0 exec "clip-copy-dmenu"
+bindsym Control+Mod1+9 exec "clip-copy-dmenu"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
