@@ -26,6 +26,9 @@ URxvt*font: xft:Inconsolata:size=12:antialias=true:hinting=true,\
 
 URxvt*boldFont: xft:Inconsolata:bold:size=12:antialias=true:hinting=true,\
                 xft:DejaVu Sans Mono:bold:size=12:antialias=true:hinting=true
+
+URxvt.letterSpace: -1
+
 !
 ! Traditional fonts - a more traditional font setup in lieu of xft
 !URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
