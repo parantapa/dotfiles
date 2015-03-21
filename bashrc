@@ -1,6 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-export HOME_DOTFILES="$HOME/.dotfiles"
+export HOME_DOTFILES="$HOME/dotfiles"
 export HOME_QUICKREFS="$HOME/quickrefs"
 export HOME_SDOCS="$HOME/sdocs"
 
