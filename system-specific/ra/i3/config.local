@@ -14,7 +14,7 @@ workspace 5 output VGA1
 workspace 6 output VGA1
 
 bar {
-        status_command /home/parantapa/.pbapps/i3status/i3status-ra1.sh
+        status_command /home/parantapa/pbapps/i3status/i3status-ra1.sh
         output VGA1
         tray_output VGA1
 }
