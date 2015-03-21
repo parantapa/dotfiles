@@ -140,24 +140,32 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM=auto
 
-. "$HOME_DOTFILES/git-prompt.sh"
+if [[ -r "$HOME_DOTFILES/git-prompt.sh" ]] ; then
+    . "$HOME_DOTFILES/git-prompt.sh"
+fi
 
 my_ps1 () {
     local ret="$1"
 
     hash deactivate 2>/dev/null
-    if [ "$?" -eq 0 -a -n "$VIRTUAL_ENV" ] ; then
+    if [[ "$?" -eq 0 ]] && [[ -n "$VIRTUAL_ENV" ]] ; then
         printf '%s(%s)%s ' "${_mycolor_txtgrn}" "$(basename $VIRTUAL_ENV)" "${_mycolor_txtpur}"
     fi
+
     printf '%s\\u@\\h%s: ' "${_mycolor_txtcyn}" "${_mycolor_txtpur}"
     printf '%s\\W %s- '   "${_mycolor_txtylw}" "${_mycolor_txtpur}"
-    if [ "$ret" -eq 0 ] ; then
+    if [[ "$ret" -eq 0 ]] ; then
         printf '%s:) %s- ' "${_mycolor_txtgrn}" "${_mycolor_txtpur}"
     else
         printf '%s:( %s %s- ' "${_mycolor_txtred}" "${ret}" "${_mycolor_txtpur}"
     fi
     printf '%s%s%s ' "${_mycolor_txtcyn}" "$(date '+%F %T')" "${_mycolor_txtpur}"
-    printf '%s%s%s ' "${_mycolor_txtylw}" "$(__git_ps1 '(%s)')" "${_mycolor_txtpur}"
+
+    type __git_ps1 >/dev/null 2>&1
+    if [[ "$?" -eq 0 ]] ; then
+        printf '%s%s%s ' "${_mycolor_txtylw}" "$(__git_ps1 '(%s)')" "${_mycolor_txtpur}"
+    fi
+
     printf '\\n%s\\$ %s' "${_mycolor_txtpur}" "${_mycolor_txtrst}"
 }
 
