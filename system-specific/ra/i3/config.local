@@ -27,7 +27,7 @@ bar {
 
 exec keepassx
 exec ario
-exec /home/parantapa/.pbapps/reddit-bg/reddit-bg
+exec /home/parantapa/pbapps/reddit-bg/reddit-bg.sh
 exec skype
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol ; killall -USR1 i3status"
