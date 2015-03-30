@@ -66,6 +66,10 @@ set fillchars=diff:░
 set backspace=indent,eol,start
 set showbreak=↪
 
+if has('xterm_clipboard')
+    set clipboard=unnamed
+endif
+
 " Wildmenu completion {{{1
 
 set wildmenu
