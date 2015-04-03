@@ -289,59 +289,67 @@ nnoremap <F7> :call ToggleHtmlInBuf()<CR>
 
 " Open URL with Firefox {{{1
 
-" Extract web url form string
-function! OpenWithFirefoxOperator(type)
+function! ExtractUrl(vmode)
     let saved_unnamed_register = @"
-    let saved_winview = winsaveview()
     let saved_selection = &selection
 
-    let &selection = "inclusive"
-
-    if a:type == '__whole_line__'
-        silent exe "normal! yy"
-    elseif a:type == 'line'
-        silent exe "normal! '[V']y"
-    elseif a:type == 'block'
-        silent exe "normal! `[\<C-V>`]y"
-    elseif a:type == 'char'
-        silent exe "normal! `[v`]y"
-    else " Invoked from Visual mode, use '< and '> marks.
-        silent exe "normal! `<" . a:type . "`>y"
-    endif
-
-    let url = DefaultPyCall(@", "extract_url", @")
-    if url ==# ''
-        echom printf("Cant find url in '%s'", @")
+    if a:vmode ==# 1
+        silent exe "normal! gvy"
+        let url = @"
     else
-        echom printf("Opening '%s' ...", url)
-        call system("firefox " . shellescape(url) . " &")
+        silent exe "normal! ^yg_"
+        let url = DefaultPyCall(@", "extract_url", @")
+        if url ==# ''
+            let url = @"
+        endif
     endif
 
-    call winrestview(saved_winview)
     let @" = saved_unnamed_register
     let &selection = saved_selection
+
+    return url
 endfunction
 
-nnoremap <leader>f :set operatorfunc=OpenWithFirefoxOperator<cr>g@
-vnoremap <leader>f :<c-u>call OpenWithFirefoxOperator(visualmode())<cr>
-nnoremap <leader>ff :call OpenWithFirefoxOperator('__whole_line__')<cr>
+function! OpenUrl(url)
+    call system("firefox " . shellescape(a:url) . " &")
+endfunction
 
-" Search and Open PDFs {{{1
+command! -nargs=1 OpenUrl call OpenUrl(<q-args>)
+cnoreabbrev ou OpenUrl
 
-" Search and open pdf files
-fun! CopyAlnumKeyword()
-    let oldkwd = &iskeyword
-    set iskeyword=a-z,A-Z,48-57,_,-
-    normal! yiw
-    let &iskeyword = oldkwd
-endf
+nnoremap <leader>f :OpenUrl <C-r>=ExtractUrl(0)<CR>
+vnoremap <leader>f :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
+
+" Search and Open PDFs in SDOCS with Evince {{{1
+
+function! ExtractCite(vmode)
+    let saved_unnamed_register = @"
+    let saved_selection = &selection
+    let saved_keyword = &iskeyword
+
+    if a:vmode
+        silent exe "normal! gvy"
+        let cite = @"
+    else
+        set iskeyword=a-z,A-Z,48-57,_,-
+        normal! yiw
+        let cite = @"
+    endif
+
+    let &iskeyword = saved_keyword
+    let @" = saved_unnamed_register
+    let &selection = saved_selection
+
+    return cite
+endfunction
 
 " Strip whitespace
-fun! Strip(input_string)
+function! Strip(input_string)
     return substitute(a:input_string, '\v^[ \t\n\r]*(.{-})[ \t\n\r]*$', '\1', '')
-endf
+endfunction
 
-fun! SearchAndOpenPdf(keyword)
+" Open Pdf in SDOCS
+function! OpenPdf(keyword)
     let cmd = printf("find %s -name *%s*.pdf", fnameescape($HOME_SDOCS), shellescape(a:keyword))
     let fnames_str = system(cmd)
     let fnames = split(fnames_str, "\n", 0)
@@ -356,10 +364,29 @@ fun! SearchAndOpenPdf(keyword)
     else
         echom printf("No pdf files found matching '%s'", a:keyword)
     endif
-endf
-nnoremap <Leader>w :call CopyAlnumKeyword()<CR>:call SearchAndOpenPdf(@")<CR>
-vnoremap <Leader>w y:call SearchAndOpenPdf(@")<CR>
-command! -nargs=1 SearchAndOpenPdf call SearchAndOpenPdf(<f-args>)
+endfunction
+
+command! -nargs=1 OpenPdf call OpenPdf(<q-args>)
+cnoreabbrev op OpenPdf
+
+nnoremap <leader>w :OpenPdf <C-r>=ExtractCite(0)<CR>
+vnoremap <leader>w :<C-u>OpenPdf <C-r>=ExtractCite(1)<CR>
+
+" Search for citation in Quickrefs sdocs-paper*.md {{{1
+
+" Open Cite in sdocs-papers in Quickrefs
+function! OpenCite(keyword)
+    let cmd = 'vimgrep /\V\C%s/gj %s/sdocs-papers*.md'
+    let cmd = printf(cmd, a:keyword, fnameescape($HOME_QUICKREFS))
+    silent! execute cmd
+    execute "copen"
+endfunction
+
+command! -nargs=1 OpenCite call OpenCite(<q-args>)
+cnoreabbrev oc OpenCite
+
+nnoremap <leader>c :OpenCite <C-r>=ExtractCite(0)<CR>
+vnoremap <leader>c :<C-u>OpenCite <C-r>=ExtractCite(1)<CR>
 
 " External Filters {{{1
 
