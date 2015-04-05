@@ -317,8 +317,8 @@ endfunction
 command! -nargs=1 OpenUrl call OpenUrl(<q-args>)
 cnoreabbrev ou OpenUrl
 
-nnoremap <leader>f :OpenUrl <C-r>=ExtractUrl(0)<CR>
-vnoremap <leader>f :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
+nnoremap <leader>of :OpenUrl <C-r>=ExtractUrl(0)<CR>
+vnoremap <leader>of :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
 
 " Search and Open PDFs in SDOCS with Evince {{{1
 
@@ -369,8 +369,8 @@ endfunction
 command! -nargs=1 OpenPdf call OpenPdf(<q-args>)
 cnoreabbrev op OpenPdf
 
-nnoremap <leader>w :OpenPdf <C-r>=ExtractCite(0)<CR>
-vnoremap <leader>w :<C-u>OpenPdf <C-r>=ExtractCite(1)<CR>
+nnoremap <leader>op :OpenPdf <C-r>=ExtractCite(0)<CR>
+vnoremap <leader>op :<C-u>OpenPdf <C-r>=ExtractCite(1)<CR>
 
 " Search for citation in Quickrefs sdocs-paper*.md {{{1
 
@@ -385,8 +385,8 @@ endfunction
 command! -nargs=1 OpenCite call OpenCite(<q-args>)
 cnoreabbrev oc OpenCite
 
-nnoremap <leader>c :OpenCite <C-r>=ExtractCite(0)<CR>
-vnoremap <leader>c :<C-u>OpenCite <C-r>=ExtractCite(1)<CR>
+nnoremap <leader>oc :OpenCite <C-r>=ExtractCite(0)<CR>
+vnoremap <leader>oc :<C-u>OpenCite <C-r>=ExtractCite(1)<CR>
 
 " External Filters {{{1
 
