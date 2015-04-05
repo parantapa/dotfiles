@@ -11,7 +11,7 @@ dotfiles=(profile bash_logout bashrc
     vimrc gvimrc vim/bundle vim/python2 vim/syntax
     tmux.conf gitconfig hgrc cvsignore
     pylintrc latexmkrc ackrc ctags
-    pentadactyl pentadactylrc sqliterc psqlrc bowerrc
+    sqliterc psqlrc bowerrc
     i3/config.global config/dunstrc)
 
 cd "$dstdir"
