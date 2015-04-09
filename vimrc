@@ -873,6 +873,7 @@ augroup end
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
     let g:syntastic_python_checkers = ['pylint']
+    let g:syntastic_python_pylint_exec = '/usr/bin/pylint2'
     let g:syntastic_javascript_checkers = ['jslint']
     let g:syntastic_javascript_jslint_conf = "--sloppy"
 
@@ -896,9 +897,6 @@ augroup end
 " Virtualenv {{{2
 
     let g:virtualenv_stl_format = '[%n] '
-    if $VIRTUAL_ENV
-        VirtualEnvActivate
-    endif
 
 " ViewDoc {{{2
 
