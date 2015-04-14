@@ -28,7 +28,7 @@ for file in "${dotfiles[@]}" ; do
 done
 ln -siT "$srcdir/profile" ".bash_profile"
 
-if [[ "$1" == "--extra" ]] ;
+if [[ "$1" == "--extra" ]] ; then
     [ -d .i3 ]     || mkdir .i3
     [ -d .config ] || mkdir .config
 
