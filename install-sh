@@ -2,22 +2,20 @@
 
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
 if [[ -d "$1" ]] ; then
-	dstdir="$1"
+    dstdir="$1"
+    shift 1
 else
-	dstdir="$HOME"
+    dstdir="$HOME"
 fi
 
 dotfiles=(profile bash_logout bashrc
-    vimrc gvimrc vim/bundle vim/python2 vim/syntax
-    tmux.conf gitconfig hgrc cvsignore
-    pylintrc latexmkrc ackrc ctags
-    sqliterc psqlrc bowerrc
-    i3/config.global config/dunstrc)
+    vimrc tmux.conf gitconfig hgrc cvsignore
+    ackrc ctags sqliterc psqlrc)
+
+dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
+    pylintrc latexmkrc bowerrc i3/config.global config/dunstrc)
 
 cd "$dstdir"
-
-[ -d .i3 ]     || mkdir .i3
-[ -d .config ] || mkdir .config
 
 [[ -d .vim ]]            || mkdir .vim
 [[ -d .vim/tmp ]]        || mkdir .vim/tmp
@@ -28,12 +26,16 @@ cd "$dstdir"
 for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
 done
-
-touch .i3/config.local
-touch .repo-dirs
 ln -siT "$srcdir/profile" ".bash_profile"
 
-cd "$srcdir"
-git submodule sync
-git submodule update --init
+if [[ "$1" == "--extra" ]] ;
+    [ -d .i3 ]     || mkdir .i3
+    [ -d .config ] || mkdir .config
 
+    touch .i3/config.local
+    touch .repo-dirs
+
+    cd "$srcdir"
+    git submodule sync
+    git submodule update --init
+fi
