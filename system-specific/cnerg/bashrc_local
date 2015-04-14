@@ -1,0 +1,9 @@
+# Setup virtualenvs
+. "$myrc_d/virtualenvwrapper-cnerg.sh"
+
+# Setup auto-switch-venv
+. "$myrc_d/auto-switch-venv.sh"
+
+if [[ -f /etc/bash_completion ]] ; then
+    . /etc/bash_completion
+fi
