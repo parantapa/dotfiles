@@ -189,14 +189,20 @@ vnoremap <leader>oc :<C-u>OpenCite <C-r>=ExtractCite(1)<CR>
 " Replace current dl.acm.org paper url with bib and abstract
 
 fun! DlacmRead(url)
-    execute "read !" . $HOME_QUICKREFS . "/scripts/parse-dlacm.sh '" . Strip(a:url) . "'"
+    let url = shellescape(Strip(a:url))
+    let script = expand("$HOME_QUICKREFS/scripts/parse-dlacm.sh")
+
+    execute "read ! " . script . " " . url
 endfunction
 nnoremap <Leader>Xda yy:call DlacmRead(@")<CR>
 
 " Replace current aaai paper url with bib and abstract
 
 fun! AaaiRead(url)
-    execute "read !" . $HOME_QUICKREFS . "/scripts/parse-aaai.sh '" . Strip(a:url) . "'"
+    let url = shellescape(Strip(a:url))
+    let script = expand("$HOME_QUICKREFS/scripts/parse-aaai.sh")
+
+    execute "read ! " . script . " " . url
 endfunction
 nnoremap <Leader>Xaa yy:call AaaiRead(@")<CR>
 
@@ -282,7 +288,7 @@ augroup end
 " Slime {{{2
 
     let g:slime_target = "tmux"
-    let g:slime_paste_file = "$HOME/.slime_paste"
+    let g:slime_paste_file = expand("$HOME/.slime_paste")
     let g:slime_no_mappings = 1
 
     function! SlimeSendText(text)
@@ -319,7 +325,7 @@ augroup end
 
 " Marvim {{{2
 
-    let g:marvim_store = $HOME_QUICKREFS . '/marvim'
+    let g:marvim_store = expand("$HOME_QUICKREFS/marvim")
     let g:marvim_find_key = '<Leader>mf'
     let g:marvim_store_key = '<Leader>ms'
     let g:marvim_prefix = 0
@@ -440,6 +446,5 @@ augroup ft_setup_extra
     au!
 
     au BufEnter bookmarks.yaml setlocal foldtext=DefaultPyCall('--','bookmark_fold_text',v:foldstart,v:foldend,v:foldlevel)
-
 augroup END
 

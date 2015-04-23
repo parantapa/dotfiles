@@ -103,8 +103,8 @@ set backup
 
 set directory=~/.vim/tmp/swap//
 
-if filereadable($HOME_QUICKREFS . "/myspell.utf-8.add")
-    execute "set spellfile=" . $HOME_QUICKREFS . "/myspell.utf-8.add"
+if filereadable(expand("$HOME_QUICKREFS/myspell.utf-8.add"))
+    execute "set spellfile=" . expand("$HOME_QUICKREFS/myspell.utf-8.add")
 
     " The spell file may be updated outside of vim
     execute "silent mkspell! " . &spellfile
