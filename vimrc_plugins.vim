@@ -24,10 +24,11 @@ filetype plugin indent on
 if has("python")
 python << EOF
 import vim
+import os
 import sys
 
 if "_vim_path_" not in sys.path:
-    sys.path.append(vim.eval("$HOME . '/.vim/python2'"))
+    sys.path.append(os.path.join(os.environ("HOME"), ".vim/python2"))
 import pyvimrc
 EOF
 endif
