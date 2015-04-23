@@ -486,6 +486,8 @@ augroup ft_tex
     au Filetype tex let b:surround_98 = "\\textbf{\r}"
     au Filetype tex nnoremap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
     au Filetype tex setlocal formatoptions-=n
+    au Filetype tex setlocal iskeyword+=-
+
 augroup END
 
 
