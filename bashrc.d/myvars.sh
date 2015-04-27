@@ -1,7 +1,7 @@
 # Custom system specific variables
 # NOTE: these variables are in lower case and not exported
 
-MYVARS_FILE = "$HOME/.myvars.sh"
+MYVARS_FILE="$HOME/.myvars.sh"
 
 if [[ -r "$MYVARS_FILE" ]] ; then
     source "$MYVARS_FILE"
