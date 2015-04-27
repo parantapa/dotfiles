@@ -265,6 +265,22 @@ augroup end
     " Dont use Syntastic when exiting
     nnoremap :wq :au! syntastic<cr>:wq
 
+    " Get the current error-code from pylint
+    function! MySyntasticPylintCode()
+        let line = line(".")
+        let baloons = g:SyntasticLoclist.current().balloons()
+        if !has_key(baloons, line)
+            return ""
+        endif
+
+        let message = baloons[line]
+
+        let codergx = '\v\C^\[\zs[a-z\-]+\ze\]'
+        let code = matchstr(message, codergx)
+
+        return code
+    endfunction
+
 " Tabbing {{{2
 
     cnoreabbrev tab Tabularize /\V
