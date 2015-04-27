@@ -8,7 +8,7 @@ else
     dstdir="$HOME"
 fi
 
-dotfiles=(profile bash_logout bashrc
+dotfiles=(profile bash_logout
     vimrc tmux.conf gitconfig hgrc cvsignore
     ackrc ctags sqliterc psqlrc)
 
@@ -16,6 +16,11 @@ dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
     pylintrc latexmkrc bowerrc i3/config.global config/dunstrc)
 
 cd "$dstdir"
+
+# Dont overwrite bashrc
+if [[ ! -r .bashrc ]] ; then
+    \cp -i "$srcdir/bashrc" ".bashrc"
+fi
 
 [[ -d .vim ]]            || mkdir .vim
 [[ -d .vim/tmp ]]        || mkdir .vim/tmp
@@ -27,6 +32,7 @@ for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
 done
 ln -siT "$srcdir/profile" ".bash_profile"
+
 
 if [[ "$1" == "--extra" ]] ; then
     [ -d .i3 ]     || mkdir .i3
