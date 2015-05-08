@@ -9,7 +9,7 @@ else
 fi
 
 dotfiles=(profile bash_logout
-    vimrc tmux.conf gitconfig hgrc cvsignore
+    tmux.conf gitconfig hgrc cvsignore
     ackrc ctags sqliterc psqlrc)
 
 dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
@@ -20,6 +20,9 @@ cd "$dstdir"
 # Dont overwrite bashrc
 if [[ ! -r .bashrc ]] ; then
     \cp -i "$srcdir/bashrc" ".bashrc"
+fi
+if [[ ! -r .vimrc ]] ; then
+    \cp -i "$srcdir/vimrc" ".vimrc"
 fi
 
 [[ -d .vim ]]            || mkdir .vim
