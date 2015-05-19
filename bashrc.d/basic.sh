@@ -62,7 +62,7 @@ psu  () { psf -u $USER "$@" ; }
 topu () { top -u $USER "$@" ; }
 
 # GVim alias
-if [[ -n "$DISPLAY" ]] ; then
+if [[ -n "$DISPLAY" ]] && [[ "$DISPLAY" != "localhost:"* ]] ; then
     alias g=gvim
 else
     alias g=vim
@@ -71,7 +71,7 @@ fi
 # Add to path if not already exists
 # NOTE: don't expect path to be empty
 pathadd() {
-    if [[ ":$PATH:" != *":$1:"* ]]; then
+    if [[ ":$PATH:" != *":$1:"* ]] ; then
         PATH="$1:$PATH"
     fi
 }
