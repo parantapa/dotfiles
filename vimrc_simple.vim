@@ -67,8 +67,11 @@ set softtabstop=4
 set expandtab
 set textwidth=80
 set formatoptions=qrn1
-set colorcolumn=+1
 set shiftround
+
+if v:version >= 703
+    set colorcolumn=+1
+endif
 
 " Tab settings for different filetypes
 augroup ft_tab_settings
@@ -95,9 +98,11 @@ augroup END
 
 " Backups and Spell Files {{{1
 
-set undodir=~/.vim/tmp/undo//
-set undofile
-set undoreload=1000
+if v:version >= 703
+    set undodir=~/.vim/tmp/undo//
+    set undofile
+    set undoreload=1000
+endif
 
 set backupdir=~/.vim/tmp/backup//
 set backup
