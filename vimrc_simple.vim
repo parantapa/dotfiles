@@ -493,6 +493,7 @@ augroup ft_tex
     au Filetype tex nnoremap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
     au Filetype tex setlocal formatoptions-=n
     au Filetype tex setlocal iskeyword+=-
+    au Filetype tex setlocal iskeyword+=_
 
 augroup END
 
