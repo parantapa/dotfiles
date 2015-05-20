@@ -218,6 +218,7 @@ let g:ViewDoc_wordnet = function('s:ViewDoc_wordnet')
 command! -bar -bang -nargs=1 ViewDocWordnet
 	\ call ViewDoc('<bang>'=='' ? 'new' : 'doc', <f-args>, 'wordnet')
 cnoreabbrev wn ViewDocWordnet
+nnoremap <Leader>wn :ViewDocWordnet <C-r><C-w>
 
 augroup au_wordnet
     au!
