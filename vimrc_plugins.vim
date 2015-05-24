@@ -282,17 +282,20 @@ augroup end
         return code
     endfunction
 
-" Tabbing {{{2
+" Tabular {{{2
 
-    cnoreabbrev tab Tabularize /\V
+    cnoreabbrev tab Tabularize
+
+" QFEnter {{{2
+
+    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+    let g:qfenter_vopen_map = ['<C-V>']
+    let g:qfenter_hopen_map = ['<C-S>']
+    let g:qfenter_topen_map = ['<C-T>']
 
 " TagBar {{{2
 
     nnoremap <F8> :TagbarToggle<CR>
-
-" Rainbow Parenthesis {{{2
-
-    nnoremap <Leader>R :RainbowParenthesesToggleAll<CR>
 
 " Virtualenv {{{2
 
@@ -341,12 +344,6 @@ augroup end
 
     cnoreabbrev es UltiSnipsEdit
 
-" Marvim {{{2
-
-    let g:marvim_store = expand("$HOME_QUICKREFS/marvim")
-    let g:marvim_find_key = '<Leader>mf'
-    let g:marvim_store_key = '<Leader>ms'
-    let g:marvim_prefix = 0
 
 " NeoComplete {{{2
 
@@ -397,12 +394,6 @@ augroup end
 
     nnoremap <F9> :NeoCompleteToggle<CR>
 
-" QFEnter {{{2
-
-    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
-    let g:qfenter_vopen_map = ['<C-V>']
-    let g:qfenter_hopen_map = ['<C-S>']
-    let g:qfenter_topen_map = ['<C-T>']
 
 " Unite {{{2
 
@@ -451,13 +442,6 @@ augroup end
 
     nnoremap <C-P> :<C-u>Unite menu:index<CR>
 
-" Indent Guides {{{2
-
-    nnoremap <Leader>I :IndentGuidesToggle<CR>
-
-" EasyAlign {{{2
-
-    vmap <Enter> <Plug>(EasyAlign)
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup_extra
