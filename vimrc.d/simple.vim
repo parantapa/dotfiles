@@ -45,6 +45,12 @@ set fillchars=diff:@
 set backspace=indent,eol,start
 set showbreak=+++\  " add a space in the end
 
+" Use system clipboard as default register {{{1
+
+if has('xterm_clipboard')
+    set clipboard=unnamed
+endif
+
 " Wildmenu completion {{{1
 
 set wildmenu
@@ -109,12 +115,13 @@ set backup
 
 set directory=~/.vim/tmp/swap//
 
-if filereadable(expand("$HOME_QUICKREFS/myspell.utf-8.add"))
-    execute "set spellfile=" . expand("$HOME_QUICKREFS/myspell.utf-8.add")
+let g:my_spellfile = expand("$HOME_QUICKREFS/myspell.utf-8.add")
+if filereadable(g:my_spellfile)
+    let &spellfile = g:my_spellfile
+    let &dictionary = g:my_spellfile
 
     " The spell file may be updated outside of vim
-    execute "silent mkspell! " . &spellfile
-    let &dictionary = &spellfile
+    execute "silent mkspell! " . g:my_spellfile
 endif
 set spelllang=en
 
@@ -138,22 +145,17 @@ augroup ft_statuslinecolor
     au InsertLeave * hi StatusLine ctermfg=130 guifg=#CD5907
 augroup END
 
-set statusline=%f       " Path.
-set statusline+=%m      " Modified flag.
-set statusline+=%r      " Readonly flag.
-set statusline+=%w      " Preview window flag.
-
-set statusline+=%=                              " Right align.
-set statusline+=(
-set statusline+=%{&ff}                          " Format (unix/DOS).
-set statusline+=/
-set statusline+=%{strlen(&fenc)?&fenc:&enc}     " Encoding (utf-8).
-set statusline+=/
-set statusline+=%{&ft}                          " Type (python).
-set statusline+=)
-
+let g:my_statusline = []
+" Path, Modifed, Readonly, Preview
+call add(g:my_statusline, "%f%m%r%w")
+" Right align
+call add(g:my_statusline, "%=")
+" (Format/Encoding/Filetype)
+call add(g:my_statusline, "(%{&ff}/%{strlen(&fenc)?&fenc:&enc}/%{&ft})")
 " Line and column position and counts.
-set statusline+=\ (line\ %l\/%L,\ col\ %03c)
+call add(g:my_statusline, " (line %l/%L, col %03c)")
+
+let &statusline = join(g:my_statusline, "")
 
 " Searching and movement {{{1
 
@@ -276,7 +278,8 @@ function! GetModeScriptFname()
 
     " If repo modescript exists, return that next
     if executable("git")
-        let reporoot=Strip(system("git rev-parse --show-toplevel 2>/dev/null"))
+        let cmd = "git rev-parse --show-toplevel 2>/dev/null"
+        let reporoot = Strip(system(cmd))
         if len(reporoot) > 0
             let repo_modescript_fname = reporoot . "/" . g:modescript_fname
             if filereadable(repo_modescript_fname)
