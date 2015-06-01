@@ -1,7 +1,8 @@
 # Make virtualenv
 venv-make () {
     mkvirtualenv -p $(command -vp python2.7) $@
-    pip install -U setuptools pip
+    pip install -U pip
+    pip install -U setuptools
 }
 
 # Setup PyGTK in the current virtualenv
