@@ -54,6 +54,15 @@ URxvt*scrollstyle: plain
 ! diable IS0 14755 key cap mode (use to directly enter unicode)
 URxvt*iso14755: false
 
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
 ! Infinality settings
 Xft.antialias: 1
 Xft.autohint: 0
