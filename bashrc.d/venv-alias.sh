@@ -1,6 +1,11 @@
 # Make virtualenv
 venv-make () {
-    mkvirtualenv -p $(command -vp python2.7) $@
+    if [[ -z "$@" ]] && [[ -e .venv ]] ; then
+        mkvirtualenv -p "$(command -vp python2.7)" "$(< .venv)"
+    else
+        mkvirtualenv -p "$(command -vp python2.7)" "$@"
+    fi
+
     pip install -U pip
     pip install -U setuptools
 }
