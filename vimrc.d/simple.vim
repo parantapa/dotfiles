@@ -123,7 +123,7 @@ if filereadable(g:my_spellfile)
     " The spell file may be updated outside of vim
     execute "silent mkspell! " . g:my_spellfile
 endif
-set spelllang=en
+set spelllang=en_us
 
 " Leader {{{1
 
@@ -158,10 +158,6 @@ call add(g:my_statusline, " (line %l/%L, col %03c)")
 let &statusline = join(g:my_statusline, "")
 
 " Searching and movement {{{1
-
-" Use plain text match case search by default.
-nnoremap / /\V
-vnoremap / /\V
 
 set ignorecase
 set smartcase
@@ -199,12 +195,6 @@ nnoremap [w :cprev<CR>
 nnoremap ]]w :cfirst<CR>
 nnoremap [[w :clast<CR>
 
-" Hitting parenthesis is hard
-noremap } )
-noremap { (
-noremap \] }
-noremap \[ {
-
 " Search for Visually selected text with * {{{1
 " http://vim.wikia.com/wiki/VimTip171
 
@@ -230,7 +220,7 @@ set foldmethod=marker
 nnoremap <Space> za
 vnoremap <Space> za
 
-function! ToggleFolding()
+function! FoldToggle()
     if &foldenable == 1
         normal zRzn
     else
@@ -241,8 +231,12 @@ endfunction
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
 " nnoremap zO zCzO
+command! -nargs=0 FoldToggle :call FoldToggle()<CR>
+cnoreabbrev ft FoldToggle
 
-nnoremap <Leader>z :call ToggleFolding()<CR>
+" Default completion {{{1
+
+set complete=.,w,b,u,t,i,k
 
 " DiffOrig {{{1
 
@@ -263,66 +257,8 @@ command! DiffOrig
 " Strip {{{1
 
 function! Strip(input_string)
-    return substitute(a:input_string, '\v^[ \t\n\r]*(.{-})[ \t\n\r]*$', '\1', '')
+    return substitute(a:input_string, '\v\C^[ \t\n\r]*(.{-})[ \t\n\r]*$', '\1', '')
 endfunction
-
-" Modescript {{{1
-
-let g:modescript_fname = ".modescript.vim"
-
-function! GetModeScriptFname()
-    " If local modescript exists, return that first
-    if filereadable(g:modescript_fname)
-        return  g:modescript_fname
-    endif
-
-    " If repo modescript exists, return that next
-    if executable("git")
-        let cmd = "git rev-parse --show-toplevel 2>/dev/null"
-        let reporoot = Strip(system(cmd))
-        if len(reporoot) > 0
-            let repo_modescript_fname = reporoot . "/" . g:modescript_fname
-            if filereadable(repo_modescript_fname)
-                return repo_modescript_fname
-            endif
-        endif
-    endif
-
-    return g:modescript_fname
-endfunction
-
-function! LoadModeScript()
-    let fname = GetModeScriptFname()
-    if filereadable(fname)
-        exe "source " . fname
-    endif
-
-    " NOTE: Changing built in command
-    command! -nargs=0 Mk execute g:makecmd
-    command! -nargs=0 Mk1 execute g:makecmd1
-    command! -nargs=0 Mk2 execute g:makecmd2
-    command! -nargs=0 Mk3 execute g:makecmd3
-    command! -nargs=0 Mk4 execute g:makecmd4
-    command! -nargs=0 Mk5 execute g:makecmd5
-endfunction
-command! -nargs=0 LoadModeScript call LoadModeScript()
-
-augroup ft_modescript
-    au!
-
-    autocmd BufReadPost,BufNewFile * LoadModeScript
-    exe "autocmd BufWritePost " . g:modescript_fname . " LoadModeScript"
-
-    " Redefine mk with abbrev
-    " I dont use mk[exrc]
-    cnoreabbrev mk Mk
-    cnoreabbrev mk1 Mk1
-    cnoreabbrev mk2 Mk2
-    cnoreabbrev mk3 Mk3
-    cnoreabbrev mk4 Mk4
-    cnoreabbrev mk5 Mk5
-
-augroup END
 
 " Convenience mappings {{{1
 
@@ -330,16 +266,10 @@ augroup END
 nnoremap Q gq
 
 " Better shortcut for copy the rest of the line
-nnoremap Y y$
+nnoremap Y yg_
 
 " Clean whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-
-" Substitute
-nnoremap <Leader>s :%s/\V
-
-" Open a new file
-nnoremap <Leader>n :edit <C-r>=expand('<cfile>')<CR>
 
 " Emacs bindings in command line mode
 cnoremap <C-a> <Home>
@@ -347,9 +277,6 @@ cnoremap <C-e> <End>
 
 " Sudo to write
 cnoremap w!! set buftype=nowrite <bar> w !sudo tee % >/dev/null
-
-" Toggle paste
-set pastetoggle=<F6>
 
 " Toggle spell
 nnoremap <F3> :setlocal spell!<CR>
@@ -404,7 +331,6 @@ cnoreabbrev ev edit <C-r>=$MYVIMRC<CR>
 cnoreabbrev evs edit <C-r>=$HOME_DOTFILES<CR>/vimrc_simple.vim
 cnoreabbrev evp edit <C-r>=$HOME_DOTFILES<CR>/vimrc_plugins.vim
 cnoreabbrev et edit <C-r>=$HOME<CR>/.tmux.conf
-cnoreabbrev em edit <C-r>=GetModeScriptFname()<CR>
 
 if !exists("*ReloadConfigs")
     function! ReloadConfigs()
@@ -550,6 +476,7 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile bashrc_* setlocal ft=sh
 
-    autocmd BufReadPost,BufNewFile *.blog call TextEnableCodeSnip("yaml", '/\v%^/', '/\V.../', "yaml")
+    autocmd BufReadPost,BufNewFile *.blog
+        \ call TextEnableCodeSnip("yaml", '/\v%^/', '/\V.../', "yaml")
 augroup END
 
