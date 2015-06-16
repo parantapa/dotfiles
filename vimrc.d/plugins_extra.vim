@@ -63,8 +63,6 @@ inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
 "     return !col || getline('.')[col - 1]  =~ '\s'
 " endfunction
 
-nnoremap <F9> :NeoCompleteToggle<CR>
-
 " Unite {{{2
 
 let g:unite_source_history_yank_enable = 1
@@ -111,5 +109,3 @@ let g:unite_source_menu_menus.index.command_candidates = {
     \ }
 
 nnoremap <C-P> :<C-u>Unite menu:index<CR>
-
-
