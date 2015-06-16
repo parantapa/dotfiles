@@ -159,3 +159,63 @@ augroup ft_setup_custom
     au BufEnter bookmarks.yaml setlocal foldtext=PyCall('bookmark_fold_text',
         \ v:foldstart, v:foldend, v:foldlevel)
 augroup END
+
+" Modescript {{{1
+
+let g:modescript_fname = ".modescript.vim"
+
+function! GetModeScriptFname()
+    " If local modescript exists, return that first
+    if filereadable(g:modescript_fname)
+        return  g:modescript_fname
+    endif
+
+    " If repo modescript exists, return that next
+    if executable("git")
+        let cmd = "git rev-parse --show-toplevel 2>/dev/null"
+        let reporoot = Strip(system(cmd))
+        if len(reporoot) > 0
+            let repo_modescript_fname = reporoot . "/" . g:modescript_fname
+            if filereadable(repo_modescript_fname)
+                return repo_modescript_fname
+            endif
+        endif
+    endif
+
+    return g:modescript_fname
+endfunction
+
+function! LoadModeScript()
+    let fname = GetModeScriptFname()
+    if filereadable(fname)
+        exe "source " . fname
+    endif
+
+    " NOTE: Changing built in command
+    command! -nargs=0 Mk execute g:makecmd
+    command! -nargs=0 Mk1 execute g:makecmd1
+    command! -nargs=0 Mk2 execute g:makecmd2
+    command! -nargs=0 Mk3 execute g:makecmd3
+    command! -nargs=0 Mk4 execute g:makecmd4
+    command! -nargs=0 Mk5 execute g:makecmd5
+endfunction
+command! -nargs=0 LoadModeScript call LoadModeScript()
+
+augroup ft_modescript
+    au!
+
+    autocmd BufReadPost,BufNewFile * LoadModeScript
+    exe "autocmd BufWritePost " . g:modescript_fname . " LoadModeScript"
+
+    " Redefine mk with abbrev
+    " I dont use mk[exrc]
+    cnoreabbrev mk Mk
+    cnoreabbrev mk1 Mk1
+    cnoreabbrev mk2 Mk2
+    cnoreabbrev mk3 Mk3
+    cnoreabbrev mk4 Mk4
+    cnoreabbrev mk5 Mk5
+
+augroup END
+
+cnoreabbrev em edit <C-r>=GetModeScriptFname()<CR>
