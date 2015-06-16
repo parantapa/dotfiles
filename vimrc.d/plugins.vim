@@ -112,7 +112,7 @@ augroup end
 
 " TagBar {{{2
 
-    nnoremap <F8> :TagbarToggle<CR>
+    cnoreabbrev tt TagbarToggle
 
 " Virtualenv {{{2
 
@@ -129,7 +129,7 @@ augroup end
     let g:slime_no_mappings = 1
 
     function! SlimeSendText(text)
-        execute "SlimeSend1 " . a:text
+        execute "SlimeSend1 '" . a:text . "'"
     endfunction
 
     nmap <Leader>v <Plug>SlimeMotionSend
@@ -148,3 +148,6 @@ augroup end
 
     let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
 
+" RainbowParentheses {{{2
+
+    cnoreabbrev rpt RainbowParenthesesToggle
