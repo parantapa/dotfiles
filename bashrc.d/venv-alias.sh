@@ -5,9 +5,6 @@ venv-make () {
     else
         mkvirtualenv -p "$(command -vp python2.7)" "$@"
     fi
-
-    pip install -U pip
-    pip install -U setuptools
 }
 
 # Setup PyGTK in the current virtualenv
@@ -34,7 +31,7 @@ venv-install-pygtk () {
 # Install pypb in the current virtualenv
 # Assume the pypb git repo is in ~/workspace
 venv-install-pypb () {
-    pushd $HOME/workspace/pypb
+    pushd $HOME/workspace/mytoolkit/pypb/
     pip install -r req.txt
     add2virtualenv .
     popd
