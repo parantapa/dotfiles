@@ -5,8 +5,7 @@ alias gs="git status"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 alias gc="git commit"
-alias gca="git commit -a"
-alias gc.="git commit -a -m ."
+alias gc.="git commit -m ."
 
 alias gclone="git clone"
 alias gpull="git pull"
