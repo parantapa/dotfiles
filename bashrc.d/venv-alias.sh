@@ -5,6 +5,9 @@ venv-make () {
     else
         mkvirtualenv -p "$(command -vp python2.7)" "$@"
     fi
+
+    pip install -U pip
+    pip install -U setuptools
 }
 
 # Setup PyGTK in the current virtualenv
@@ -28,20 +31,11 @@ venv-install-pygtk () {
     cd -
 }
 
-# Install pypb in the current virtualenv
-# Assume the pypb git repo is in ~/workspace
-venv-install-pypb () {
-    pushd $HOME/workspace/mytoolkit/pypb/
-    pip install -r req.txt
-    add2virtualenv .
-    popd
-}
-
 # Upgrade all packages installed in virtualenv
 # http://stackoverflow.com/questions/2720014/upgrading-all-packages-with-pip
 venv-upgrade-all () {
     pip freeze --local | \
-    \grep -v "^\-e" | \
-    cut -d = -f 1  | \
-    xargs pip install -U
+        \grep -v "^\-e" | \
+        cut -d = -f 1  | \
+        xargs pip install -U
 }
