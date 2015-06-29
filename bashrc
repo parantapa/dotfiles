@@ -15,7 +15,6 @@ source "$HOME_DOTFILES/bashrc.d/dotfiles.sh"
 # source "$HOME_DOTFILES/bashrc.d/misc.sh"
 
 # source "$HOME_DOTFILES/bashrc.d/auto-switch-venv.sh"
-# source "$HOME_DOTFILES/bashrc.d/git-commit-happy.sh"
 # source "$HOME_DOTFILES/bashrc.d/kgp-proxies.sh"
 # source "$HOME_DOTFILES/bashrc.d/lang-path.sh"
 
