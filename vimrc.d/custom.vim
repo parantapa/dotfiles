@@ -89,7 +89,7 @@ cnoreabbrev ou OpenUrl
 nnoremap <leader>ou :OpenUrl <C-r>=ExtractUrl(0)<CR>
 vnoremap <leader>ou :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
 
-" Search and Open PDFs in SDOCS with Evince {{{1
+" Search and Open PDFs in SDOCS {{{1
 
 function! OpenPdf(keyword)
     let cmd = printf("find %s -name *%s*.pdf", fnameescape($HOME_SDOCS), shellescape(a:keyword))
