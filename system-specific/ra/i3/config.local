@@ -2,26 +2,26 @@ assign [class="Skype"] 6
 assign [class="Xchat"] 6
 assign [title="Oracle VM VirtualBox"] 5
 
-workspace 7 output DVI-1-0
-workspace 8 output DVI-1-0
-workspace 9 output DVI-1-0
+workspace 7 output DVI-0
+workspace 8 output DVI-0
+workspace 9 output DVI-0
 
-workspace 1 output VGA1
-workspace 2 output VGA1
-workspace 3 output VGA1
-workspace 4 output VGA1
-workspace 5 output VGA1
-workspace 6 output VGA1
+workspace 1 output VGA-0
+workspace 2 output VGA-0
+workspace 3 output VGA-0
+workspace 4 output VGA-0
+workspace 5 output VGA-0
+workspace 6 output VGA-0
 
 bar {
         status_command /home/parantapa/pbapps/i3status/i3status-ra1.sh
-        output VGA1
-        tray_output VGA1
+        output VGA-0
+        tray_output VGA-0
 }
 
 bar {
         status_command git-multi-status-loop
-        output DVI-1-0
+        output DVI-0
         tray_output none
 }
 
