@@ -92,20 +92,7 @@ vnoremap <leader>ou :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
 " Search and Open PDFs in SDOCS {{{1
 
 function! OpenPdf(keyword)
-    let cmd = printf("find %s -name *%s*.pdf", fnameescape($HOME_SDOCS), shellescape(a:keyword))
-    let fnames_str = system(cmd)
-    let fnames = split(fnames_str, "\n", 0)
-    let fnames = map(fnames, 'Strip(v:val)')
-
-    if len(fnames) >= 1
-        echom printf("Found %d files ...", len(fnames))
-        echom printf("Opening '%s' ...", fnames[0])
-
-        let cmd = printf("evince %s 2>/dev/null &", fnameescape(fnames[0]))
-        call system(cmd)
-    else
-        echom printf("No pdf files found matching '%s'", a:keyword)
-    endif
+    call system("find-pdf " . shellescape(a:keyword) . " 1 &")
 endfunction
 
 command! -nargs=1 OpenPdf call OpenPdf(<q-args>)

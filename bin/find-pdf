@@ -1,0 +1,86 @@
+#!/usr/bin/env python2.7
+# encoding: utf-8
+"""
+Find an open a pdf file in $HOME_SDOCS.
+"""
+
+from __future__ import print_function
+
+import os
+import sys
+from subprocess import check_output, CalledProcessError
+
+def find(sdocs, keyword):
+    """
+    Return the list of files with the given keyword.
+    """
+
+    cmd = "find '%s' -iname '*%s*'" % (sdocs, keyword)
+    try:
+        out = check_output(cmd, shell=True)
+    except CalledProcessError:
+        return []
+
+    fnames = out.strip().split("\n")
+    fnames = [x.strip() for x in fnames]
+    fnames = [x for x in fnames if x]
+    return fnames
+
+def main_show(sdocs, keyword):
+    """
+    Show the search results.
+    """
+
+    fnames = find(sdocs, keyword)
+    if not fnames:
+        print("No files found for pattern:", keyword)
+        return
+
+    for idx, line in enumerate(fnames, 1):
+        print(idx, line)
+
+def main_open(sdocs, keyword, num):
+    """
+    Open the given file.
+    """
+
+    fnames = find(sdocs, keyword)
+    if not fnames:
+        print("No files found for pattern:", keyword)
+        return
+
+    try:
+        fname = fnames[num - 1]
+    except IndexError:
+        print("Invalid index:", num)
+        print("Max index:", len(fnames))
+        return
+
+    fname = fname.strip()
+    cmd = "evince '%s' 1>/dev/null 2>&1 &" % fname
+    check_output(cmd, shell=True)
+
+def main():
+    sdocs = os.environ.get("HOME_SDOCS", None)
+    if sdocs is None or not os.path.isdir(sdocs):
+        print("Cant find sdocs directory!")
+        return
+
+    if len(sys.argv) == 2:
+        keyword = sys.argv[1]
+        main_show(sdocs, keyword)
+    elif len(sys.argv) == 3:
+        keyword = sys.argv[1]
+        try:
+            num = int(sys.argv[2])
+        except ValueError:
+            print("Invalid index:", sys.argv[2])
+            return
+
+        main_open(sdocs, keyword, num)
+    else:
+        print("Usage: find-pdf PATTERN [N]")
+
+if __name__ == '__main__':
+    main()
+
