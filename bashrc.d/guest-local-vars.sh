@@ -1,9 +1,5 @@
 # Provide a local install space
-if [[ $(hostname) == "srv-76-"* ]] ; then
-    export LOCAL="$HOME/.pb-local/thor"
-else
-    export LOCAL="$HOME/.pb-local/$(hostname)"
-fi
+export LOCAL="$HOME/guest-usr-local"
 mkdir -p "$LOCAL"
 
 # So that gcc can find stuff at compile time
