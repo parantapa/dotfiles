@@ -77,15 +77,22 @@ augroup end
 " Syntastic {{{2
 
     let g:syntastic_enable_signs = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_aggregate_errors = 1
+    let g:syntastic_id_checkers = 1
+
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
     let g:syntastic_python_checkers = ['pylint']
     let g:syntastic_python_pylint_exec = '/usr/bin/pylint2'
     let g:syntastic_javascript_checkers = ['jslint']
     let g:syntastic_javascript_jslint_conf = "--sloppy"
 
-    " Dont use Syntastic when exiting
-    nnoremap :wq :au! syntastic<cr>:wq
+    let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": ["python", "javascript"],
+        \ "passive_filetypes": [] }
 
     " Get the current error-code from pylint
     function! MySyntasticPylintCode()
