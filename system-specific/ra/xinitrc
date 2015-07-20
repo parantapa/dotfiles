@@ -24,9 +24,7 @@ eval `ssh-agent -s -t 16h`
 dunst &
 nitrogen --restore &
 xscreensaver -no-splash &
-mpd
 urxvtd -q -f -o
-clipit 2>/dev/null &
 
 # exec gnome-session
 # exec startkde

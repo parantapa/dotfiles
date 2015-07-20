@@ -156,7 +156,7 @@ bindsym $mod+d exec dmenu-wrap -run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec --no-startup-id "i3exit"
+bindsym $mod+Shift+q exit
 
 bindsym Control+Mod1+bracketleft exec "urxvtc"
 bindsym Control+Mod1+bracketright exec "firefox"

@@ -25,14 +25,17 @@ bar {
         tray_output none
 }
 
+exec clipit 2>/dev/null
 exec keepassx
-exec ario
 exec skype
+exec mute-on-screensaver
 exec /home/parantapa/pbapps/sys-state/sys-state.sh
 exec /home/parantapa/pbapps/reddit-bg/reddit-bg.sh
+exec mpd --no-daemon
+exec ario
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
 bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle"
 
-bindsym Control+Mod1+Delete exec --no-startup-id "sound-ctrl mute ; xscreensaver-command --lock"
+bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
