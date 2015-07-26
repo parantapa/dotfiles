@@ -7,8 +7,7 @@ else
 	dstdir="$HOME"
 fi
 
-dotfiles=(xinitrc bashrc_local i3/config.local
-    mpdconf config/ario/options.xml)
+dotfiles=(xinitrc i3/config.local mpdconf config/ario/options.xml)
 
 mkdir -p ~/.mpd/playlists
 touch ~/.mpd/{database,log,pid,state,sticker.sql}

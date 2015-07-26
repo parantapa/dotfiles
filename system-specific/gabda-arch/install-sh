@@ -7,11 +7,7 @@ else
 	dstdir="$HOME"
 fi
 
-dotfiles=(xinitrc bashrc_local i3/config.local i3status.conf
-    mpdconf config/ario/options.xml)
-
-mkdir -p ~/.mpd/playlists
-touch ~/.mpd/{database,log,pid,state,sticker.sql}
+dotfiles=(xinitrc i3/config.local)
 
 cd "$dstdir"
 for file in "${dotfiles[@]}" ; do
