@@ -136,7 +136,7 @@ augroup end
     let g:slime_no_mappings = 1
 
     function! SlimeSendText(text)
-        execute "SlimeSend1 '" . a:text . "'"
+        execute "SlimeSend1 " . a:text
     endfunction
 
     nmap <Leader>v <Plug>SlimeMotionSend
