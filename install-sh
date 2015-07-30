@@ -13,7 +13,7 @@ dotfiles=(profile bash_logout
     ackrc ctags sqliterc psqlrc)
 
 dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
-    pylintrc latexmkrc bowerrc i3/config.global config/dunstrc)
+    pylintrc bowerrc i3/config.global config/dunstrc)
 
 cd "$dstdir"
 
