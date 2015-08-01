@@ -553,8 +553,8 @@ if s:extfname == "dtx"
   syn match texComment		"^%\+"		contains=@texCommentGroup
 else
   " Highlight \if 0 - \fi parts as comments
-  syn region  texComment  start="\v^\\if 0" end="\v^\\fi" fold
-  syn region  texComment  start="\v^\\if\{0\}" end="\v^\\fi" fold
+  syn region  texComment  start="\v^\\if 0" end="\v^\\fi>" fold
+  syn region  texComment  start="\v^\\if\{0\}" end="\v^\\fi>" fold
   if g:tex_fold_enabled
    " allows syntax-folding of 2 or more contiguous comment lines
    " single-line comments are not folded
