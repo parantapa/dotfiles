@@ -70,6 +70,9 @@ my_titlebar () {
         xterm*|rxvt*)
             echo -ne "\033]0;${USER}@${HOSTNAME}: $(basename ${PWD})\007"
             ;;
+        screen*)
+            echo -ne "\033]2;${USER}@${HOSTNAME}: $(basename ${PWD})\033\\"
+            ;;
         *)
             ;;
     esac
