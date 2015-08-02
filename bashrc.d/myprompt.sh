@@ -65,10 +65,21 @@ my_ps1 () {
     printf '\\n%s\\$ %s' "${_mycolor_txtpur}" "${_mycolor_txtrst}"
 }
 
+my_titlebar () {
+    case "$TERM" in
+        xterm*|rxvt*)
+            echo -ne "\033]0;${USER}@${HOSTNAME}: $(basename ${PWD})\007"
+            ;;
+        *)
+            ;;
+    esac
+}
+
 prompt_fn () {
     local ret="$1"
 
     PS1="$(my_ps1 $ret)"
+    my_titlebar
     history -a
 }
 

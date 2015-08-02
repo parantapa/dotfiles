@@ -39,6 +39,7 @@ prompt_fn2 () {
 
     auto_switch_venv
     PS1="$(my_ps1 $ret)"
+    my_titlebar
     history -a
 }
 
