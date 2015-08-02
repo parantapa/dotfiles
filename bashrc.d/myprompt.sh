@@ -81,11 +81,6 @@ my_titlebar () {
         *)
             ;;
     esac
-
-    # For the tmux set the title on pane_title and window name
-    if [[ -n "$TMUX" ]] ; then
-        echo -ne "\033k${title}\033\\"
-    fi
 }
 
 prompt_fn () {
