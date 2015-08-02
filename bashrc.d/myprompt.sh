@@ -68,7 +68,11 @@ my_ps1 () {
 my_titlebar () {
     local title
 
-    title="${HOSTNAME}: $(basename ${PWD})"
+    if [[ "${PWD}" == "${HOME}" ]] ; then
+        title="${HOSTNAME}: ~"
+    else
+        title="${HOSTNAME}: $(basename ${PWD})"
+    fi
 
     # For xterm and urxvt set the title directly
     case "$TERM" in
