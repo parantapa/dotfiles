@@ -66,16 +66,24 @@ my_ps1 () {
 }
 
 my_titlebar () {
+    local title
+
+    title="${HOSTNAME}: $(basename ${PWD})"
+
+    # For xterm and urxvt set the title directly
     case "$TERM" in
         xterm*|rxvt*)
-            echo -ne "\033]0;${USER}@${HOSTNAME}: $(basename ${PWD})\007"
-            ;;
-        screen*)
-            echo -ne "\033]2;${USER}@${HOSTNAME}: $(basename ${PWD})\033\\"
+            echo -ne "\033]0;${title}\007"
             ;;
         *)
             ;;
     esac
+
+    # For the tmux set the title on pane_title and window name
+    if [[ -n "$TMUX" ]] ; then
+        echo -ne "\033]2;${title}\033\\"
+        echo -ne "\033k${title}\033\\"
+    fi
 }
 
 prompt_fn () {
