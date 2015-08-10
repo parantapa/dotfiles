@@ -5,6 +5,7 @@ assign [title="Oracle VM VirtualBox"] 5
 workspace 7 output DVI-0
 workspace 8 output DVI-0
 workspace 9 output DVI-0
+workspace 10 output DVI-0
 
 workspace 1 output VGA-0
 workspace 2 output VGA-0
