@@ -1,2 +1,2 @@
-set guifont=Inconsolata\ Medium\ 12
+set guifont=Inconsolata\ 12
 set guioptions=aegit
