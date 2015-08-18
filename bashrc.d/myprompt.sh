@@ -71,7 +71,7 @@ my_titlebar () {
     if [[ "${PWD}" == "${HOME}" ]] ; then
         title="${HOSTNAME}: ~"
     else
-        title="${HOSTNAME}: $(basename ${PWD})"
+        title="${HOSTNAME}: $( basename "${PWD}" )"
     fi
 
     # For xterm and urxvt set the title directly
