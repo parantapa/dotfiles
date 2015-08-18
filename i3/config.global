@@ -170,9 +170,6 @@ bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
 bindsym Control+Mod1+Down  exec --no-startup-id "mpc toggle"
 bindsym Control+Mod1+Up    exec --no-startup-id "mpc stop"
 
-bindsym Control+Mod1+0 exec "clip-copy-dmenu"
-bindsym Control+Mod1+9 exec "clip-copy-dmenu"
-
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
 for_window [class="R_x11"] floating enable

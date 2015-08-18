@@ -47,8 +47,8 @@ set showbreak=+++\  " add a space in the end
 
 " Use system clipboard as default register {{{1
 
-if has('xterm_clipboard')
-    set clipboard=unnamed
+if has('unnamedplus')
+    set clipboard=unnamedplus
 endif
 
 " Wildmenu completion {{{1
