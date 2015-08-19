@@ -165,6 +165,8 @@ bindsym Control+Mod1+o exec "ario"
 bindsym Control+Mod1+p exec "thunar"
 bindsym Control+Mod1+backslash exec "repo-edit ~/quickrefs index.md"
 
+bindsym Control+Mod1+9 exec "typeout-clipboard"
+
 bindsym Control+Mod1+Left  exec --no-startup-id "mpc prev"
 bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
 bindsym Control+Mod1+Down  exec --no-startup-id "mpc toggle"
