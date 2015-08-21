@@ -117,6 +117,19 @@ cnoreabbrev oc OpenCite
 nnoremap <leader>oc :OpenCite <C-r>=ExtractCite(0)<CR>
 vnoremap <leader>oc :<C-u>OpenCite <C-r>=ExtractCite(1)<CR>
 
+" Perform a websearch {{{1
+
+function! OpenSearch(xargs)
+    echom a:xargs
+    echo system("websearch " . shellescape(a:xargs))
+endfunction
+
+command! -nargs=1 OpenSearch call OpenSearch(<q-args>)
+cnoreabbrev os OpenSearch
+
+nnoremap <leader>os :OpenSearch <C-r><C-w> g
+vnoremap <leader>os "zygv:<C-u>OpenSearch <C-r>z g
+
 " External Filters {{{1
 
 " Replace current dl.acm.org paper url with bib and abstract
