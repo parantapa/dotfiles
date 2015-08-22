@@ -8,8 +8,9 @@ from __future__ import division, print_function
 
 __author__ = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
+import os
 import sys
-from subprocess import call
+from subprocess import Popen
 from urllib import quote_plus
 
 SEARCH_BASE = {
@@ -21,15 +22,12 @@ SEARCH_BASE = {
     "gs": "https://scholar.google.com/scholar?q={0}"
 }
 
-BROWSER_CMD = "firefox '{0}' >/dev/null 2>&1 &"
+BROWSER_CMD = "firefox"
 
 def main():
-    print(sys.argv)
-
     if len(sys.argv) < 2:
         print("Usage: websearch TERMS ENGINE")
         sys.exit(1)
-
 
     if len(sys.argv) == 2:
         argv = sys.argv[1].split()
@@ -46,9 +44,10 @@ def main():
     terms = quote_plus(terms)
 
     url = SEARCH_BASE[engine].format(terms)
-    cmd = BROWSER_CMD.format(url)
+    cmd = [BROWSER_CMD, url]
 
-    call(cmd, shell=True)
+    with open(os.devnull, "wb") as null:
+        Popen(cmd, stdout=null, stderr=null)
 
 if __name__ == '__main__':
     main()

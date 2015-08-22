@@ -6,11 +6,11 @@ Watch xscreensaver and turn off volume when on.
 
 from __future__ import print_function
 
-from subprocess import Popen, PIPE, STDOUT, call
+from subprocess import Popen, PIPE, STDOUT
 
 def main():
-    cmd = "xscreensaver-command -watch"
-    proc = Popen(cmd, shell=True, stdout=PIPE, stderr=STDOUT)
+    cmd = ["xscreensaver-command", "-watch"]
+    proc = Popen(cmd, stdout=PIPE, stderr=STDOUT)
 
     # NOTE: As of today (July 20, 2015) we can't use
     # ``for line in proc.stdout'' here because of the following bug
@@ -19,8 +19,8 @@ def main():
         line = line.strip()
 
         if line.startswith("BLANK") or line.startswith("LOCK"):
-            cmd = "sound-ctrl mute"
-            call(cmd, shell=True)
+            cmd = ["sound-ctrl", "mute"]
+            Popen(cmd).wait()
 
 if __name__ == '__main__':
     main()

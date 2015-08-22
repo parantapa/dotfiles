@@ -250,11 +250,11 @@ def get_clipboard():
     Get the text from the clipboard.
     """
 
-    cmd = "xsel -o -b"
+    cmd = ["xsel", "-o", "-b"]
     try:
-        proc = Popen(cmd, shell=True, stdout=PIPE)
-        text = proc.stdout.read().decode("utf-8")
-        proc.wait()
+        proc = Popen(cmd, stdout=PIPE)
+        text, _ = proc.communicate()
+        text = text.decode("utf-8")
     except OSError as e:
         print("Error getting clipboard contnet.")
         print("OSError:", e)
@@ -271,9 +271,9 @@ def typeout(text):
     keysyms = " ".join(keysyms)
 
     cmd = "xdotool getwindowfocus key " + keysyms
+    cmd = cmd.split()
     try:
-        proc = Popen(cmd, shell=True)
-        proc.wait()
+        Popen(cmd).wait()
     except OSError as e:
         print("Error running xdotool for typeout")
         print("OSError:", e)
