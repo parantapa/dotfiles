@@ -237,6 +237,7 @@ cnoreabbrev ft FoldToggle
 " Default completion {{{1
 
 set complete=.,w,b,u,t,i,k
+set completeopt=menuone
 
 " DiffOrig {{{1
 
