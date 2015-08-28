@@ -275,6 +275,7 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " Emacs bindings in command line mode
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+cnoremap <C-k> <C-\>estrpart(getcmdline(), 0, getcmdpos()-1)<CR>
 
 " Sudo to write
 cnoremap w!! set buftype=nowrite <bar> w !sudo tee % >/dev/null
