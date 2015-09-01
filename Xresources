@@ -71,3 +71,41 @@ Xft.hinting: 1
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
+
+! Colorscheme Molokai
+! special
+URxvt.foreground:   #f8f8f2
+URxvt.background:   #1b1d1e
+URxvt.cursorColor:  #f8f8f2
+
+! black
+*.color0:       #1b1d1e
+*.color8:       #7e8e91
+
+! red
+*.color1:       #f92672
+*.color9:       #f92672
+
+! green
+*.color2:       #a6e22e
+*.color10:      #a6e22e
+
+! yellow
+*.color3:       #fd971f
+*.color11:      #e6db74
+
+! blue
+*.color4:       #66d9ef
+*.color12:      #66d9ef
+
+! magenta
+*.color5:       #ae81ff
+*.color13:      #ae81ff
+
+! cyan
+*.color6:       #a1efe4
+*.color14:      #a1efe4
+
+! white
+*.color7:       #d2d2cd
+*.color15:      #f8f8f2

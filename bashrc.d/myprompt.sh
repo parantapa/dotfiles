@@ -55,7 +55,7 @@ my_ps1 () {
     else
         printf '%s:( %s %s- ' "${_mycolor_txtred}" "${ret}" "${_mycolor_txtpur}"
     fi
-    printf '%s%s%s ' "${_mycolor_txtcyn}" "$(date '+%F %T')" "${_mycolor_txtpur}"
+    printf '%s%s%s ' "${_mycolor_txtgrn}" "$(date '+%F %T')" "${_mycolor_txtpur}"
 
     type __git_ps1 >/dev/null 2>&1
     if [[ "$?" -eq 0 ]] ; then
