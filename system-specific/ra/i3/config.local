@@ -15,13 +15,13 @@ workspace 5 output VGA-0
 workspace 6 output VGA-0
 
 bar {
-        status_command /home/parantapa/pbapps/i3status/i3status.sh
+        status_command /home/parantapa/pbapps/i3status.sh
         output VGA-0
         tray_output VGA-0
 }
 
 bar {
-        status_command git-multi-status-loop
+        status_command /home/parantapa/pbapps/git-multi-status-loop.sh
         output DVI-0
         tray_output none
 }
@@ -29,11 +29,11 @@ bar {
 exec clipit 2>/dev/null
 exec keepassx
 exec skype
-exec mute-on-screensaver
-exec /home/parantapa/pbapps/sys-state/sys-state.sh
-exec /home/parantapa/pbapps/reddit-bg/reddit-bg.sh
 exec mpd --no-daemon
 exec ario
+exec /home/parantapa/pbapps/mute-on-screensaver.sh
+exec /home/parantapa/pbapps/sys-state.sh
+exec /home/parantapa/pbapps/reddit-bg.sh
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
