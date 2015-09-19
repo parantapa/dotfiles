@@ -105,7 +105,7 @@ vnoremap <leader>op :<C-u>OpenPdf <C-r>=ExtractCite(1)<CR>
 
 " Open Cite in sdocs-papers in Quickrefs
 function! OpenCite(keyword)
-    let cmd = 'vimgrep /\V\C%s/gj %s/sdocs-papers*.md'
+    let cmd = 'vimgrep /\V\c%s/gj %s/sdocs-papers*.md'
     let cmd = printf(cmd, a:keyword, fnameescape($HOME_QUICKREFS))
     silent! execute cmd
     execute "copen"
