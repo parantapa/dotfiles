@@ -27,9 +27,8 @@ URxvt*font: xft:Inconsolata:size=12:antialias=true:hinting=true,\
 URxvt*boldFont: xft:Inconsolata:bold:size=12:antialias=true:hinting=true,\
                 xft:DejaVu Sans Mono:bold:size=12:antialias=true:hinting=true
 
-URxvt.letterSpace: -1
+!URxvt.letterSpace: -1
 
-!
 ! Traditional fonts - a more traditional font setup in lieu of xft
 !URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
 !URxvt*boldFont:-*-courier-bold-r-normal-*-14-*-*-*-*-*-iso8859-1
@@ -39,8 +38,8 @@ URxvt.letterSpace: -1
 ! the following line to your ~/.bashrc ($HOME/.bashrc) file under
 ! the heading "# User specific aliases and functions":
 ! alias ls="ls -h --color=auto"
-URxvt*color4: RoyalBlue
-URxvt*color12: RoyalBlue
+!URxvt*color4: RoyalBlue
+!URxvt*color12: RoyalBlue
 
 ! scrollbar - true (default) or false
 URxvt*scrollBar: true
