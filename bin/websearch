@@ -15,8 +15,9 @@ from urllib import quote_plus
 
 SEARCH_BASE = {
     "g": "https://www.google.com/search?q={0}",
+    "t": "https://twitter.com/search?q={0}",
     "d": "http://dictionary.reference.com/browse/{0}",
-    "t": "http://www.thesaurus.com/browse/{0}",
+    "th": "http://www.thesaurus.com/browse/{0}",
     "ud": "http://www.urbandictionary.com/define.php?term={0}",
     "wa": "http://www.wolframalpha.com/input/?i={0}",
     "gs": "https://scholar.google.com/scholar?q={0}"
