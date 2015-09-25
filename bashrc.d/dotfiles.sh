@@ -9,9 +9,11 @@ alias pq="pprint-data pickle"
 alias yq="pprint-data yaml"
 alias jqx="pprint-data json"
 alias mq="pprint-data msgpack"
+alias nq="pprint-data numpy"
 
 alias pqi="prepl-data pickle"
 alias yqi="prepl-data yaml"
 alias jqi="prepl-data json"
 alias mqi="prepl-data msgpack"
+alias nqi="prepl-data numpy"
 

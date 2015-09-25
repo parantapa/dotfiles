@@ -92,6 +92,8 @@ def main():
         from json import load
     elif dtype == "msgpack":
         from msgpack import load
+    elif dtype == "numpy":
+        from numpy import load
     else:
         print("Unknown data type: ", dtype)
         sys.exit(1)
