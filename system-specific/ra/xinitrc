@@ -6,6 +6,7 @@
 
 # xrandr --setprovideroutputsource 1 0
 xrandr --output DVI-0 --auto --left-of VGA-0
+xrandr --output HDMI-0 --right-of VGA-0
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
