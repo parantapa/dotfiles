@@ -38,5 +38,6 @@ exec /home/parantapa/pbapps/reddit-bg.sh
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
 bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle"
+bindsym Control+Mod1+n      exec --no-startup-id /home/parantapa/pbapps/i3status-signal.sh
 
 bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
