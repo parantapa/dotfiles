@@ -143,6 +143,9 @@ augroup end
     vmap <Leader>v <Plug>SlimeRegionSend
     nmap <Leader>vv <Plug>SlimeLineSend
 
+    let g:slime_python_ipython = 0
+    command! -nargs=0 SlimePythonToggle let g:slime_python_ipython = (1 - g:slime_python_ipython) | echom "g:slime_python_ipython = " g:slime_python_ipython
+
 " Commentary {{{2
 
     let g:commentary_map_keys = 0
