@@ -60,7 +60,7 @@
     idle_threshold = 120
 
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    monitor = 2
 
     # Display notification on focused monitor. Possible modes are:
     # mouse: follow mouse pointer
@@ -114,7 +114,7 @@
 
 [frame]
     width = 3
-    color = "#aaaaaa"
+    color = "#293739"
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -138,18 +138,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#666666"
-    foreground = "#AAAAAA"
+    background = "#1b1d1e"
+    foreground = "#bebeba"
     timeout = 5
 
 [urgency_normal]
-    background = "#222222"
-    foreground = "#DDDDDD"
+    background = "#1b1d1e"
+    foreground = "#f8f8f2"
     timeout = 5
 
 [urgency_critical]
-    background = "#662222"
-    foreground = "#EEEEEE"
+    background = "#1b1d1e"
+    foreground = "#f92672"
     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules

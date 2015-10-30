@@ -4,10 +4,11 @@
 set -x
 
 DMENU_OPTS="-fn Inconsolata:14 -z -b -l 10 -p >"
+DMENU_COLORS='-nb #1b1d1e -nf #f8f8f2 -sb #293739 -sf #f8f8f2'
 
 if [[ "$1" == "-run" ]] ; then
     shift 1
-    exec dmenu_run $DMENU_OPTS "$@"
+    exec dmenu_run $DMENU_OPTS $DMENU_COLORS "$@"
 else
-    exec dmenu $DMENU_OPTS "$@"
+    exec dmenu $DMENU_OPTS $DMENU_COLORS "$@"
 fi
