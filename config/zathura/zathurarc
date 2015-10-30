@@ -1,0 +1,29 @@
+set default-bg                  "#1b1d1e"
+set default-fg                  "#f8f8f2"
+
+set statusbar-fg                "#9fa9a5"
+set statusbar-bg                "#1b1d1e"
+
+set inputbar-bg                 "#1b1d1e"
+set inputbar-fg                 "#f8f8f2"
+
+set notification-bg             "#1b1d1e"
+set notification-fg             "#f8f8f2"
+
+set notification-error-bg       "#1b1d1e"
+set notification-error-fg       "#f92672"
+
+set notification-warning-bg     "#1b1d1e"
+set notification-warning-fg     "#f8f8f2"
+
+set recolor-lightcolor          "#1b1d1e"
+set recolor-darkcolor           "#d2d2cd"
+set recolor                     "true"
+
+# setting recolor-keep true will keep any color your pdf has.
+# if it is false, it'll just be black and white
+set recolor-keephue             "true"
+
+set font Inconsolata\ 12
+
+
