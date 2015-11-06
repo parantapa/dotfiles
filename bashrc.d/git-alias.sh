@@ -49,29 +49,6 @@ gsclone () {
 alias gspull="git svn rebase"
 alias gspush="git svn dcommit"
 
-# Execute git svn pull in all the folders
-git-svn-rebase-all () {
-    set -x
-    for i in "$@" ; do
-        if [[ -d "$i/.git" ]] ; then
-            cd "$i"
-            git svn rebase
-            cd -
-        fi
-    done
-    set +x
-}
-
-# Execute git pull in master branch in all the folders
-git-pull-master-all () {
-    set -x
-    for i in "$@" ; do
-        if [[ -d "$i/.git" ]] || [[ -f "$i/.git" ]] ; then
-            cd "$i"
-            git checkout master
-            git pull
-            cd -
-        fi
-    done
-    set +x
+mkrepo_dotrepos () {
+    ssh dotrepos "git init --bare dotrepos/${1}.git"
 }
