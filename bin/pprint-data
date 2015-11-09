@@ -3,120 +3,63 @@
 Print the pickle/yaml/json/msgpack file from stdin to stdout.
 """
 
-import os
-import fcntl
-import termios
-import struct
+from __future__ import print_function
+
 import sys
-from pprint import pprint
+import json
 
-class AttrDict(dict):
-    """
-    Dict subclass with attribute access.
-    """
+def pprint(obj):
+    print(json.dumps(obj, indent=2, ensure_ascii=False))
 
-    def __getattr__(self, attr):
-        return self[attr]
+def process_yaml(fobj):
+    import yaml
+    pprint(yaml.load(fobj))
 
-class AttrList(list):
-    """
-    List subclass with attribute access.
-    """
+def process_pickle(fobj):
+    import cPickle
+    pprint(cPickle.load(fobj))
 
-    def __getattr__(self, attr):
-        attr = attr[1:]
-        return self[int(attr)]
+def process_json(fobj):
+    for line in fobj:
+        line = line.strip()
+        if line:
+            pprint(json.loads(line))
 
-def attr_convert(obj):
-    """
-    Convert the list/tuple/dict types to the attribute accessable types.
-    """
-
-    if isinstance(obj, list) or isinstance(obj, tuple):
-        return AttrList(attr_convert(x) for x in obj)
-    if isinstance(obj, dict):
-        return AttrDict((k, attr_convert(v)) for k, v in obj.iteritems())
-    return obj
-
-def ioctl_GWINSZ(fd):
-    """
-    Get IOCTL win size.
-    """
-
-    try:
-        cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
-        return cr
-    except:
-        return
-
-def get_terminal_size():
-    """
-    Get the size of the terminal.
-
-    Copied from:
-    https://stackoverflow.com/questions/566746/how-to-get-console-window-width-in-python
-    """
-
-    cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
-
-    if not cr:
-        try:
-            fd = os.open(os.ctermid(), os.O_RDONLY)
-            cr = ioctl_GWINSZ(fd)
-            os.close(fd)
-        except:
-            pass
-
-    if not cr:
-        env = os.environ
-        cr = (env.get('LINES', 25), env.get('COLUMNS', 80))
-
-    return int(cr[1]), int(cr[0])
+def process_msgpack(fobj):
+    import msgpack
+    unpacker = msgpack.Unpacker(fobj)
+    for obj in unpacker:
+        pprint(obj)
 
 def main():
-    if len(sys.argv) == 3:
-        dtype, fltr, fname = sys.argv[1], sys.argv[2], "-"
-    elif len(sys.argv) == 4:
-        _, dtype, fltr, fname = sys.argv
+    if len(sys.argv) == 2:
+        dtype, fname = sys.argv[1], "-"
+    elif len(sys.argv) == 3:
+        _, dtype, fname = sys.argv
     else:
-        print("pprint-data - Command line data processor")
-        print("Usage: pprint-data <dtype> <filter> [file]")
+        print("pprint-data - Pretty print data")
+        print("Usage: pprint-data <dtype> [file]")
         sys.exit(1)
 
-    # Select the proper load function
-    if dtype == "yaml":
-        from yaml import load
-    elif dtype == "pickle":
-        from cPickle import load
-    elif dtype == "json":
-        from json import load
-    elif dtype == "msgpack":
-        from msgpack import load
-    elif dtype == "numpy":
-        from numpy import load
-    else:
+    try:
+        process_fn = {
+            "yaml"    : process_yaml,
+            "pickle"  : process_pickle,
+            "json"    : process_json,
+            "msgpack" : process_msgpack
+        }[dtype]
+    except KeyError:
         print("Unknown data type: ", dtype)
         sys.exit(1)
 
-    # Minor cleaning up of the filter
-    fltr = fltr.strip()
-    if fltr == ".":
-        fltr = "_"
-
-    # Load the file
+    # Open the file
     if fname == "-":
-        x = sys.stdin
+        fobj = sys.stdin
     else:
-        x = open(fname, "rb")
-    x = load(x)
-    x = attr_convert(x)
+        fobj = open(fname, "rb")
 
-    # Evaluate the expression
-    z = eval(fltr, {"_": x})
-
-    _, columns = get_terminal_size()
     try:
-        pprint(z, indent=2, width=columns)
+        process_fn(fobj)
     except IOError:
         pass
 
