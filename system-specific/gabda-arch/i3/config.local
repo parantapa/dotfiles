@@ -3,14 +3,14 @@ assign [class="Xchat"] 9
 assign [title="Oracle VM VirtualBox"] 8
 
 bar {
-        status_command /home/parantapa/pbapps/i3status/i3status.sh
+        status_command /home/parantapa/pbapps/i3status.sh
 }
 
 bindsym Control+Mod1+l exec --no-startup-id "xrandr --dpi 96 ; nitrogen --restore"
 
 exec clipit 2>/dev/null
 exec keepassx
-exec /home/parantapa/pbapps/sys-state/sys-state.sh
+exec /home/parantapa/pbapps/sys-state.sh
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
