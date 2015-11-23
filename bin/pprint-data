@@ -7,6 +7,7 @@ from __future__ import print_function
 
 import sys
 import json
+import codecs
 
 def pprint(obj):
     print(json.dumps(obj, indent=2, ensure_ascii=False))
@@ -27,11 +28,13 @@ def process_json(fobj):
 
 def process_msgpack(fobj):
     import msgpack
-    unpacker = msgpack.Unpacker(fobj)
+    unpacker = msgpack.Unpacker(fobj, encoding="utf-8")
     for obj in unpacker:
         pprint(obj)
 
 def main():
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
+
     if len(sys.argv) == 2:
         dtype, fname = sys.argv[1], "-"
     elif len(sys.argv) == 3:
