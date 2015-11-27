@@ -474,6 +474,7 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile *.twig setlocal ft=htmljinja
     autocmd BufReadPost,BufNewFile *.sshconfig setlocal ft=sshconfig
     autocmd BufReadPost,BufNewFile *.pyx setlocal ft=pyrex
+    autocmd BufReadPost,BufNewFile *.wsgi setlocal ft=python
 
     autocmd BufReadPost,BufNewFile *.html.jinja2 setlocal ft=htmljinja
 
