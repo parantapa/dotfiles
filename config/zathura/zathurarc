@@ -16,8 +16,8 @@ set notification-error-fg       "#f92672"
 set notification-warning-bg     "#1b1d1e"
 set notification-warning-fg     "#f8f8f2"
 
-set recolor-lightcolor          "#1b1d1e"
-set recolor-darkcolor           "#d2d2cd"
+set recolor-lightcolor          "#d2d2cd"
+set recolor-darkcolor           "#000000"
 set recolor                     "true"
 
 # setting recolor-keep true will keep any color your pdf has.
@@ -26,4 +26,4 @@ set recolor-keephue             "true"
 
 set font Inconsolata\ 12
 
-
+set adjust-open "width"

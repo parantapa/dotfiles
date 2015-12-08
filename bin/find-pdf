@@ -57,7 +57,7 @@ def main_open(sdocs, keyword, num):
         return
 
     fname = fname.strip()
-    cmd = ["evince", fname]
+    cmd = ["zathura", fname]
     with open(os.devnull, "wb") as null:
         Popen(cmd, stdout=null, stderr=null)
 

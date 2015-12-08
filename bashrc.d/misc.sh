@@ -1,9 +1,9 @@
 # Find alias
 alias f="find-pdf"
 
-# Evince alias
+# PDF viewer alias
 e () {
-    evince "$@" 2>/dev/null &
+    zathura "$@" 2>/dev/null &
 }
 
 # Pdflatex alias
