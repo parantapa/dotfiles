@@ -22,7 +22,7 @@ disable=bad-whitespace,bad-builtin,wildcard-import,unused-wildcard-import,invali
 # List of module names for which member attributes should not be checked
 # (useful for modules/projects where namespaces are manipulated during runtime
 # and thus existing member attributes cannot be deduced by static analysis
-ignored-modules=numpy,scipy
+ignored-modules=numpy,scipy,setproctitle
 
 # List of classes names for which member attributes should not be checked
 # (useful for classes with attributes dynamically set).
