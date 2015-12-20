@@ -140,17 +140,11 @@ fun! DlacmRead(url)
 
     execute "read ! " . script . " " . url
 endfunction
-nnoremap <Leader>Xda yy:call DlacmRead(@")<CR>
 
-" Replace current aaai paper url with bib and abstract
-
-fun! AaaiRead(url)
-    let url = shellescape(Strip(a:url))
-    let script = expand("$HOME_QUICKREFS/scripts/parse-aaai.sh")
-
-    execute "read ! " . script . " " . url
-endfunction
-nnoremap <Leader>Xaa yy:call AaaiRead(@")<CR>
+let s:fmt_bib = expand("$HOME_QUICKREFS/scripts/fmt-bib")
+command! -range FmtAcm yy:call DlacmRead(@")<CR>
+exe "command! -range FmtAaai '<,'>!" . s:fmt_bib . " aaai"
+exe "command! -range FmtIeee '<,'>!" . s:fmt_bib . " ieee"
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup_custom
