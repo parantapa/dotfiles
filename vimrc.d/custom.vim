@@ -91,31 +91,59 @@ vnoremap <leader>ou :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
 
 " Search and Open PDFs in SDOCS {{{1
 
-function! OpenPdf(keyword)
+function! FindPdf(keyword)
     call system("find-pdf " . shellescape(a:keyword) . " 1 &")
 endfunction
 
-command! -nargs=1 OpenPdf call OpenPdf(<q-args>)
-cnoreabbrev op OpenPdf
+command! -nargs=1 FindPdf call FindPdf(<q-args>)
+cnoreabbrev fp FindPdf
 
-nnoremap <leader>op :OpenPdf <C-r>=ExtractCite(0)<CR>
-vnoremap <leader>op :<C-u>OpenPdf <C-r>=ExtractCite(1)<CR>
+nnoremap <leader>fp :FindPdf <C-r>=ExtractCite(0)<CR>
+vnoremap <leader>fp :<C-u>FindPdf <C-r>=ExtractCite(1)<CR>
 
 " Search for citation in Quickrefs sdocs-paper*.md {{{1
 
 " Open Cite in sdocs-papers in Quickrefs
-function! OpenCite(keyword)
+function! FindCite(keyword)
     let cmd = 'vimgrep /\V\c%s/gj %s/sdocs-papers*.md'
     let cmd = printf(cmd, a:keyword, fnameescape($HOME_QUICKREFS))
     silent! execute cmd
     execute "copen"
 endfunction
 
-command! -nargs=1 OpenCite call OpenCite(<q-args>)
-cnoreabbrev oc OpenCite
+command! -nargs=1 FindCite call FindCite(<q-args>)
+cnoreabbrev fc FindCite
 
-nnoremap <leader>oc :OpenCite <C-r>=ExtractCite(0)<CR>
-vnoremap <leader>oc :<C-u>OpenCite <C-r>=ExtractCite(1)<CR>
+nnoremap <leader>fc :FindCite <C-r>=ExtractCite(0)<CR>
+vnoremap <leader>fc :<C-u>FindCite <C-r>=ExtractCite(1)<CR>
+
+" Open image file under cursor with Ristretto {{{1
+
+function! OpenImage(fname)
+    let cmd = "ristretto " . fnameescape(a:fname) . " &"
+    echom cmd
+    call system(cmd)
+endfunction
+
+command! -nargs=1 OpenImage call OpenImage(<q-args>)
+cnoreabbrev oi OpenImage
+
+nnoremap <leader>oi :OpenImage <C-r><C-p>
+vnoremap <leader>oi "zygv:<C-u>OpenImage <C-r>z
+
+" Open pdf file under cursor with Zathura {{{1
+
+function! OpenPdf(fname)
+    let cmd = "zathura " . fnameescape(a:fname) . " &"
+    echom cmd
+    call system(cmd)
+endfunction
+
+command! -nargs=1 OpenPdf call OpenPdf(<q-args>)
+cnoreabbrev op OpenPdf
+
+nnoremap <leader>op :OpenPdf <C-r><C-p>
+vnoremap <leader>op "zygv:<C-u>OpenPdf <C-r>z
 
 " Perform a websearch {{{1
 
