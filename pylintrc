@@ -15,7 +15,7 @@ init-hook= "
 
 [MESSAGES CONTROL]
 
-disable=bad-whitespace,bad-builtin,wildcard-import,unused-wildcard-import,invalid-name,global-statement,line-too-long,wrong-import-position
+disable=bad-whitespace,bad-builtin,wildcard-import,unused-wildcard-import,invalid-name,global-statement,line-too-long,wrong-import-position,redefined-variable-type
 
 [TYPECHECK]
 
