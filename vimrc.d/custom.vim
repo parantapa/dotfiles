@@ -80,7 +80,7 @@ endfunction
 " Open Url with Firefox {{{1
 
 function! OpenUrl(url)
-    call system("firefox " . shellescape(a:url) . " &")
+    call system("firefox-aurora " . shellescape(a:url) . " &")
 endfunction
 
 command! -nargs=1 OpenUrl call OpenUrl(<q-args>)

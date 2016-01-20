@@ -23,7 +23,7 @@ SEARCH_BASE = {
     "gs": "https://scholar.google.com/scholar?q={0}"
 }
 
-BROWSER_CMD = "firefox"
+BROWSER_CMD = "firefox-aurora"
 
 def main():
     if len(sys.argv) < 2:

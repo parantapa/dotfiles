@@ -159,7 +159,7 @@ bindsym $mod+d exec dmenu-wrap -run
 bindsym $mod+Shift+q exit
 
 bindsym Control+Mod1+bracketleft exec "urxvtc"
-bindsym Control+Mod1+bracketright exec "firefox"
+bindsym Control+Mod1+bracketright exec "firefox-aurora"
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
 bindsym Control+Mod1+o exec "ario"
 bindsym Control+Mod1+p exec "thunar"
@@ -180,7 +180,6 @@ for_window [class="Yad"] floating enable
 for_window [title="Gnuplot"] floating enable
 for_window [class="Pavucontrol"] floating enable
 
-for_window [title="Firefox Preferences"] floating enable
 for_window [class="Firefox" instance="Devtools" title="Scratchpad"] floating enable
 
 for_window [class="Ipython"] floating enable
