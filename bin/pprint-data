@@ -8,9 +8,23 @@ from __future__ import print_function
 import sys
 import json
 import codecs
+from pprint import PrettyPrinter
+
+# Make pprint support unicode
+# http://stackoverflow.com/questions/10883399/unable-to-encode-decode-pprint-output
+class MyPrettyPrinter(PrettyPrinter):
+    def format(self, obj, context, maxlevels, level):
+        if isinstance(obj, unicode):
+            return (obj.encode('utf8'), True, False)
+        return PrettyPrinter.format(self, obj, context, maxlevels, level)
+
+_pprinter = MyPrettyPrinter(indent=4, depth=5)
 
 def pprint(obj):
-    print(json.dumps(obj, indent=2, ensure_ascii=False))
+    try:
+        _pprinter.pprint(obj)
+    except IOError:
+        sys.exit(0)
 
 def process_yaml(fobj):
     import yaml
@@ -32,6 +46,11 @@ def process_msgpack(fobj):
     for obj in unpacker:
         pprint(obj)
 
+def process_dset(fname):
+    import pypb.dset
+    for obj in pypb.dset.open(fname):
+        pprint(obj)
+
 def main():
     sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
@@ -49,22 +68,23 @@ def main():
             "yaml"    : process_yaml,
             "pickle"  : process_pickle,
             "json"    : process_json,
-            "msgpack" : process_msgpack
+            "msgpack" : process_msgpack,
+            "dset"    : process_dset,
         }[dtype]
     except KeyError:
         print("Unknown data type: ", dtype)
         sys.exit(1)
+
+    if dtype == "dset":
+        process_fn(fname)
+        return
 
     # Open the file
     if fname == "-":
         fobj = sys.stdin
     else:
         fobj = open(fname, "rb")
-
-    try:
-        process_fn(fobj)
-    except IOError:
-        pass
+    process_fn(fobj)
 
 if __name__ == '__main__':
     main()
