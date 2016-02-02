@@ -10,29 +10,30 @@ import sys
 import pypb.dset
 
 def main():
-    if len(sys.argv) != 2:
-        print("dset-info: <fname.dset>")
+    if len(sys.argv) < 2:
+        print("dset-info: <fname.dset>...")
         sys.exit(1)
 
-    with pypb.dset.open(sys.argv[1]) as dset:
-        print(sys.argv[1])
-        for k in sorted(dset.header.iterkeys()):
-            v = dset.header[k]
+    for fname in sys.argv[1:]:
+        with pypb.dset.open(fname) as dset:
+            print(sys.argv[1])
+            for k in sorted(dset.header.iterkeys()):
+                v = dset.header[k]
 
-            if isinstance(v, (int, long)):
-                msg = "    {}: {:,d}"
-            else:
-                msg = "    {}: {}"
-            msg = msg.format(k, v)
+                if isinstance(v, (int, long)):
+                    msg = "    {}: {:,d}"
+                else:
+                    msg = "    {}: {}"
+                msg = msg.format(k, v)
+                print(msg)
+
+            msg = "    len(index) : {:,d}"
+            msg = msg.format(len(dset.index))
             print(msg)
 
-        msg = "    len(index) : {:,d}"
-        msg = msg.format(len(dset.index))
-        print(msg)
-
-        msg = "    avg(block_size) : {:.2f}"
-        msg = msg.format(sum(x for _, x in dset.index) / len(dset.index))
-        print(msg)
+            msg = "    avg(block_size) : {:,.2f}"
+            msg = msg.format(sum(x for _, x in dset.index) / len(dset.index))
+            print(msg)
 
 if __name__ == '__main__':
     main()
