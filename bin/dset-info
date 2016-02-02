@@ -16,7 +16,7 @@ def main():
 
     for fname in sys.argv[1:]:
         with pypb.dset.open(fname) as dset:
-            print(sys.argv[1])
+            print(fname)
             for k in sorted(dset.header.iterkeys()):
                 v = dset.header[k]
 
