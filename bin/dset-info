@@ -9,6 +9,8 @@ from __future__ import division, print_function
 import sys
 import pypb.dset
 
+OKEYS = ["length", "block_length", "serializer", "compression"]
+
 def main():
     if len(sys.argv) < 2:
         print("dset-info: <fname.dset>...")
@@ -17,7 +19,11 @@ def main():
     for fname in sys.argv[1:]:
         with pypb.dset.open(fname) as dset:
             print(fname)
-            for k in sorted(dset.header.iterkeys()):
+
+            keys = set(dset.header.keys()) - set(OKEYS)
+            keys = sorted(keys)
+            keys = OKEYS + keys
+            for k in keys:
                 v = dset.header[k]
 
                 if isinstance(v, (int, long)):
@@ -27,12 +33,16 @@ def main():
                 msg = msg.format(k, v)
                 print(msg)
 
-            msg = "    len(index) : {:,d}"
+            msg = "    len(index): {:,d}"
             msg = msg.format(len(dset.index))
             print(msg)
 
-            msg = "    avg(block_size) : {:,.2f}"
+            msg = "    avg(block_size): {:,.2f}"
             msg = msg.format(sum(x for _, x in dset.index) / len(dset.index))
+            print(msg)
+
+            msg = "    version: {}"
+            msg = msg.format(dset.version)
             print(msg)
 
 if __name__ == '__main__':
