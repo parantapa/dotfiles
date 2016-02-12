@@ -3,7 +3,7 @@ alias f="find-pdf"
 
 # PDF viewer alias
 e () {
-    zathura "$@" 2>/dev/null &
+    $PDFVIEWER "$@" >/dev/null 2>&1 &
 }
 
 # Pdflatex alias

@@ -77,10 +77,10 @@ function! ExtractCite(vmode)
     return cite
 endfunction
 
-" Open Url with Firefox {{{1
+" Open Url {{{1
 
 function! OpenUrl(url)
-    call system("firefox-aurora " . shellescape(a:url) . " &")
+    call system($BROWSER . " " . shellescape(a:url) . " &")
 endfunction
 
 command! -nargs=1 OpenUrl call OpenUrl(<q-args>)
@@ -131,10 +131,10 @@ cnoreabbrev oi OpenImage
 nnoremap <leader>oi :OpenImage <C-r><C-p>
 vnoremap <leader>oi "zygv:<C-u>OpenImage <C-r>z
 
-" Open pdf file under cursor with Zathura {{{1
+" Open pdf file under cursor {{{1
 
 function! OpenPdf(fname)
-    let cmd = "zathura " . fnameescape(a:fname) . " &"
+    let cmd = $PDFVIEWER . " " . fnameescape(a:fname) . " &"
     echom cmd
     call system(cmd)
 endfunction

@@ -24,6 +24,8 @@ shopt -s no_empty_cmd_completion
 export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL=vim
+export BROWSER=firefox-aurora
+export PDFVIEWER=zathura
 
 # colorize ls
 LS_OPTIONS='--color=always -h --group-directories-first'
