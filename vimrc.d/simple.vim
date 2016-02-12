@@ -232,7 +232,6 @@ endfunction
 " cursor happens to be.
 " nnoremap zO zCzO
 command! -nargs=0 FoldToggle :call FoldToggle()<CR>
-cnoreabbrev ft FoldToggle
 
 " Default completion {{{1
 
