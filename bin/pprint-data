@@ -46,11 +46,6 @@ def process_msgpack(fobj):
     for obj in unpacker:
         pprint(obj)
 
-def process_dset(fname):
-    import pypb.dset
-    for obj in pypb.dset.open(fname):
-        pprint(obj)
-
 def main():
     sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
@@ -69,15 +64,10 @@ def main():
             "pickle"  : process_pickle,
             "json"    : process_json,
             "msgpack" : process_msgpack,
-            "dset"    : process_dset,
         }[dtype]
     except KeyError:
         print("Unknown data type: ", dtype)
         sys.exit(1)
-
-    if dtype == "dset":
-        process_fn(fname)
-        return
 
     # Open the file
     if fname == "-":
