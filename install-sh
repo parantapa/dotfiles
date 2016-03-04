@@ -14,7 +14,7 @@ dotfiles=(profile bash_logout
 
 dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
     pylintrc bowerrc i3/config.global config/dunstrc gtkrc-2.0
-    config/zathura/zathurarc)
+    config/zathura/zathurarc config/clipit/clipitrc)
 
 cd "$dstdir"
 
@@ -26,22 +26,26 @@ if [[ ! -r .vimrc ]] ; then
     \cp -i "$srcdir/vimrc" ".vimrc"
 fi
 
-[[ -d .vim ]]              || mkdir .vim
-[[ -d .vim/tmp ]]          || mkdir .vim/tmp
-[[ -d .vim/tmp/backup ]]   || mkdir .vim/tmp/backup
-[[ -d .vim/tmp/undo ]]     || mkdir .vim/tmp/undo
-[[ -d .vim/tmp/swap ]]     || mkdir .vim/tmp/swap
-[[ -d .config/zathura ]]   || mkdir -p .config/zathura
+[[ -d .vim ]]             || mkdir .vim
+[[ -d .vim/tmp ]]         || mkdir .vim/tmp
+[[ -d .vim/tmp/backup ]]  || mkdir .vim/tmp/backup
+[[ -d .vim/tmp/undo ]]    || mkdir .vim/tmp/undo
+[[ -d .vim/tmp/swap ]]    || mkdir .vim/tmp/swap
+[[ -d .config/zathura ]]  || mkdir -p .config/zathura
+[[ -d .config/clipit ]]   || mkdir -p .config/clipit
 
 for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
 done
 ln -siT "$srcdir/profile" ".bash_profile"
 
-
 if [[ "$1" == "--extra" ]] ; then
     [ -d .i3 ]     || mkdir .i3
     [ -d .config ] || mkdir .config
+
+    for file in "${dotfiles_extra[@]}" ; do
+        ln -siT "$srcdir/$file" ".$file"
+    done
 
     touch .i3/config.local
     touch .repo-dirs
