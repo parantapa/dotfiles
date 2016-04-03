@@ -16,7 +16,7 @@ workspace 9 output HDMI-0
 workspace 10 output HDMI-0
 
 bar {
-        status_command /home/parantapa/pbapps/i3status.sh
+        status_command /home/parantapa/pbapps/run.sh i3status
         output VGA-0
         tray_output VGA-0
 }
@@ -37,14 +37,16 @@ exec keepassx
 exec skype
 exec mpd --no-daemon
 exec ario
-exec /home/parantapa/pbapps/mute-on-screensaver.sh
-exec /home/parantapa/pbapps/sys-state.sh
+exec /home/parantapa/pbapps/run.sh sys-state
+exec /home/parantapa/pbapps/run.sh pulseaudio-state
+exec /home/parantapa/pbapps/run.sh xscreensaver-state
+exec /home/parantapa/pbapps/run.sh mute-on-screensaver
 exec /home/parantapa/pbapps/reddit-bg.sh
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
 bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle"
-bindsym Control+Mod1+n      exec --no-startup-id /home/parantapa/pbapps/i3status-signal.sh
-bindsym Control+Mod1+h      exec --no-startup-id /home/parantapa/pbapps/alarm.sh
+bindsym Control+Mod1+n      exec --no-startup-id /home/parantapa/pbapps/run.sh i3status-signal
+bindsym Control+Mod1+h      exec --no-startup-id /home/parantapa/pbapps/run.sh alarm
 
 bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
