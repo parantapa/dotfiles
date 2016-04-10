@@ -22,7 +22,6 @@ xrdb -merge <(echo "URxvt*perl-ext-common: 52-osc")
 eval `ssh-agent -s -t 16h`
 dunst &
 nitrogen --restore &
-xscreensaver -no-splash &
 urxvtd -q -f -o
 
 # exec gnome-session
