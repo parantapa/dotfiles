@@ -1,0 +1,11 @@
+#!/bin/bash
+# Read whatever a process is reading from given file descriptor
+
+if [[ "$#" -ne 2 ]] ; then
+    echo "./snoopfd <PID> <FD>"
+
+stty -echo -opost
+trap 'stty echo opost; exit' INT
+
+clear
+sudo strace -e read -e read="$2" -p"$1" 2>&1 | stdbuf -o0 sh -c 'grep "^ |" | cut -b11-60 | tr -d " " | xxd -r -p'
