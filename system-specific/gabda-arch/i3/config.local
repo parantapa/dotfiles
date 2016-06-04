@@ -2,19 +2,18 @@ assign [class="Skype"] 9
 assign [class="Xchat"] 9
 
 bar {
-        status_command /home/parantapa/pbapps/i3status.sh
+        status_command /home/parantapa/pbapps/run.sh i3status
 }
 
 bindsym Control+Mod1+l exec --no-startup-id "xrandr --dpi 96 ; nitrogen --restore"
 
 exec clipit 2>/dev/null
 exec keepassx
-exec /home/parantapa/pbapps/sys-state.sh
+exec /home/parantapa/pbapps/run.sh sys-state
+exec /home/parantapa/pbapps/run.sh git-multi-status
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
 bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle"
-bindsym Control+Mod1+n      exec --no-startup-id /home/parantapa/pbapps/i3status-signal.sh
-bindsym Control+Mod1+h      exec --no-startup-id /home/parantapa/pbapps/alarm.sh
-
-bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
+bindsym Control+Mod1+n      exec --no-startup-id /home/parantapa/pbapps/run.sh i3status-signal
+bindsym Control+Mod1+h      exec --no-startup-id /home/parantapa/pbapps/run.sh alarm
