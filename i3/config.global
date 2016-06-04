@@ -146,7 +146,7 @@ bindsym $mod+r mode "resize"
 # }
 
 # start a terminal
-bindsym $mod+Return exec "urxvtc"
+bindsym $mod+Return exec "urxvtc -e /usr/bin/fish"
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu-wrap -run
@@ -158,7 +158,7 @@ bindsym $mod+d exec dmenu-wrap -run
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exit
 
-bindsym Control+Mod1+bracketleft exec "urxvtc"
+bindsym Control+Mod1+bracketleft exec "urxvtc -e /usr/bin/fish"
 bindsym Control+Mod1+bracketright exec "firefox-aurora"
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
 bindsym Control+Mod1+o exec "ario"

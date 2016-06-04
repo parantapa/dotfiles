@@ -3,7 +3,7 @@ set -x PAGER "less -niRS"
 set -x EDITOR vim
 set -x VISUAL vim
 set -x BROWSER firefox-aurora
-set -x PDFVIEWER zathura
+set -x PDFVIEWER evince
 
 # colorize ls
 set LS_OPTIONS "--color=always -h --group-directories-first"

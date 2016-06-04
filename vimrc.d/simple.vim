@@ -424,6 +424,7 @@ augroup ft_tex
     au Filetype tex setlocal formatoptions-=n
     au Filetype tex setlocal iskeyword+=-
     au Filetype tex setlocal iskeyword+=_
+    au Filetype tex setlocal noautoindent indentexpr=""
 
 augroup END
 
