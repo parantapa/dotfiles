@@ -13,22 +13,30 @@ vimfx.set("mode.normal.history_forward", "<c-i>");
 vimfx.set("mode.normal.tab_close", "d");
 vimfx.set("mode.normal.tab_restore", "D");
 
-let { commands } = vimfx.modes.normal
+var getPbFx = function () {
+    var contractId = '@parantapa.net/pbfx';
+
+    var pbfx = Components.classes[contractId].
+               getService(Components.interfaces.nsISupports).
+               wrappedJSObject;
+
+    return pbfx;
+}
 
 var addQuickOpenCmd = function (name, desc, key, urls) {
-    // vimfx.addCommand({
-    //     name: name,
-    //     description: desc,
-    // }, function (args) {
-    //     tabs.activeTab.url = "http://" + urls[0];
-    //     for (var i = 1; i < urls.length; i++) {
-    //         tabs.open({
-    //             url: "http://" + urls[i],
-    //             inBackground: true
-    //         });
-    //     }
-    // });
-    // vimfx.set("custom.mode.normal." + name, key);
+    var i;
+
+    var newUrls = [];
+    for (i = 0; i < urls.length; i++) {
+        newUrls.push("http://" + urls[i]);
+    }
+
+    vimfx.addCommand(
+        {name: name, description: desc},
+        function () { getPbFx().openUrls(newUrls) }
+    );
+
+    vimfx.set("custom.mode.normal." + name, key);
 };
 
 addQuickOpenCmd("open_gmail", "Open Gmail", ",m",
