@@ -86,13 +86,12 @@ augroup end
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
     let g:syntastic_python_checkers = ['pylint']
     let g:syntastic_python_pylint_exec = '/usr/bin/pylint2'
-    let g:syntastic_javascript_checkers = ['jslint']
-    let g:syntastic_javascript_jslint_conf = "--sloppy"
+    let g:syntastic_javascript_checkers = ['eslint']
 
     let g:syntastic_mode_map = {
         \ "mode": "passive",
         \ "active_filetypes": ["python", "javascript"],
-        \ "passive_filetypes": [] }
+        \ "passive_filetypes": ["javascript.jsx"] }
 
     " Get the current error-code from pylint
     function! MySyntasticPylintCode()

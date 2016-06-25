@@ -92,6 +92,8 @@ augroup ft_tab_settings
     autocmd FileType tex setlocal sw=2 sts=2
 
     autocmd FileType snippets setlocal noet ts=4
+
+    autocmd FileType sass setlocal sw=4 sts=4 expandtab
 augroup END
 
 " Text width settings for different filetypes
