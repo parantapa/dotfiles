@@ -162,18 +162,11 @@ vnoremap <leader>os "zygv:<C-u>OpenSearch <C-r>z g
 
 " Replace current dl.acm.org paper url with bib and abstract
 
-fun! DlacmRead()
-    normal yy
-    let url = shellescape(Strip(@"))
-    let script = expand("$HOME_QUICKREFS/scripts/parse-dlacm.sh")
-
-    execute "read ! " . script . " " . url
-endfunction
-
 let s:fmt_bib = expand("$HOME_QUICKREFS/scripts/fmt-bib")
-command! -range FmtAcm call DlacmRead()<CR>
 exe "command! -range FmtAaai '<,'>!" . s:fmt_bib . " aaai"
 exe "command! -range FmtIeee '<,'>!" . s:fmt_bib . " ieee"
+exe "command! -range FmtAcm '<,'>!" . s:fmt_bib . " acm"
+exe "command! -range FmtXXX '<,'>!" . s:fmt_bib . " xxx"
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup_custom
