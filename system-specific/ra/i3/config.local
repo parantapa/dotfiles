@@ -41,11 +41,13 @@ exec /home/parantapa/pbapps/run.sh sys-state
 exec /home/parantapa/pbapps/run.sh pulseaudio-state
 exec /home/parantapa/pbapps/run.sh xscreensaver-state
 exec /home/parantapa/pbapps/run.sh mute-on-screensaver
+exec /home/parantapa/pbapps/run.sh study-play-mode
 exec /home/parantapa/pbapps/reddit-bg.sh
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol ; /home/parantapa/pbapps/run.sh i3status-signal 95pulseaudio-state usr1"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol ; /home/parantapa/pbapps/run.sh i3status-signal 95pulseaudio-state usr1"
 bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle ; /home/parantapa/pbapps/run.sh i3status-signal 95pulseaudio-state usr1"
+bindsym Control+Mod1+space  exec --no-startup-id /home/parantapa/pbapps/run.sh i3status-signal 20study-play-mode usr1
 bindsym Control+Mod1+n      exec --no-startup-id /home/parantapa/pbapps/run.sh i3status-signal
 bindsym Control+Mod1+h      exec --no-startup-id /home/parantapa/pbapps/run.sh alarm
 
