@@ -42,6 +42,7 @@ exec /home/parantapa/pbapps/run.sh pulseaudio-state
 exec /home/parantapa/pbapps/run.sh xscreensaver-state
 exec /home/parantapa/pbapps/run.sh mute-on-screensaver
 exec /home/parantapa/pbapps/run.sh study-play-mode
+exec /home/parantapa/pbapps/run.sh runbackup
 exec /home/parantapa/pbapps/reddit-bg.sh
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol ; /home/parantapa/pbapps/run.sh i3status-signal 95pulseaudio-state usr1"
