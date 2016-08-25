@@ -43,6 +43,16 @@ function topu
     top -u $USER $argv
 end
 
+function man
+    command env LESS_TERMCAP_md=(printf "\e[01;31m") \
+                LESS_TERMCAP_me=(printf "\e[0m") \
+                LESS_TERMCAP_se=(printf "\e[0m") \
+                LESS_TERMCAP_so=(printf "\e[01;44;33m") \
+                LESS_TERMCAP_ue=(printf "\e[0m") \
+                LESS_TERMCAP_us=(printf "\e[01;32m") \
+                man $argv
+end
+
 # GVim alias
 if set -q DISPLAY
     switch $DISPLAY
