@@ -88,6 +88,7 @@ augroup ft_tab_settings
     autocmd FileType go setlocal noet sw=8 sts=8
 
     autocmd FileType html setlocal sw=2 sts=2
+    autocmd FileType xml setlocal sw=2 sts=2
     autocmd FileType haml setlocal sw=2 sts=2
     autocmd FileType tex setlocal sw=2 sts=2
 
