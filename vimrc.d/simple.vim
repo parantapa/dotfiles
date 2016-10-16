@@ -428,6 +428,8 @@ augroup ft_tex
     au Filetype tex setlocal iskeyword+=-
     au Filetype tex setlocal iskeyword+=_
     au Filetype tex setlocal noautoindent indentexpr=""
+    au Filetype bib setlocal iskeyword+=-
+    au Filetype bib setlocal iskeyword+=_
 
 augroup END
 

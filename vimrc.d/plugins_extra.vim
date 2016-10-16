@@ -103,9 +103,10 @@ let g:unite_source_menu_menus.index = {
 let g:unite_source_menu_menus.index.command_candidates = {
     \ 'file' : 'Unite -start-insert file_rec',
     \ 'mru' : 'Unite -start-insert file_mru',
-    \ 'buffer' : 'Unite -start-insert buffer',
     \ 'yank' : 'Unite history/yank',
     \ 'outline' : 'Unite outline'
     \ }
 
 nnoremap <C-P> :<C-u>Unite menu:index<CR>
+nnoremap <C-B> :<C-u>Unite -start-insert buffer<CR>
+
