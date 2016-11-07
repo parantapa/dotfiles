@@ -485,6 +485,9 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile bashrc_* setlocal ft=sh
 
+    autocmd BufReadPost,BufNewFile .babelrc setlocal ft=javascript
+    autocmd BufReadPost,BufNewFile .eslintrc setlocal ft=javascript
+
     autocmd BufReadPost,BufNewFile *.blog
         \ call TextEnableCodeSnip("yaml", '/\v%^/', '/\V.../', "yaml")
 augroup END
