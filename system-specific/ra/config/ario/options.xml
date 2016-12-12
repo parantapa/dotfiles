@@ -2,10 +2,9 @@
 <ario-options>
   <option key="stop-exit">1</option>
   <option key="duration_column_order">6</option>
-  <option key="ario_cover_tree_hidden">1</option>
   <option key="trayicon_behavior">0</option>
   <option key="notification">1</option>
-  <option key="vpaned_position">0</option>
+  <option key="one-instance">1</option>
   <option key="artist_column_size">108</option>
   <option key="library-active">0</option>
   <option key="playlist-mode">normal</option>
@@ -41,19 +40,20 @@
   <option key="radios-active">0</option>
   <option key="doubleclick_behavior">0</option>
   <option key="tray-icon">1</option>
-  <option key="title_column_size">759</option>
+  <option key="ario_cover_tree_hidden">1</option>
   <option key="window_height">860</option>
+  <option key="title_column_size">759</option>
+  <option key="source">4</option>
   <option key="browser-trees">0,1</option>
-  <option key="source">3</option>
   <option key="album-sort">0</option>
-  <option key="window_maximized">0</option>
   <option key="sources-order">library,search,radios,storedplaylists,filesystem,playlist</option>
-  <option key="playlists_hpaned_position">315</option>
+  <option key="window_maximized">0</option>
   <option key="active-cover-providers">local,amazon,lastfm</option>
   <option key="window_width">1436</option>
   <option key="active-lyrics-providers"/>
+  <option key="vpaned_position">0</option>
   <option key="artist_column_visible">1</option>
+  <option key="playlists_hpaned_position">315</option>
   <option key="notification-time">5</option>
   <option key="album_column_visible">1</option>
-  <option key="one-instance">1</option>
 </ario-options>
