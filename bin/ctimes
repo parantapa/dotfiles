@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""
+Manage files with creation timestamps in filename.
+"""
+
+__author__ = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
+
+import os
+import sys
+import glob
+import calendar
+from datetime import datetime
+
+def get_ctime(x):
+    x = x.split(".")
+    x = x[0]
+    x = x.split("-")
+    x = int(x[-1])
+
+    return x
+
+def timestamp_to_str(x):
+    x = datetime.utcfromtimestamp(x)
+    x = x.strftime("%c UTC")
+
+    return x
+
+def input_to_timestamp(x):
+    x = datetime.strptime(x, "%d%b%y")
+    x = x.timetuple()
+    x = calendar.timegm(x)
+
+    return x
+
+def info(fglob):
+    """
+    Get start and end creation times of files.
+    """
+
+    fnames = glob.glob(fglob)
+    ctimes = list(map(get_ctime, fnames))
+    ctimes.sort()
+
+    if not fnames:
+        print("No files found!")
+        sys.exit(1)
+
+    start, end = int(ctimes[0]), int(ctimes[-1])
+    start_str = timestamp_to_str(start)
+    end_str = timestamp_to_str(end)
+
+    print("# files: %d" % len(ctimes))
+    print("  start: %d -> %s" % (start, start_str))
+    print("    end: %d -> %s" % (end, end_str))
+
+def rm_(start, end, fglob):
+    """
+    Delete files within the start and end times.
+    """
+
+    if not start < end:
+        print("End date must be later than start date!")
+        sys.exit(1)
+
+    start_str = timestamp_to_str(start)
+    end_str = timestamp_to_str(end)
+
+    fnames = glob.glob(fglob)
+    ctimes = list(map(get_ctime, fnames))
+
+    to_delete_n = sum(1 for c in ctimes if start <= c < end)
+
+    print(" total files: %d" % len(ctimes))
+    print("   to delete: %d" % to_delete_n)
+    print("delete after: %s" % start_str)
+    print("  keep after: %s" % end_str)
+
+    confirm = input("Enter YES to confirm: ").strip()
+    if confirm != "YES":
+        return
+
+    for fname, ctime in zip(fnames, ctimes):
+        if start <= ctime < end:
+            print("Deleting: '%s'" % fname)
+            os.remove(fname)
+
+def ls_(start, end, fglob):
+    """
+    Get sorted list of files within the start and end times.
+    """
+
+    if not start < end:
+        print("Start date earlier than end date!")
+        sys.exit(1)
+
+    fnames = glob.glob(fglob)
+    ctimes = map(get_ctime, fnames)
+
+    fnames_ctimes = zip(fnames, ctimes)
+    fnames_ctimes = list(fnames_ctimes)
+    fnames_ctimes.sort(key=lambda x: x[1])
+
+    for fname, ctime in fnames_ctimes:
+        if start <= ctime < end:
+            ctime_str = timestamp_to_str(ctime)
+
+            print("%s : '%s'" % (ctime_str, fname))
+
+def main():
+    try:
+        cmd = sys.argv[1]
+        if cmd == "info":
+            assert len(sys.argv) == 3
+            fglob = sys.argv[2]
+            info(fglob)
+        elif cmd == "ls":
+            assert len(sys.argv) == 5
+            start, end, fglob = sys.argv[2:5]
+            start = input_to_timestamp(start)
+            end = input_to_timestamp(end)
+            ls_(start, end, fglob)
+        elif cmd == "rm":
+            assert len(sys.argv) == 5
+            start, end, fglob = sys.argv[2:5]
+            start = input_to_timestamp(start)
+            end = input_to_timestamp(end)
+            rm_(start, end, fglob)
+        else:
+            raise ValueError()
+    except (IndexError, ValueError, AssertionError):
+        print("Usage: %s info <fglob>" % sys.argv[0])
+        print("       %s ls <start> <end> <fglob>" % sys.argv[0])
+        print("       %s rm <start> <end> <fglob>" % sys.argv[0])
+        sys.exit(1)
+    except BrokenPipeError:
+        sys.exit(0)
+
+if __name__ == '__main__':
+    main()
