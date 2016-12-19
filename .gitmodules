@@ -12,7 +12,7 @@
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
-        url = https://github.com/scrooloose/syntastic.git
+        url = https://github.com/parantapa/syntastic.git
 [submodule "vim/bundle/large-file"]
 	path = vim/bundle/large-file
 	url = https://github.com/vim-scripts/LargeFile.git
