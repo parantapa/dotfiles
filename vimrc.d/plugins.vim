@@ -74,6 +74,11 @@ augroup end
     let g:tex_flavor = 'latex'
     let g:tex_comment_nospell= 1
 
+" Latex-Box {{{2
+
+    let g:LatexBox_no_mappings = 1
+    let g:LatexBox_custom_indent = 0
+
 " Syntastic {{{2
 
     let g:syntastic_enable_signs = 1
