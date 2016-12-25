@@ -65,7 +65,7 @@ set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.bbl,*.blg                      " Latex generated files
 
-" Tabs, spaces, wrapping {{{1
+" Tabs, spaces, wrapping, Indent {{{1
 
 set tabstop=8
 set shiftwidth=4
@@ -103,6 +103,13 @@ augroup ft_textwidth_settings
 
     autocmd FileType help setlocal textwidth=78
     autocmd FileType mail setlocal textwidth=78
+augroup END
+
+" Indent settings for different filetypes
+augroup ft_indent_settings
+    autocmd!
+
+    autocmd FileType javascript.jsx setlocal indentexpr=""
 augroup END
 
 " Backups and Spell Files {{{1
