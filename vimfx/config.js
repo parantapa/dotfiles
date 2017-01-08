@@ -48,7 +48,7 @@ addQuickOpenCmd("open_gs", "Open Google Scholar", ",gs",
 addQuickOpenCmd("open_news", "Open News Sites", ",n",
     ["news.ycombinator.com", "google.com/news"]);
 addQuickOpenCmd("open_social", "Open Social Network Sites", ",s",
-    ["facebook.com", "twitter.com", "reddit.com"]);
+    ["twitter-app.mpi-sws.org/what-you-like", "facebook.com", "twitter.com", "reddit.com"]);
 addQuickOpenCmd("open_blogs", "Open Blogs", ",b",
     ["lifehacker.com", "boingboing.net"]);
 addQuickOpenCmd("open_comics_a", "Open Comics", ",c1",
