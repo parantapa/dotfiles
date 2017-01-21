@@ -74,11 +74,6 @@ augroup end
     let g:tex_flavor = 'latex'
     let g:tex_comment_nospell= 1
 
-" Latex-Box {{{2
-
-    let g:LatexBox_no_mappings = 1
-    let g:LatexBox_custom_indent = 0
-
 " Syntastic {{{2
 
     let g:syntastic_enable_signs = 1
@@ -90,7 +85,7 @@ augroup end
 
     let g:syntastic_c_compiler_options = ' -Wall -Wextra'
     let g:syntastic_python_checkers = ['pylint']
-    let g:syntastic_python_pylint_exec = '/usr/bin/pylint2'
+    " let g:syntastic_python_pylint_exec = '/usr/bin/pylint2'
     let g:syntastic_javascript_checkers = ['eslint']
 
     let g:syntastic_mode_map = {

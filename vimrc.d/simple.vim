@@ -110,6 +110,7 @@ augroup ft_indent_settings
     autocmd!
 
     autocmd FileType javascript.jsx setlocal indentexpr=""
+    autocmd Filetype tex setlocal noautoindent indentexpr=""
 augroup END
 
 " Backups and Spell Files {{{1
@@ -300,6 +301,8 @@ inoremap <C-Space> <C-x><C-o>
 " On C-l also set nohlsearch and diffupdate
 nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
+nnoremap ,gs yi{:OpenSearch <C-r>" gs
+
 " Multiple Syntax Highlight {{{1
 " Code copied from
 " http://vim.wikia.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
@@ -431,12 +434,10 @@ augroup ft_tex
     au Filetype tex let b:surround_105 = "\\textit{\r}"
     au Filetype tex let b:surround_98 = "\\textbf{\r}"
     au Filetype tex nnoremap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
-    au Filetype tex setlocal formatoptions-=n
     au Filetype tex setlocal iskeyword+=-
-    au Filetype tex setlocal iskeyword+=_
-    au Filetype tex setlocal noautoindent indentexpr=""
     au Filetype bib setlocal iskeyword+=-
-    au Filetype bib setlocal iskeyword+=_
+    au Filetype tex setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
+    au Filetype bib setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
 
 augroup END
 
