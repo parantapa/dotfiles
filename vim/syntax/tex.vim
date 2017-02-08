@@ -615,7 +615,7 @@ if s:tex_fast =~ 'r'
   syn region texRefOption	contained	matchgroup=Delimiter start='\[' end=']'		contains=@texRefGroup,texRefZone	nextgroup=texRefOption,texCite
   syn region texCite	contained	matchgroup=Delimiter start='{' end='}'		contains=@texRefGroup,texRefZone,texCite
 endif
-syn match  texRefZone		'\\cite\%([tpN]\*\=\)\=' nextgroup=texRefOption,texCite
+syn match  texRefZone		'\\\(short\)\?cite\%([tpN]\*\=\)\=' nextgroup=texRefOption,texCite
 
 " Handle newcommand, newenvironment : {{{1
 syn match  texNewCmd				"\\newcommand\>"			nextgroup=texCmdName skipwhite skipnl
