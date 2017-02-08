@@ -184,5 +184,5 @@ for_window [class="Firefox" instance="Devtools" title="Scratchpad"] floating ena
 for_window [class="Firefox" instance="Toplevel" title="AutoReload Preferences"] floating enable
 
 for_window [class="Ipython"] floating enable
+for_window [class="Octave"] floating enable
 for_window [title="Matplotlib"] floating enable
-
