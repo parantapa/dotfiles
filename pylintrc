@@ -1,18 +1,5 @@
 [MASTER]
 
-init-hook= "
-    exec ('aW1wb3J0IHN5cywgb3MKCmlmICdWSVJUVUFMX0VOVicgaW4gb3MuZW52aXJv'
-          'bjoKICAgIHZlX2RpciA9IG9zLmVudmlyb25bJ1ZJUlRVQUxfRU5WJ10KICAg'
-          'IGlmIHZlX2RpciBub3QgaW4gc3lzLnBhdGg6CiAgICAgICAgc3lzLnBhdGgu'
-          'aW5zZXJ0KDAsIHZlX2RpcikKICAgIGFjdGl2YXRlX3RoaXMgPSBvcy5wYXRo'
-          'LmpvaW4ob3MucGF0aC5qb2luKHZlX2RpciwgJ2JpbicpLCAnYWN0aXZhdGVf'
-          'dGhpcy5weScpCgogICAgIyBGaXggZm9yIHdpbmRvd3MKICAgIGlmIG5vdCBv'
-          'cy5wYXRoLmV4aXN0cyhhY3RpdmF0ZV90aGlzKToKICAgICAgICBhY3RpdmF0'
-          'ZV90aGlzID0gb3MucGF0aC5qb2luKG9zLnBhdGguam9pbih2ZV9kaXIsICdT'
-          'Y3JpcHRzJyksICdhY3RpdmF0ZV90aGlzLnB5JykKCiAgICAjIEV4ZWN1dGUg'
-          'dGhlIGFjdGl2YXRlIHNjcmlwdAogICAgZXhlY2ZpbGUoYWN0aXZhdGVfdGhp'
-          'cywgZGljdChfX2ZpbGVfXz1hY3RpdmF0ZV90aGlzKSkKCg==').decode('base64')"
-
 [MESSAGES CONTROL]
 
 disable=bad-whitespace,bad-builtin,wildcard-import,unused-wildcard-import,invalid-name,global-statement,line-too-long,wrong-import-position,wrong-import-order,redefined-variable-type
