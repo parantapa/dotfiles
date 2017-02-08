@@ -448,6 +448,15 @@ augroup ft_python
     au!
 
     au FileType python setlocal commentstring=#\ %s
+augroup END
+
+" Matlab {{{2
+
+augroup ft_matlab
+    au!
+
+    au FileType matlab setlocal commentstring=%\ %s
+augroup END
 
 " Text {{{2
 
