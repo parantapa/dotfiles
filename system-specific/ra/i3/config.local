@@ -34,7 +34,6 @@ bar {
 
 exec clipit 2>/dev/null
 exec keepassx
-exec skype
 exec mpd --no-daemon
 exec ario
 exec /home/parantapa/pbapps/run.sh sys-state
