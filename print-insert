@@ -1,0 +1,3 @@
+! Map Caps_Lock to esc
+
+keysym Print = Insert
