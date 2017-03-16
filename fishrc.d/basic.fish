@@ -58,6 +58,8 @@ if set -q DISPLAY
     switch $DISPLAY
     case ':0.0'
         alias g=gvim
+    case ':0'
+        alias g=gvim
     case '*'
         alias g=vim
     end
