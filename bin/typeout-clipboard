@@ -11,6 +11,7 @@ from __future__ import division, print_function, unicode_literals
 __author__ = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
 import sys
+import time
 from subprocess import Popen, PIPE
 
 # The following is the keysym to printing character pairs
@@ -260,6 +261,7 @@ def get_clipboard():
         print("OSError:", e)
         sys.exit(1)
 
+    # print(text)
     return text
 
 def typeout(text):
@@ -268,10 +270,9 @@ def typeout(text):
     """
 
     keysyms = to_keysyms(text)
-    keysyms = " ".join(keysyms)
 
-    cmd = "xdotool getwindowfocus key " + keysyms
-    cmd = cmd.split()
+    cmd = ["xdotool", "getwindowfocus", "key"] + keysyms
+    # print(cmd)
     try:
         Popen(cmd).wait()
     except OSError as e:
@@ -280,6 +281,7 @@ def typeout(text):
         sys.exit(1)
 
 def main():
+    time.sleep(1)
     typeout(get_clipboard())
 
 if __name__ == '__main__':
