@@ -6,7 +6,7 @@ set __fish_git_prompt_showupstream 'yes'
 function fish_prompt --description 'Write out the prompt'
     set stat $status
 
-    auto_switch_venv
+    # auto_switch_venv
 
     if not set -q __fish_prompt_hostname
         set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
