@@ -13,19 +13,14 @@ dotfiles=(profile bash_logout
     ackrc ctags sqliterc psqlrc)
 
 dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
-    pylintrc bowerrc i3/config.global config/dunstrc
-    gtkrc-2.0 config/gtk-3.0/settings.ini
-    config/zathura/zathurarc config/clipit/clipitrc)
+    pylintrc xsettingsd gtkrc-2.0 i3/config.global
+    config/gtk-3.0/settings.ini
+    config/dunstrc
+    config/zathura/zathurarc
+    config/clipit/clipitrc
+    "config/fish/functions")
 
 cd "$dstdir"
-
-# Dont overwrite bashrc
-if [[ ! -r .bashrc ]] ; then
-    \cp -i "$srcdir/bashrc" ".bashrc"
-fi
-if [[ ! -r .vimrc ]] ; then
-    \cp -i "$srcdir/vimrc" ".vimrc"
-fi
 
 [[ -d .vim ]]             || mkdir .vim
 [[ -d .vim/tmp ]]         || mkdir .vim/tmp
@@ -34,6 +29,19 @@ fi
 [[ -d .vim/tmp/swap ]]    || mkdir .vim/tmp/swap
 [[ -d .config/zathura ]]  || mkdir -p .config/zathura
 [[ -d .config/clipit ]]   || mkdir -p .config/clipit
+[[ -d .config/fish ]]     || mkdir -p .config/fish
+[[ -d .config/gtk-3.0 ]]  || mkdir -p .config/gtk-3.0
+
+# Dont overwrite bashrc, vimrc, config.fish
+if [[ ! -r .bashrc ]] ; then
+    \cp -i "$srcdir/bashrc" ".bashrc"
+fi
+if [[ ! -r .vimrc ]] ; then
+    \cp -i "$srcdir/vimrc" ".vimrc"
+fi
+if [[ ! -r .config/fish/config.fish ]] ; then
+    \cp -i "$srcdir/config/fish/config.fish" ".config/fish/config.fish"
+fi
 
 for file in "${dotfiles[@]}" ; do
     ln -siT "$srcdir/$file" ".$file"
