@@ -67,3 +67,19 @@ addQuickOpenCmd("open_comics_c", "Open Comics", ",c3",
      "arcamax.com/thefunnies/beetlebailey",
      "arcamax.com/thefunnies/peanuts"]);
 
+vimfx.addCommand(
+    {name: "set_kgp_proxy", description: "Enable KGP proxy"},
+    function () { getPbFx().setKgpProxy(); }
+);
+vimfx.addCommand(
+    {name: "set_local_socks_proxy", description: "Enable local socks proxy"},
+    function () { getPbFx().setLocalSocksProxy(); }
+);
+vimfx.addCommand(
+    {name: "disable_proxy", description: "Enable KGP proxy"},
+    function () { getPbFx().disableProxy(); }
+);
+
+vimfx.set("custom.mode.normal.set_kgp_proxy", ",pk");
+vimfx.set("custom.mode.normal.set_local_socks_proxy", ",pl");
+vimfx.set("custom.mode.normal.disable_proxy", ",p0");
