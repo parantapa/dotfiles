@@ -9,10 +9,6 @@ exec clipit 2>/dev/null
 exec keepassx
 exec mpd --no-daemon
 exec ario
-exec /home/parantapa/pbapps/run.sh sys-state
-exec /home/parantapa/pbapps/run.sh pulseaudio-state
-exec /home/parantapa/pbapps/run.sh xscreensaver-state
-exec /home/parantapa/pbapps/run.sh git-multi-status
 
 bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
 bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"

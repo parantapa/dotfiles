@@ -23,6 +23,7 @@ dunst &
 nitrogen --restore &
 xscreensaver -no-splash &
 urxvtd -q -f -o
+xsettingsd &
 
 # exec gnome-session
 # exec startkde
