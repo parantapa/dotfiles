@@ -15,10 +15,13 @@ found, this prints out the repos that have un pushed commits in them.
 __author__  = "Parantapa Bhattacharya <pb@parantapa.net>"
 
 import sys
+import time
 from os import chdir
 from os.path import join, abspath, basename, dirname
 from glob import glob
 from subprocess import check_output, CalledProcessError
+
+import click
 
 def get_git_repos(xs):
     """
@@ -38,20 +41,21 @@ def get_git_status():
     """
 
     try:
-        cmd = "git branch --list 2>/dev/null"
-        output = check_output(cmd, shell=True).splitlines()
-        
+        cmd = ["git", "branch", "--list"]
+        with open("/dev/null", "w") as null:
+            output = check_output(cmd, stderr=null).splitlines()
+
         line = [x for x in output if x[0] == "*"][0]
-        branch = line.split()[1]
+        branch = line[2:].strip()
     except (CalledProcessError, IndexError):
         return "!"
 
     try:
-        cmd = "git config --get branch.{}.remote".format(branch)
-        remote = check_output(cmd, shell=True).strip()
+        cmd = ["git", "config", "--get", "branch.{}.remote".format(branch)]
+        remote = check_output(cmd).strip()
 
-        cmd = "git config --get branch.{}.merge".format(branch)
-        remote_branch = check_output(cmd, shell=True).strip()
+        cmd = ["git", "config", "--get", "branch.{}.merge".format(branch)]
+        remote_branch = check_output(cmd).strip()
         remote_branch = remote_branch.split("/")[-1]
 
         upstream = "{}/{}".format(remote, remote_branch)
@@ -60,28 +64,31 @@ def get_git_status():
 
     if upstream is None:
         try:
-            cmd = "git config --get svn-remote.svn.fetch"
-            svn_refs = check_output(cmd, shell=True).strip()
+            cmd = ["git", "config", "--get", "svn-remote.svn.fetch"]
+            svn_refs = check_output(cmd).strip()
             upstream = svn_refs.split("/")[-1]
         except CalledProcessError:
             pass
 
     if upstream is None:
         return "-"
-   
-    cmd = "git status --porcelain 2>/dev/null"
-    output = check_output(cmd, shell=True).splitlines()
+
+    cmd = ["git", "status", "--porcelain"]
+    with open("/dev/null", "w") as null:
+        output = check_output(cmd, stderr=null).splitlines()
 
     untracked = sum(1 for x in output if x.startswith("??"))
     indexed   = sum(1 for x in output if x[0] == "A")
     dirty     = sum(1 for x in output if x[1] in "MD")
 
-    cmd = "git rev-list --count --left-right {}...{}"
-    cmd = cmd.format(branch, upstream)
-    output = check_output(cmd, shell=True)
+    if "HEAD detached" not in branch:
+        cmd = ["git", "rev-list", "--count", "--left-right", "{}...{}".format(branch, upstream)]
+        output = check_output(cmd)
 
-    forward, behind = output.split()
-    forward, behind = int(forward), int(behind)
+        forward, behind = output.split()
+        forward, behind = int(forward), int(behind)
+    else:
+        forward, behind = 0, 0
 
     keys = "branch upstream untracked indexed dirty forward behind".split()
     vals = locals()
@@ -113,21 +120,50 @@ def get_git_code(repo, status):
 
     return "{}{}".format(repo, code)
 
-def main():
-    repos = get_git_repos(sys.argv[1:])
+@click.command()
+@click.option("-c", "--repo-dirs", default=None, type=click.File(),
+              help="Use a file containing list of repo dirs instead of command line")
+@click.option("-1", "--linewise", is_flag=True,
+              help="One repo code per line")
+@click.option("-l", "--loop", is_flag=True,
+              help="Repleatedly print out the states")
+@click.option("-d", "--delay", default=5,
+              help="Delay between the loops")
+@click.argument("repos", nargs=-1)
+def main(repo_dirs, linewise, loop, delay, repos):
+    """
+    Get the status of multiple git repositories.
+    """
 
-    for repo in repos:
-        chdir(repo)
+    if repo_dirs is not None:
+        repos = repo_dirs.read().splitlines()
+    if not repos:
+        return
 
-        status = get_git_status()
-        if status == "-":
-            continue
+    while True:
+        dirs = get_git_repos(repos)
 
-        code = get_git_code(repo, status)
-        if code:
-            print code,
+        codes = []
+        for d in dirs:
+            chdir(d)
 
-    print ""
+            status = get_git_status()
+            if status == "-":
+                continue
+
+            code = get_git_code(d, status)
+            if code:
+                codes.append(code)
+
+        if linewise:
+            codes = "\n".join(codes)
+        else:
+            codes = " ".join(codes)
+        click.echo(codes)
+
+        if not loop:
+            break
+        time.sleep(delay)
 
 if __name__ == '__main__':
     main()
