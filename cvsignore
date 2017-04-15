@@ -1,5 +1,4 @@
 tags
-.venv
-.modescript.vim
+venv
 *.pyc
 *.pyo
