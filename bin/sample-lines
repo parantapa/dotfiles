@@ -1,0 +1,13 @@
+#!/bin/bash
+# 
+# Randomly sample lines from files
+# http://stackoverflow.com/a/692321
+
+if [[ -z $1 ]] ; then
+    echo "Need sampling fraction"
+    exit 1
+fi
+
+frac=$1
+
+exec awk 'BEGIN {srand()} !/^$/ { if (rand() <='$frac') print $0}'
