@@ -14,7 +14,12 @@ function fish_prompt --description 'Write out the prompt'
 
     if set -q VIRTUAL_ENV
         set_color green
-        echo -n "("(basename $VIRTUAL_ENV)") "
+        echo -n "(v:"(basename $VIRTUAL_ENV)") "
+    end
+
+    if set -q CONDA_PREFIX
+        set_color green
+        echo -n "(c:"(basename $CONDA_PREFIX)") "
     end
 
     set_color cyan

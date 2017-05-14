@@ -43,9 +43,11 @@ source "$HOME_DOTFILES/bashrc.d/git-prompt.sh"
 my_ps1 () {
     local ret="$1"
 
-    hash deactivate 2>/dev/null
-    if [[ "$?" -eq 0 ]] && [[ -n "$VIRTUAL_ENV" ]] ; then
-        printf '%s(%s)%s ' "${_mycolor_txtgrn}" "$(basename $VIRTUAL_ENV)" "${_mycolor_txtpur}"
+    if [[ -n "$VIRTUAL_ENV" ]] ; then
+        printf '%s(%s)%s ' "${_mycolor_txtgrn}" "v:$(basename $VIRTUAL_ENV)" "${_mycolor_txtpur}"
+    fi
+    if [[ -n "$CONDA_PREFIX" ]] ; then
+        printf '%s(%s)%s ' "${_mycolor_txtgrn}" "c:$(basename $CONDA_PREFIX)" "${_mycolor_txtpur}"
     fi
 
     printf '%s\\u@\\h%s: ' "${_mycolor_txtcyn}" "${_mycolor_txtpur}"
