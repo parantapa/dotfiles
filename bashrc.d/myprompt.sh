@@ -42,6 +42,11 @@ source "$HOME_DOTFILES/bashrc.d/git-prompt.sh"
 
 my_ps1 () {
     local ret="$1"
+    local hname="$MY_HOSTNAME"
+
+    if [[ -z "$hname" ]] ; then
+        hname="${HOSTNAME}"
+    fi
 
     if [[ -n "$VIRTUAL_ENV" ]] ; then
         printf '%s(%s)%s ' "${_mycolor_txtgrn}" "v:$(basename $VIRTUAL_ENV)" "${_mycolor_txtpur}"
@@ -50,7 +55,7 @@ my_ps1 () {
         printf '%s(%s)%s ' "${_mycolor_txtgrn}" "c:$(basename $CONDA_PREFIX)" "${_mycolor_txtpur}"
     fi
 
-    printf '%s\\u@\\h%s: ' "${_mycolor_txtcyn}" "${_mycolor_txtpur}"
+    printf '%s\\u@%s%s: ' "${_mycolor_txtcyn}" "$hname" "${_mycolor_txtpur}"
     printf '%s\\W %s- '   "${_mycolor_txtylw}" "${_mycolor_txtpur}"
     if [[ "$ret" -eq 0 ]] ; then
         printf '%s:) %s- ' "${_mycolor_txtgrn}" "${_mycolor_txtpur}"
@@ -69,11 +74,15 @@ my_ps1 () {
 
 my_titlebar () {
     local title
+    local hname="$MY_HOSTNAME"
+    if [[ -z "$hname" ]] ; then
+        hname="${HOSTNAME}"
+    fi
 
     if [[ "${PWD}" == "${HOME}" ]] ; then
-        title="${HOSTNAME}: ~"
+        title="${hname}: ~"
     else
-        title="${HOSTNAME}: $( basename "${PWD}" )"
+        title="${hname}: $( basename "${PWD}" )"
     fi
 
     # For xterm and urxvt set the title directly
