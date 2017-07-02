@@ -6,7 +6,7 @@ bar {
 }
 
 exec clipit 2>/dev/null
-exec keepassx
+exec keepassxc
 exec mpd --no-daemon
 exec ario
 
