@@ -65,7 +65,7 @@ topu () { top -u $USER "$@" ; }
 
 # GVim alias
 if [[ -n "$DISPLAY" ]] && [[ "$DISPLAY" != "localhost:"* ]] ; then
-    alias g=gvim
+    alias g=vimer
 else
     alias g=vim
 fi

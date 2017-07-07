@@ -59,7 +59,7 @@ if set -q DISPLAY
     case 'localhost:*'
         alias g=vim
     case '*'
-        alias g=gvim
+        alias g=vimer
     end
 else
     alias g=vim
