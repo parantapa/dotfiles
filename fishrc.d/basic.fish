@@ -2,7 +2,7 @@
 set -x PAGER "less -niRS"
 set -x EDITOR vim
 set -x VISUAL vim
-set -x BROWSER firefox-aurora
+set -x BROWSER google-chrome-stable
 set -x PDFVIEWER evince
 
 # colorize ls

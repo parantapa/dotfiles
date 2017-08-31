@@ -159,7 +159,7 @@ bindsym $mod+d exec dmenu-wrap -run
 bindsym $mod+Shift+q exit
 
 bindsym Control+Mod1+bracketleft exec "urxvtc -e /usr/bin/fish"
-bindsym Control+Mod1+bracketright exec "firefox-aurora"
+bindsym Control+Mod1+bracketright exec "google-chrome-stable"
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
 bindsym Control+Mod1+o exec "ario"
 bindsym Control+Mod1+p exec "thunar"
