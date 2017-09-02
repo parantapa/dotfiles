@@ -16,5 +16,6 @@ function set-proxy
 
     set -xg http_proxy $proxy
     set -xg https_proxy $proxy
+    set -xg no_proxy "localhost,127.0.0.1"
     echo "Proxy: $http_proxy"
 end

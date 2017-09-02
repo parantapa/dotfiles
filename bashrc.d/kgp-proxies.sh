@@ -16,5 +16,6 @@ function set-proxy () {
     k=${1-0}
     export http_proxy=${proxies[$k]}
     export https_proxy=${proxies[$k]}
+    export no_proxy="localhost,127.0.0.1"
     echo "Proxy: $http_proxy"
 }
