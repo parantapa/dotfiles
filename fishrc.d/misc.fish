@@ -3,7 +3,7 @@ alias f "find-pdf"
 
 # PDF viewer alias
 function e
-    eval runbg $PDFVIEWER $argv
+    eval runbg $PDFVIEWER \"$argv\"
 end
 
 # Pdflatex alias
