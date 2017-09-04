@@ -39,6 +39,6 @@ conky.config = {
 
 conky.text = [[
 $hr
-${execpi 300 git-multi-status -1 -c ~/.repo-dirs}
+${execpi 5 git-multi-status -1 -c ~/.repo-dirs}
 $hr
 ]]
