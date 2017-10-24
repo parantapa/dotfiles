@@ -18,6 +18,7 @@ dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
     config/dunstrc
     config/zathura/zathurarc
     config/clipit/clipitrc
+    config/termite/config
     "config/fish/functions")
 
 cd "$dstdir"
@@ -31,6 +32,7 @@ cd "$dstdir"
 [[ -d .config/clipit ]]   || mkdir -p .config/clipit
 [[ -d .config/fish ]]     || mkdir -p .config/fish
 [[ -d .config/gtk-3.0 ]]  || mkdir -p .config/gtk-3.0
+[[ -d .config/termite ]]  || mkdir -p .config/termite
 
 # Dont overwrite bashrc, vimrc, config.fish
 if [[ ! -r .bashrc ]] ; then
