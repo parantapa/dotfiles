@@ -41,4 +41,6 @@ conky.text = [[
 $hr
 ${execpi 5 git-multi-status -1 -c ~/.repo-dirs}
 $hr
+Kolkata : ${tztime Asia/Kolkata %c}
+New York: ${tztime America/New_York %c}
 ]]
