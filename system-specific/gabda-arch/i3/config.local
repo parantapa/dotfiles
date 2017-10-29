@@ -7,7 +7,7 @@ bar {
 
 exec clipit 2>/dev/null
 exec keepassxc
-exec mpd --no-daemon
+#exec mpd --no-daemon
 #exec ario
 exec conky -c /home/parantapa/dotfiles/system-specific/gabda-arch/conky.conf.gabda
 
