@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]] ; then
+    echo "Usage: zathura-goto-pagenum ZATHURA-PID PAGENUM"
+    exit 1
+fi
+
+PID="$1"
+PAGE="$2"
+
+exec dbus-send --print-reply --type=method_call \
+    --dest=org.pwmt.zathura.PID-"$PID" \
+    /org/pwmt/zathura \
+    org.pwmt.zathura.GotoPage \
+    uint32:3

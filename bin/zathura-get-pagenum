@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]] ; then
+    echo "Usage: zathura-get-pagenum ZATHURA-PID"
+    exit 1
+fi
+
+PID="$1"
+
+dbus-send --print-reply \
+          --type=method_call \
+          --dest=org.pwmt.zathura.PID-"$PID" \
+          /org/pwmt/zathura \
+          org.freedesktop.DBus.Properties.Get \
+          string:"org.pwmt.zathura" string:"pagenumber"

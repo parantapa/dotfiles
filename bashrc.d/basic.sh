@@ -25,7 +25,7 @@ export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL=vim
 export BROWSER=google-chrome-stable
-export PDFVIEWER=okular
+export PDFVIEWER=zathura
 
 # colorize ls
 LS_OPTIONS='--color=always -h --group-directories-first'
