@@ -164,6 +164,7 @@ bindsym Control+Mod1+q exec "xfce4-screenshooter"
 bindsym Control+Mod1+o exec "ario"
 bindsym Control+Mod1+p exec "thunar"
 bindsym Control+Mod1+backslash exec "repo-edit ~/quickrefs index.md"
+bindsym Control+Mod1+k exec "keepassxc"
 
 bindsym Control+Mod1+9 exec "typeout-clipboard"
 
