@@ -12,4 +12,4 @@ exec dbus-send --print-reply --type=method_call \
     --dest=org.pwmt.zathura.PID-"$PID" \
     /org/pwmt/zathura \
     org.pwmt.zathura.GotoPage \
-    uint32:3
+    uint32:"$PAGE"
