@@ -9,5 +9,5 @@ scp "/usr/share/terminfo/r/rxvt-unicode" "$@:.terminfo/r/"
 scp "/usr/share/terminfo/r/rxvt-unicode-256color" "$@:.terminfo/r/"
 scp "/usr/share/terminfo/s/screen" "$@:.terminfo/s/"
 scp "/usr/share/terminfo/s/screen-256color" "$@:.terminfo/s/"
-scp "/lib/terminfo/x/xterm-termite" "$@:.terminfo/x/"
+scp "/usr/share/terminfo/x/xterm-termite" "$@:.terminfo/x/"
 
