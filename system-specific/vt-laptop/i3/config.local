@@ -5,7 +5,6 @@ bar {
        status_command /home/paran/workspace/pbapps3/runpy.sh makestatus-anubis.py
 }
 
-
 workspace 7 output LVDS2
 workspace 8 output LVDS2
 
@@ -24,8 +23,6 @@ exec keepassxc
 #exec mpd --no-daemon
 #exec ario
 exec conky -c /home/paran/dotfiles/system-specific/vt-laptop/conky.conf
-exec xrandr --output VGA2 --mode 1920x1080
-exec nitrogen --restore
 
 bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 20"
 bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 20"
@@ -39,3 +36,20 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "sound-ctrl decvol"
 bindsym XF86AudioMute exec --no-startup-id "sound-ctrl toggle"
 
 bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
+
+# https://wiki.archlinux.org/index.php/i3#External_displays_manual_management
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen (1) HDMI+VGA (2) HDMI (3) VGA (0) No Ext
+mode "$mode_display" {
+    bindsym 1 exec --no-startup-id screen_setup_anubis HDMI+VGA, mode "default"
+    bindsym 2 exec --no-startup-id screen_setup_anubis HDMI, mode "default"
+    bindsym 3 exec --no-startup-id screen_setup_anubis VGA, mode "default"
+    bindsym 0 exec --no-startup-id screen_setup_anubis NoExt, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"

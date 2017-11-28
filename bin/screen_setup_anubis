@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -x
+
+if [[ "$1" == "HDMI+VGA" ]] ; then
+    xrandr --output HDMI-1-1 --auto --right-of LVDS2
+    xrandr --output VGA2 --auto --right-of HDMI-1-1
+    xrandr --output VGA2 --mode 1920x1080
+    nitrogen --restore
+elif [[ "$1" == "HDMI" ]] ; then
+    xrandr --output HDMI-1-1 --auto --right-of LVDS2
+    xrandr --output VGA2 --auto --off
+    nitrogen --restore
+elif [[ "$1" == "VGA" ]] ; then
+    xrandr --output VGA2 --auto --right-of LVDS2
+    xrandr --output HDMI-1-1 --auto --off
+    xrandr --output VGA2 --mode 1920x1080
+    nitrogen --restore
+elif [[ "$1" == "NoExt" ]] ; then
+    xrandr --output HDMI-1-1 --auto --off
+    xrandr --output VGA2 --auto --off
+    nitrogen --restore
+else
+    echo "Invalid argument"
+fi
