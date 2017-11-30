@@ -2,7 +2,7 @@ assign [class="Skype"] 9
 assign [class="Xchat"] 9
 
 bar {
-        status_command /home/parantapa/pbapps3/runpy.sh makestatus-gabda.py
+        status_command /home/parantapa/workspace/pbapps3/runpy.sh makestatus-gabda.py
 }
 
 exec clipit 2>/dev/null

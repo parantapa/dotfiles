@@ -17,3 +17,5 @@ set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Ds
 #
 # Do not use anaconda provided clear
 # alias clear=/usr/bin/clear
+#
+# set VIRTUAL_ENV_DISABLE_PROMPT 1
