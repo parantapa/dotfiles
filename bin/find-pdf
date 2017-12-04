@@ -15,7 +15,7 @@ def find(sdocs, keyword):
     Return the list of files with the given keyword.
     """
 
-    cmd = ["find", sdocs, "-iname", "*{0}*.pdf".format(keyword)]
+    cmd = ["find", sdocs, "-iname", "*{0}*.pdf".format(keyword), "-o", "-iname", "*{0}*.djvu".format(keyword)]
     proc = Popen(cmd, stdout=PIPE)
     out, _ = proc.communicate()
     if proc.returncode != 0 or out is None:
