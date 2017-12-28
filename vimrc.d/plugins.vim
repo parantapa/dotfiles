@@ -156,7 +156,3 @@ augroup end
 " LanguageTool {{{2
 
     let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
-
-" RainbowParentheses {{{2
-
-    cnoreabbrev rpt RainbowParenthesesToggle

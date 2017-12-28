@@ -31,9 +31,6 @@
 [submodule "vim/bundle/viewdoc"]
 	path = vim/bundle/viewdoc
 	url = https://github.com/powerman/vim-plugin-viewdoc.git
-[submodule "vim/bundle/rainbow-parentheses"]
-	path = vim/bundle/rainbow-parentheses
-	url = https://github.com/kien/rainbow_parentheses.vim.git
 [submodule "vim/bundle/moin"]
 	path = vim/bundle/moin
 	url = https://github.com/parantapa/moin.vim.git
@@ -43,9 +40,6 @@
 [submodule "vim/bundle/vim-slime"]
 	path = vim/bundle/vim-slime
 	url = https://github.com/jpalardy/vim-slime.git
-[submodule "vim/bundle/indent-object"]
-	path = vim/bundle/indent-object
-	url = https://github.com/michaeljsmith/vim-indent-object.git
 [submodule "vim/bundle/repeat"]
 	path = vim/bundle/repeat
 	url = https://github.com/tpope/vim-repeat
@@ -58,9 +52,6 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
-[submodule "vim/bundle/ag.vim"]
-	path = vim/bundle/ag.vim
-	url = https://github.com/rking/ag.vim
 [submodule "vim/bundle/matchtag"]
 	path = vim/bundle/matchtag
 	url = https://github.com/gregsexton/MatchTag.git
@@ -91,12 +82,6 @@
 [submodule "vim/bundle/unite-outline"]
 	path = vim/bundle/unite-outline
 	url = https://github.com/Shougo/unite-outline
-[submodule "vim/bundle/vim-toml"]
-	path = vim/bundle/vim-toml
-	url = https://github.com/cespare/vim-toml
-[submodule "vim/bundle/vim-coffee-script"]
-	path = vim/bundle/vim-coffee-script
-	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "vim/bundle/rust.vim"]
 	path = vim/bundle/rust.vim
 	url = https://github.com/wting/rust.vim.git
