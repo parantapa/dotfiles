@@ -511,3 +511,9 @@ augroup ft_setup
         \ call TextEnableCodeSnip("yaml", '/\v%^/', '/\V.../', "yaml")
 augroup END
 
+" Use ripgrep when available {{{
+
+if executable("rg")
+    set grepprg=rg\ --vimgrep
+    set grepformat^=%f:%l:%c:%m
+endif 
