@@ -104,9 +104,16 @@ let g:unite_source_menu_menus.index.command_candidates = {
     \ 'file' : 'Unite -start-insert file_rec',
     \ 'mru' : 'Unite -start-insert file_mru',
     \ 'yank' : 'Unite history/yank',
-    \ 'outline' : 'Unite outline'
+    \ 'outline' : 'Unite outline',
     \ }
+
+" Use ripgrep when available
+if executable('rg')
+    let g:unite_source_grep_command = 'rg'
+    let g:unite_source_grep_default_opts = '--hidden --no-heading --vimgrep -S'
+    let g:unite_source_grep_recursive_opt = ''
+endif
 
 nnoremap <C-P> :<C-u>Unite menu:index<CR>
 nnoremap <C-B> :<C-u>Unite -start-insert buffer<CR>
-
+nnoremap <C-G> :<C-u>Unite grep:. -wrap<CR>

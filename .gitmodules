@@ -94,3 +94,9 @@
 [submodule "vim/bundle/vim-fish"]
 	path = vim/bundle/vim-fish
 	url = https://github.com/dag/vim-fish.git
+[submodule "vim/bundle/vimproc"]
+	path = vim/bundle/vimproc
+	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "vim/bundle/unite-tag"]
+	path = vim/bundle/unite-tag
+	url = https://github.com/tsukkee/unite-tag.git
