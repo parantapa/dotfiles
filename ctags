@@ -1,1 +1,4 @@
 --python-kinds=-i
+
+--exclude=node_modules
+--exclude=venv
