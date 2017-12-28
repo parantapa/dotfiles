@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -x
+
+if [[ "$1" == "HDMI+DP" ]] ; then
+    xrandr --output HDMI1 --auto --right-of eDP1
+    xrandr --output DP1 --auto --right-of HDMI1
+    xrandr --output eDP1 --mode 1600x900
+    nitrogen --restore
+elif [[ "$1" == "HDMI" ]] ; then
+    xrandr --output HDMI1 --auto --right-of eDP1
+    xrandr --output DP1 --auto --off
+    xrandr --output eDP1 --mode 1600x900
+    nitrogen --restore
+elif [[ "$1" == "DP" ]] ; then
+    xrandr --output DP1 --auto --right-of eDP1
+    xrandr --output HDMI1 --auto --off
+    xrandr --output eDP1 --mode 1600x900
+    nitrogen --restore
+elif [[ "$1" == "NoExt" ]] ; then
+    xrandr --output HDMI1 --auto --off
+    xrandr --output DP1 --auto --off
+    xrandr --output eDP1 --mode 1600x900
+    nitrogen --restore
+else
+    echo "Invalid argument"
+fi
