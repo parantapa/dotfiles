@@ -149,11 +149,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Return exec "termite"
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu-wrap -run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym --release $mod+d exec rofi -show run -matching fuzzy
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exit
@@ -166,7 +162,7 @@ bindsym Control+Mod1+p exec "thunar"
 bindsym Control+Mod1+backslash exec "repo-edit ~/quickrefs index.md"
 bindsym Control+Mod1+k exec "keepassxc"
 
-bindsym Control+Mod1+9 exec "typeout-clipboard"
+bindsym --release Control+Mod1+9 exec "typeout-clipboard"
 
 bindsym Control+Mod1+Left  exec --no-startup-id "mpc prev"
 bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
