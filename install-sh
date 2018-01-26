@@ -9,7 +9,7 @@ else
 fi
 
 dotfiles=(profile bash_logout
-    tmux.conf gitconfig hgrc cvsignore
+    tmux.conf screenrc gitconfig hgrc cvsignore
     ackrc ctags.d sqliterc psqlrc)
 
 dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
@@ -19,7 +19,8 @@ dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
     config/zathura/zathurarc
     config/clipit/clipitrc
     config/termite/config
-    "config/fish/functions")
+    config/fish/functions
+    config/rofi/config)
 
 cd "$dstdir"
 
