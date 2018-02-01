@@ -24,7 +24,7 @@ shopt -s no_empty_cmd_completion
 export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL=vim
-export BROWSER=google-chrome-stable
+export BROWSER=firefox-developer-edition
 export PDFVIEWER=zathura
 
 # colorize ls
