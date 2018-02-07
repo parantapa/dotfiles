@@ -33,6 +33,7 @@ LS_OPTIONS='--color=always -h --group-directories-first'
 alias ls="ls $LS_OPTIONS"
 alias ll="ls $LS_OPTIONS -l -v"
 alias l.="ls $LS_OPTIONS -A --ignore='[^.]*'"
+alias lst='\ls -R | \grep ":\$" | sed -e "s/:\$//" -e "s/[^-][^\\/]*\\//--/g" -e "s/^/   /" -e "s/-/|/"'
 
 # Some more aliases to avoid stupid mistakes
 alias rm="rm -i"
