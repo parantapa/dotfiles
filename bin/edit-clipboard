@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Edit clipboard in gvim
+
+set -x
+
+clip_path="$HOME/.pbapps/edit-clipboard"
+mkdir -p "$clip_path"
+
+active_window="$( xdotool getactivewindow )"
+uuid="$( uuidgen -r )"
+
+xclip -o -selection clipboard > "$clip_path/$uuid"
+gvim --nofork --servername "$uuid" "$clip_path/$uuid"
+xclip -i -selection clipboard < "$clip_path/$uuid"
+xdotool windowfocus "$active_window"
