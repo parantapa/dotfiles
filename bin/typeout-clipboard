@@ -3,7 +3,7 @@
 """
 Type out the contents of clipboard.
 
-Uses xdotool and xsel
+Uses xdotool and xclip
 """
 
 from __future__ import division, print_function, unicode_literals
@@ -251,7 +251,7 @@ def get_clipboard():
     Get the text from the clipboard.
     """
 
-    cmd = ["xsel", "-o", "-b"]
+    cmd = ["xclip", "-o", "-selection", "clipboard"]
     try:
         proc = Popen(cmd, stdout=PIPE)
         text, _ = proc.communicate()
