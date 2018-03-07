@@ -1,6 +1,6 @@
 [MASTER]
 
-extension-pkg-whitelist=zstd, numpy, scipy, setproctile, numpy.random, lz4
+extension-pkg-whitelist=numpy,scipy,lz4,zstd,Levenshtein
 
 [MESSAGES CONTROL]
 
