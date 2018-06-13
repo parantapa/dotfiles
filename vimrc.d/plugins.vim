@@ -80,6 +80,7 @@ augroup end
     let g:syntastic_check_on_wq = 0
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_id_checkers = 1
+    let g:syntastic_always_populate_loc_list = 1
 
     let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
@@ -91,7 +92,7 @@ augroup end
     let g:syntastic_mode_map = {
         \ "mode": "passive",
         \ "active_filetypes": ["python", "javascript"],
-        \ "passive_filetypes": ["javascript.jsx"] }
+        \ "passive_filetypes": [] }
 
     " Get the current error-code from pylint
     function! MySyntasticPylintCode()
