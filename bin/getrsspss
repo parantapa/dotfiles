@@ -11,27 +11,47 @@ unit_dict = {
     "gB": 2 ** 30,
 }
 
+def getrsspss(pid):
+    """
+    Get rss, pss for a given pid.
+    """
+
+    try:
+        with open("/proc/%d/smaps" % pid) as fobj:
+            lines = list(fobj)
+    except IOError as exc:
+        print "IOError", str(exc)
+        return None, None
+
+    rss, pss = 0, 0
+    for line in lines:
+        if line.startswith("Rss:"):
+            _, num, unit = line.split()
+            rss += int(num) * unit_dict[unit]
+        if line.startswith("Pss:"):
+            _, num, unit = line.split()
+            pss += int(num) * unit_dict[unit]
+
+    return rss, pss
+
 def main():
     try:
-        _, pid = sys.argv
-        pid = int(pid)
-    except (ValueError, TypeError):
-        print("Usage: getrsspss PID")
+        pids = list(map(int, sys.argv[1:]))
+    except ValueError:
+        print("Usage: getrsspss PID1 ...")
         sys.exit(1)
 
-    rss = 0
-    pss = 0
-    with open("/proc/%d/smaps" % pid) as fobj:
-        for line in fobj:
-            if line.startswith("Rss:"):
-                _, num, unit = line.split()
-                rss += int(num) * unit_dict[unit]
-            if line.startswith("Pss:"):
-                _, num, unit = line.split()
-                pss += int(num) * unit_dict[unit]
+    rss_a, pss_a = 0, 0
+    for pid in pids:
+        rss, pss = getrsspss(pid)
+        if rss is not None:
+            rss = rss / 2 ** 20
+            pss = pss / 2 ** 20
+            print "PID: {0} RSS: {1:,.2f} MB PSS: {2:,.2f} MB".format(pid, rss, pss)
+            rss_a += rss
+            pss_a += pss
 
-    print "Rss:", round(rss / 2 ** 20, 2), "MB"
-    print "Pss:", round(pss / 2 ** 20, 2), "MB"
+    print "Total: RSS: {0:,.2f} MB PSS: {1:,.2f} MB".format(rss_a, pss_a)
 
 if __name__ == "__main__":
     main()
