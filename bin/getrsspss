@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 """
 Get the PSS and RSS of a PID.
 """
@@ -30,8 +30,8 @@ def main():
                 _, num, unit = line.split()
                 pss += int(num) * unit_dict[unit]
 
-    print("Rss:", round(rss / 2 ** 20, 2), "mB")
-    print("Pss:", round(pss / 2 ** 20, 2), "mB")
+    print "Rss:", round(rss / 2 ** 20, 2), "MB"
+    print "Pss:", round(pss / 2 ** 20, 2), "MB"
 
 if __name__ == "__main__":
     main()
