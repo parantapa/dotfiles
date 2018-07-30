@@ -12,10 +12,10 @@ def main():
     elif len(sys.argv) == 2:
         _, n = sys.argv
         n = int(n)
-        dfname = "/usr/share/hunspell/en_US.dic"
+        dfname = "/usr/share/hunspell/en_US-large.dic"
     else:
         n = 10
-        dfname = "/usr/share/hunspell/en_US.dic"
+        dfname = "/usr/share/hunspell/en_US-large.dic"
 
     with open(dfname, "r") as fobj:
         words = fobj.read().split()
