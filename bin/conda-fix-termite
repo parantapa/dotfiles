@@ -1,7 +1,18 @@
 #!/bin/bash
 set -x
 
-src="/usr/lib/terminfo/x/xterm-termite"
 dst="$CONDA_PREFIX/share/terminfo/x/"
 
-ln -s "$src" "$dst"
+src1="$HOME/.terminfo/x/xterm-termite"
+src2="/usr/share/terminfo/x/xterm-termite"
+
+if [[ -e "$src1" ]] ; then
+    ln -s "$src1" "$dst"
+elif [[ -e "$src2" ]] ; then
+    ln -s "$src2" "$dst"
+else
+    echo "Failed to find terminfo for xterm-termite"
+    exit 1
+fi
+
+exit 0
