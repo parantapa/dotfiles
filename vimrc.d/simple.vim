@@ -274,6 +274,7 @@ endfunction
 
 " I dont use ex mode
 nnoremap Q gq
+vnoremap Q gq
 
 " Better shortcut for copy the rest of the line
 nnoremap Y yg_
