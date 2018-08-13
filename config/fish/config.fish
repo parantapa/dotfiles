@@ -14,8 +14,11 @@ set -x MY_SOUND_SYSTEM pulse
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
 # source "$HOME/anaconda3/etc/fish/conf.d/conda.fish"
+# functions -e fish_right_prompt
 #
 # Do not use anaconda provided clear
 # alias clear=/usr/bin/clear
 #
 # set VIRTUAL_ENV_DISABLE_PROMPT 1
+
+# set -x PATH "$HOME/bin" $PATH
