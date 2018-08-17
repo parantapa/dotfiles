@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [[ -z "$1" ]] ; then
+    echo "Usage: wait-for-screen-finish SCREEN_NAME"
+    exit 1
+fi
+
+while : ; do
+    screen -ls | \grep -F "$1" >/dev/null
+    if [[ $? -eq 1 ]] ; then
+        break
+    fi
+    sleep 1
+done

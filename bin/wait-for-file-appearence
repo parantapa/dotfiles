@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ -z "$1" ]] ; then
+    echo "Usage: wait-for-file-appearence FILE"
+    exit 1
+fi
+
+while : ; do
+    if [[ -f "$1" ]] ; then
+        break
+    fi
+    sleep 1
+done
