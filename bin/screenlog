@@ -1,0 +1,40 @@
+#!/bin/bash
+# This script enables running detached screen sessions with a custom logfile.
+# https://serverfault.com/questions/248193/specifying-a-log-name-for-screen-output-without-relying-on-screenrc
+
+if [[ "$#" -eq 0 ]] ; then
+    echo "Usage: ./screenlog LOGFILE [SCREEN_OPTIONS] CMD [ARGS]"
+    exit 1
+fi
+
+hash screen 2>/dev/null
+if [[ "$?" -ne 0 ]] ; then
+    echo "screen command not found"
+    exit 1
+fi
+hash readlink 2>/dev/null
+if [[ "$?" -ne 0 ]] ; then
+    echo "readlink command not found"
+    exit 1
+fi
+
+logfname=$(readlink -f "$1")
+(>&2 echo "screenlog: using '$logfname' as log file")
+shift
+
+now=$(date --iso-8601=seconds)
+if [[ -n "$XDG_RUNTIME_DIR" ]] ; then
+    screenrc=$(mktemp -p "$XDG_RUNTIME_DIR" screenlog.$now.XXXXXX)
+else
+    screenrc=$(mktemp -t screenlog.$now.XXXXXX)
+fi
+(>&2 echo "screenlog: using '$screenrc' as screenrc file")
+
+echo "logfile $logfname" > "$screenrc"
+if [[ -r "$HOME/.screenrc" ]] ; then
+    echo 'source $HOME/.screenrc' >> "$screenrc"
+fi
+
+screen -c "$screenrc" -L "$@"
+
+sleep 1
