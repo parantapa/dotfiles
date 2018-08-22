@@ -4,7 +4,7 @@ extension-pkg-whitelist=numpy,scipy,lz4,zstd,Levenshtein
 
 [MESSAGES CONTROL]
 
-disable=bad-whitespace,bad-builtin,wildcard-import,unused-wildcard-import,invalid-name,global-statement,line-too-long,wrong-import-position,wrong-import-order,redefined-variable-type,too-few-public-methods
+disable=bad-continuation,bad-whitespace,bad-builtin,wildcard-import,unused-wildcard-import,invalid-name,global-statement,line-too-long,wrong-import-position,wrong-import-order,redefined-variable-type,too-few-public-methods
 
 [TYPECHECK]
 
