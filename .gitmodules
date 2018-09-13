@@ -52,9 +52,6 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
-[submodule "vim/bundle/matchtag"]
-	path = vim/bundle/matchtag
-	url = https://github.com/gregsexton/MatchTag.git
 [submodule "vim/bundle/jinja"]
 	path = vim/bundle/jinja
 	url = https://github.com/vim-scripts/Jinja.git
