@@ -24,3 +24,5 @@ source "$HOME_DOTFILES/bashrc.d/dotfiles.sh"
 # source "$HOME_DOTFILES/bashrc.d/guest-local-vars.sh"
 # source "$HOME_DOTFILES/bashrc.d/virtualenvwrapper-thors.sh"
 
+# pathadd "$HOME/bin"
+# pathadd "$HOME_SDOCS/bin"
