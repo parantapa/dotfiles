@@ -1,0 +1,28 @@
+assign [class="Skype"] 9
+assign [class="Xchat"] 9
+
+bar {
+        #status_command /home/parantapa/workspace/pbapps3/runpy.sh makestatus-gabda.py
+        status_command i3status
+}
+
+exec xrandr --output eDP1 --mode 1600x900 &
+
+exec clipit 2>/dev/null
+exec keepassxc
+#exec mpd --no-daemon
+#exec ario
+exec conky -c /home/parantapa/dotfiles/system-specific/ryu/conky.conf
+
+bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 20"
+bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 20"
+
+bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
+bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
+bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle"
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id "sound-ctrl incvol"
+bindsym XF86AudioLowerVolume exec --no-startup-id "sound-ctrl decvol"
+bindsym XF86AudioMute exec --no-startup-id "sound-ctrl toggle"
+
+bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
