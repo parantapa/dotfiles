@@ -27,3 +27,6 @@ set recolor-keephue             "true"
 set font Inconsolata\ 12
 
 set adjust-open "width"
+
+set synctex true
+set synctex-editor-command "vimer +%{line} %{input}"
