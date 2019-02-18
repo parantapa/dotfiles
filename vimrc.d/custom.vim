@@ -145,6 +145,22 @@ cnoreabbrev op OpenPdf
 nnoremap <leader>op :OpenPdf <C-r><C-p>
 vnoremap <leader>op "zygv:<C-u>OpenPdf <C-r>z
 
+" Call make synctex using position and file under cursor {{{1
+
+function! MakeSyncTex()
+    let $SYNCTEX_LINE = line(".")
+    let $SYNCTEX_COL = col(".")
+    let $SYNCTEX_SRC = expand("%")
+    let cmd = "make synctex &"
+    echom cmd
+    call system(cmd)
+endfunction
+
+command! -nargs=0 MakeSyncTex call MakeSyncTex()
+cnoreabbrev mst MakeSyncTex
+
+nnoremap <leader>mst :MakeSyncTex
+
 " Perform a websearch {{{1
 
 function! OpenSearch(xargs)
