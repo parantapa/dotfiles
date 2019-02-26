@@ -1,0 +1,15 @@
+#!/bin/bash
+
+rev_count="$(git rev-list HEAD --count 2>&1)"
+if [[ $? -ne 0 ]] ; then
+    echo "unknown"
+    exit 1
+fi
+rev_short="$(git rev-parse --short HEAD 2>&1)"
+
+dir_clean="$(git status --porcelain 2>&1)"
+if [[ -z "$dir_clean" ]] ; then
+    echo "v$rev_count.$rev_short"
+else
+    echo "v$rev_count.$rev_short-dirty"
+fi
