@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# https://gist.github.com/kates/5915285
-ag "$1" --files-with-matches | xargs -I {} sed -i.bak -e "s/$1/$2/g" {}
