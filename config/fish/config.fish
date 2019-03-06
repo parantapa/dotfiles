@@ -21,5 +21,5 @@ set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Ds
 #
 # set VIRTUAL_ENV_DISABLE_PROMPT 1
 
-# set -x PATH "$HOME/bin" $PATH
 # set -x PATH "$HOME_SDOCS/bin" $PATH
+# set -x PATH "$HOME/bin" $PATH
