@@ -41,7 +41,7 @@ fi
 
 xrandr > /dev/null
 xrandr --output eDP1 --mode 1920x1080
-xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" 281 1
+xinput set-prop  "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 
 export SHELL=/usr/bin/fish
 
