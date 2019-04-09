@@ -1,5 +1,5 @@
 " Extra plugin configs
-" Enable these if only if you have python and lua support
+" Enable these if only if you have python, lua, and Vim8+ support
 
 " Gundo {{{2
 
@@ -62,6 +62,18 @@ inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
 "     let col = col('.') - 1
 "     return !col || getline('.')[col - 1]  =~ '\s'
 " endfunction
+
+" ALE {{{2
+
+let g:ale_linters = {
+            \ 'python': ['pylint']
+            \}
+
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_filetype_changed = 1
 
 " Unite {{{2
 

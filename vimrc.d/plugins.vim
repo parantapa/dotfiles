@@ -26,12 +26,6 @@ if has("gui_running") || &t_Co == 256
     colorscheme molokai
 endif
 
-" Add Syntastic and VirtualEnv info in status line {{{1
-
-call insert(g:my_statusline, " %#redbar#%{SyntasticStatuslineFlag()}%*", 1)
-call insert(g:my_statusline, "%{virtualenv#statusline()}", 3)
-
-let &statusline = join(g:my_statusline, "")
 
 " Wordnet for Viewdoc {{{1
 
@@ -74,42 +68,6 @@ augroup end
     let g:tex_flavor = 'latex'
     let g:tex_comment_nospell= 1
 
-" Syntastic {{{2
-
-    let g:syntastic_enable_signs = 1
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_aggregate_errors = 1
-    let g:syntastic_id_checkers = 1
-    let g:syntastic_always_populate_loc_list = 1
-
-    let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
-
-    let g:syntastic_c_compiler_options = ' -Wall -Wextra'
-    let g:syntastic_python_checkers = ['pylint']
-    " let g:syntastic_python_pylint_exec = '/usr/bin/pylint2'
-    let g:syntastic_javascript_checkers = ['eslint']
-
-    let g:syntastic_mode_map = {
-        \ "mode": "passive",
-        \ "active_filetypes": ["python", "javascript"],
-        \ "passive_filetypes": [] }
-
-    " Get the current error-code from pylint
-    function! MySyntasticPylintCode()
-        let line = line(".")
-        let baloons = g:SyntasticLoclist.current().balloons()
-        if !has_key(baloons, line)
-            return ""
-        endif
-
-        let message = baloons[line]
-
-        let codergx = '\v\C^\[\zs[a-z\-]+\ze\]'
-        let code = matchstr(message, codergx)
-
-        return code
-    endfunction
-
 " QFEnter {{{2
 
     let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
@@ -120,10 +78,6 @@ augroup end
 " TagBar {{{2
 
     cnoreabbrev tt TagbarToggle
-
-" Virtualenv {{{2
-
-    let g:virtualenv_stl_format = '[%n] '
 
 " ViewDoc {{{2
 
