@@ -10,22 +10,14 @@ exec keepassxc
 #exec ario
 exec conky -c /home/parantapa/dotfiles/system-specific/ryu/conky.conf
 
-bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 10"
-bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10"
+# bindsym Control+Mod1+Left  exec --no-startup-id "mpc prev"
+# bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
+# bindsym Control+Mod1+Down  exec --no-startup-id "mpc toggle"
+# bindsym Control+Mod1+Up    exec --no-startup-id "mpc stop"
 
-bindsym Control+Mod1+period exec --no-startup-id "sound-ctrl incvol"
-bindsym Control+Mod1+comma  exec --no-startup-id "sound-ctrl decvol"
-bindsym Control+Mod1+m      exec --no-startup-id "sound-ctrl toggle"
-
-# bindsym XF86AudioRaiseVolume exec --no-startup-id "sound-ctrl incvol"
-# bindsym XF86AudioLowerVolume exec --no-startup-id "sound-ctrl decvol"
-# bindsym XF86AudioMute exec --no-startup-id "sound-ctrl toggle"
-
-bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
-
-bindsym XF86AudioMute            exec "zenity --info --text        XF86AudioMute"
-bindsym XF86AudioLowerVolume     exec "zenity --info --text        XF86AudioLowerVolume"
-bindsym XF86AudioRaiseVolume     exec "zenity --info --text        XF86AudioRaiseVolume"
+# bindsym XF86AudioMute            exec "zenity --info --text        XF86AudioMute"
+# bindsym XF86AudioLowerVolume     exec "zenity --info --text        XF86AudioLowerVolume"
+# bindsym XF86AudioRaiseVolume     exec "zenity --info --text        XF86AudioRaiseVolume"
 bindsym XF86PowerOff             exec "zenity --info --text        XF86PowerOff"
 bindsym XF86LaunchA              exec "zenity --info --text        XF86LaunchA"
 bindsym XF86Copy                 exec "zenity --info --text        XF86Copy"

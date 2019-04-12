@@ -165,10 +165,19 @@ bindsym Control+Mod1+k exec "keepassxc"
 bindsym --release Control+Mod1+9 exec "typeout-clipboard"
 bindsym --release Control+Mod1+8 exec "edit-clipboard"
 
-bindsym Control+Mod1+Left  exec --no-startup-id "mpc prev"
-bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
-bindsym Control+Mod1+Down  exec --no-startup-id "mpc toggle"
-bindsym Control+Mod1+Up    exec --no-startup-id "mpc stop"
+bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 10"
+bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10"
+
+bindsym Control+Mod1+period exec --no-startup-id "pamixer -i 5"
+bindsym Control+Mod1+comma  exec --no-startup-id "pamixer -d 5"
+bindsym Control+Mod1+m      exec --no-startup-id "pamixer --toggle-mute"
+bindsym Control+Mod1+slash  exec --no-startup-id "pavucontrol"
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pamixer -i 5"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pamixer -d 5"
+bindsym XF86AudioMute exec --no-startup-id "pamixer --toggle-mute"
+
+bindsym Control+Mod1+Delete exec --no-startup-id "xscreensaver-command --lock"
 
 for_window [title="KeePassX - Auto-Type"] floating enable
 for_window [title="File Operation Progress"] floating enable
