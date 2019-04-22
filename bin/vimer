@@ -26,7 +26,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-VERSION=0.2.0
+VERSION=0.2.1-DEV
 AUTHOR="Susam Pal"
 COPYRIGHT="Copyright (c) 2010-2016 $AUTHOR"
 
@@ -44,6 +44,8 @@ express or implied. See the MIT License for details."
 
 NAME=${0##*/}
 
+TMP_DIR=/tmp/vimer
+EDITORS=gvim:mvim
 
 # Starting point of this script.
 #
@@ -66,7 +68,7 @@ main()
 # anything otherwise.
 find_vim()
 {
-    for v in gvim mvim
+    echo $EDITORS | tr : '\n' | while read -r v
     do
         if "$v" --version > /dev/null 2>&1
         then
@@ -146,18 +148,18 @@ parse_arguments()
 exec_vim_with_stdin()
 {
     # Create temporary directory.
-    tmp_dir=/tmp/vimer
-    if ! mkdir -p "$tmp_dir"
+    if ! mkdir -p "$TMP_DIR"
     then
-        quit Cannot create temporary directory: "$tmp_dir".
+        quit Cannot create temporary directory: "$TMP_DIR".
     fi
 
     # Determine a unique temporary filename.
+    n=0
     while :
     do
-        r=$(awk 'BEGIN { srand(); print int(65536 * rand()) }')
         d=$(date "+%Y-%m-%d_%H-%M-%S")
-        stdin_file="$tmp_dir/_STDIN_$r_$d"
+        stdin_file="$TMP_DIR/_STDIN_${d}_${n}"
+        n=$(( $n + 1 ))
         if [ ! -e "$stdin_file" ]
         then
             break
@@ -192,7 +194,6 @@ exec_vim()
     if [ -z "$VIM_CMD" ]
     then
         quit Cannot find GVim or MacVim.
-        return
     fi
 
     # If server name is specified, open files in an existing instance of
@@ -233,8 +234,8 @@ quit()
 # Show help.
 show_help()
 {
-    printf "%s\n" \
-"Usage: $NAME [-t] [-s] [-n] [-h] [-v] [-|FILE...]
+    cat <<eof
+Usage: $NAME [-t] [-s] [-n] [-h] [-v] [-|FILE...]
 
 This is a wrapper script to open files in existing GVim or MacVim.
 If an existing instance of GVim or MacVim is running, the files are
@@ -256,16 +257,21 @@ Options:
   -h, --help         Show this help and exit.
   -v, --version      Show version and exit.
 
-Report bugs to <$SUPPORT_URL>."
+Report bugs to <$SUPPORT_URL>.
+eof
 }
 
 
 # Show version and copyright.
 show_version()
 {
-    printf "Vimer %s\n%s\n%s\n" "$VERSION" "$COPYRIGHT" "$NOTICE"
+    cat <<eof
+Vimer $VERSION
+$COPYRIGHT
+$NOTICE
+eof
 }
 
 
 # Start.
-main "$@"
+[ -z "$import" ] && main "$@"
