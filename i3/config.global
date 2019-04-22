@@ -146,7 +146,7 @@ bindsym $mod+r mode "resize"
 # }
 
 # start a terminal
-bindsym $mod+Return exec "termite"
+bindsym $mod+Return exec sensible-terminal
 
 # start dmenu (a program launcher)
 bindsym --release $mod+d exec rofi -show run -matching fuzzy
@@ -154,8 +154,8 @@ bindsym --release $mod+d exec rofi -show run -matching fuzzy
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exit
 
-bindsym Control+Mod1+bracketleft exec "termite"
-bindsym Control+Mod1+bracketright exec "firefox-developer-edition"
+bindsym Control+Mod1+bracketleft exec sensible-terminal
+bindsym Control+Mod1+bracketright exec sensible-browser
 bindsym Control+Mod1+q exec "xfce4-screenshooter"
 bindsym Control+Mod1+o exec "ario"
 bindsym Control+Mod1+p exec "thunar"

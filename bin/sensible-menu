@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -z "$MENU" ]] ; then
+    echo "\$MENU not defined"
+    exit 1
+fi
+
+exec $MENU "$@"

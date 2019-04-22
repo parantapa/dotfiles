@@ -15,7 +15,7 @@ dotfiles=(profile bash_logout
 dotfiles_extra=(gvimrc vim/bundle vim/python2 vim/syntax
     pylintrc xsettingsd gtkrc-2.0 i3/config.global
     config/gtk-3.0/settings.ini
-    config/dunstrc
+    config/dunst/dunstrc
     config/zathura/zathurarc
     config/clipit/clipitrc
     config/termite/config
@@ -29,6 +29,7 @@ cd "$dstdir"
 [[ -d .vim/tmp/backup ]]  || mkdir .vim/tmp/backup
 [[ -d .vim/tmp/undo ]]    || mkdir .vim/tmp/undo
 [[ -d .vim/tmp/swap ]]    || mkdir .vim/tmp/swap
+[[ -d .config/dunst ]]    || mkdir -p .config/dunst
 [[ -d .config/zathura ]]  || mkdir -p .config/zathura
 [[ -d .config/clipit ]]   || mkdir -p .config/clipit
 [[ -d .config/fish ]]     || mkdir -p .config/fish

@@ -1,9 +1,11 @@
 # Set the environment variables to something I like
 set -x PAGER "less -niRS"
 set -x EDITOR vim
-set -x VISUAL vim
+set -x VISUAL vimer
 set -x BROWSER firefox-developer-edition
 set -x PDFVIEWER zathura
+set -x MENU "rofi -matching fuzzy -dmenu"
+set -x TERMINAL termite
 
 # colorize ls
 set LS_OPTIONS "--color=always -h --group-directories-first"

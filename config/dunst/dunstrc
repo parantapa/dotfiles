@@ -57,7 +57,7 @@
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    idle_threshold = 120
+    idle_threshold = 60
 
     # Which monitor should the notifications be displayed on.
     monitor = 0
@@ -107,13 +107,15 @@
     startup_notification = false
 
     # dmenu path
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = sensible-menu -p dunst:
 
     # browser for opening urls in context menu
-    browser = /usr/bin/firefox -new-tab
+    browser = sensible-browser -new-tab
 
     frame_width = 3
     frame_color = "#293739"
+
+    markup = full
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key

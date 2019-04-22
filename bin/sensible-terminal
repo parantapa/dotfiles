@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -z "$TERMINAL" ]] ; then
+    echo "\$TERMINAL not defined"
+    exit 1
+fi
+
+exec $TERMINAL "$@"

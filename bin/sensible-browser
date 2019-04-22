@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -z "$BROWSER" ]] ; then
+    echo "\$BROWSER not defined"
+    exit 1
+fi
+
+exec $BROWSER "$@"

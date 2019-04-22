@@ -23,9 +23,11 @@ shopt -s no_empty_cmd_completion
 # Set the environment variables to something I like
 export PAGER="less -niRS"
 export EDITOR=vim
-export VISUAL=vim
+export VISUAL=vimer
 export BROWSER=firefox-developer-edition
 export PDFVIEWER=zathura
+export MENU="rofi -show run -matching fuzzy"
+export TERMINAL=termite
 
 # colorize ls
 LS_OPTIONS='--color=always -h --group-directories-first'
