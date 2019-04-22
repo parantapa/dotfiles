@@ -8,6 +8,7 @@
 	branch = auto
 [core]
 	excludesfile = ~/.cvsignore
+	editor = vim
 [diff]
 	tool = vimdiff
 [difftool]
