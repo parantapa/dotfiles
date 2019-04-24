@@ -30,8 +30,10 @@ fi
 . "$CONDA_ROOT/etc/profile.d/conda.sh"
 conda activate "$CONDA_ENV"
 
-echo "CONDA_ROOT='$CONDA_ROOT'"
-echo "CONDA_ENV='$CONDA_ENV'"
-echo "Command: '$@'"
+if [[ -n "$CONDA_EXEC_DEBUG" ]] ; then
+    echo "CONDA_ROOT='$CONDA_ROOT'"
+    echo "CONDA_ENV='$CONDA_ENV'"
+    echo "Command: '$@'"
+fi
 
 exec "$@"
