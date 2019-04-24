@@ -1,0 +1,37 @@
+#!/bin/bash
+
+_usage () {
+    echo "Usage: export CONDA_ROOT=/path/to/anaconda/install"
+    echo "       export CONDA_ENV=conda-env-to-use"
+    echo "       ./conda-run.sh COMMAND [ARGS]"
+}
+
+if [[ -z "$CONDA_ROOT" ]] ; then
+    if [[ -n "$CONDA_EXE" ]] ; then
+        CONDA_ROOT="$(dirname "$CONDA_EXE")"
+        CONDA_ROOT="$(dirname "$CONDA_ROOT")"
+    else
+        CONDA_ROOT="$HOME/anaconda3"
+    fi
+    export CONDA_ROOT
+fi
+if [[ -z "$CONDA_ENV" ]] ; then
+    export CONDA_ENV=base
+fi
+if [[ -z "$@" ]] ; then
+    _usage
+    exit 1
+fi
+if [[ "$@" == "--help" ]] ; then
+    _usage
+    exit 0
+fi
+
+. "$CONDA_ROOT/etc/profile.d/conda.sh"
+conda activate "$CONDA_ENV"
+
+echo "CONDA_ROOT='$CONDA_ROOT'"
+echo "CONDA_ENV='$CONDA_ENV'"
+echo "Command: '$@'"
+
+exec "$@"
