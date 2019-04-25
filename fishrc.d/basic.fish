@@ -67,3 +67,8 @@ if set -q DISPLAY
 else
     alias g=vim
 end
+
+# SSH fish
+function sshfish
+    ssh $argv -t fish
+end
