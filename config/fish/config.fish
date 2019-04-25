@@ -10,16 +10,15 @@ source "$HOME_DOTFILES/fishrc.d/misc.fish"
 # source "$HOME_DOTFILES/fishrc.d/lang-path.fish"
 # source "$HOME_DOTFILES/bashrc.d/fab_completion.sh"
 
-set -x MY_SOUND_SYSTEM pulse
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-
-# source "$HOME/anaconda3/etc/fish/conf.d/conda.fish"
-# functions -e fish_right_prompt
-#
-# Do not use anaconda provided clear
-# alias clear=/usr/bin/clear
-#
-# set VIRTUAL_ENV_DISABLE_PROMPT 1
 
 # set -x PATH "$HOME_SDOCS/bin" $PATH
 # set -x PATH "$HOME/bin" $PATH
+
+# set -x NOTEBOOK_DIR "$HOME/workspace/notebooks"
+# set -x PYTHONPATH "$HOME/workspace/py-modules"
+
+# set -x CONDA_ROOT "$HOME/anaconda3"
+# source "$CONDA_ROOT/etc/fish/conf.d/conda.fish"
+# functions -e fish_right_prompt
+# alias clear=/usr/bin/clear
