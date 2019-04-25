@@ -7,16 +7,12 @@ _usage () {
 }
 
 if [[ -z "$CONDA_ROOT" ]] ; then
-    if [[ -n "$CONDA_EXE" ]] ; then
-        CONDA_ROOT="$(dirname "$CONDA_EXE")"
-        CONDA_ROOT="$(dirname "$CONDA_ROOT")"
-    else
-        CONDA_ROOT="$HOME/anaconda3"
-    fi
-    export CONDA_ROOT
+    echo "conda-exec: \$CONDA_ROOT not defined"
+    exit 1
 fi
 if [[ -z "$CONDA_ENV" ]] ; then
-    export CONDA_ENV=base
+    echo "conda-exec: \$CONDA_ENV not defined"
+    exit 1
 fi
 if [[ -z "$@" ]] ; then
     _usage
