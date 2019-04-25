@@ -23,7 +23,7 @@ shopt -s no_empty_cmd_completion
 # Set the environment variables to something I like
 export PAGER="less -niRS"
 export EDITOR=vim
-export VISUAL=vimer
+export VISUAL="gvim -f"
 export BROWSER=firefox-developer-edition
 export PDFVIEWER=zathura
 export MENU="rofi -show run -matching fuzzy"

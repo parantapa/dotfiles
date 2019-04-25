@@ -1,7 +1,7 @@
 # Set the environment variables to something I like
 set -x PAGER "less -niRS"
 set -x EDITOR vim
-set -x VISUAL vimer
+set -x VISUAL "gvim -f"
 set -x BROWSER firefox-developer-edition
 set -x PDFVIEWER zathura
 set -x MENU "rofi -matching fuzzy -dmenu"
