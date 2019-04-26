@@ -171,7 +171,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10"
 bindsym Control+Mod1+period exec --no-startup-id "pamixer -i 5"
 bindsym Control+Mod1+comma  exec --no-startup-id "pamixer -d 5"
 bindsym Control+Mod1+m      exec --no-startup-id "pamixer --toggle-mute"
-bindsym Control+Mod1+slash  exec --no-startup-id "pavucontrol"
+bindsym Control+Mod1+slash  exec --no-startup-id "pavucontrol -t 3"
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id "pamixer -i 5"
 bindsym XF86AudioLowerVolume exec --no-startup-id "pamixer -d 5"
