@@ -6,14 +6,6 @@ _usage () {
     echo "       ./conda-run.sh COMMAND [ARGS]"
 }
 
-if [[ -z "$CONDA_ROOT" ]] ; then
-    echo "conda-exec: \$CONDA_ROOT not defined"
-    exit 1
-fi
-if [[ -z "$CONDA_ENV" ]] ; then
-    echo "conda-exec: \$CONDA_ENV not defined"
-    exit 1
-fi
 if [[ -z "$@" ]] ; then
     _usage
     exit 1
@@ -21,6 +13,14 @@ fi
 if [[ "$@" == "--help" ]] ; then
     _usage
     exit 0
+fi
+if [[ -z "$CONDA_ROOT" ]] ; then
+    echo "conda-exec: \$CONDA_ROOT not defined"
+    exit 1
+fi
+if [[ -z "$CONDA_ENV" ]] ; then
+    echo "conda-exec: \$CONDA_ENV not defined"
+    exit 1
 fi
 
 . "$CONDA_ROOT/etc/profile.d/conda.sh"
