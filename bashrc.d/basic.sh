@@ -42,8 +42,9 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 
-# Alias sudo to work with other aliases
+# Alias sudo and watch to work with other aliases
 alias sudo="sudo "
+alias watch="watch --color "
 
 # Alias cd to resolve symlinks
 alias cd="cd -P"
