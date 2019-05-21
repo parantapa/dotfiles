@@ -1,9 +1,10 @@
 #!/bin/bash
+# Sync repositories
 
-#set -x
+# set -x
 
 # CD to the repo directory
-if [ -d "$1" ] ; then
+if [[ -d "$1" ]] ; then
     cd -P "$1"
 fi
 
@@ -11,53 +12,62 @@ fi
 DIR="$( pwd )"
 REPONAME=$( basename "$DIR" )
 
-msg_normal () {
-    echo "$@"
-    notify-send -u normal -t 5000 "$REPONAME" "$@"
+msg () {
+    tput setaf 2
+    echo "$REPONAME: $1"
+    tput sgr0
 }
 
-msg_critical () {
-    echo "$@"
-    notify-send -u critical -t 5000 "$REPONAME" "$@"
+err () {
+    tput setaf 1
+    echo "$REPONAME: $1"
+    tput sgr0
+
+    notify-send -u critical -t 5000 "Repo Sync Failed" "$REPONAME: $1"
 }
 
-echo "Adding changes to be commited ..."
+git status >/dev/null 2>&1
+if [[ "$?" -ne "0" ]] ; then
+    err "Not a git repository"
+    exit 1
+fi
+
+msg "Adding changes"
 git add -A .
-if [ "$?" -ne "0" ] ; then
-    msg_critical "Failed add changes!"
+if [[ "$?" -ne "0" ]] ; then
+    err "Failed to add changes"
     exit 1
 fi
 
 git diff --cached --no-ext-diff --quiet --exit-code
-if [ "$?" -eq "1" ] ; then
-    echo "Commiting changes ..."
+if [[ "$?" -eq "1" ]] ; then
+    msg "Commiting changes"
     git commit -m "By $(id -un)@$(hostname) on $(date -uR)"
-    if [ "$?" -ne "0" ] ; then
-        msg_critical "Failed commit changes!"
-        exit 2
+    if [[ "$?" -ne "0" ]] ; then
+        err "Failed to commit changes"
+        exit 1
     fi
 else
-    echo "Nothing to commit!"
+    msg "Nothing to commit"
 fi
 
-echo "Syncing with server ..."
+msg "Syncing with remote"
 git pull --ff-only
-if [ "$?" -ne "0" ] ; then
-    msg_normal "Failed to pull!"
-    exit 3
+if [[ "$?" -ne "0" ]] ; then
+    err "Failed to sync with remote"
+    exit 1
 fi
 
-changes=$(git rev-list --count HEAD ^origin/master)
-if [ "$changes" -ne "0" ] ; then
-    echo "Pushing updates to remote server ..."
+changes="$(git rev-list --count HEAD ^origin/master)"
+if [[ "$changes" -ne "0" ]] ; then
+    msg "Pushing updates to remote"
     git push
-    if [ "$?" -ne "0" ] ; then
-        msg_critical "Failed push changes!"
-        exit 4
+    if [[ "$?" -ne "0" ]] ; then
+        err "Failed to push updates to remote"
+        exit 1
     fi
 else
-    echo "Nothing to push!"
+    msg "Nothing to push"
 fi
 
 exit 0
-
