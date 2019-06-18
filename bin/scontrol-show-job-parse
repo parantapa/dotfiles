@@ -11,7 +11,7 @@ def usage():
     Print usage.
     """
 
-    print("Usage: scontrol show job <jobid> | scontrol-parse [KEY]")
+    print("Usage: scontrol show job <jobid> | scontrol-show-job-parse [KEY]")
 
 def parse_scontrol_show_job(output):
     """
