@@ -1,7 +1,7 @@
 
 bar {
-        status_command i3status
-        #status_command /home/parantapa/workspace/pbapps3/runpy.sh makestatus-gabda.py
+    status_command i3status
+    tray_output primary
 }
 
 exec clipit 2>/dev/null
