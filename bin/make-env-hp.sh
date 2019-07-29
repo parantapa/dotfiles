@@ -32,8 +32,6 @@ conda install -y \
     pytorch torchvision cudatoolkit=9.0 -c pytorch
 
 pip install \
-    ipython jupyter \
-    ipywidgets jupyter_contrib_nbextensions \
     tqdm \
     pyyaml toml \
     bokeh seaborn altair \

@@ -15,10 +15,10 @@ if [[ -z "$NOTEBOOK_DIR" ]] ; then
     NOTEBOOK_DIR="$HOME"
 fi
 
-export CONDA_ENV=x
+export CONDA_ENV=notebook_env
 
 exec conda-exec \
-    jupyter notebook \
+    jupyter lab \
         --port "$JUPYTER_PORT" \
         --ip "$JUPYTER_IP" \
         --NotebookApp.token="" \
