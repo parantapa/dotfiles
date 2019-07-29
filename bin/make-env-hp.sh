@@ -20,7 +20,7 @@ conda create -y -n "$CONDA_ENV"
 conda activate "$CONDA_ENV"
 
 conda install -y \
-    python=3.7 \
+    python=3.7 ipykernel \
     numpy scipy matplotlib pandas \
     statsmodels scikit-learn \
     pyarrow \
