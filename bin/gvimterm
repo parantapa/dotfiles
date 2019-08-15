@@ -1,4 +1,0 @@
-#!/bin/bash
-# Start a gvim terminal
-
-exec gvim -f --servername "GVimTerm" -c ":terminal" -c ":bwipeout 1"
