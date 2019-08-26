@@ -1,6 +1,6 @@
 [MASTER]
 
-extension-pkg-whitelist=numpy,scipy,lz4,zstd,Levenshtein
+extension-pkg-whitelist=numpy,scipy,lz4,zstd,mpi4py
 
 [MESSAGES CONTROL]
 
