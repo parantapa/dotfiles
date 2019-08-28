@@ -66,14 +66,20 @@ inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
 " ALE {{{2
 
 let g:ale_linters = {
-            \ 'python': ['pylint']
-            \}
+    \ 'python': ['pylint', 'pyflakes', 'pydocstyle']
+    \}
+
+let g:ale_python_pydocstyle_options = '--convention=numpy'
 
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_filetype_changed = 1
+
+let g:ale_fixers = {
+    \ 'python': ['black']
+    \}
 
 " Unite {{{2
 
