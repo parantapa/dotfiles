@@ -21,23 +21,30 @@ conda create -y -n "$CONDA_ENV" \
     networkx \
     statsmodels scikit-learn scikit-image \
     nltk spacy \
-    pyarrow dask
+    pyarrow dask \
+    numba \
+    mpi4py
 
 conda activate "$CONDA_ENV"
 
 conda install -y \
-    pytorch torchvision cudatoolkit=9.0 -c pytorch
+    pytorch torchvision cudatoolkit=10.1 -c pytorch
 
 pip install \
-    black pylint pyflakes pydocstyle \
-    click logbook \
+    black pylint pyflakes pydocstyle pytest pytest-cov \
+    click click-completion \
+    logbook \
     tqdm \
+    jinja2\
     pyyaml toml \
     bokeh seaborn altair \
     xlrd \
     glom \
     more-itertools \
-    tensorflow-gpu \
-    tensorboardx
+    tensorflow-gpu keras \
+    tensorboardx \
+    future \
+    pillow \
+    graphviz pydot
 
 # conda clean -tipsy
