@@ -181,6 +181,7 @@ set scrolloff=3
 set sidescrolloff=10
 
 set wrap
+set linebreak
 set sidescroll=1
 
 set virtualedit+=block
