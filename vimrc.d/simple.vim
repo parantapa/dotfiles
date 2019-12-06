@@ -375,6 +375,7 @@ augroup ft_rest
     au Filetype rst nnoremap <buffer> <localleader>2 yypVr-
     au Filetype rst nnoremap <buffer> <localleader>3 yypVr~
     au Filetype rst nnoremap <buffer> <localleader>4 yypVr`
+    au Filetype rst set suffixesadd=.rst
 augroup END
 
 " Markdown {{{2

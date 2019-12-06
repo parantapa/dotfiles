@@ -15,3 +15,5 @@
 	prompt = false
 [push]
 	default = upstream
+[credential]
+	helper = store
