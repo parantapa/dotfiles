@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Drop all indexes in a sqlite3 file."""
 
 import sqlite3
