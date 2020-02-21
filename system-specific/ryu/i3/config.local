@@ -1,6 +1,6 @@
 
 bar {
-    status_command i3status
+    status_command i3status -c /home/parantapa/dotfiles/system-specific/ryu/i3status.conf
     tray_output primary
 }
 
