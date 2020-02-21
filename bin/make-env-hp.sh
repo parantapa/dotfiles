@@ -1,15 +1,17 @@
 #!/bin/bash
-# Make hodgepodge environment
+# Make the hodgepodge environment
+
+set -Eeuo pipefail
+export PS1=""
 
 if [[ ! -d "$CONDA_ROOT" ]] ; then
-    echo "|$CONDA_ROOT not defined"
+    echo "\$CONDA_ROOT not defined"
     exit 1
 fi
 
-set -e
-set -v
-
 . "$CONDA_ROOT/etc/profile.d/conda.sh"
+
+set -v
 
 CONDA_ENV=hp
 
@@ -23,12 +25,12 @@ conda create -y -n "$CONDA_ENV" \
     nltk spacy \
     pyarrow dask \
     numba \
-    mpi4py
+    openmpi mpi4py
 
 conda activate "$CONDA_ENV"
 
 conda install -y \
-    pytorch torchvision cudatoolkit=10.1 -c pytorch
+    pytorch torchtext torchvision cudatoolkit=10.1 -c pytorch
 
 pip install \
     black pylint pyflakes pydocstyle pytest pytest-cov \
