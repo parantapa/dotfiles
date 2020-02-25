@@ -1,24 +1,19 @@
 #!/bin/bash
 # Start jupyter on localhost
 
-if [[ -z "$CONDA_ROOT" ]] ; then
-    echo "\$CONDA_ROOT not defined"
-    exit 1
-fi
-if [[ -z "$JUPYTER_PORT" ]] ; then
-    JUPYTER_PORT=8888
-fi
-if [[ -z "$JUPYTER_IP" ]] ; then
-    JUPYTER_IP=localhost
-fi
+set -Eeuo pipefail
+export PS1=""
 
-export CONDA_ENV=notebook_env
+eval "$(conda shell.bash hook)"
+conda activate notebook_env
 
-exec conda-exec \
-    jupyter lab \
-        --port "$JUPYTER_PORT" \
-        --ip "$JUPYTER_IP" \
-        --NotebookApp.token="" \
-        --NotebookApp.password="" \
-        --NotebookApp.disable_check_xsrf=True \
-        --no-browser
+JUPYTER_PORT=8888
+JUPYTER_IP=localhost
+
+exec jupyter lab \
+    --port "$JUPYTER_PORT" \
+    --ip "$JUPYTER_IP" \
+    --NotebookApp.token="" \
+    --NotebookApp.password="" \
+    --NotebookApp.disable_check_xsrf=True \
+    --no-browser

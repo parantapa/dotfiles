@@ -4,12 +4,7 @@
 set -Eeuo pipefail
 export PS1=""
 
-if [[ ! -d "$CONDA_ROOT" ]] ; then
-    echo "\$CONDA_ROOT not defined"
-    exit 1
-fi
-
-. "$CONDA_ROOT/etc/profile.d/conda.sh"
+eval "$(conda shell.bash hook)"
 
 set -v
 
