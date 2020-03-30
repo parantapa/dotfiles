@@ -90,6 +90,7 @@ augroup ft_tab_settings
     autocmd FileType haml setlocal sw=2 sts=2
     autocmd FileType tex setlocal sw=2 sts=2
     autocmd FileType javascript.jsx setlocal sw=2 sts=2
+    autocmd FileType rst setlocal sw=2 sts=2
 
     autocmd FileType snippets setlocal noet ts=4
 
