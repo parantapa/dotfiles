@@ -42,6 +42,8 @@ function fish_prompt --description 'Write out the prompt'
         echo -n ":( $stat"
     end
 
+    echo -n " ($EXEC_RUNTIME)"
+
     if git status >/dev/null 2>/dev/null
         set_color purple
         echo -n " -"
@@ -61,3 +63,5 @@ function fish_prompt --description 'Write out the prompt'
 
     set_color normal
 end
+
+
