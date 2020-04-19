@@ -1,0 +1,7 @@
+channel_priority: strict
+channels:
+  - parantapa
+  - conda-forge
+  - defaults
+anaconda_upload: false
+auto_activate_base: false
