@@ -1,0 +1,12 @@
+#!/bin/bash
+# Less the output of a running Slurm job
+
+set -Eeuo pipefail
+
+OUTPUTFILE="$( scontrol -o show job "$1" |
+               sed -e 's# #\n#g' |
+               \grep StdOut |
+               cut -d = -f 2 )"
+
+echo "Output file: $OUTPUTFILE"
+exec \less +F "$OUTPUTFILE"
