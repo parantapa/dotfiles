@@ -1,12 +1,12 @@
 " Extra plugin configs
 " Enable these if only if you have python, lua, and Vim8+ support
 
-" Gundo {{{2
+" Gundo {{{1
 
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right = 1
 
-" UltiSnips {{{2
+" UltiSnips {{{1
 
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsEditSplit = "normal"
@@ -18,7 +18,7 @@ let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
 cnoreabbrev es UltiSnipsEdit
 
-" NeoComplete {{{2
+" NeoComplete {{{1
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#disable_auto_complete = 0
@@ -63,7 +63,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
 "     return !col || getline('.')[col - 1]  =~ '\s'
 " endfunction
 
-" ALE {{{2
+" ALE {{{1
 
 let g:ale_linters = {
     \ 'python': ['pylint', 'pyflakes', 'pydocstyle']
@@ -81,7 +81,7 @@ let g:ale_fixers = {
     \ 'python': ['black']
     \}
 
-" Unite {{{2
+" Unite {{{1
 
 let g:unite_source_history_yank_enable = 1
 
@@ -123,6 +123,8 @@ let g:unite_source_menu_menus.index.command_candidates = {
     \ 'mru' : 'Unite -start-insert file_mru',
     \ 'yank' : 'Unite history/yank',
     \ 'outline' : 'Unite outline',
+    \ 'grep' : 'Unite grep:.',
+    \ 'tag' : 'Unite -default-action=select tag',
     \ }
 
 " Use ripgrep when available
@@ -134,4 +136,3 @@ endif
 
 nnoremap <C-P> :<C-u>Unite menu:index<CR>
 nnoremap <C-B> :<C-u>Unite -start-insert buffer<CR>
-nnoremap <C-G> :<C-u>Unite grep:. -wrap<CR>
