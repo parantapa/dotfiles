@@ -9,4 +9,4 @@ OUTPUTFILE="$( scontrol -o show job "$1" |
                cut -d = -f 2 )"
 
 echo "Output file: $OUTPUTFILE"
-exec tail -f"$OUTPUTFILE"
+exec tail -f "$OUTPUTFILE"
