@@ -360,10 +360,13 @@ endif
 command! -nargs=0 ReloadConfigs call ReloadConfigs()
 cnoreabbrev rc ReloadConfigs
 
-" RepoSync {{{1
+" QuickRefs {{{1
 
-command! -nargs=0 RepoSync !repo-sync
-cnoreabbrev rs RepoSync
+command! -nargs=0 QuickrefSync !git-sync
+cnoreabbrev qrs QuickrefSync
+
+command! -nargs=0 QuickrefTag !rstindextags -f
+cnoreabbrev qrt QuickrefTag
 
 " Various filetype-specific stuff {{{1
 
