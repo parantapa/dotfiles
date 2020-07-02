@@ -20,7 +20,8 @@ conda create -y -n "$CONDA_ENV" \
     nltk spacy \
     pyarrow dask \
     numba \
-    openmpi mpi4py
+    openmpi openmpi-mpicc mpi4py
+
 
 conda activate "$CONDA_ENV"
 
@@ -42,6 +43,7 @@ pip install \
     tensorboardx \
     future \
     pillow \
-    graphviz pydot
+    graphviz pydot \
+    cffi cython
 
 # conda clean -tipsy
