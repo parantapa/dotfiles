@@ -1,12 +1,7 @@
 #!/bin/bash
 # Make the hodgepodge environment
 
-set -Eeuo pipefail
-export PS1=""
-
 eval "$(conda shell.bash hook)"
-
-set -v
 
 CONDA_ENV=hp
 
@@ -21,7 +16,6 @@ conda create -y -n "$CONDA_ENV" \
     pyarrow dask \
     numba \
     openmpi openmpi-mpicc mpi4py
-
 
 conda activate "$CONDA_ENV"
 
