@@ -2,10 +2,11 @@
 # Start jupyter on localhost
 
 set -Eeuo pipefail
-export PS1=""
 
+set +u
 eval "$(conda shell.bash hook)"
 conda activate notebook_env
+set -u
 
 JUPYTER_PORT=8888
 JUPYTER_IP=localhost
