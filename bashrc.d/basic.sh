@@ -30,7 +30,7 @@ export MENU="rofi -show run -matching fuzzy"
 export TERMINAL=termite
 
 # colorize ls
-LS_OPTIONS='--color=always -h --group-directories-first'
+LS_OPTIONS='--color=auto -h --group-directories-first'
 
 alias ls="ls $LS_OPTIONS"
 alias ll="ls $LS_OPTIONS -l -v"
@@ -51,25 +51,21 @@ alias cd="cd -P"
 
 # More alias for convenience
 alias cpv="rsync --human-readable --progress"
-alias dirs="dirs -v"
-alias grep="grep --color=always"
+alias grep="grep --color=auto"
 alias less="less -niRS"
-alias jq="jq -C"
-alias ack="ack --color"
+alias rg "rg --color=auto"
 alias tmux="tmux -u"
-if hash colordiff 2>/dev/null ; then
-    alias diff=colordiff
-fi
+alias diff="diff --color=auto"
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
-psg  () { psf $( pgrep -f "$@" ) ; }
-psu  () { psf -u $USER "$@" ; }
-topu () { top -u $USER "$@" ; }
+psg  () { psf "$( pgrep -f "$@" )" ; }
+psu  () { psf -u "$USER" "$@" ; }
+topu () { top -u "$USER" "$@" ; }
 
 # GVim alias
 if [[ -n "$DISPLAY" ]] && [[ "$DISPLAY" != "localhost:"* ]] ; then
-    alias g=vimer
+    alias g=gvim
 else
     alias g=vim
 fi

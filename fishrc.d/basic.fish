@@ -8,12 +8,15 @@ set -x MENU "rofi -matching fuzzy -dmenu"
 set -x TERMINAL termite
 
 # colorize ls
-set LS_OPTIONS "--color=always -h --group-directories-first"
+set LS_OPTIONS "--color=auto -h --group-directories-first"
 
 alias ls "ls $LS_OPTIONS"
 alias ll "ls $LS_OPTIONS -l -v"
 alias l. "ls $LS_OPTIONS -A --ignore='[^.]*'"
 alias lst 'command ls -R | command grep ":\$" | sed -e "s/:\$//" -e "s/[^-][^\\/]*\\//--/g" -e "s/^/   /" -e "s/-/|/"'
+
+# Add color support to watch
+alias watch="watch --color"
 
 # Some more aliases to avoid stupid mistakes
 alias rm "rm -i"
@@ -22,15 +25,11 @@ alias mv "mv -i"
 
 # More alias for convenience
 alias cpv "rsync --human-readable --progress"
-alias dirs "dirs -v"
-alias grep "grep --color=always"
+alias grep "grep --color=auto"
 alias less "less -niRS"
-alias jq "jq -C"
-alias ack "ack --color"
+alias rg "rg --color=auto"
 alias tmux "tmux -u"
-if command -s colordiff >/dev/null
-    alias diff colordiff
-end
+alias diff "diff --color=auto"
 
 # Shortcut for ps-ing pgrep output
 function psf
@@ -62,13 +61,8 @@ if set -q DISPLAY
     case 'localhost:*'
         alias g=vim
     case '*'
-        alias g=vimer
+        alias g=gvim
     end
 else
     alias g=vim
-end
-
-# SSH fish
-function sshfish
-    ssh $argv -t fish
 end
