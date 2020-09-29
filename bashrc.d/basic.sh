@@ -53,7 +53,7 @@ alias cd="cd -P"
 alias cpv="rsync --human-readable --progress"
 alias grep="grep --color=auto"
 alias less="less -niRS"
-alias rg "rg --color=auto"
+alias rg="rg --color=auto"
 alias tmux="tmux -u"
 alias diff="diff --color=auto"
 
