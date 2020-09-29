@@ -4,59 +4,59 @@
 # Standard list of shell colors
 ###############################################################################
 
-# color_txtblk='\e[0;30m' # Black - Regular
-color_txtred='\e[0;31m' # Red
-color_txtgrn='\e[0;32m' # Green
-color_txtylw='\e[0;33m' # Yellow
-# color_txtblu='\e[0;34m' # Blue
-# color_txtpur='\e[0;35m' # Purple
-# color_txtcyn='\e[0;36m' # Cyan
-# color_txtwht='\e[0;37m' # White
-# color_bldblk='\e[1;30m' # Black - Bold
-# color_bldred='\e[1;31m' # Red
-# color_bldgrn='\e[1;32m' # Green
-# color_bldylw='\e[1;33m' # Yellow
-# color_bldblu='\e[1;34m' # Blue
-# color_bldpur='\e[1;35m' # Purple
-# color_bldcyn='\e[1;36m' # Cyan
-# color_bldwht='\e[1;37m' # White
-# color_unkblk='\e[4;30m' # Black - Underline
-# color_undred='\e[4;31m' # Red
-# color_undgrn='\e[4;32m' # Green
-# color_undylw='\e[4;33m' # Yellow
-# color_undblu='\e[4;34m' # Blue
-# color_undpur='\e[4;35m' # Purple
-# color_undcyn='\e[4;36m' # Cyan
-# color_undwht='\e[4;37m' # White
-# color_bakblk='\e[40m'   # Black - Background
-# color_bakred='\e[41m'   # Red
-# color_badgrn='\e[42m'   # Green
-# color_bakylw='\e[43m'   # Yellow
-# color_bakblu='\e[44m'   # Blue
-# color_bakpur='\e[45m'   # Purple
-# color_bakcyn='\e[46m'   # Cyan
-# color_bakwht='\e[47m'   # White
-color_txtrst='\e[0m'    # Text Reset
+# color_bold=""
+# color_underline=""
+# color_standout=""
+color_normal=""
+# color_black=""
+color_red=""
+color_green=""
+color_yellow=""
+# color_blue=""
+# color_magenta=""
+# color_cyan=""
+# color_white=""
+
+# Check if stdout is a terminal
+if [[ -t 1 ]] ; then
+    # see if it supports colors...
+    ncolors="$(tput colors)"
+
+    if [[ -n "$ncolors" ]] && [[ "$ncolors" -ge 8 ]] ; then
+        # color_bold="$(tput bold)"
+        # color_underline="$(tput smul)"
+        # color_standout="$(tput smso)"
+        color_normal="$(tput sgr0)"
+        # color_black="$(tput setaf 0)"
+        color_red="$(tput setaf 1)"
+        color_green="$(tput setaf 2)"
+        color_yellow="$(tput setaf 3)"
+        # color_blue="$(tput setaf 4)"
+        # color_magenta="$(tput setaf 5)"
+        # color_cyan="$(tput setaf 6)"
+        # color_white="$(tput setaf 7)"
+    fi
+fi
 
 # Standard output functions
 ###############################################################################
 
 notice () {
-    echo -en "$color_txtgrn"
+    echo -en "$color_green"
     echo "$@"
-    echo -en "$color_txtrst"
+    echo -en "$color_normal"
 }
 
 warn () {
-    echo -en "$color_txtylw"
+    echo -en "$color_yellow"
     echo "$@"
-    echo -en "$color_txtrst"
+    echo -en "$color_normal"
 }
 
 err () {
-    echo -en "$color_txtred"
+    echo -en "$color_red"
     echo "$@"
-    echo -en "$color_txtrst"
+    echo -en "$color_normal"
 }
 
 # Option variables
@@ -122,11 +122,11 @@ else
     shift 1
 fi
 
-if [[ "$(type -t "main_${SUBCOMMAND}")" != "function" ]] ; then
+if [[ "$( type -t "main_${SUBCOMMAND}" )" != "function" ]] ; then
     err "Invalid command: $SUBCOMMAND"
     usage
     exit 1
 fi
 
-main_${SUBCOMMAND} "$@"
+"main_${SUBCOMMAND}" "$@"
 exit 0
