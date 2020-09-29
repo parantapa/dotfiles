@@ -17,4 +17,5 @@ exec jupyter lab \
     --NotebookApp.token="" \
     --NotebookApp.password="" \
     --NotebookApp.disable_check_xsrf=True \
+    --NotebookApp.iopub_data_rate_limit=1e10 \
     --no-browser
