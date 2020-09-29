@@ -1,8 +1,11 @@
 #!/bin/bash
 # Make the hodgepodge environment
 
+set -Eeo pipefail
+
 eval "$(conda shell.bash hook)"
 
+set -v
 CONDA_ENV=hp
 
 conda remove -n "$CONDA_ENV" --all
@@ -17,10 +20,12 @@ conda create -y -n "$CONDA_ENV" \
     numba \
     openmpi openmpi-mpicc mpi4py
 
+set +v
 conda activate "$CONDA_ENV"
+set -v
 
 conda install -y \
-    pytorch torchtext torchvision cudatoolkit=10.1 -c pytorch
+    pytorch torchtext torchvision cudatoolkit=10.1 captum -c pytorch
 
 pip install \
     black pylint pyflakes pydocstyle pytest pytest-cov \
@@ -33,11 +38,12 @@ pip install \
     xlrd \
     glom \
     more-itertools \
-    tensorflow-gpu keras \
     tensorboardx \
     future \
     pillow \
     graphviz pydot \
-    cffi cython
+    cffi cython \
+    ray modin
+    #tensorflow-gpu
 
 # conda clean -tipsy
