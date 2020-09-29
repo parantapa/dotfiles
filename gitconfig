@@ -17,3 +17,5 @@
 	default = upstream
 [credential]
 	helper = store
+[pull]
+	rebase = true
