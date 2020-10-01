@@ -17,7 +17,7 @@ conda create -y -n "$CONDA_ENV" \
     statsmodels scikit-learn scikit-image \
     nltk spacy \
     pyarrow dask \
-    numba \
+    numba cython cffi\
     openmpi openmpi-mpicc mpi4py
 
 set +v
@@ -42,8 +42,6 @@ pip install \
     future \
     pillow \
     graphviz pydot \
-    cffi cython \
-    ray modin
     #tensorflow-gpu
 
 # conda clean -tipsy
