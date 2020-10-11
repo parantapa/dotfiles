@@ -3,7 +3,7 @@ set -x PAGER "less -niRS"
 set -x EDITOR vim
 set -x VISUAL "gvim -f"
 set -x BROWSER firefox-developer-edition
-set -x PDFVIEWER zathura
+set -x PDFVIEWER evince
 set -x MENU "rofi -matching fuzzy -dmenu"
 set -x TERMINAL termite
 
