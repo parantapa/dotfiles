@@ -81,9 +81,9 @@ endif
 augroup ft_tab_settings
     autocmd!
 
-    autocmd FileType c setlocal noet sw=8 sts=8
-    autocmd FileType cpp setlocal noet sw=8 sts=8
-    autocmd FileType go setlocal noet sw=8 sts=8
+    autocmd FileType c setlocal noet sw=4 sts=4
+    autocmd FileType cpp setlocal noet sw=4 sts=4
+    autocmd FileType go setlocal noet sw=4 sts=4
 
     autocmd FileType html setlocal sw=2 sts=2
     autocmd FileType xml setlocal sw=2 sts=2
@@ -517,7 +517,7 @@ augroup ft_setup
         \ call TextEnableCodeSnip("yaml", '/\v%^/', '/\V.../', "yaml")
 augroup END
 
-" Use ripgrep when available {{{
+" Use ripgrep when available {{{1
 
 if executable("rg")
     set grepprg=rg\ --vimgrep

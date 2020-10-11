@@ -1,19 +1,19 @@
 " All code in this script assumes python is available.
 " If not a exception is thrown
 
-if !has("python")
+if !has("python3")
     throw "No python support"
 endif
 
 " Load pyvimrc {{{1
 
-python << EOF
+python3 << EOF
 import vim
 import os
 import sys
 
 if "_vim_path_" not in sys.path:
-    sys.path.append(os.path.join(os.environ("HOME"), ".vim/python2"))
+    sys.path.append(os.path.join(os.environ("HOME"), ".vim/python3"))
 import pyvimrc
 EOF
 
@@ -21,7 +21,7 @@ EOF
 
 " Call the python function
 function! PyCall(funcname, ...)
-python << EOF
+python3 << EOF
 funcname = vim.eval("a:funcname")
 func = getattr(pyvimrc, funcname)
 
@@ -89,48 +89,6 @@ cnoreabbrev ou OpenUrl
 nnoremap <leader>ou :OpenUrl <C-r>=ExtractUrl(0)<CR>
 vnoremap <leader>ou :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
 
-" Search and Open PDFs in SDOCS {{{1
-
-function! FindPdf(keyword)
-    call system("find-pdf " . shellescape(a:keyword) . " 1 &")
-endfunction
-
-command! -nargs=1 FindPdf call FindPdf(<q-args>)
-cnoreabbrev fp FindPdf
-
-nnoremap <leader>fp :FindPdf <C-r>=ExtractCite(0)<CR>
-vnoremap <leader>fp :<C-u>FindPdf <C-r>=ExtractCite(1)<CR>
-
-" Search for citation in Quickrefs sdocs-paper*.md {{{1
-
-" Open Cite in sdocs-papers in Quickrefs
-function! FindCite(keyword)
-    let cmd = 'vimgrep /\V\c%s/gj %s/sdocs-papers*.md'
-    let cmd = printf(cmd, a:keyword, fnameescape($HOME_QUICKREFS))
-    silent! execute cmd
-    execute "copen"
-endfunction
-
-command! -nargs=1 FindCite call FindCite(<q-args>)
-cnoreabbrev fc FindCite
-
-nnoremap <leader>fc :FindCite <C-r>=ExtractCite(0)<CR>
-vnoremap <leader>fc :<C-u>FindCite <C-r>=ExtractCite(1)<CR>
-
-" Open image file under cursor with Ristretto {{{1
-
-function! OpenImage(fname)
-    let cmd = "ristretto " . fnameescape(a:fname) . " &"
-    echom cmd
-    call system(cmd)
-endfunction
-
-command! -nargs=1 OpenImage call OpenImage(<q-args>)
-cnoreabbrev oi OpenImage
-
-nnoremap <leader>oi :OpenImage <C-r><C-p>
-vnoremap <leader>oi "zygv:<C-u>OpenImage <C-r>z
-
 " Open pdf file under cursor {{{1
 
 function! OpenPdf(fname)
@@ -174,15 +132,6 @@ cnoreabbrev os OpenSearch
 nnoremap <leader>os :OpenSearch <C-r><C-w> g
 vnoremap <leader>os "zygv:<C-u>OpenSearch <C-r>z g
 
-" External Filters {{{1
-
-" Replace current dl.acm.org paper url with bib and abstract
-
-let s:fmt_bib = expand("$HOME_QUICKREFS/scripts/fmt-bib")
-exe "command! -range FmtAaai '<,'>!" . s:fmt_bib . " aaai"
-exe "command! -range FmtIeee '<,'>!" . s:fmt_bib . " ieee"
-exe "command! -range FmtAcm '<,'>!" . s:fmt_bib . " acm"
-exe "command! -range FmtXXX '<,'>!" . s:fmt_bib . " xxx"
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup_custom
