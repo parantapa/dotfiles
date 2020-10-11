@@ -197,16 +197,6 @@ noremap L g_
 " Replacement for , as movement shortcut
 noremap - ,
 
-nnoremap ]q :lnext<CR>
-nnoremap [q :lprev<CR>
-nnoremap ]]q :lfirst<CR>
-nnoremap [[q :llast<CR>
-
-nnoremap ]w :cnext<CR>
-nnoremap [w :cprev<CR>
-nnoremap ]]w :cfirst<CR>
-nnoremap [[w :clast<CR>
-
 " Search for Visually selected text with * {{{1
 " http://vim.wikia.com/wiki/VimTip171
 
@@ -250,22 +240,6 @@ command! -nargs=0 FoldToggle :call FoldToggle()<CR>
 set complete=.,w,b,u,t,i,k
 set completeopt=menuone
 
-" DiffOrig {{{1
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-command! DiffOrig
-    \ let g:difforig_ft = &ft |
-    \ vert new |
-    \ set bt=nofile |
-    \ read ++edit # |
-    \ 0d_ |
-    \ let &ft = g:difforig_ft |
-    \ diffthis |
-    \ wincmd p |
-    \ diffthis
-
 " Strip {{{1
 
 function! Strip(input_string)
@@ -305,48 +279,9 @@ nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
 
 nnoremap ,gs yi{:OpenSearch <C-r>" gs
 
-" Multiple Syntax Highlight {{{1
-" Code copied from
-" http://vim.wikia.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
-
-function! TextEnableCodeSnip(filetype, start, end, textSnipHl)
-    let ft = toupper(a:filetype)
-    let group = 'textGroup' . ft
-
-    if exists('b:current_syntax')
-        let s:current_syntax=b:current_syntax
-        " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
-        " do nothing if b:current_syntax is defined.
-        unlet b:current_syntax
-    endif
-
-    let cmd = 'syntax include @%s syntax/%s.vim'
-    let cmd = printf(cmd, group, a:filetype)
-    execute cmd
-    try
-        let cmd = 'syntax include @%s after/syntax/%s.vim'
-        let cmd = printf(cmd, group, a:filetype)
-        execute cmd
-    catch
-    endtry
-
-    if exists('s:current_syntax')
-        let b:current_syntax = s:current_syntax
-    else
-        unlet b:current_syntax
-    endif
-
-    let cmd = 'syntax region textSnip%s matchgroup=%s start=%s end=%s contains=@%s'
-    let cmd = printf(cmd, ft, a:textSnipHl, a:start, a:end, group)
-    execute cmd
-endfunction
-
 " Quick editing {{{1
 
 cnoreabbrev ev edit <C-r>=$MYVIMRC<CR>
-cnoreabbrev evs edit <C-r>=$HOME_DOTFILES<CR>/vimrc_simple.vim
-cnoreabbrev evp edit <C-r>=$HOME_DOTFILES<CR>/vimrc_plugins.vim
-cnoreabbrev et edit <C-r>=$HOME<CR>/.tmux.conf
 
 if !exists("*ReloadConfigs")
     function! ReloadConfigs()
@@ -420,27 +355,11 @@ augroup ft_markdown
     au Filetype markdown setlocal formatoptions-=n
 augroup END
 
-" MoinMoin {{{2
-
-augroup ft_moin
-    au!
-
-    au Filetype moin nnoremap <buffer> <localleader>1 0i= <Esc>$a =<Esc>
-    au Filetype moin nnoremap <buffer> <localleader>2 0i== <Esc>$a ==<Esc>
-    au Filetype moin nnoremap <buffer> <localleader>3 0i=== <Esc>$a ===<Esc>
-    au Filetype moin nnoremap <buffer> <localleader>4 0i==== <Esc>$a ====<Esc>
-    au Filetype moin let b:surround_105 = "''\r''"
-    au Filetype moin let b:surround_98 = "'''\r'''"
-augroup END
-
 " Latex {{{2
 
 augroup ft_tex
     au!
 
-    au Filetype tex let b:surround_105 = "\\textit{\r}"
-    au Filetype tex let b:surround_98 = "\\textbf{\r}"
-    au Filetype tex nnoremap <buffer> <Localleader>t :Tab /\v(\&<Bar>\\\\ \\hline)
     au Filetype tex setlocal iskeyword+=-
     au Filetype bib setlocal iskeyword+=-
     au Filetype tex setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
@@ -473,16 +392,6 @@ augroup ft_text
     au Filetype text setlocal formatoptions-=n
 augroup END
 
-" Bookmark {{{2
-
-function! BookmarkLevel()
-    if getline(v:lnum) ==# "-"
-        return ">1"
-    else
-        return "="
-    endif
-endfunction
-
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
@@ -491,9 +400,6 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile *.md setlocal ft=markdown
     au BufEnter *.md setlocal foldexpr=MarkdownLevel()
     au BufEnter *.md setlocal foldmethod=expr
-
-    au BufEnter bookmarks.yaml setlocal foldexpr=BookmarkLevel()
-    au BufEnter bookmarks.yaml setlocal foldmethod=expr
 
     autocmd BufReadPost,BufNewFile *.plot setlocal ft=gnuplot
     autocmd BufReadPost,BufNewFile *.php setlocal ft=php.html
@@ -512,9 +418,6 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile .babelrc setlocal ft=javascript
     autocmd BufReadPost,BufNewFile .eslintrc setlocal ft=javascript
-
-    autocmd BufReadPost,BufNewFile *.blog
-        \ call TextEnableCodeSnip("yaml", '/\v%^/', '/\V.../', "yaml")
 augroup END
 
 " Use ripgrep when available {{{1

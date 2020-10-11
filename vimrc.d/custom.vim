@@ -133,14 +133,6 @@ nnoremap <leader>os :OpenSearch <C-r><C-w> g
 vnoremap <leader>os "zygv:<C-u>OpenSearch <C-r>z g
 
 
-" Setup stuff depending on filename/extension {{{1
-augroup ft_setup_custom
-    au!
-
-    au BufEnter bookmarks.yaml setlocal foldtext=PyCall('bookmark_fold_text',
-        \ v:foldstart, v:foldend, v:foldlevel)
-augroup END
-
 " Modescript {{{1
 
 let g:modescript_fname = ".modescript.vim"
