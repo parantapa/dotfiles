@@ -21,10 +21,10 @@ filetype plugin indent on
 
 " Use Molokai as Color scheme {{{1
 
-" if has("gui_running") || &t_Co == 256
-"     set background=dark
-"     colorscheme molokai
-" endif
+if has("gui_running") || &t_Co == 256
+    set background=dark
+    colorscheme molokai
+endif
 
 
 " " Plugin settings {{{1
