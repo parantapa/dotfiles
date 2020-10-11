@@ -27,87 +27,61 @@ if has("gui_running") || &t_Co == 256
 endif
 
 
-" Wordnet for Viewdoc {{{1
-
-function! s:ViewDoc_wordnet(topic, ...)
-    let cmd = printf('wn %s -over | fold -w 78 -s',  shellescape(a:topic))
-    return {'cmd': cmd, 'ft': 'wordnet'}
-endf
-let g:ViewDoc_wordnet = function('s:ViewDoc_wordnet')
-
-command! -bar -bang -nargs=1 ViewDocWordnet
-	\ call ViewDoc('<bang>'=='' ? 'new' : 'doc', <f-args>, 'wordnet')
-cnoreabbrev wn ViewDocWordnet
-nnoremap <Leader>wn :ViewDocWordnet <C-r><C-w>
-
-augroup au_wordnet
-    au!
-
-    autocmd FileType wordnet mapclear <buffer>
-    autocmd FileType wordnet syn match overviewHeader /^Overview of .\+/
-    autocmd FileType wordnet syn match definitionEntry /\v^[0-9]+\. .+$/ contains=numberedList,word
-    autocmd FileType wordnet syn match numberedList /\v^[0-9]+\. / contained
-    autocmd FileType wordnet syn match word /\v([0-9]+\.[0-9\(\) ]*)@<=[^-]+/ contained
-    autocmd FileType wordnet hi link overviewHeader Title
-    autocmd FileType wordnet hi link numberedList Operator
-    autocmd FileType wordnet hi def word term=bold cterm=bold gui=bold
-augroup end
-
-" Plugin settings {{{1
-
-" NERDTree {{{2
-
-    nnoremap <F2> :NERDTreeToggle<CR>
-    let g:NERDTreeMapActivateNode = "<CR>"
-    let g:NERDTreeMapOpenInTab = "<C-t>"
-    let g:NERDTreeMapOpenSplit = "<C-s>"
-    let g:NERDTreeMapOpenVSplit = "<C-v>"
-
-" Latex {{{2
-
-    let g:tex_flavor = 'latex'
-    let g:tex_comment_nospell= 1
-
-" QFEnter {{{2
-
-    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
-    let g:qfenter_vopen_map = ['<C-V>']
-    let g:qfenter_hopen_map = ['<C-S>']
-    let g:qfenter_topen_map = ['<C-T>']
-
-" TagBar {{{2
-
-    cnoreabbrev tt TagbarToggle
-
-" ViewDoc {{{2
-
-    let g:viewdoc_pydoc_cmd = "python -m pydoc"
-
-" Slime {{{2
-
-    let g:slime_target = "tmux"
-    let g:slime_paste_file = expand("$HOME/.slime_paste")
-    let g:slime_no_mappings = 1
-
-    function! SlimeSendText(text)
-        execute "SlimeSend1 " . a:text
-    endfunction
-
-    nmap <Leader>v <Plug>SlimeMotionSend
-    vmap <Leader>v <Plug>SlimeRegionSend
-    nmap <Leader>vv <Plug>SlimeLineSend
-
-    command! -nargs=0 SlimeSetIpython let g:slime_python_ipython = 1
-    command! -nargs=0 SlimeUnsetIpython unlet g:slime_python_ipython
-
-" Commentary {{{2
-
-    let g:commentary_map_keys = 0
-    xmap gc  <Plug>Commentary
-    nmap gc  <Plug>Commentary
-    nmap gcc <Plug>CommentaryLine
-    nmap gcu <Plug>CommentaryUndo
-
-" LanguageTool {{{2
-
-    let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
+# " Plugin settings {{{1
+# 
+# " NERDTree {{{2
+# 
+#     nnoremap <F2> :NERDTreeToggle<CR>
+#     let g:NERDTreeMapActivateNode = "<CR>"
+#     let g:NERDTreeMapOpenInTab = "<C-t>"
+#     let g:NERDTreeMapOpenSplit = "<C-s>"
+#     let g:NERDTreeMapOpenVSplit = "<C-v>"
+# 
+# " Latex {{{2
+# 
+#     let g:tex_flavor = 'latex'
+#     let g:tex_comment_nospell= 1
+# 
+# " QFEnter {{{2
+# 
+#     let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+#     let g:qfenter_vopen_map = ['<C-V>']
+#     let g:qfenter_hopen_map = ['<C-S>']
+#     let g:qfenter_topen_map = ['<C-T>']
+# 
+# " TagBar {{{2
+# 
+#     cnoreabbrev tt TagbarToggle
+# 
+# " ViewDoc {{{2
+# 
+#     let g:viewdoc_pydoc_cmd = "python -m pydoc"
+# 
+# " Slime {{{2
+# 
+#     let g:slime_target = "tmux"
+#     let g:slime_paste_file = expand("$HOME/.slime_paste")
+#     let g:slime_no_mappings = 1
+# 
+#     function! SlimeSendText(text)
+#         execute "SlimeSend1 " . a:text
+#     endfunction
+# 
+#     nmap <Leader>v <Plug>SlimeMotionSend
+#     vmap <Leader>v <Plug>SlimeRegionSend
+#     nmap <Leader>vv <Plug>SlimeLineSend
+# 
+#     command! -nargs=0 SlimeSetIpython let g:slime_python_ipython = 1
+#     command! -nargs=0 SlimeUnsetIpython unlet g:slime_python_ipython
+# 
+# " Commentary {{{2
+# 
+#     let g:commentary_map_keys = 0
+#     xmap gc  <Plug>Commentary
+#     nmap gc  <Plug>Commentary
+#     nmap gcc <Plug>CommentaryLine
+#     nmap gcu <Plug>CommentaryUndo
+# 
+# " LanguageTool {{{2
+# 
+#     let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
