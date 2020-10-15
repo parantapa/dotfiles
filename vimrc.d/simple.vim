@@ -362,9 +362,8 @@ augroup ft_tex
 
     au Filetype tex setlocal iskeyword+=-
     au Filetype bib setlocal iskeyword+=-
-    au Filetype tex setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
-    au Filetype bib setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
-
+    "    au Filetype tex setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
+    "    au Filetype bib setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
 augroup END
 
 
