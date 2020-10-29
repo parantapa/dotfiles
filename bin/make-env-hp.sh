@@ -17,7 +17,7 @@ conda create -y -n "$CONDA_ENV" \
     statsmodels scikit-learn scikit-image \
     nltk spacy \
     pyarrow dask \
-    numba cython cffi\
+    numba cython cffi \
     openmpi openmpi-mpicc mpi4py
 
 set +v

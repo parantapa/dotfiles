@@ -28,7 +28,7 @@ func = getattr(pyvimrc, funcname)
 args = vim.eval("a:000")
 ret = func(*args)
 EOF
-    return pyeval("ret")
+    return py3eval("ret")
 endfunction
 
 " ExtractUrl {{{1
