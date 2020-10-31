@@ -37,3 +37,6 @@
 [submodule "vim/bundle/deoplete-tag"]
 	path = vim/bundle/deoplete-tag
 	url = https://github.com/deoplete-plugins/deoplete-tag.git
+[submodule "vim/bundle/QFEnter"]
+	path = vim/bundle/QFEnter
+	url = https://github.com/yssl/QFEnter.git
