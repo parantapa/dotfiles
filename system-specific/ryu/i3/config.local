@@ -17,8 +17,8 @@ workspace 4 output DP3
 workspace 5 output DP3
 workspace 6 output DP3
 
-workspace A- output eDP1
-workspace A+ output eDP1
+workspace - output eDP1
+workspace + output eDP1
 
 exec clipit 2>/dev/null
 exec keepassxc
