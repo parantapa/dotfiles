@@ -1,5 +1,5 @@
 " Extra plugin configs
-" Enable these if only if you have python, lua, and Vim8+ support
+" Enable these if only if you have python, lua, pynvim, and Vim8+ support
 
 " Gundo {{{1
 
@@ -48,7 +48,7 @@ call denite#custom#source(
     \ 'file/rec', 'matchers', ['matcher/fuzzy'])
 
 " Change default action.
-call denite#custom#kind('file', 'default_action', 'vsplit')
+call denite#custom#kind('file', 'default_action', 'split')
 
 " Define mappings
 autocmd FileType denite call s:denite_my_settings()
@@ -84,10 +84,15 @@ let s:menus.index = {
     \ 'description': 'Denite Menu Index'
     \ }
 let s:menus.index.command_candidates = [
-    \ ['file', 'Denite file/rec'],
+    \ ['file/rec', 'Denite file/rec'],
+    \ ['file/mru', 'Denite file_mru'],
+    \ ['grep', 'Denite grep'],
+    \ ['tag', 'Denite tag'],
+    \ ['buffer', 'Denite buffer'],
     \ ]
 
 call denite#custom#var('menu', 'menus', s:menus)
 
 nnoremap <C-P> :<C-u>Denite menu:index<CR>
 nnoremap <C-B> :<C-u>Denite buffer<CR>
+nnoremap <C-M> :<C-u>Denite file_mru<CR>

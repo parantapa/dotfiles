@@ -28,3 +28,6 @@
 [submodule "vim/bundle/denite.nvim"]
 	path = vim/bundle/denite.nvim
 	url = https://github.com/Shougo/denite.nvim.git
+[submodule "vim/bundle/neomru.vim"]
+	path = vim/bundle/neomru.vim
+	url = https://github.com/Shougo/neomru.vim.git
