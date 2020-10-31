@@ -31,3 +31,9 @@
 [submodule "vim/bundle/neomru.vim"]
 	path = vim/bundle/neomru.vim
 	url = https://github.com/Shougo/neomru.vim.git
+[submodule "vim/bundle/deoplete.nvim"]
+	path = vim/bundle/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim.git
+[submodule "vim/bundle/deoplete-tag"]
+	path = vim/bundle/deoplete-tag
+	url = https://github.com/deoplete-plugins/deoplete-tag.git
