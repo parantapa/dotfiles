@@ -99,8 +99,8 @@ def main(workdir, ofname, is_glob, do_find, ifnames):
     if do_find:
         for root, _, fnames in os.walk("."):
             for fname in fnames:
-                print(os.path.join(root, fname))
                 if fname.endswith(".rst"):
+                    print(os.path.join(root, fname))
                     real_ifnames.append(os.path.join(root, fname))
 
     real_ifnames = sorted(set(real_ifnames))
