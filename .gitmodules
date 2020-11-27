@@ -43,3 +43,6 @@
 [submodule "vim/bundle/VOoM"]
 	path = vim/bundle/VOoM
 	url = https://github.com/vim-voom/VOoM.git
+[submodule "vim/bundle/vim-addon-local-vimrc"]
+	path = vim/bundle/vim-addon-local-vimrc
+	url = https://github.com/MarcWeber/vim-addon-local-vimrc.git
