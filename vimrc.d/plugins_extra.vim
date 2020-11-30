@@ -8,7 +8,7 @@ import sys
 import os
 
 #spath = "/usr/lib/python3.8/site-packages"
-spath = "/home/parantapa/miniconda3/envs/pynvim/lib/python3.8/site-packages"
+spath = "/home/parantapa/miniconda3/envs/vim-env/lib/python3.8/site-packages"
 
 assert os.path.exists(spath), "System python path doesn't exist"
 
@@ -143,3 +143,34 @@ let g:voom_ft_modes = {
     \ 'markdown': 'markdown',
     \ 'tex': 'latex',
     \ 'rst': 'rest'}
+
+
+" Evince SyncTex Setup {{{1
+
+function! SyncSetup(pdf)
+python3 << END
+from evince_synctex import EvinceMonitor
+evince_monitor = EvinceMonitor(vim.eval("a:pdf"), "SyncSource")
+END
+endfunction
+
+function! SyncView()
+python3 << END
+line = vim.eval('line(".")')
+col = vim.eval('col(".")')
+src = vim.eval('expand("%")')
+
+evince_monitor.sync_view(src, line, col)
+END
+endfunction
+
+function! SyncSource(fname, line, col)
+    wall
+    execute printf('edit %s', a:fname)
+    execute printf('normal %sG', a:line)
+    normal zz
+endfunction
+
+command! SyncView call SyncView()
+cnoreabbrev sv SyncView
+
