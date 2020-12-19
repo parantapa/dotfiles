@@ -33,24 +33,6 @@ let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 
 cnoreabbrev es UltiSnipsEdit
 
-" ALE {{{1
-
-let g:ale_linters = {
-    \ 'python': ['pylint', 'pyflakes', 'pydocstyle']
-    \}
-
-let g:ale_python_pydocstyle_options = '--convention=numpy'
-
-let g:ale_lint_on_text_changed = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_filetype_changed = 1
-" let g:ale_linters_explicit = 1
-
-let g:ale_fixers = {
-    \ 'python': ['black']
-    \}
 
 " nvim-yarp {{{1
 
@@ -109,6 +91,7 @@ let s:menus.index.command_candidates = [
     \ ['grep', 'Denite grep'],
     \ ['tag', 'Denite tag'],
     \ ['buffer', 'Denite buffer'],
+    \ ['context', 'Denite contextMenu'],
     \ ]
 
 call denite#custom#var('menu', 'menus', s:menus)
@@ -124,18 +107,20 @@ let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 call deoplete#custom#option('smart_case', v:true)
 
-" <CR>: close popup and save indent.
+" " <CR>: close popup and save indent.
 " inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 " function! s:my_cr_function() abort
 "     return deoplete#close_popup() . "\<CR>"
 " endfunction
 
-inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+" inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+let g:my_deoplete_sources = {
+    \ '_': ['around', 'buffer', 'file', 'tag', 'ultisnips'],
+    \}
 
 " Set default Source(
-call deoplete#custom#option('sources', {
-    \ '_': ['around', 'buffer', 'file', 'tag', 'ultisnips'],
-    \})
+call deoplete#custom#option('sources', my_deoplete_sources)
 
 " Voom {{{1
 
@@ -173,4 +158,20 @@ endfunction
 
 command! SyncView call SyncView()
 cnoreabbrev sv SyncView
+
+" Vim LanguageClient {{{1
+
+" let g:LanguageClient_settingsPath = expand('lc-settings.json')
+
+" let g:LanguageClient_serverCommands = {
+"     \   'python': {
+"     \      'name': 'pyls',
+"     \      'command': ['/home/parantapa/miniconda3/envs/hp/bin/pyls'],
+"     \   }
+"     \}
+
+nmap <silent> K  <Plug>(lcn-hover)
+nmap <silent> gd <Plug>(lcn-definition)
+nmap <silent> <F2> <Plug>(lcn-rename)
+nmap <silent> <F4> <Plug>(lcn-format)
 
