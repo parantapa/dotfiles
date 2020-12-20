@@ -35,90 +35,21 @@ def get_git_repos(xs):
     xs = [abspath(x) for x in xs]
     return xs
 
-def get_git_status():
+def get_git_status(d):
     """
     Get some details about git repository.
     """
 
     try:
-        cmd = ["git", "branch", "--list"]
-        with open("/dev/null", "w") as null:
-            output = check_output(cmd, stderr=null, text=True).splitlines()
-
-        line = [x for x in output if x[0] == "*"][0]
-        branch = line[2:].strip()
-    except (CalledProcessError, IndexError):
-        return "!"
-
-    try:
-        cmd = ["git", "config", "--get", "branch.{}.remote".format(branch)]
-        remote = check_output(cmd, text=True).strip()
-
-        cmd = ["git", "config", "--get", "branch.{}.merge".format(branch)]
-        remote_branch = check_output(cmd, text=True).strip()
-        remote_branch = remote_branch.split("/")[-1]
-
-        upstream = "{}/{}".format(remote, remote_branch)
+        cmd = ["git-prompt-output.sh", str(d)]
+        output = check_output(cmd, text=True).strip()
     except CalledProcessError:
-        upstream = None
+        return "ERROR"
 
-    if upstream is None:
-        try:
-            cmd = ["git", "config", "--get", "svn-remote.svn.fetch"]
-            svn_refs = check_output(cmd, text=True).strip()
-            upstream = svn_refs.split("/")[-1]
-        except CalledProcessError:
-            pass
-
-    if upstream is None:
-        return "-"
-
-    cmd = ["git", "status", "--porcelain"]
-    with open("/dev/null", "w") as null:
-        output = check_output(cmd, stderr=null, text=True).splitlines()
-
-    untracked = sum(1 for x in output if x.startswith("??"))
-    indexed   = sum(1 for x in output if x[0] == "A")
-    dirty     = sum(1 for x in output if x[1] in "MD")
-
-    if "HEAD detached" not in branch:
-        cmd = ["git", "rev-list", "--count", "--left-right", "{}...{}".format(branch, upstream)]
-        output = check_output(cmd, text=True)
-
-        forward, behind = output.split()
-        forward, behind = int(forward), int(behind)
-    else:
-        forward, behind = 0, 0
-
-    keys = "branch upstream untracked indexed dirty forward behind".split()
-    vals = locals()
-    return {k: vals[k] for k in keys}
-
-def get_git_code(repo, status):
-    """
-    Create a display code from the git status.
-    """
-
-    repo = basename(repo)
-
-    if status == "!":
-        return "{}!".format(repo)
-
-    code = ""
-    if status["untracked"]:
-        code += "%"
-    if status["indexed"]:
-        code += "+"
-    if status["dirty"]:
-        code += "*"
-    if status["behind"]:
-        code += "<"
-    if status["forward"]:
-        code += ">"
-    if code == "":
+    if output == "(master=)":
         return ""
-
-    return "{}{}".format(repo, code)
+    else:
+        return output
 
 @click.command()
 @click.option("-c", "--repo-dirs", default=None, type=click.File(),
@@ -145,20 +76,17 @@ def main(repo_dirs, linewise, loop, delay, repos):
 
         codes = []
         for d in dirs:
-            chdir(d)
-
-            status = get_git_status()
-            if status == "-":
+            status = get_git_status(d)
+            if not status:
                 continue
 
-            code = get_git_code(d, status)
-            if code:
-                codes.append(code)
+            code = "%s %s" % (basename(d), status)
+            codes.append(code)
 
         if linewise:
             codes = "\n".join(codes)
         else:
-            codes = " ".join(codes)
+            codes = " -- ".join(codes)
         click.echo(codes)
 
         if not loop:
