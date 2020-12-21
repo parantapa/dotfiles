@@ -1,18 +1,13 @@
 #!/bin/bash
 
+#set -Eeo pipefail
+
 if [[ ! -r "/usr/share/git/git-prompt.sh" ]] ; then
     echo "Error: git prompt script not found!"
     exit 1
 fi
 
-if [[ ! -d "$1/.git" ]] ; then
-    echo "Error: given directory is not a git repo."
-    exit 1
-fi
-
 . "/usr/share/git/git-prompt.sh"
-
-cd "$1"
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
@@ -20,4 +15,13 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 export GIT_PS1_DESCRIBE_STYLE="branch"
 
-__git_ps1 
+for d in "$@" ; do
+    cd "$d"
+
+    git_ps1="$( __git_ps1 "%s")"
+    bd="$(basename "$d")"
+
+    if [[ "$git_ps1" != "master=" ]] ; then
+        echo -e "$bd: $git_ps1"
+    fi
+done

@@ -14,12 +14,10 @@ found, this prints out the repos that have un pushed commits in them.
 
 __author__  = "Parantapa Bhattacharya <pb@parantapa.net>"
 
-import sys
 import time
-from os import chdir
-from os.path import join, abspath, basename, dirname
+from os.path import join, abspath, dirname
 from glob import glob
-from subprocess import check_output, CalledProcessError
+from subprocess import run
 
 import click
 
@@ -35,33 +33,15 @@ def get_git_repos(xs):
     xs = [abspath(x) for x in xs]
     return xs
 
-def get_git_status(d):
-    """
-    Get some details about git repository.
-    """
-
-    try:
-        cmd = ["git-prompt-output.sh", str(d)]
-        output = check_output(cmd, text=True).strip()
-    except CalledProcessError:
-        return "ERROR"
-
-    if output == "(master=)":
-        return ""
-    else:
-        return output
-
 @click.command()
 @click.option("-c", "--repo-dirs", default=None, type=click.File(),
               help="Use a file containing list of repo dirs instead of command line")
-@click.option("-1", "--linewise", is_flag=True,
-              help="One repo code per line")
 @click.option("-l", "--loop", is_flag=True,
               help="Repleatedly print out the states")
 @click.option("-d", "--delay", default=5,
               help="Delay between the loops")
 @click.argument("repos", nargs=-1)
-def main(repo_dirs, linewise, loop, delay, repos):
+def main(repo_dirs, loop, delay, repos):
     """
     Get the status of multiple git repositories.
     """
@@ -71,27 +51,21 @@ def main(repo_dirs, linewise, loop, delay, repos):
     if not repos:
         return
 
-    while True:
-        dirs = get_git_repos(repos)
+    with open("/dev/null", "w") as null:
+        while True:
+            dirs = get_git_repos(repos)
 
-        codes = []
-        for d in dirs:
-            status = get_git_status(d)
-            if not status:
-                continue
+            cmd = ["git-prompt-output"] + dirs
+            try:
+                run(cmd, stderr=null)
+            except CalledProcessError as e:
+                print("Error: %s" % e)
+                break
 
-            code = "%s %s" % (basename(d), status)
-            codes.append(code)
+            if not loop:
+                break
 
-        if linewise:
-            codes = "\n".join(codes)
-        else:
-            codes = " -- ".join(codes)
-        click.echo(codes)
-
-        if not loop:
-            break
-        time.sleep(delay)
+            time.sleep(delay)
 
 if __name__ == '__main__':
     main()
