@@ -161,17 +161,41 @@ cnoreabbrev sv SyncView
 
 " Vim LanguageClient {{{1
 
-" let g:LanguageClient_settingsPath = expand('lc-settings.json')
-
-" let g:LanguageClient_serverCommands = {
-"     \   'python': {
-"     \      'name': 'pyls',
-"     \      'command': ['/home/parantapa/miniconda3/envs/hp/bin/pyls'],
-"     \   }
-"     \}
-
 nmap <silent> K  <Plug>(lcn-hover)
 nmap <silent> gd <Plug>(lcn-definition)
-nmap <silent> <F2> <Plug>(lcn-rename)
-nmap <silent> <F4> <Plug>(lcn-format)
+command! -nargs=0 LCRename call LanguageClient#textDocument_rename()
+command! -nargs=0 LCFormat call LanguageClient#textDocument_formatting()
 
+let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_settingsPath = ['.lc-settings.json']
+
+let my_conda_root = '/home/parantapa/miniconda3'
+
+function! LCPythonSetup(conda_env)
+    let g:LanguageClient_serverCommands['python'] = {
+        \ 'name': 'pyls',
+        \ 'command': [g:my_conda_root . '/envs/' . a:conda_env . '/bin/pyls'],
+        \}
+
+    let g:my_deoplete_sources['python'] = deepcopy(g:my_deoplete_sources['_'])
+    call add(g:my_deoplete_sources['python'], 'LanguageClient')
+    call deoplete#custom#option('sources', g:my_deoplete_sources)
+endfunction
+command! -nargs=1 LCPythonSetup call LCPythonSetup(<q-args>)
+
+function! LCCPPSetup()
+    let g:LanguageClient_serverCommands['cpp'] = {
+        \ 'name': 'ccls',
+        \ 'command': ['/usr/bin/ccls'],
+        \}
+    let g:LanguageClient_serverCommands['c'] = {
+        \ 'name': 'ccls',
+        \ 'command': ['/usr/bin/ccls'],
+        \}
+
+    let g:my_deoplete_sources['cpp'] = deepcopy(g:my_deoplete_sources['_'])
+    call add(g:my_deoplete_sources['cpp'], 'LanguageClient')
+    let g:my_deoplete_sources['c'] = deepcopy(g:my_deoplete_sources['cpp'])
+    call deoplete#custom#option('sources', g:my_deoplete_sources)
+endfunction
+command! -nargs=0 LCCPPSetup call LCCPPSetup()
