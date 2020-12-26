@@ -159,7 +159,7 @@ endfunction
 command! SyncView call SyncView()
 cnoreabbrev sv SyncView
 
-" Vim LanguageClient {{{1
+" LanguageClient {{{1
 
 nmap <silent> K  <Plug>(lcn-hover)
 nmap <silent> gd <Plug>(lcn-definition)
@@ -167,7 +167,7 @@ command! -nargs=0 LCRename call LanguageClient#textDocument_rename()
 command! -nargs=0 LCFormat call LanguageClient#textDocument_formatting()
 
 let g:LanguageClient_serverCommands = {}
-let g:LanguageClient_settingsPath = ['.lc-settings.json']
+let g:LanguageClient_settingsPath = ['.language_client_settings.json']
 
 let my_conda_root = '/home/parantapa/miniconda3'
 
