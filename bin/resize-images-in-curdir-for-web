@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+
+set -x
+for img in *.JPG ; do
+    # Reduce image so largest size is 2048 pixels
+    convert -resize "2048>" -quality 70% "${img}" "${img%.JPG}-small.JPG"
+done
