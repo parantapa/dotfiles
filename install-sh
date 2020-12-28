@@ -35,6 +35,7 @@ cd "$dstdir"
 [[ -d .config/fish ]]     || mkdir -p .config/fish
 [[ -d .config/gtk-3.0 ]]  || mkdir -p .config/gtk-3.0
 [[ -d .config/termite ]]  || mkdir -p .config/termite
+[[ -d .config/rofi ]]     || mkdir -p .config/rofi
 
 # Dont overwrite bashrc, vimrc, config.fish
 if [[ ! -r .bashrc ]] ; then
@@ -63,9 +64,9 @@ if [[ "$1" == "--extra" ]] ; then
     touch .i3/config.local
     touch .repo-dirs
 
+    ln -siT "$HOME/edocs/git-credentials" ".git-credentials"
+
     cd "$srcdir"
     git submodule sync
     git submodule update --init
-
-    ln -siT "$HOME/edocs/git-credentials" ".git-credentials"
 fi
