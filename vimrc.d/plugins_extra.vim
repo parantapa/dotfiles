@@ -1,21 +1,6 @@
 " Extra plugin configs
 " Enable these if only if you have python, lua, pynvim, and Vim8+ support
 
-" Add system path to sys.path {{{1
-
-python3 << EOF
-import sys
-import os
-
-#spath = "/usr/lib/python3.8/site-packages"
-spath = "/home/parantapa/miniconda3/envs/vim-env/lib/python3.8/site-packages"
-
-assert os.path.exists(spath), "System python path doesn't exist"
-
-if spath not in sys.path:
-    sys.path.append(spath)
-EOF
-
 " Gundo {{{1
 
 nnoremap <F5> :GundoToggle<CR>
