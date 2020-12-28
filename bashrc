@@ -12,5 +12,9 @@ source "$HOME_DOTFILES/bashrc.d/dotfiles.sh"
 # source "$HOME_DOTFILES/bashrc.d/myvars.sh"
 # source "$HOME_DOTFILES/bashrc.d/misc.sh"
 
+if [[ -r "$HOME/edocs/bashrc.sh" ]] ; then
+    source "$HOME/edocs/bashrc.sh"
+fi
+
 # pathadd "$HOME_SDOCS/bin"
 # pathadd "$HOME/bin"
