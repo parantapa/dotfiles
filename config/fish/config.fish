@@ -7,8 +7,7 @@ source "$HOME_DOTFILES/fishrc.d/dotfiles.fish"
 
 source "$HOME_DOTFILES/fishrc.d/git-alias.fish"
 source "$HOME_DOTFILES/fishrc.d/misc.fish"
-# source "$HOME_DOTFILES/fishrc.d/lang-path.fish"
-# source "$HOME_DOTFILES/bashrc.d/fab_completion.sh"
+source "$HOME_DOTFILES/fishrc.d/runtime.fish"
 
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
@@ -16,9 +15,11 @@ set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Ds
 # set -x PATH "$HOME/bin" $PATH
 
 # set -x NOTEBOOK_DIR "$HOME/workspace/notebooks"
-# set -x PYTHONPATH "$HOME/workspace/py-modules"
+# set -x PYTHONPATH "$HOME/workspace/labspace/py-modules/"
 
 # set -x CONDA_ROOT "$HOME/anaconda3"
 # source "$CONDA_ROOT/etc/fish/conf.d/conda.fish"
 # functions -e fish_right_prompt
 # alias clear=/usr/bin/clear
+
+# alias px "pb calc"

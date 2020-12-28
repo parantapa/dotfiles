@@ -1,4 +1,5 @@
 # List of colors
+
 _mycolor_txtblk='\[\e[0;30m\]' # Black - Regular
 _mycolor_txtred='\[\e[0;31m\]' # Red
 _mycolor_txtgrn='\[\e[0;32m\]' # Green
