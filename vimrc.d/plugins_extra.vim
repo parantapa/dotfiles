@@ -102,6 +102,12 @@ call deoplete#custom#option('smart_case', v:true)
 
 let g:my_deoplete_sources = {
     \ '_': ['around', 'buffer', 'file', 'tag', 'ultisnips'],
+    \ 'c': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
+    \ 'cpp': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
+    \ 'tex': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
+    \ 'bib': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
+    \ 'sh': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
+    \ 'vim': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
     \}
 
 " Set default Source(
@@ -151,36 +157,23 @@ nmap <silent> gd <Plug>(lcn-definition)
 command! -nargs=0 LCRename call LanguageClient#textDocument_rename()
 command! -nargs=0 LCFormat call LanguageClient#textDocument_formatting()
 
-let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_settingsPath = ['.language_client_settings.json']
 
-let my_conda_root = '/home/parantapa/miniconda3'
+let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_serverCommands['c'] = { 'name': 'ccls', 'command': ['ccls'] }
+let g:LanguageClient_serverCommands['cpp'] = { 'name': 'ccls', 'command': ['ccls'] }
+let g:LanguageClient_serverCommands['tex'] = { 'name': 'texlab', 'command': ['texlab'] }
+let g:LanguageClient_serverCommands['bib'] = { 'name': 'texlab', 'command': ['texlab'] }
+let g:LanguageClient_serverCommands['sh'] = { 'name': 'bash-language-server', 'command': ['bash-language-server', 'start'] }
+let g:LanguageClient_serverCommands['vim'] = { 'name': 'texlab', 'command': ['vim-language-server', '--stdio'] }
 
+let my_conda_root = '/home/parantapa/miniconda3'
 function! LCPythonSetup(conda_env)
-    let g:LanguageClient_serverCommands['python'] = {
-        \ 'name': 'pyls',
-        \ 'command': [g:my_conda_root . '/envs/' . a:conda_env . '/bin/pyls'],
-        \}
+    let cmd = g:my_conda_root . '/envs/' . a:conda_env . '/bin/pyls'
+    let g:LanguageClient_serverCommands['python'] = { 'name': 'pyls', 'command': [cmd] }
 
     let g:my_deoplete_sources['python'] = deepcopy(g:my_deoplete_sources['_'])
     call add(g:my_deoplete_sources['python'], 'LanguageClient')
     call deoplete#custom#option('sources', g:my_deoplete_sources)
 endfunction
 command! -nargs=1 LCPythonSetup call LCPythonSetup(<q-args>)
-
-function! LCCPPSetup()
-    let g:LanguageClient_serverCommands['cpp'] = {
-        \ 'name': 'ccls',
-        \ 'command': ['/usr/bin/ccls'],
-        \}
-    let g:LanguageClient_serverCommands['c'] = {
-        \ 'name': 'ccls',
-        \ 'command': ['/usr/bin/ccls'],
-        \}
-
-    let g:my_deoplete_sources['cpp'] = deepcopy(g:my_deoplete_sources['_'])
-    call add(g:my_deoplete_sources['cpp'], 'LanguageClient')
-    let g:my_deoplete_sources['c'] = deepcopy(g:my_deoplete_sources['cpp'])
-    call deoplete#custom#option('sources', g:my_deoplete_sources)
-endfunction
-command! -nargs=0 LCCPPSetup call LCCPPSetup()
