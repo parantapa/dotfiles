@@ -28,7 +28,17 @@ let g:python3_host_prog="/usr/bin/python"
 
 " Change file/rec command.
 call denite#custom#var('file/rec', 'command',
-    \ ['rg', '--files', '--glob', '!.git', '--color', 'never'])
+    \ ['scantree.py', '--path', ':directory'])
+
+" Change grep command to use ripgrep
+call denite#custom#var('grep', {
+        \ 'command': ['rg'],
+        \ 'default_opts': ['-i', '--vimgrep', '--no-heading'],
+        \ 'recursive_opts': [],
+        \ 'pattern_opt': ['--regexp'],
+        \ 'separator': ['--'],
+        \ 'final_opts': [],
+        \ })
 
 " Change matchers.
 call denite#custom#source(
@@ -71,11 +81,10 @@ let s:menus.index = {
     \ 'description': 'Denite Menu Index'
     \ }
 let s:menus.index.command_candidates = [
-    \ ['file/rec', 'Denite file/rec'],
-    \ ['file/mru', 'Denite file_mru'],
-    \ ['grep', 'Denite grep'],
-    \ ['tag', 'Denite tag'],
-    \ ['buffer', 'Denite buffer'],
+    \ ['file/rec', 'Denite file/rec -start-filter'],
+    \ ['file/mru', 'Denite file_mru -start-filter'],
+    \ ['grep', 'Denite grep -path=.'],
+    \ ['tag', 'Denite tag -start-filter'],
     \ ['context', 'Denite contextMenu'],
     \ ]
 
@@ -83,7 +92,6 @@ call denite#custom#var('menu', 'menus', s:menus)
 
 nnoremap <C-P> :<C-u>Denite menu:index<CR>
 nnoremap <C-B> :<C-u>Denite buffer<CR>
-nnoremap <C-M> :<C-u>Denite file_mru<CR>
 
 " Deoplete {{{1
 
