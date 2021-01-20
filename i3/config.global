@@ -206,3 +206,5 @@ for_window [class="Blueman-manager" instance="blueman-manager"] floating enable
 for_window [class="Ipython"] floating enable
 for_window [class="Octave"] floating enable
 for_window [title="Matplotlib"] floating enable
+
+for_window [class="Dia" instance="dia" window_role="toolbox_window"] floating enable
