@@ -175,10 +175,8 @@ let g:LanguageClient_serverCommands['bib'] = { 'name': 'texlab', 'command': ['te
 let g:LanguageClient_serverCommands['sh'] = { 'name': 'bash-language-server', 'command': ['bash-language-server', 'start'] }
 let g:LanguageClient_serverCommands['vim'] = { 'name': 'texlab', 'command': ['vim-language-server', '--stdio'] }
 
-let my_conda_root = '/home/parantapa/miniconda3'
-function! LCPythonSetup(conda_env)
-    let cmd = g:my_conda_root . '/envs/' . a:conda_env . '/bin/pyls'
-    let g:LanguageClient_serverCommands['python'] = { 'name': 'pyls', 'command': [cmd] }
+function! LCPythonSetup(pyls)
+    let g:LanguageClient_serverCommands['python'] = { 'name': 'pyls', 'command': [a:pyls] }
 
     let g:my_deoplete_sources['python'] = deepcopy(g:my_deoplete_sources['_'])
     call add(g:my_deoplete_sources['python'], 'LanguageClient')
