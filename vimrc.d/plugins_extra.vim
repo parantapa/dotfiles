@@ -93,33 +93,6 @@ call denite#custom#var('menu', 'menus', s:menus)
 nnoremap <C-P> :<C-u>Denite menu:index<CR>
 nnoremap <C-B> :<C-u>Denite buffer<CR>
 
-" Deoplete {{{1
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-call deoplete#custom#option('smart_case', v:true)
-
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function() abort
-"     return deoplete#close_popup() . "\<CR>"
-" endfunction
-
-" inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-let g:my_deoplete_sources = {
-    \ '_': ['around', 'buffer', 'file', 'tag', 'ultisnips'],
-    \ 'c': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
-    \ 'cpp': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
-    \ 'tex': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
-    \ 'bib': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
-    \ 'sh': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
-    \ 'vim': ['around', 'buffer', 'file', 'tag', 'ultisnips', 'LanguageClient'],
-    \}
-
-" Set default Source(
-call deoplete#custom#option('sources', my_deoplete_sources)
 
 " Voom {{{1
 
@@ -158,28 +131,3 @@ endfunction
 command! SyncView call SyncView()
 cnoreabbrev sv SyncView
 
-" LanguageClient {{{1
-
-nmap <silent> K  <Plug>(lcn-hover)
-nmap <silent> gd <Plug>(lcn-definition)
-command! -nargs=0 LCRename call LanguageClient#textDocument_rename()
-command! -nargs=0 LCFormat call LanguageClient#textDocument_formatting()
-
-let g:LanguageClient_settingsPath = ['.language_client_settings.json']
-
-let g:LanguageClient_serverCommands = {}
-let g:LanguageClient_serverCommands['c'] = { 'name': 'ccls', 'command': ['ccls'] }
-let g:LanguageClient_serverCommands['cpp'] = { 'name': 'ccls', 'command': ['ccls'] }
-let g:LanguageClient_serverCommands['tex'] = { 'name': 'texlab', 'command': ['texlab'] }
-let g:LanguageClient_serverCommands['bib'] = { 'name': 'texlab', 'command': ['texlab'] }
-let g:LanguageClient_serverCommands['sh'] = { 'name': 'bash-language-server', 'command': ['bash-language-server', 'start'] }
-let g:LanguageClient_serverCommands['vim'] = { 'name': 'texlab', 'command': ['vim-language-server', '--stdio'] }
-
-function! LCPythonSetup(pyls)
-    let g:LanguageClient_serverCommands['python'] = { 'name': 'pyls', 'command': [a:pyls] }
-
-    let g:my_deoplete_sources['python'] = deepcopy(g:my_deoplete_sources['_'])
-    call add(g:my_deoplete_sources['python'], 'LanguageClient')
-    call deoplete#custom#option('sources', g:my_deoplete_sources)
-endfunction
-command! -nargs=1 LCPythonSetup call LCPythonSetup(<q-args>)

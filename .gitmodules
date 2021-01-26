@@ -28,12 +28,6 @@
 [submodule "vim/bundle/neomru.vim"]
 	path = vim/bundle/neomru.vim
 	url = https://github.com/Shougo/neomru.vim.git
-[submodule "vim/bundle/deoplete.nvim"]
-	path = vim/bundle/deoplete.nvim
-	url = https://github.com/Shougo/deoplete.nvim.git
-[submodule "vim/bundle/deoplete-tag"]
-	path = vim/bundle/deoplete-tag
-	url = https://github.com/deoplete-plugins/deoplete-tag.git
 [submodule "vim/bundle/QFEnter"]
 	path = vim/bundle/QFEnter
 	url = https://github.com/yssl/QFEnter.git
@@ -43,9 +37,6 @@
 [submodule "vim/bundle/vim-addon-local-vimrc"]
 	path = vim/bundle/vim-addon-local-vimrc
 	url = https://github.com/MarcWeber/vim-addon-local-vimrc.git
-[submodule "vim/bundle/LanguageClient-neovim"]
-	path = vim/bundle/LanguageClient-neovim
-	url = https://github.com/autozimu/LanguageClient-neovim.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
