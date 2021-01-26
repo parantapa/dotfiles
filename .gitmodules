@@ -40,3 +40,6 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/coc.nvim"]
+	path = vim/bundle/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git

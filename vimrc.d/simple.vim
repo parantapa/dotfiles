@@ -43,6 +43,10 @@ set fillchars=diff:@
 set backspace=indent,eol,start
 set showbreak=+++\  " add a space in the end
 
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
 " Use system clipboard as default register {{{1
 
 if has('unnamedplus')
