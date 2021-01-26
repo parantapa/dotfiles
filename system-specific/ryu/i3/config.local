@@ -5,10 +5,10 @@ bar {
 }
 
 
-workspace 7 output DP1
-workspace 8 output DP1
-workspace 9 output DP1
-workspace 10 output DP1
+workspace 7 output eDP1
+workspace 8 output eDP1
+workspace 9 output eDP1
+workspace 10 output eDP1
 
 workspace 1 output DP3
 workspace 2 output DP3
