@@ -22,6 +22,11 @@ function fish_prompt --description 'Write out the prompt'
         echo -n "(c:"(basename $CONDA_PREFIX)") "
     end
 
+    if set -q SPACK_ENV
+        set_color green
+        echo -n "(s:"(basename $SPACK_ENV)") "
+    end
+
     set_color cyan
     echo -n "$USER@$__fish_prompt_hostname"
 
