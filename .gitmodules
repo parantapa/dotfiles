@@ -13,9 +13,6 @@
 [submodule "vim/bundle/gundo.vim"]
 	path = vim/bundle/gundo.vim
 	url = https://github.com/sjl/gundo.vim.git
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
 [submodule "vim/bundle/nvim-yarp"]
 	path = vim/bundle/nvim-yarp
 	url = https://github.com/roxma/nvim-yarp
