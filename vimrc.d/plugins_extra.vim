@@ -7,17 +7,6 @@ nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
-" UltiSnips {{{1
-
-let g:UltiSnipsEditSplit = "normal"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<s-tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-c-tab>"
-
-let g:snips_author = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
-
-cnoreabbrev es UltiSnipsEdit
-
 
 " nvim-yarp {{{1
 
