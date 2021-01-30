@@ -43,7 +43,7 @@ set fillchars=diff:@
 set backspace=indent,eol,start
 set showbreak=+++\  " add a space in the end
 
-set cmdheight=2
+set cmdheight=1
 set updatetime=300
 set shortmess+=c
 

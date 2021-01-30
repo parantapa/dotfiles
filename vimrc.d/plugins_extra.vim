@@ -74,14 +74,12 @@ let s:menus.index.command_candidates = [
     \ ['file/mru', 'Denite file_mru -start-filter'],
     \ ['grep', 'Denite grep -path=.'],
     \ ['tag', 'Denite tag -start-filter'],
-    \ ['context', 'Denite contextMenu'],
     \ ]
 
 call denite#custom#var('menu', 'menus', s:menus)
 
 nnoremap <C-P> :<C-u>Denite menu:index<CR>
 nnoremap <C-B> :<C-u>Denite buffer<CR>
-
 
 " Voom {{{1
 
@@ -120,7 +118,7 @@ endfunction
 command! SyncView call SyncView()
 cnoreabbrev sv SyncView
 
-" Coc.nvim {{{1
+" Coc.nvim and coc-snippets {{{1
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -131,19 +129,28 @@ else
   set signcolumn=yes
 endif
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
+" " Use tab for trigger completion with characters ahead and navigate.
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config.
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 " if has('nvim')
@@ -267,3 +274,24 @@ nnoremap <silent><nowait> <localleader>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <localleader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <localleader>p  :<C-u>CocListResume<CR>
+
+ " Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+" Edit user snippet of current filetype
+cnoreabbrev es CocCommand snippets.editSnippets
