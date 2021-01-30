@@ -4,17 +4,17 @@ export HOME_DOTFILES="$HOME/dotfiles"
 export HOME_QUICKREFS="$HOME/quickrefs"
 export HOME_SDOCS="$HOME/sdocs"
 
-source "$HOME_DOTFILES/bashrc.d/basic.sh"
-source "$HOME_DOTFILES/bashrc.d/dotfiles.sh"
+source "$HOME/dotfiles/bashrc.d/basic.sh"
+source "$HOME/dotfiles/bashrc.d/dotfiles.sh"
 
-# source "$HOME_DOTFILES/bashrc.d/myprompt.sh"
-# source "$HOME_DOTFILES/bashrc.d/git-alias.sh"
-# source "$HOME_DOTFILES/bashrc.d/myvars.sh"
-# source "$HOME_DOTFILES/bashrc.d/misc.sh"
+# source "$HOME/dotfiles/bashrc.d/myprompt.sh"
+# source "$HOME/dotfiles/bashrc.d/git-alias.sh"
+# source "$HOME/dotfiles/bashrc.d/myvars.sh"
+# source "$HOME/dotfiles/bashrc.d/misc.sh"
 
 if [[ -r "$HOME/edocs/bashrc.sh" ]] ; then
     source "$HOME/edocs/bashrc.sh"
 fi
 
-# pathadd "$HOME_SDOCS/bin"
+# pathadd "$HOME/sdocs/bin"
 # pathadd "$HOME/bin"

@@ -1,8 +1,8 @@
 # Assume dotfiles, quickrefs, and sdocs exist
 
 # Add dotfiles/bin to path
-set PATH "$HOME_DOTFILES/bin" $PATH
-set PATH "$HOME_DOTFILES/cmd-compiled" $PATH
+set PATH "$HOME/dotfiles/bin" $PATH
+set PATH "$HOME/dotfiles/cmd-compiled" $PATH
 
 # Add the pprint-data aliases
 alias pq "pprint-data pickle"

@@ -39,7 +39,7 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM=auto
-source "$HOME_DOTFILES/bashrc.d/git-prompt.sh"
+source "$HOME/dotfiles/bashrc.d/git-prompt.sh"
 
 my_ps1 () {
     local ret="$1"

@@ -39,12 +39,12 @@ xinput set-prop  "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 export SHELL=/usr/bin/fish
 
 # Setup i3
-xrdb "$HOME_DOTFILES/Xresources"
-#xrdb -merge <(echo "URxvt*perl-lib: $HOME_DOTFILES/urxvt-perl/")
+xrdb "$HOME/dotfiles/Xresources"
+#xrdb -merge <(echo "URxvt*perl-lib: $HOME/dotfiles/urxvt-perl/")
 #xrdb -merge <(echo "URxvt*perl-ext-common: 52-osc")
 
-#xmodmap "$HOME_DOTFILES/capslock-esc"
-#xmodmap "$HOME_DOTFILES/print-insert"
+#xmodmap "$HOME/dotfiles/capslock-esc"
+#xmodmap "$HOME/dotfiles/print-insert"
 eval `ssh-agent -s -t 16h`
 dunst &
 nitrogen --restore &
