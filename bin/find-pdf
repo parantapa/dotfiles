@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 # encoding: utf-8
 """
-Find an open a pdf file in $HOME_SDOCS.
+Find an open a pdf file in $HOME/sdocs.
 """
 
 from __future__ import print_function
@@ -63,8 +63,8 @@ def main_open(sdocs, keyword, num):
         Popen(cmd, stdout=null, stderr=null)
 
 def main():
-    sdocs = os.environ.get("HOME_SDOCS", None)
-    if sdocs is None or not os.path.isdir(sdocs):
+    sdocs = os.environ["HOME"] + "/sdocs"
+    if not os.path.isdir(sdocs):
         print("Cant find sdocs directory!")
         return
 
