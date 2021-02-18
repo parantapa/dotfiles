@@ -1,0 +1,26 @@
+#!/bin/bash
+# Spotify control
+#
+# https://community.spotify.com/t5/Desktop-Linux/Basic-controls-via-command-line/td-p/4295625
+
+set -Eeuo pipefail
+
+if [[ "$#" -ne 1 ]] ; then
+    echo "Usage: spotify-ctl Play|Pause|PlayPause|Previous|Next"
+    exit 1
+fi
+
+if [[ "$1" == "Play" ]] ; then
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
+elif [[ "$1" == "Pause" ]] ; then
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
+elif [[ "$1" == "PlayPause" ]] ; then
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+elif [[ "$1" == "Previous" ]] ; then
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+elif [[ "$1" == "Next" ]] ; then
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+else
+    echo "Usage: spotify-ctl Play|Pause|PlayPause|Previous|Next"
+    exit 1
+fi

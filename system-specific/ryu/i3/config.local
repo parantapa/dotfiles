@@ -5,10 +5,10 @@ bar {
 }
 
 
-workspace 7 output eDP1
-workspace 8 output eDP1
-workspace 9 output eDP1
-workspace 10 output eDP1
+workspace 7 output DP1
+workspace 8 output DP1
+workspace 9 output DP1
+workspace 10 output DP1
 
 workspace 1 output DP3
 workspace 2 output DP3
@@ -29,11 +29,13 @@ exec conky -c /home/parantapa/dotfiles/system-specific/ryu/conky.conf
 exec clipmenud
 bindsym Control+Mod1+0 exec "env CM_LAUNCHER=rofi clipmenu"
 
+bindsym Control+Mod1+Left  exec --no-startup-id "spotify-ctl Previous"
+bindsym Control+Mod1+Right exec --no-startup-id "spotify-ctl Next"
+bindsym Control+Mod1+Up    exec --no-startup-id "spotify-ctl Play"
+bindsym Control+Mod1+Down  exec --no-startup-id "spotify-ctl Pause"
 
-# bindsym Control+Mod1+Left  exec --no-startup-id "mpc prev"
-# bindsym Control+Mod1+Right exec --no-startup-id "mpc next"
-# bindsym Control+Mod1+Down  exec --no-startup-id "mpc toggle"
-# bindsym Control+Mod1+Up    exec --no-startup-id "mpc stop"
+bindsym XF86AudioPlay exec --no-startup-id "spotify-ctl PlayPause"
+bindsym XF86AudioPause exec --no-startup-id "spotify-ctl PlayPause"
 
 # bindsym XF86AudioMute            exec "zenity --info --text        XF86AudioMute"
 # bindsym XF86AudioLowerVolume     exec "zenity --info --text        XF86AudioLowerVolume"
@@ -83,13 +85,13 @@ bindsym XF86AudioMicMute         exec "zenity --info --text        XF86AudioMicM
 bindsym XF86TouchpadToggle       exec "zenity --info --text        XF86TouchpadToggle"
 bindsym XF86TouchpadOn           exec "zenity --info --text        XF86TouchpadOn"
 bindsym XF86TouchpadOff          exec "zenity --info --text        XF86TouchpadOff"
-bindsym XF86AudioPause           exec "zenity --info --text        XF86AudioPause"
+# bindsym XF86AudioPause           exec "zenity --info --text        XF86AudioPause"
 bindsym XF86Launch3              exec "zenity --info --text        XF86Launch3"
 bindsym XF86Launch4              exec "zenity --info --text        XF86Launch4"
 bindsym XF86LaunchB              exec "zenity --info --text        XF86LaunchB"
 bindsym XF86Suspend              exec "zenity --info --text        XF86Suspend"
 bindsym XF86Close                exec "zenity --info --text        XF86Close"
-bindsym XF86AudioPlay            exec "zenity --info --text        XF86AudioPlay"
+# bindsym XF86AudioPlay            exec "zenity --info --text        XF86AudioPlay"
 bindsym XF86AudioForward         exec "zenity --info --text        XF86AudioForward"
 bindsym XF86WebCam               exec "zenity --info --text        XF86WebCam"
 bindsym XF86Mail                 exec "zenity --info --text        XF86Mail"
