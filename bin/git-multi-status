@@ -17,7 +17,7 @@ __author__  = "Parantapa Bhattacharya <pb@parantapa.net>"
 import time
 from os.path import join, abspath, dirname
 from glob import glob
-from subprocess import run
+from subprocess import run, CalledProcessError
 
 import click
 
@@ -57,7 +57,7 @@ def main(repo_dirs, loop, delay, repos):
 
             cmd = ["git-prompt-output"] + dirs
             try:
-                run(cmd, stderr=null)
+                run(cmd, stderr=null, check=True)
             except CalledProcessError as e:
                 print("Error: %s" % e)
                 break
