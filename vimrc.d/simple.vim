@@ -307,6 +307,13 @@ cnoreabbrev qrs QuickrefSync
 command! -nargs=0 QuickrefTag !rstindextags -f
 cnoreabbrev qrt QuickrefTag
 
+
+" General command mode abbreveations {{{1
+
+cnoreabbrev mk make
+cnoreabbrev mka make all
+cnoreabbrev mkq make quick
+
 " Various filetype-specific stuff {{{1
 
 " ReStructuredText {{{2
