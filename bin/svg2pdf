@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+
+ifname="${1}"
+ofname="${ifname%.svg}.pdf"
+
+set -x
+
+rsvg-convert -f pdf -o "$ofname" "$ifname"
+pdfcrop "$ofname" "$ofname"
