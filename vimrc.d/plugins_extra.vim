@@ -98,6 +98,9 @@ evince_monitor = EvinceMonitor(vim.eval("a:pdf"), "SyncSource")
 END
 endfunction
 
+command! -nargs=1 SyncSetup call SyncSetup(<f-args>)
+cnoreabbrev ss SyncSetup
+
 function! SyncView()
 python3 << END
 line = vim.eval('line(".")')
