@@ -1,0 +1,13 @@
+#!/bin/bash
+# Convert a pdf file to v1.4
+#
+# https://superuser.com/questions/184288/how-to-convert-a-pdf-document-to-an-older-version
+
+set -Eeuo pipefail
+
+input="${1}"
+output="${input%.pdf}-v1.4.pdf"
+
+set -x
+
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -o "${output}" "${input}"
