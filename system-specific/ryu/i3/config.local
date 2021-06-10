@@ -4,7 +4,6 @@ bar {
     tray_output primary
 }
 
-
 workspace 7 output DP1
 workspace 8 output DP1
 workspace 9 output DP1
@@ -36,6 +35,8 @@ bindsym Control+Mod1+Down  exec --no-startup-id "spotify-ctl PlayPause"
 
 bindsym XF86AudioPlay exec --no-startup-id "spotify-ctl PlayPause"
 bindsym XF86AudioPause exec --no-startup-id "spotify-ctl PlayPause"
+bindsym XF86AudioNext exec --no-startup-id "spotify-ctl Next"
+bindsym XF86AudioPrev exec --no-startup-id "spotify-ctl Previous"
 
 # bindsym XF86AudioMute            exec "zenity --info --text        XF86AudioMute"
 # bindsym XF86AudioLowerVolume     exec "zenity --info --text        XF86AudioLowerVolume"
@@ -65,8 +66,8 @@ bindsym XF86MyComputer           exec "zenity --info --text        XF86MyCompute
 bindsym XF86Back                 exec "zenity --info --text        XF86Back"
 bindsym XF86Forward              exec "zenity --info --text        XF86Forward"
 bindsym XF86Eject                exec "zenity --info --text        XF86Eject"
-bindsym XF86AudioNext            exec "zenity --info --text        XF86AudioNext"
-bindsym XF86AudioPrev            exec "zenity --info --text        XF86AudioPrev"
+#bindsym XF86AudioNext            exec "zenity --info --text        XF86AudioNext"
+#bindsym XF86AudioPrev            exec "zenity --info --text        XF86AudioPrev"
 bindsym XF86AudioRecord          exec "zenity --info --text        XF86AudioRecord"
 bindsym XF86AudioRewind          exec "zenity --info --text        XF86AudioRewind"
 bindsym XF86Phone                exec "zenity --info --text        XF86Phone"
