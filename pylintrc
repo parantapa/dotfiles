@@ -1,6 +1,6 @@
 [MASTER]
 
-extension-pkg-whitelist=numpy,scipy,mpi4py,torch
+extension-pkg-whitelist=numpy,scipy,mpi4py,torch,rocksdb
 
 [MESSAGES CONTROL]
 
