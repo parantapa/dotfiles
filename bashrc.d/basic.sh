@@ -25,6 +25,7 @@ export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL="gvim -f"
 export BROWSER=firefox-developer-edition
+#export BROWSER=google-chrome-stable
 export PDFVIEWER=zathura
 export MENU="rofi -show run -matching fuzzy"
 export TERMINAL=termite
