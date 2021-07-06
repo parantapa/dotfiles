@@ -68,6 +68,12 @@ nmap gc  <Plug>Commentary
 nmap gcc <Plug>CommentaryLine
 nmap gcu <Plug>CommentaryUndo
 
+" Surround {{{2 
+
+let g:surround_116 = "{{\r}}" " t == 116
+let g:surround_102 = "{\r}" " f == 116
+
+
 " " LanguageTool {{{2
 "
 "     let g:languagetool_disable_rules = "WHITESPACE_RULE,EN_QUOTES,MORFOLOGIK_RULE_EN_US"
