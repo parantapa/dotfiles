@@ -40,8 +40,6 @@ export SHELL=/usr/bin/fish
 
 # Setup i3
 xrdb "$HOME/dotfiles/Xresources"
-#xrdb -merge <(echo "URxvt*perl-lib: $HOME/dotfiles/urxvt-perl/")
-#xrdb -merge <(echo "URxvt*perl-ext-common: 52-osc")
 
 #xmodmap "$HOME/dotfiles/capslock-esc"
 #xmodmap "$HOME/dotfiles/print-insert"
@@ -49,7 +47,6 @@ eval `ssh-agent -s -t 16h`
 dunst &
 nitrogen --restore &
 #xscreensaver -no-splash &
-#urxvtd -q -f -o
 xsettingsd &
 
 # exec gnome-session
