@@ -130,7 +130,7 @@ set backup
 
 set directory=~/.vim/tmp/swap//
 
-let g:my_spellfile = expand("$HOME/quickrefs/myspell.utf-8.add")
+let g:my_spellfile = expand("~/quickrefs/myspell.utf-8.add")
 if filereadable(g:my_spellfile)
     let &spellfile = g:my_spellfile
     let &dictionary = g:my_spellfile
