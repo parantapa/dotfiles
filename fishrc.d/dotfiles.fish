@@ -4,9 +4,6 @@
 contains "$HOME/dotfiles/bin" $PATH
 or set PATH "$HOME/dotfiles/bin" $PATH
 
-contains "$HOME/dotfiles/cmd-compiled" $PATH
-or set PATH "$HOME/dotfiles/cmd-compiled" $PATH
-
 # Add the pprint-data aliases
 alias pq "pprint-data pickle"
 alias yq "pprint-data yaml"
