@@ -1,7 +1,7 @@
 # Set the environment variables to something I like
 set -x PAGER "less -niRS"
 set -x EDITOR vim
-set -x VISUAL "gvim -f"
+set -x VISUAL vim
 set -x BROWSER firefox-developer-edition
 #set -x BROWSER google-chrome-stable
 set -x PDFVIEWER evince
