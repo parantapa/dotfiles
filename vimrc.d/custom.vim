@@ -89,20 +89,6 @@ cnoreabbrev ou OpenUrl
 nnoremap <leader>ou :OpenUrl <C-r>=ExtractUrl(0)<CR>
 vnoremap <leader>ou :<C-u>OpenUrl <C-r>=ExtractUrl(1)<CR>
 
-" Open pdf file under cursor {{{1
-
-function! OpenPdf(fname)
-    let cmd = $PDFVIEWER . " " . fnameescape(a:fname) . " &"
-    echom cmd
-    call system(cmd)
-endfunction
-
-command! -nargs=1 OpenPdf call OpenPdf(<q-args>)
-cnoreabbrev op OpenPdf
-
-nnoremap <leader>op :OpenPdf <C-r><C-p>
-vnoremap <leader>op "zygv:<C-u>OpenPdf <C-r>z
-
 " Perform a websearch {{{1
 
 function! OpenSearch(xargs)
@@ -117,3 +103,11 @@ nnoremap <leader>os :OpenSearch <C-r><C-w> g
 vnoremap <leader>os "zygv:<C-u>OpenSearch <C-r>z g
 
 
+" Rename the current file {{{1
+function! RenameCurrentFile(newfile)
+    write
+    call PyCall("rename_current_file", a:newfile)
+    execute "edit " + a:newfile
+endfunction
+
+command! -nargs=1 Rename call RenameCurrentFile(<q-args>)

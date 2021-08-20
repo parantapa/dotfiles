@@ -1,10 +1,9 @@
-# encoding: utf-8
-"""
-Misc python entities used from vimrc
-"""
+"""Misc python entities used from vimrc."""
 
 import vim
 import re
+from pathlib import Path
+from subprocess import run
 
 try:
     import yaml
@@ -56,33 +55,15 @@ WEB_URL_RE = re.compile("""
 )
 """.strip(), re.I | re.X)
 
-def bookmark_fold_text(fstart, fend, flevel):
-    """
-    Return a fold text for bookmark yaml display.
-    """
-
-    fstart = int(fstart)
-    fend = int(fend)
-    flevel = int(flevel)
-    buf = vim.current.buffer
-
-    if flevel != 1:
-        return "--"
-
-    if yaml is None:
-        return "--"
-
-    text = "\n".join(buf[fstart -1:fend])
-    bmark = yaml.load(text)
-    ret = bmark[0]["title"].strip()
-    return ret
-
 def extract_url(text):
-    """
-    Extract url from text.
-    """
+    """Extract url from text."""
 
     urls = WEB_URL_RE.findall(text)
     ret = urls[0] if urls else ""
     return ret
 
+def rename_current_file(new_name):
+    """Rename current file."""
+    cur_path = Path(vim.eval("@%"))
+    new_path = cur_path.parent / new_name
+    run(["mv", str(cur_path), str(new_path)], check=True)
