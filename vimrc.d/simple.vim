@@ -428,6 +428,8 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile .babelrc setlocal ft=javascript
     autocmd BufReadPost,BufNewFile .eslintrc setlocal ft=javascript
+
+    autocmd BufReadPost,BufNewFile *.mkwenv setlocal ft=mkwenv
 augroup END
 
 " Use ripgrep when available {{{1
