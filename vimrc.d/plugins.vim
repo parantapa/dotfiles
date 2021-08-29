@@ -43,22 +43,16 @@ let g:qfenter_topen_map = ['<C-T>']
 "
 "     cnoreabbrev tt TagbarToggle
 "
-" " Slime {{{2
-"
-"     let g:slime_target = "tmux"
-"     let g:slime_paste_file = expand("$HOME/.slime_paste")
-"     let g:slime_no_mappings = 1
-"
-"     function! SlimeSendText(text)
-"         execute "SlimeSend1 " . a:text
-"     endfunction
-"
-"     nmap <Leader>v <Plug>SlimeMotionSend
-"     vmap <Leader>v <Plug>SlimeRegionSend
-"     nmap <Leader>vv <Plug>SlimeLineSend
-"
-"     command! -nargs=0 SlimeSetIpython let g:slime_python_ipython = 1
-"     command! -nargs=0 SlimeUnsetIpython unlet g:slime_python_ipython
+" Slime {{{2
+
+let g:slime_target = "vimterminal"
+let g:slime_no_mappings = 1
+
+xmap <leader>s <Plug>SlimeRegionSend
+nmap <leader>s <Plug>SlimeParagraphSend
+
+command! -nargs=0 IpySlime let g:slime_python_ipython = 1
+command! -nargs=0 NoIpySlime unlet g:slime_python_ipython
 "
 " Commentary {{{2
 
