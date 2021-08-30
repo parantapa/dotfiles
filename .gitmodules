@@ -49,3 +49,6 @@
 [submodule "vim/bundle/vim-slime"]
 	path = vim/bundle/vim-slime
 	url = https://github.com/jpalardy/vim-slime.git
+[submodule "vim/bundle/vim-lark-syntax"]
+	path = vim/bundle/vim-lark-syntax
+	url = https://github.com/lark-parser/vim-lark-syntax.git
