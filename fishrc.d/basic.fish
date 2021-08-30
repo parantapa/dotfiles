@@ -3,10 +3,9 @@ set -x PAGER "less -niRS"
 set -x EDITOR vim
 set -x VISUAL vim
 set -x BROWSER firefox-developer-edition
-#set -x BROWSER google-chrome-stable
 set -x PDFVIEWER evince
 set -x MENU "rofi -matching fuzzy -dmenu"
-set -x TERMINAL termite
+set -x TERMINAL alacritty
 
 # colorize ls
 set LS_OPTIONS "--color=auto -h --group-directories-first"

@@ -19,8 +19,9 @@ dotfiles_extra=(gvimrc vim/bundle vim/python3 vim/syntax
     config/zathura/zathurarc
     config/clipit/clipitrc
     config/termite/config
+    config/alacritty/alacritty.yml
     config/fish/functions
-    config/rofi/config)
+    config/rofi/config.rasi)
 
 cd "$dstdir"
 
@@ -35,6 +36,7 @@ cd "$dstdir"
 [[ -d .config/fish ]]     || mkdir -p .config/fish
 [[ -d .config/gtk-3.0 ]]  || mkdir -p .config/gtk-3.0
 [[ -d .config/termite ]]  || mkdir -p .config/termite
+[[ -d .config/alacritty ]]  || mkdir -p .config/alacritty
 [[ -d .config/rofi ]]     || mkdir -p .config/rofi
 
 # Dont overwrite bashrc, vimrc, config.fish
