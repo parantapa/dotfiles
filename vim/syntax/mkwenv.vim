@@ -11,13 +11,15 @@ syn keyword mkwEnd end
 hi def link mkwStart Type
 hi def link mkwEnd Type
 
-syn region mkwString oneline start=/\v"/ skip=/\v\\./ end=/\v"/
+syn region mkwString oneline start=/\v"/ skip=/\v\\./ end=/\v"/ contains=mkwReplacement
 hi def link mkwString String
+
+syn match mkwReplacement "\v\{\h\w*\}" contained
+highlight link mkwReplacement Identifier
 
 syntax match mkwComment "\v#.*$"
 highlight link mkwComment Comment
 
-syntax match mkwOperator "\v/"
 syntax match mkwOperator "\v\="
 highlight link mkwOperator Operator
 

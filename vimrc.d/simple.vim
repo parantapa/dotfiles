@@ -430,6 +430,9 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile .eslintrc setlocal ft=javascript
 
     autocmd BufReadPost,BufNewFile *.mkwenv setlocal ft=mkwenv
+    autocmd FileType mkwenv setlocal commentstring=#\ %s
+    autocmd BufReadPost,BufNewFile *.mkwf setlocal ft=mkwf
+    autocmd FileType mkwf setlocal commentstring=#\ %s
 augroup END
 
 " Use ripgrep when available {{{1
