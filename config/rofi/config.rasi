@@ -1,6 +1,6 @@
 configuration {
 /*	modi: "window,run,ssh";*/
-	font: "Inconsolata-g 12";
+	font: "Iosevka Fixed Extended 12";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
@@ -145,4 +145,4 @@ configuration {
       sorting-method:    "name";
   }
 }
-@import "/usr/share/rofi/themes/Monokai.rasi"
+@import "/usr/share/rofi/themes/gruvbox-dark.rasi"
