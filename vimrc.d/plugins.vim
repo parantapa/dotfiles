@@ -21,7 +21,7 @@ filetype plugin indent on
 
 if has("gui_running") || &t_Co == 256
     set background=dark
-    colorscheme molokai
+    colorscheme gruvbox
 endif
 
 
