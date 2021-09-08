@@ -25,17 +25,13 @@ export PAGER="less -niRS"
 export EDITOR=vim
 export VISUAL=vim
 export BROWSER=firefox-developer-edition
-export PDFVIEWER=zathura
+export PDFVIEWER=evince
 export MENU="rofi -show run -matching fuzzy"
 export TERMINAL=alacritty
 
 # colorize ls
-LS_OPTIONS='--color=auto -h --group-directories-first'
+alias ls="ls --color=auto -h --group-directories-first"
 
-alias ls="ls $LS_OPTIONS"
-alias ll="ls $LS_OPTIONS -l -v"
-alias l.="ls $LS_OPTIONS -A --ignore='[^.]*'"
-alias lst='\ls -R | \grep ":\$" | sed -e "s/:\$//" -e "s/[^-][^\\/]*\\//--/g" -e "s/^/   /" -e "s/-/|/"'
 
 # Some more aliases to avoid stupid mistakes
 alias rm="rm -i"
@@ -53,9 +49,12 @@ alias cd="cd -P"
 alias cpv="rsync --human-readable --progress"
 alias grep="grep --color=auto"
 alias less="less -niRS"
-alias rg="rg --color=auto"
 alias tmux="tmux -u"
 alias diff="diff --color=auto"
+
+# Modern unix tools
+alias rg "rg --color=auto"
+alias ll "exa --long --group --color=auto --group-directories-first --time-style long-iso"
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
