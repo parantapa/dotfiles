@@ -53,8 +53,8 @@ alias tmux="tmux -u"
 alias diff="diff --color=auto"
 
 # Modern unix tools
-alias rg "rg --color=auto"
-alias ll "exa --long --group --color=auto --group-directories-first --time-style long-iso"
+alias rg="rg --color=auto"
+alias ll="exa --long --group --color=auto --group-directories-first --time-style long-iso"
 
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
