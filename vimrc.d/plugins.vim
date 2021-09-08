@@ -21,6 +21,7 @@ filetype plugin indent on
 
 if has("gui_running") || &t_Co == 256
     set background=dark
+    let g:gruvbox_contrast_dark ='hard'
     colorscheme gruvbox
 endif
 
