@@ -28,6 +28,7 @@ alias diff "diff --color=auto"
 # Modern unix tools
 alias rg "rg --color=auto"
 alias ll "exa --long --group --color=auto --group-directories-first --time-style long-iso"
+alias llt "exa --long --group --color=auto --group-directories-first --time-style long-iso --tree"
 
 # Shortcut for ps-ing pgrep output
 function psf
