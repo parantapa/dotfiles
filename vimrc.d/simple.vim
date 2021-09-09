@@ -402,6 +402,10 @@ augroup ft_text
     au Filetype text setlocal formatoptions-=n
 augroup END
 
+" SQL {{{2
+
+let g:sql_type_default = "mysql"
+
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
