@@ -55,3 +55,6 @@
 [submodule "vim/bundle/gruvbox"]
 	path = vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
+[submodule "vim/bundle/json5.vim"]
+	path = vim/bundle/json5.vim
+	url = https://github.com/gutenye/json5.vim.git
