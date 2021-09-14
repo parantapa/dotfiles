@@ -24,6 +24,10 @@ endif
 let g:tex_flavor = 'latex'
 let g:tex_comment_nospell = 1
 
+" SQL {{{2
+
+let g:sql_type_default = 'mysql'
+
 " QFEnter {{{2
 
 let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
@@ -54,11 +58,10 @@ nmap gc  <Plug>Commentary
 nmap gcc <Plug>CommentaryLine
 nmap gcu <Plug>CommentaryUndo
 
-" Surround {{{2 
+" Surround {{{2
 
 let g:surround_116 = "{{\r}}" " t == 116
 let g:surround_102 = "{\r}" " f == 116
-
 
 " " LanguageTool {{{2
 "

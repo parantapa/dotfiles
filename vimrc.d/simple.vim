@@ -311,8 +311,8 @@ cnoreabbrev qrt QuickrefTag
 " General command mode abbreveations {{{1
 
 cnoreabbrev mk make
-cnoreabbrev mka make all
 cnoreabbrev mkq make quick
+cnoreabbrev mkc make clean
 
 " Various filetype-specific stuff {{{1
 
@@ -401,10 +401,6 @@ augroup ft_text
 
     au Filetype text setlocal formatoptions-=n
 augroup END
-
-" SQL {{{2
-
-let g:sql_type_default = "mysql"
 
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
