@@ -1,17 +1,16 @@
 " Extra plugin configs
 " Enable these if only if you have python, lua, pynvim, and Vim8+ support
 
+" Use system python
+let g:python3_host_prog="/usr/bin/python"
+
 " Gundo {{{1
 
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
-
 " nvim-yarp {{{1
-
-" Use system python
-let g:python3_host_prog="/usr/bin/python"
 
 " Denite {{{1
 
@@ -87,39 +86,6 @@ let g:voom_ft_modes = {
     \ 'markdown': 'markdown',
     \ 'tex': 'latex',
     \ 'rst': 'rest'}
-
-
-" Evince SyncTex Setup {{{1
-
-function! SyncSetup(pdf)
-python3 << END
-from evince_synctex import EvinceMonitor
-evince_monitor = EvinceMonitor(vim.eval("a:pdf"), "SyncSource")
-END
-endfunction
-
-command! -nargs=1 SyncSetup call SyncSetup(<f-args>)
-cnoreabbrev ss SyncSetup
-
-function! SyncView()
-python3 << END
-line = vim.eval('line(".")')
-col = vim.eval('col(".")')
-src = vim.eval('expand("%")')
-
-evince_monitor.sync_view(src, line, col)
-END
-endfunction
-
-function! SyncSource(fname, line, col)
-    wall
-    execute printf('edit %s', a:fname)
-    execute printf('normal %sG', a:line)
-    normal zz
-endfunction
-
-command! SyncView call SyncView()
-cnoreabbrev sv SyncView
 
 " Coc.nvim and coc-snippets {{{1
 

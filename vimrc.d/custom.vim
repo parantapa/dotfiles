@@ -111,3 +111,35 @@ function! RenameCurrentFile(newfile)
 endfunction
 
 command! -nargs=1 Rename call RenameCurrentFile(<q-args>)
+
+" Evince SyncTex Setup {{{1
+
+function! SyncSetup(pdf)
+python3 << END
+from evince_synctex import EvinceMonitor
+evince_monitor = EvinceMonitor(vim.eval("a:pdf"), "SyncSource")
+END
+endfunction
+
+command! -nargs=1 SyncSetup call SyncSetup(<f-args>)
+cnoreabbrev ss SyncSetup
+
+function! SyncView()
+python3 << END
+line = vim.eval('line(".")')
+col = vim.eval('col(".")')
+src = vim.eval('expand("%")')
+
+evince_monitor.sync_view(src, line, col)
+END
+endfunction
+
+function! SyncSource(fname, line, col)
+    wall
+    execute printf('edit %s', a:fname)
+    execute printf('normal %sG', a:line)
+    normal zz
+endfunction
+
+command! SyncView call SyncView()
+cnoreabbrev sv SyncView

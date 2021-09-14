@@ -2,18 +2,10 @@
 "
 " Setup Pathogen {{{1
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-
-" let g:pathogen_disabled = []
-" if !has("python")
-"     call add(g:pathogen_disabled, "ultisnips")
-" endif
-" if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
-"     call add(g:pathogen_disabled, "neocomplete.vim")
-" endif
+source ~/dotfiles/vim/bundle/vim-pathogen/autoload/pathogen.vim
 
 filetype off
-call pathogen#infect()
+call pathogen#infect('bundle/{}', '~/dotfiles/vim/bundle/{}')
 call pathogen#helptags()
 filetype plugin indent on
 
@@ -24,7 +16,6 @@ if has("gui_running") || &t_Co == 256
     let g:gruvbox_contrast_dark ='hard'
     colorscheme gruvbox
 endif
-
 
 " Plugin settings {{{1
 
