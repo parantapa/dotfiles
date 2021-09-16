@@ -58,3 +58,6 @@
 [submodule "vim/bundle/json5.vim"]
 	path = vim/bundle/json5.vim
 	url = https://github.com/gutenye/json5.vim.git
+[submodule "vim/bundle/vim-jinja"]
+	path = vim/bundle/vim-jinja
+	url = https://github.com/mitsuhiko/vim-jinja.git
