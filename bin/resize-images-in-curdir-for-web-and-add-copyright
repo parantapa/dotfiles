@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+
+set -x
+for img in *.JPG ; do
+    src="$img"
+    dst="${img%.JPG}-small.JPG"
+
+    # Reduce image so largest size is 2048 pixels
+    convert -resize "2048>" -quality 70% "${src}" "${dst}"
+
+    # Add copyright
+    convert "${dst}" "$HOME/copyright.png" -gravity southeast -geometry  +0+0 -composite "${dst}"
+done
