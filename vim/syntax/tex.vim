@@ -1225,8 +1225,8 @@ endif
 
 " ---------------------------------------------------------------------
 " LaTeX synchronization: {{{1
-syn sync maxlines=200
-syn sync minlines=50
+syn sync maxlines=1000
+syn sync minlines=1000
 
 syn  sync match texSyncStop			groupthere NONE		"%stopzone\>"
 
