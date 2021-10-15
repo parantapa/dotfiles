@@ -21,7 +21,7 @@ for d in "$@" ; do
     git_ps1="$( __git_ps1 "%s")"
     bd="$(basename "$d")"
 
-    if ! ( [[ "$git_ps1" == "master=" ]] || [[ "$git_ps1" == "main=" ]] ) ; then
+    if ! ( [[ "$git_ps1" == "master=" ]] || [[ "$git_ps1" == "main=" ]] || [[ "$git_ps1" == "main" ]] ) ; then
         echo -e "$bd: $git_ps1"
     fi
 done
