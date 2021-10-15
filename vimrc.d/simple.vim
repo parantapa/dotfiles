@@ -433,6 +433,8 @@ augroup ft_setup
     autocmd FileType mkwenv setlocal commentstring=#\ %s
     autocmd BufReadPost,BufNewFile *.mkwf setlocal ft=mkwf
     autocmd FileType mkwf setlocal commentstring=#\ %s
+
+    autocmd BufReadPost,BufNewFile *.sqlpygen setlocal ft=sqlpygen
 augroup END
 
 " Use ripgrep when available {{{1
