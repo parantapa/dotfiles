@@ -3,9 +3,9 @@
 set -Eeuo pipefail
 
 ifname="${1}"
-ofname="${ifname%.svg}.pdf"
+ofname="${ifname%.svg}.png"
 
 set -x
 
 inkscape -d 300 "$ifname" -o "$ofname"
-pdfcrop "$ofname" "$ofname"
+convert "$ofname" -trim "$ofname"
