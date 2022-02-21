@@ -9,8 +9,8 @@ else
 fi
 
 dotfiles=(profile bash_logout
-    tmux.conf screenrc gitconfig hgrc cvsignore
-    ackrc ctags.d sqliterc psqlrc condarc)
+    tmux.conf screenrc gitconfig cvsignore
+    ctags.d sqliterc psqlrc condarc)
 
 dotfiles_extra=(gvimrc vim/bundle vim/python3 vim/syntax
     pylintrc xsettingsd gtkrc-2.0 i3/config.global
