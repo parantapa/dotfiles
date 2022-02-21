@@ -60,9 +60,9 @@ function man
 end
 
 # PDF viewer shortcut
-e () {
-    $PDFVIEWER "$@" >/dev/null 2>&1 &
-}
+function e
+    $PDFVIEWER "$argv" >/dev/null 2>&1 &
+end
 
 # GVim alias
 if set -q DISPLAY
