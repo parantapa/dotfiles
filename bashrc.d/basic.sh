@@ -32,7 +32,6 @@ export TERMINAL=alacritty
 # colorize ls
 alias ls="ls --color=auto -h --group-directories-first"
 
-
 # Some more aliases to avoid stupid mistakes
 alias rm="rm -i"
 alias cp="cp -i"
@@ -57,6 +56,10 @@ alias rg="rg --color=auto"
 alias ll="exa --long --group --color=auto --group-directories-first --time-style long-iso"
 alias llt="exa --long --group --color=auto --group-directories-first --time-style long-iso --tree"
 
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type file --one-file-system'
+export FZF_DEFAULT_OPTS="--layout=reverse --height=20 --border=none --history-size=100000"
+
 # Shortcut for ps-ing pgrep output
 psf  () { ps -O %cpu,%mem,rsz,vsz --sort -%cpu,-%mem "$@" ; }
 psg  () { psf "$( pgrep -f "$@" )" ; }
@@ -78,6 +81,7 @@ man () {
 e () {
     $PDFVIEWER "$@" >/dev/null 2>&1 &
 }
+
 
 # GVim alias
 if [[ -n "$DISPLAY" ]] && [[ "$DISPLAY" != "localhost:"* ]] ; then

@@ -30,6 +30,10 @@ alias rg "rg --color=auto"
 alias ll "exa --long --group --color=auto --group-directories-first --time-style long-iso"
 alias llt "exa --long --group --color=auto --group-directories-first --time-style long-iso --tree"
 
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type file --one-file-system'
+export FZF_DEFAULT_OPTS="--layout=reverse --height=20 --border=none --history-size=100000"
+
 # Shortcut for ps-ing pgrep output
 function psf
     ps -O "%cpu,%mem,rsz,vsz" --sort "-%cpu,-%mem" $argv
@@ -44,6 +48,7 @@ function topu
     top -u $USER $argv
 end
 
+# Colorful man
 function man
     command env LESS_TERMCAP_md=(printf "\e[01;31m") \
                 LESS_TERMCAP_me=(printf "\e[0m") \
@@ -53,6 +58,11 @@ function man
                 LESS_TERMCAP_us=(printf "\e[01;32m") \
                 man $argv
 end
+
+# PDF viewer shortcut
+e () {
+    $PDFVIEWER "$@" >/dev/null 2>&1 &
+}
 
 # GVim alias
 if set -q DISPLAY
