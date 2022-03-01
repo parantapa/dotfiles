@@ -77,6 +77,12 @@ man () {
         \man "$@"
 }
 
+histdel () {
+    for line in $(history | fzf --multi | get-first-field) ; do
+        history -d "$line"
+    done
+}
+
 # PDF viewer shortcut
 e () {
     $PDFVIEWER "$@" >/dev/null 2>&1 &
