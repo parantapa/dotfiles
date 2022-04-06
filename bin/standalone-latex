@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+"""Create a standalone latex document from clipboard."""
+
+import os
+import shlex
+from subprocess import run
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+TEMPLATE = r"""
+\documentclass[border=3em]{standalone}
+
+\usepackage{newtxtext,newtxmath}
+\usepackage{mathtools}
+\usepackage{diffcoeff}
+
+\begin{document}
+%BODY%
+\end{document}
+"""
+
+
+def get_clipboard() -> str:
+    """Get the text from the clipboard."""
+    cmd = "xclip -o -selection clipboard"
+    cmd = shlex.split(cmd)
+
+    cp = run(cmd, capture_output=True, check=True, text=True)
+    return cp.stdout
+
+
+def compile_latex(latex_file: Path) -> None:
+    """Compile the given latex file."""
+    cmd = "pdflatex -file-line-error -halt-on-error"
+
+    cmd = shlex.split(cmd) + [str(latex_file.name)]
+
+    run(cmd, check=True, cwd=latex_file.parent)
+
+
+def view_pdf(pdf_file: Path) -> None:
+    viewer = os.environ.get("PDFVIEWER", "evince")
+    cmd = [viewer, str(pdf_file)]
+
+    run(cmd, check=True)
+
+
+def main():
+    with TemporaryDirectory(prefix="standalone_latex_") as tmpdir_path:
+        tmpdir_path = Path(tmpdir_path)
+
+        body_text = get_clipboard()
+
+        text = TEMPLATE.replace("%BODY%", body_text)
+
+        latex_file = tmpdir_path / "standalone_latex.tex"
+        latex_file.write_text(text)
+
+        compile_latex(latex_file)
+
+        pdf_file = tmpdir_path / "standalone_latex.pdf"
+        view_pdf(pdf_file)
+
+
+if __name__ == "__main__":
+    main()

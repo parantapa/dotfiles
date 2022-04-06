@@ -143,3 +143,8 @@ endfunction
 
 command! SyncView call SyncView()
 cnoreabbrev sv SyncView
+
+" Call standalone-latex
+
+command! -nargs=0 StandaloneLatex call system("standalone-latex")
+cnoreabbrev sl StandaloneLatex
