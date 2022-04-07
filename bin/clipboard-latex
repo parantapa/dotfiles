@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Create a standalone latex document from clipboard."""
+"""Create a latex document from text in clipboard."""
 
 import os
 import shlex
@@ -8,7 +8,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 TEMPLATE = r"""
-\documentclass[border=3em]{standalone}
+\documentclass{article}
 
 \usepackage{newtxtext,newtxmath}
 \usepackage{mathtools}
@@ -46,19 +46,19 @@ def view_pdf(pdf_file: Path) -> None:
 
 
 def main():
-    with TemporaryDirectory(prefix="standalone_latex_") as tmpdir_path:
+    with TemporaryDirectory(prefix="clipboard_latex_") as tmpdir_path:
         tmpdir_path = Path(tmpdir_path)
 
         body_text = get_clipboard()
 
         text = TEMPLATE.replace("%BODY%", body_text)
 
-        latex_file = tmpdir_path / "standalone_latex.tex"
+        latex_file = tmpdir_path / "clipboard_latex.tex"
         latex_file.write_text(text)
 
         compile_latex(latex_file)
 
-        pdf_file = tmpdir_path / "standalone_latex.pdf"
+        pdf_file = tmpdir_path / "clipboard_latex.pdf"
         view_pdf(pdf_file)
 
 
