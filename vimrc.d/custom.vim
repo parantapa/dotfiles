@@ -144,7 +144,7 @@ endfunction
 command! SyncView call SyncView()
 cnoreabbrev sv SyncView
 
-" Call clipboard-latex
+" Call clipboard-latex {{{1
 
 command! -nargs=0 ClipboardLatex call system("clipboard-latex")
-cnoreabbrev cl
+cnoreabbrev cl ClipboardLatex

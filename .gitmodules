@@ -13,27 +13,9 @@
 [submodule "vim/bundle/gundo.vim"]
 	path = vim/bundle/gundo.vim
 	url = https://github.com/sjl/gundo.vim.git
-[submodule "vim/bundle/nvim-yarp"]
-	path = vim/bundle/nvim-yarp
-	url = https://github.com/roxma/nvim-yarp
-[submodule "vim/bundle/vim-hug-neovim-rpc"]
-	path = vim/bundle/vim-hug-neovim-rpc
-	url = https://github.com/roxma/vim-hug-neovim-rpc.git
-[submodule "vim/bundle/denite.nvim"]
-	path = vim/bundle/denite.nvim
-	url = https://github.com/Shougo/denite.nvim.git
-[submodule "vim/bundle/neomru.vim"]
-	path = vim/bundle/neomru.vim
-	url = https://github.com/Shougo/neomru.vim.git
 [submodule "vim/bundle/QFEnter"]
 	path = vim/bundle/QFEnter
 	url = https://github.com/yssl/QFEnter.git
-[submodule "vim/bundle/VOoM"]
-	path = vim/bundle/VOoM
-	url = https://github.com/vim-voom/VOoM.git
-[submodule "vim/bundle/vim-addon-local-vimrc"]
-	path = vim/bundle/vim-addon-local-vimrc
-	url = https://github.com/MarcWeber/vim-addon-local-vimrc.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
