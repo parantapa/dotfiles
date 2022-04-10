@@ -187,3 +187,47 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 
 " Edit user snippet of current filetype
 cnoreabbrev es CocCommand snippets.editSnippets
+
+
+" FZF Headings {{{1
+
+function! s:HeadingsHandler(hline)
+    let parts = split(a:hline, '\t')
+    let cmd = printf('edit +%d %s', parts[2], parts[1])
+    execute cmd
+endfunction
+
+function! s:Headings()
+    let spec = {
+        \ 'source': 'rst-headings jumplist --color',
+        \ 'options': '-n 1 --prompt Headings --ansi --delimiter "\t" --tabstop 4',
+        \ 'sink': function('s:HeadingsHandler')
+    \ }
+
+    call fzf#run(fzf#wrap(spec))
+endfunction
+
+command! -nargs=0 Headings call s:Headings()
+
+inoremap <expr> <c-x><c-k> fzf#vim#complete('rst-headings printall')
+
+function! s:PopulateHeadingQFList()
+    execute 'normal! "hyi`'
+    let lines = systemlist(printf("rst-headings jump '%s'", @h))
+    let qflist = []
+    for line in lines
+        let parts = split(line, '\t')
+        let qf = {'filename': parts[0], 'lnum': str2nr(parts[1])}
+        call add(qflist, qf)
+    endfor
+    if empty(qflist)
+        echom prinf("Heading not found: '%s'", @h) 
+    else
+        call setqflist(qflist)
+        cc!
+    endif
+endfunction
+
+command! -nargs=0 PopulateHeadingQFList call s:PopulateHeadingQFList()
+nnoremap gh :<C-u>PopulateHeadingQFList<CR>
+

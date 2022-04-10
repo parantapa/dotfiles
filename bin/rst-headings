@@ -1,0 +1,199 @@
+#!/usr/bin/env python
+"""Create a headings file."""
+
+import os
+import re
+import json
+from pathlib import Path
+from itertools import pairwise
+from typing import Optional
+
+import click
+
+HEADING_CHARS = "= -".split()
+# HEADING_CHARS = "= - ` ' . ~ * + ^".split()
+
+
+def parse_headings(fname: str | Path) -> list[tuple[int, str, str]]:
+    """Parse headings for the given file."""
+    headers: list[tuple[int, str, str]] = []
+
+    with open(fname, "rt") as fobj:
+        for i, (curl, nextl) in enumerate(pairwise(fobj), 1):
+            curl = curl.rstrip()
+            nextl = nextl.rstrip()
+
+            if len(curl) < 3:
+                continue
+            if len(curl) != len(nextl):
+                continue
+
+            for char in HEADING_CHARS:
+                if nextl == (char * len(nextl)):
+                    headers.append((i, curl, char))
+                    break
+
+    return headers
+
+
+def parse_references(fname: str | Path) -> list[tuple[int, str]]:
+    """Parse references to headings."""
+    refs: list[tuple[int, str]] = []
+
+    pattern = re.compile(r"`.*?`_")
+
+    with open(fname, "rt") as fobj:
+        for i, line in enumerate(fobj, 1):
+            for ref in pattern.findall(line):
+                ref = ref.removeprefix("`")
+                ref = ref.removesuffix("`_")
+                refs.append((i, ref))
+
+    return refs
+
+
+def get_files_to_parse(workdir: Optional[str]) -> list[str]:
+    """Get the files to parse."""
+    ofnames: list[str] = []
+
+    if workdir is not None:
+        os.chdir(workdir)
+
+    for root, _, fnames in os.walk("."):
+        for fname in fnames:
+            if fname.endswith(".rst"):
+                ofnames.append(os.path.join(root, fname))
+
+    ofnames = sorted(set(ofnames))
+    return ofnames
+
+
+def make_file_headings(fnames: list[str]) -> list[tuple[str, int, str, str]]:
+    """Make file headings."""
+    file_headings: list[tuple[str, int, str, str]] = []
+
+    for fname in fnames:
+        for line, heading, htype in parse_headings(fname):
+            file_headings.append((fname, line, heading, htype))
+
+    return file_headings
+
+
+def make_file_references(fnames: list[str]) -> list[tuple[str, int, str]]:
+    """Make file references."""
+    file_references: list[tuple[str, int, str]] = []
+
+    for fname in fnames:
+        for line, ref in parse_references(fname):
+            file_references.append((fname, line, ref))
+
+    return file_references
+
+
+@click.group()
+def cli():
+    """RST file headings."""
+
+
+@cli.command()
+@click.option(
+    "-C",
+    "--chdir",
+    "workdir",
+    default=None,
+    type=click.Path(exists=True, file_okay=False, dir_okay=True),
+    help="If provided switch to this directory first.",
+)
+@click.option(
+    "-o",
+    "--output",
+    "ofname",
+    default="headings.json",
+    show_default=True,
+    help="The file to which the headings and references data will be written.",
+)
+def parse(workdir, ofname):
+    """Create file headings and references file."""
+    fnames = get_files_to_parse(workdir)
+    file_headings = make_file_headings(fnames)
+    file_references = make_file_references(fnames)
+
+    data = {"headings": file_headings, "references": file_references}
+
+    with open(ofname, "wt") as fobj:
+        json.dump(data, fobj)
+
+
+@cli.command()
+@click.option(
+    "-h",
+    "--headings-file",
+    "ifname",
+    default="headings.json",
+    show_default=True,
+    help="The file from which headings are to be read.",
+)
+@click.option(
+    "-c",
+    "--color",
+    is_flag=True,
+    show_default=True,
+    help="Force color output",
+)
+def jumplist(ifname, color):
+    """Print all headings with file and line."""
+    with open(ifname, "rt") as fobj:
+        data = json.load(fobj)
+    file_headings = data["headings"]
+
+    if not color:
+        color = None
+
+    for fname, line, heading, _ in file_headings:
+        line = click.style(line, fg="green")
+        fname = click.style(fname, fg="yellow")
+        click.echo(f"{heading}\t{fname}\t{line}", color=color)
+
+
+@cli.command()
+@click.option(
+    "-h",
+    "--headings-file",
+    "ifname",
+    default="headings.json",
+    show_default=True,
+    help="The file from which headings are to be read.",
+)
+def printall(ifname):
+    """Print all headings with file and line."""
+    with open(ifname, "rt") as fobj:
+        data = json.load(fobj)
+    file_headings = data["headings"]
+
+    for _, _, heading, _ in file_headings:
+        click.echo(heading)
+
+
+@cli.command()
+@click.option(
+    "-h",
+    "--headings-file",
+    "ifname",
+    default="headings.json",
+    show_default=True,
+    help="The file from which headings are to be read.",
+)
+@click.argument("heading")
+def jump(ifname, heading):
+    """Print filename and line for the given heading."""
+    with open(ifname, "rt") as fobj:
+        data = json.load(fobj)
+    file_headings = data["headings"]
+
+    for fname, line, hding, _ in file_headings:
+        if heading == hding:
+            click.echo(f"{fname}\t{line}")
+
+
+if __name__ == "__main__":
+    cli()
