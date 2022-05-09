@@ -14,6 +14,12 @@ TEMPLATE = r"""
 \usepackage{mathtools}
 \usepackage{diffcoeff}
 
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\dotp}[1]{\left\langle#1\right\rangle}
+\newcommand{\grad}{\nabla}
+\newcommand{\hess}{\nabla^2}
+
 \begin{document}
 %BODY%
 \end{document}

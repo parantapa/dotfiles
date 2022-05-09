@@ -49,3 +49,6 @@
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "vim/bundle/vim-svelte"]
+	path = vim/bundle/vim-svelte
+	url = https://github.com/evanleck/vim-svelte.git

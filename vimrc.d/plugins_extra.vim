@@ -200,7 +200,7 @@ endfunction
 function! s:Headings()
     let spec = {
         \ 'source': 'rst-headings jumplist --color',
-        \ 'options': '-n 1 --prompt Headings --ansi --delimiter "\t" --tabstop 4',
+        \ 'options': '-n 1 --prompt "Headings> " --ansi --delimiter "\t" --tabstop 4',
         \ 'sink': function('s:HeadingsHandler')
     \ }
 
@@ -208,8 +208,9 @@ function! s:Headings()
 endfunction
 
 command! -nargs=0 Headings call s:Headings()
+command! -nargs=0 MakeHeadings call system('rst-headings parse')
 
-inoremap <expr> <c-x><c-k> fzf#vim#complete('rst-headings printall')
+inoremap <expr> <c-x><c-h> fzf#vim#complete('rst-headings printall')
 
 function! s:PopulateHeadingQFList()
     execute 'normal! "hyi`'
@@ -221,7 +222,7 @@ function! s:PopulateHeadingQFList()
         call add(qflist, qf)
     endfor
     if empty(qflist)
-        echom prinf("Heading not found: '%s'", @h) 
+        echom printf("Heading not found: '%s'", @h) 
     else
         call setqflist(qflist)
         cc!
