@@ -20,6 +20,10 @@ TEMPLATE = r"""
 \newcommand{\grad}{\nabla}
 \newcommand{\hess}{\nabla^2}
 
+\newcommand{\Rd}{\mathbb{R}^d}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rk}{\mathbb{R}^k}
+
 \begin{document}
 %BODY%
 \end{document}

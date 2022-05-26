@@ -146,5 +146,25 @@ cnoreabbrev sv SyncView
 
 " Call clipboard-latex {{{1
 
-command! -nargs=0 ClipboardLatex call system("clipboard-latex")
-cnoreabbrev cl ClipboardLatex
+function! ClipboardLatex(vmode)
+    let saved_unnamed_register = @"
+    let saved_selection = &selection
+
+    if a:vmode ==# 1
+        silent exe "normal! gvy"
+        let latex = @"
+    else
+        silent exe "normal! ^y$"
+        let latex = @"
+    endif
+
+    let @" = saved_unnamed_register
+    let &selection = saved_selection
+
+    let @+ = latex
+    let @* = latex
+    call system("clipboard-latex")
+endfunction
+
+nnoremap <leader>cl :call ClipboardLatex(0)<CR>
+vnoremap <leader>cl :<C-u>call ClipboardLatex(1)<CR>
