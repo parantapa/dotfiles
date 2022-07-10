@@ -188,27 +188,47 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 " Edit user snippet of current filetype
 cnoreabbrev es CocCommand snippets.editSnippets
 
+" FZF {{{1
+
+let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
 
 " FZF Headings {{{1
 
-function! s:HeadingsHandler(hline)
-    let parts = split(a:hline, '\t')
-    let cmd = printf('edit +%d %s', parts[2], parts[1])
+function! s:HeadingsHandler(lines)
+    let parts = split(a:lines[1], '\t')
+
+    if a:lines[0] == 'ctrl-t'
+        let cmd = printf('tabedit +%d %s', parts[2], parts[1])
+    elseif a:lines[0] == 'ctrl-v'
+        let cmd = printf('vsplit +%d %s', parts[2], parts[1])
+    elseif a:lines[0] == 'ctrl-x'
+        let cmd = printf('split +%d %s', parts[2], parts[1])
+    else
+        let cmd = printf('edit +%d %s', parts[2], parts[1])
+    endif
+
     execute cmd
 endfunction
 
 function! s:Headings()
     let spec = {
         \ 'source': 'rst-headings jumplist --color',
-        \ 'options': '-n 1 --prompt "Headings> " --ansi --delimiter "\t" --tabstop 4',
-        \ 'sink': function('s:HeadingsHandler')
+        \ 'options': '-n 1 --prompt "Headings> " --ansi --delimiter "\t" --tabstop 4 ' .
+        \            '--expect=ctrl-t,ctrl-v,ctrl-x' ,
+        \ 'sink*': function('s:HeadingsHandler')
     \ }
 
     call fzf#run(fzf#wrap(spec))
 endfunction
 
 command! -nargs=0 Headings call s:Headings()
+cnoreabbrev he Headings
+
 command! -nargs=0 MakeHeadings call system('rst-headings parse')
+cnoreabbrev mh MakeHeadings
 
 inoremap <expr> <c-x><c-h> fzf#vim#complete('rst-headings printall')
 
@@ -222,7 +242,7 @@ function! s:PopulateHeadingQFList()
         call add(qflist, qf)
     endfor
     if empty(qflist)
-        echom printf("Heading not found: '%s'", @h) 
+        echom printf("Heading not found: '%s'", @h)
     else
         call setqflist(qflist)
         cc!
