@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 cd "$1"
-exec gvim -f --servername "Refs" --remote-silent "$2"
+exec alacritty -e nvim "$2"
 
