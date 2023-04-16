@@ -50,7 +50,7 @@ set shortmess+=c
 " Use system clipboard as default register {{{1
 
 if has('unnamedplus')
-    set clipboard=unnamedplus
+    set clipboard=unnamed,unnamedplus
 endif
 
 " Tabs, spaces, wrapping, Indent {{{1

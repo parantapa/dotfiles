@@ -64,14 +64,9 @@ function e
     $PDFVIEWER "$argv" >/dev/null 2>&1 &
 end
 
-# GVim alias
-if set -q DISPLAY
-    switch $DISPLAY
-    case 'localhost:*'
-        alias g=vim
-    case '*'
-        alias g=gvim
-    end
+# Vim Alias
+if type -q nvim
+    alias g=nvim
 else
     alias g=vim
 end
