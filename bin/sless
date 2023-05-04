@@ -9,4 +9,11 @@ OUTPUTFILE="$( scontrol -o show job "$1" |
                cut -d = -f 2 )"
 
 echo "Output file: $OUTPUTFILE"
+
+while [[ ! -e "$OUTPUTFILE" ]] ; do
+    echo -n "."
+    sleep 1
+done
+echo ""
+
 exec \less +F "$OUTPUTFILE"
