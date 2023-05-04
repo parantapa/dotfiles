@@ -257,8 +257,8 @@ cnoreabbrev qrt QuickrefTag
 
 " General command mode abbreveations {{{1
 
-cnoreabbrev mk !make quick
-cnoreabbrev mkf !make
+cnoreabbrev mkq !make quick
+cnoreabbrev mk !make
 cnoreabbrev mkc !make clean
 
 " Various filetype-specific stuff {{{1
