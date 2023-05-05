@@ -3,17 +3,20 @@
 
 set -Eeuo pipefail
 
-OUTPUTFILE="$( scontrol -o show job "$1" |
-               sed -e 's# #\n#g' |
-               \grep StdOut |
-               cut -d = -f 2 )"
+OUTPUTFILE="$(
+    scontrol -o show job "$1" |
+    sed -e 's# #\n#g' |
+    \grep StdOut |
+    cut -d = -f 2 
+)"
 
 echo "Output file: $OUTPUTFILE"
-
-while [[ ! -e "$OUTPUTFILE" ]] ; do
-    echo -n "."
-    sleep 1
-done
-echo ""
+if [[ ! -e "$OUTPUTFILE" ]] ; then
+    while [[ ! -e "$OUTPUTFILE" ]] ; do
+        echo -n "."
+        sleep 1
+    done
+    echo ""
+fi
 
 exec \less +F "$OUTPUTFILE"
