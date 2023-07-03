@@ -80,7 +80,7 @@ let g:fzf_action = {
 
 " FZF Headings {{{1
 
-function! s:HeadingsHandler(lines)
+function! s:JumpListHandler(lines)
     let parts = split(a:lines[1], '\t')
 
     if a:lines[0] == 'ctrl-t'
@@ -98,31 +98,44 @@ endfunction
 
 function! s:Headings()
     let spec = {
-        \ 'source': 'rst-headings jumplist --color',
+        \ 'source': 'quickrefs-index heading-jumplist --color',
         \ 'options': '-n 1 --prompt "Headings> " --ansi --delimiter "\t" --tabstop 4 ' .
         \            '--expect=ctrl-t,ctrl-v,ctrl-x' ,
-        \ 'sink*': function('s:HeadingsHandler')
+        \ 'sink*': function('s:JumpListHandler')
     \ }
 
     call fzf#run(fzf#wrap(spec))
 endfunction
 
 command! -nargs=0 Headings call s:Headings()
-cnoreabbrev he Headings
+cnoreabbrev headings Headings
 
-command! -nargs=0 MakeHeadings call system('rst-headings parse')
-cnoreabbrev mh MakeHeadings
+function! s:BuildQuickrefIndex()
+    wall
+    call system('quickrefs-index build')
+endfunction
 
-inoremap <expr> <c-x><c-h> fzf#vim#complete('rst-headings printall')
+command! -nargs=0 BuildQuickrefIndex call s:BuildQuickrefIndex()
+cnoreabbrev buildquickrefindex BuildQuickrefIndex
+
+augroup ft_quickrefs
+    au!
+
+    autocmd BufWritePost /home/parantapa/quickrefs/*.rst BuildQuickrefIndex
+augroup END
+
+inoremap <expr> <c-x><c-h> fzf#vim#complete('quickrefs-index print-all-headings')
 
 function! s:PopulateHeadingQFList()
     execute 'normal! "hyi`'
-    let lines = systemlist(printf("rst-headings jump '%s'", @h))
+    let lines = systemlist(printf("quickrefs-index jump-to-heading '%s'", @h))
     let qflist = []
     for line in lines
         let parts = split(line, '\t')
-        let qf = {'filename': parts[0], 'lnum': str2nr(parts[1])}
-        call add(qflist, qf)
+        if len(parts) == 2
+            let qf = {'filename': parts[0], 'lnum': str2nr(parts[1])}
+            call add(qflist, qf)
+        endif
     endfor
     if empty(qflist)
         echom printf("Heading not found: '%s'", @h)
@@ -134,6 +147,20 @@ endfunction
 
 command! -nargs=0 PopulateHeadingQFList call s:PopulateHeadingQFList()
 nnoremap gh :<C-u>PopulateHeadingQFList<CR>
+
+function! s:Deadlines()
+    let spec = {
+        \ 'source': 'quickrefs-index deadline-jumplist --color',
+        \ 'options': '-n 1 --prompt "Deadlines> " --ansi --delimiter "\t" --tabstop 4 ' .
+        \            '--expect=ctrl-t,ctrl-v,ctrl-x' ,
+        \ 'sink*': function('s:JumpListHandler')
+    \ }
+
+    call fzf#run(fzf#wrap(spec))
+endfunction
+
+command! -nargs=0 Deadlines call s:Deadlines()
+cnoreabbrev deadlines Deadlines
 
 
 " Coc.nvim {{{1
