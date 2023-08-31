@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+
+ifname="${1}"
+ostem="${ifname%.pdf}"
+
+pagecount=$(pdfinfo "$ifname" | awk '/^Pages:/ {print $2}')
+
+set -x
+
+for page in $(seq "$pagecount") ; do
+    ofname="$ostem-$page.png"
+    pdftoppm -r 90 -f "$page" "$ifname" > "$ofname"
+    optipng -fix "$ofname"
+done

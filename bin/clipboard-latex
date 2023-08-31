@@ -10,9 +10,19 @@ from tempfile import TemporaryDirectory
 TEMPLATE = r"""
 \documentclass{article}
 
-\usepackage{newtxtext,newtxmath}
+\usepackage[screen,centering]{geometry}
+\pagestyle{empty}
+
+\usepackage{fontspec}
+\setmainfont[Scale=1.5]{Alegreya Sans}
+
+\usepackage{unicode-math}
+\setmathfont[Scale=1.5]{STIX Two Math}
+
+\usepackage{pifont}
+
 \usepackage{mathtools}
-\usepackage{diffcoeff}
+\usepackage[spaced=1]{diffcoeff}
 
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -23,6 +33,12 @@ TEMPLATE = r"""
 \newcommand{\Rd}{\mathbb{R}^d}
 \newcommand{\Rn}{\mathbb{R}^n}
 \newcommand{\Rk}{\mathbb{R}^k}
+
+\renewcommand{\labelitemi}{\ding{108}}
+% \renewcommand{\labelitemi}{$\textbullet}
+% \renewcommand{\labelitemii}{$\circ$}
+% \renewcommand{\labelitemiii}{$\textbullet$}
+% \renewcommand{\labelitemiv}{$\circ$}
 
 \begin{document}
 %BODY%
@@ -41,7 +57,7 @@ def get_clipboard() -> str:
 
 def compile_latex(latex_file: Path) -> None:
     """Compile the given latex file."""
-    cmd = "pdflatex -file-line-error -halt-on-error"
+    cmd = "xelatex -file-line-error -halt-on-error"
 
     cmd = shlex.split(cmd) + [str(latex_file.name)]
 
@@ -56,7 +72,7 @@ def view_pdf(pdf_file: Path) -> None:
 
 
 def main():
-    with TemporaryDirectory(prefix="clipboard_latex_") as tmpdir_path:
+    with TemporaryDirectory(prefix="clipboard_latex_", dir=".") as tmpdir_path:
         tmpdir_path = Path(tmpdir_path)
 
         body_text = get_clipboard()

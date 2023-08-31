@@ -9,3 +9,4 @@ set -x
 
 inkscape -d 300 "$ifname" -o "$ofname"
 convert "$ofname" -trim "$ofname"
+optipng -fix "$ofname"
