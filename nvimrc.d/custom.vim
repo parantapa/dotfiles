@@ -20,7 +20,8 @@ function! ClipboardLatex(vmode)
 
     let @+ = latex
     let @* = latex
-    call system("clipboard-latex")
+    " call system("clipboard-latex")
+    new | lua vim.fn.termopen("clipboard-latex")
 endfunction
 
 nnoremap <leader>cl :call ClipboardLatex(0)<CR>

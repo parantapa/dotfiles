@@ -5,6 +5,7 @@ let g:python3_host_prog="/usr/bin/python"
 call plug#begin()
 
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -16,6 +17,7 @@ Plug 'ggandor/lightspeed.nvim'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 Plug 'GutenYe/json5.vim'
 Plug 'dag/vim-fish'
@@ -32,8 +34,12 @@ call plug#end()
 if $COLORTERM == 'truecolor'
     set termguicolors
     set background=dark
-    let g:gruvbox_contrast_dark ='hard'
-    colorscheme gruvbox
+    let g:gruvbox_material_background = 'hard'
+    let g:gruvbox_material_foreground = 'original'
+    let g:gruvbox_material_enable_bold = 1
+    let g:gruvbox_material_enable_italic = 1
+    let g:gruvbox_material_sign_column_background = 'grey'
+    colorscheme gruvbox-material
 endif
 
 " Latex {{{1
@@ -78,7 +84,7 @@ let g:fzf_action = {
     \ 'ctrl-x': 'split',
     \ 'ctrl-v': 'vsplit' }
 
-" FZF Headings {{{1
+" FZF Quickref Index {{{1
 
 function! s:JumpListHandler(lines)
     let parts = split(a:lines[1], '\t')
@@ -108,7 +114,7 @@ function! s:Headings()
 endfunction
 
 command! -nargs=0 Headings call s:Headings()
-cnoreabbrev headings Headings
+cnoreabbrev he Headings
 
 function! s:BuildQuickrefIndex()
     wall
@@ -161,6 +167,20 @@ endfunction
 
 command! -nargs=0 Deadlines call s:Deadlines()
 cnoreabbrev deadlines Deadlines
+
+function! s:TODOs()
+    let spec = {
+        \ 'source': 'quickrefs-index todo-jumplist --color',
+        \ 'options': '-n 1 --prompt "TODOs> " --ansi --delimiter "\t" --tabstop 4 ' .
+        \            '--expect=ctrl-t,ctrl-v,ctrl-x' ,
+        \ 'sink*': function('s:JumpListHandler')
+    \ }
+
+    call fzf#run(fzf#wrap(spec))
+endfunction
+
+command! -nargs=0 TODOs call s:TODOs()
+cnoreabbrev todos TODOs
 
 
 " Coc.nvim {{{1
@@ -345,7 +365,7 @@ cnoreabbrev es CocCommand snippets.editSnippets
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "cpp", "python", "lua", "bash", "fish", "vim", "json", "json5", "toml" },
+  ensure_installed = { "c", "cpp", "python", "javascript", "svelte", "lua", "bash", "fish", "vim", "json", "json5", "toml", "sql" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -372,6 +392,50 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+}
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+
+parser_config.sqlpygen = {
+    install_info = {
+        url = "~/workspace/tree-sitter-sqlpygen", -- local path or git repo
+        files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+        branch = "main", -- default branch in case of git repo if different from master
+        generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+    },
+    filetype = "sqlpygen", -- if filetype does not match the parser name
+}
+
+parser_config.episim37 = {
+    install_info = {
+        url = "~/workspace/tree-sitter-episim37", -- local path or git repo
+        files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+        branch = "main", -- default branch in case of git repo if different from master
+        generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+    },
+    filetype = "episim37", -- if filetype does not match the parser name
 }
 
 EOF
+

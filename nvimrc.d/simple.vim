@@ -301,7 +301,6 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile *.plot setlocal ft=gnuplot
     autocmd BufReadPost,BufNewFile *.js setlocal ft=javascript
-    autocmd BufReadPost,BufNewFile *.jinja2 setlocal ft=jinja
     autocmd BufReadPost,BufNewFile *.sshconfig setlocal ft=sshconfig
     autocmd BufReadPost,BufNewFile *.pyx setlocal ft=pyrex
 
@@ -309,6 +308,12 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile .babelrc setlocal ft=javascript
     autocmd BufReadPost,BufNewFile .eslintrc setlocal ft=javascript
+
+    autocmd BufReadPost,BufNewFile *.jinja2 setlocal ft=jinja
+    autocmd BufReadPost,BufNewFile *.tex.jinja2 setlocal ft=tex
+
+    autocmd BufReadPost,BufNewFile *.sqlpygen setlocal ft=sqlpygen
+    autocmd BufReadPost,BufNewFile *.episim37 setlocal ft=episim37
 augroup END
 
 " Use ripgrep when available {{{1
