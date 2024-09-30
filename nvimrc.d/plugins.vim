@@ -6,6 +6,7 @@ call plug#begin()
 
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'altercation/vim-colors-solarized'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -23,8 +24,13 @@ Plug 'GutenYe/json5.vim'
 Plug 'dag/vim-fish'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'cespare/vim-toml'
-
 Plug 'lark-parser/vim-lark-syntax'
+Plug 'nono/lezer.vim'
+
+Plug 'luochen1990/rainbow'
+Plug 'rbberger/vim-singularity-syntax'
+
+let g:rainbow_active = 0 "set to 0 if you want to enable it later via :RainbowToggle
 
 " Initialize plugin system
 call plug#end()
@@ -44,7 +50,7 @@ endif
 
 " Latex {{{1
 
-let g:tex_flavor = 'latex'
+" let g:tex_flavor = 'latex'
 let g:tex_comment_nospell = 1
 
 " SQL {{{1
@@ -335,6 +341,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " " Resume latest coc list
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+let g:coc_filetype_map = { 'python_wrs': 'python' } 
 
 
 " CoC Snippets {{{1
@@ -365,7 +372,7 @@ cnoreabbrev es CocCommand snippets.editSnippets
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "cpp", "python", "javascript", "svelte", "lua", "bash", "fish", "vim", "json", "json5", "toml", "sql" },
+  ensure_installed = { "c", "cpp", "python", "javascript", "svelte", "lua", "bash", "fish", "vim", "json", "json5", "toml", "sql", "julia" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -417,7 +424,7 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
 parser_config.sqlpygen = {
     install_info = {
-        url = "~/workspace/tree-sitter-sqlpygen", -- local path or git repo
+        url = "~/workspace/sqlpygen3/tree-sitter-sqlpygen", -- local path or git repo
         files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
         branch = "main", -- default branch in case of git repo if different from master
         generate_requires_npm = false, -- if stand-alone parser without npm dependencies
@@ -426,15 +433,37 @@ parser_config.sqlpygen = {
     filetype = "sqlpygen", -- if filetype does not match the parser name
 }
 
-parser_config.episim37 = {
+parser_config.esl = {
     install_info = {
-        url = "~/workspace/tree-sitter-episim37", -- local path or git repo
+        url = "~/workspace/tree-sitter-esl", -- local path or git repo
         files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
         branch = "main", -- default branch in case of git repo if different from master
         generate_requires_npm = false, -- if stand-alone parser without npm dependencies
         requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
     },
-    filetype = "episim37", -- if filetype does not match the parser name
+    filetype = "esl", -- if filetype does not match the parser name
+}
+
+parser_config.jinja2 = {
+    install_info = {
+        url = "~/workspace/tree-sitter-jinja2", -- local path or git repo
+        files = {"src/parser.c",}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+        branch = "main", -- default branch in case of git repo if different from master
+        generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+    },
+    filetype = "jinja2", -- if filetype does not match the parser name
+}
+
+parser_config.python_wrs = {
+    install_info = {
+        url = "~/workspace/tree-sitter-python-wrs", -- local path or git repo
+        files = {"src/parser.c", "src/scanner.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
+        branch = "main", -- default branch in case of git repo if different from master
+        generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+    },
+    filetype = "python_wrs", -- if filetype does not match the parser name
 }
 
 EOF

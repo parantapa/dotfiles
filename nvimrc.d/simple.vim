@@ -257,9 +257,9 @@ cnoreabbrev qrt QuickrefTag
 
 " General command mode abbreveations {{{1
 
-cnoreabbrev mkq !make quick
-cnoreabbrev mk !make
-cnoreabbrev mkc !make clean
+cnoreabbrev mk !make quick
+cnoreabbrev mkall !make
+cnoreabbrev mkclean !make clean
 
 " Various filetype-specific stuff {{{1
 
@@ -313,7 +313,8 @@ augroup ft_setup
     autocmd BufReadPost,BufNewFile *.tex.jinja2 setlocal ft=tex
 
     autocmd BufReadPost,BufNewFile *.sqlpygen setlocal ft=sqlpygen
-    autocmd BufReadPost,BufNewFile *.episim37 setlocal ft=episim37
+    autocmd BufReadPost,BufNewFile *.esl37,*.esl setlocal ft=esl
+    autocmd BufReadPost,BufNewFile *.jinja.py setlocal ft=python_wrs
 augroup END
 
 " Use ripgrep when available {{{1
