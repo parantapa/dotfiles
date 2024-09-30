@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 #
 # Print out some random number
 
@@ -14,7 +14,7 @@ def main():
 
     digits = "0123456789"
 
-    print "".join(choice(digits) for _ in range(n))
+    print("".join(choice(digits) for _ in range(n)))
 
 if __name__ == '__main__':
     main()
