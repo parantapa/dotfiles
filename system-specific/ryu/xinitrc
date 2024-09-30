@@ -43,11 +43,12 @@ xrdb "$HOME/dotfiles/Xresources"
 
 #xmodmap "$HOME/dotfiles/capslock-esc"
 #xmodmap "$HOME/dotfiles/print-insert"
-eval `ssh-agent -s -t 16h`
+eval $( ssh-agent -s -t 16h )
 dunst &
 nitrogen --restore &
 #xscreensaver -no-splash &
 xsettingsd &
+xcompmgr -c -l0 -t0 -r0 -o.00 &
 
 # exec gnome-session
 # exec startkde
