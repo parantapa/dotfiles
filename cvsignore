@@ -3,5 +3,3 @@ node_modules/
 __pycache__/
 *.pyc
 *.pyo
-.modescript.vim
-.cpush.json5
