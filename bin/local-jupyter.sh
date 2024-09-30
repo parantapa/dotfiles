@@ -5,7 +5,7 @@ set -Eeuo pipefail
 
 set +u
 eval "$(conda shell.bash hook)"
-conda activate notebook_env
+conda activate hp12
 set -u
 
 JUPYTER_PORT=8888
