@@ -1,30 +1,38 @@
-#!/usr/bin/env python2.7
-# encoding: utf-8
+#!/usr/bin/env python
 """
 Find an open a pdf file in $HOME/sdocs.
 """
 
-from __future__ import print_function
-
 import os
 import sys
 from subprocess import Popen, PIPE
+
 
 def find(sdocs, keyword):
     """
     Return the list of files with the given keyword.
     """
 
-    cmd = ["find", sdocs, "-iname", "*{0}*.pdf".format(keyword), "-o", "-iname", "*{0}*.djvu".format(keyword)]
+    cmd = [
+        "find",
+        sdocs,
+        "-iname",
+        "*{0}*.pdf".format(keyword),
+        "-o",
+        "-iname",
+        "*{0}*.djvu".format(keyword),
+    ]
     proc = Popen(cmd, stdout=PIPE)
     out, _ = proc.communicate()
     if proc.returncode != 0 or out is None:
         return []
 
+    out = out.decode()
     fnames = out.strip().split("\n")
     fnames = [x.strip() for x in fnames]
     fnames = [x for x in fnames if x]
     return fnames
+
 
 def main_show(sdocs, keyword):
     """
@@ -38,6 +46,7 @@ def main_show(sdocs, keyword):
 
     for idx, line in enumerate(fnames, 1):
         print(idx, line)
+
 
 def main_open(sdocs, keyword, num):
     """
@@ -62,6 +71,7 @@ def main_open(sdocs, keyword, num):
     with open(os.devnull, "wb") as null:
         Popen(cmd, stdout=null, stderr=null)
 
+
 def main():
     sdocs = os.environ["HOME"] + "/sdocs"
     if not os.path.isdir(sdocs):
@@ -83,5 +93,6 @@ def main():
     else:
         print("Usage: find-pdf PATTERN [N]")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

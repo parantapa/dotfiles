@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 """
 Get the PSS and RSS of a PID.
 """
@@ -6,10 +6,11 @@ Get the PSS and RSS of a PID.
 import sys
 
 unit_dict = {
-    "kB": 2 ** 10,
-    "mB": 2 ** 20,
-    "gB": 2 ** 30,
+    "kB": 2**10,
+    "mB": 2**20,
+    "gB": 2**30,
 }
+
 
 def getrsspss(pid):
     """
@@ -20,8 +21,8 @@ def getrsspss(pid):
         with open("/proc/%d/smaps" % pid) as fobj:
             lines = list(fobj)
     except IOError as exc:
-        print "IOError", str(exc)
-        return None, None
+        print("IOError", str(exc))
+        return 0, 0
 
     rss, pss = 0, 0
     for line in lines:
@@ -34,6 +35,7 @@ def getrsspss(pid):
 
     return rss, pss
 
+
 def main():
     try:
         pids = list(map(int, sys.argv[1:]))
@@ -45,13 +47,14 @@ def main():
     for pid in pids:
         rss, pss = getrsspss(pid)
         if rss is not None:
-            rss = rss / 2 ** 20
-            pss = pss / 2 ** 20
-            print "PID: {0} RSS: {1:,.2f} MB PSS: {2:,.2f} MB".format(pid, rss, pss)
+            rss = rss / 2**20
+            pss = pss / 2**20
+            print("PID: {0} RSS: {1:,.2f} MB PSS: {2:,.2f} MB".format(pid, rss, pss))
             rss_a += rss
             pss_a += pss
 
-    print "Total: RSS: {0:,.2f} MB PSS: {1:,.2f} MB".format(rss_a, pss_a)
+    print("Total: RSS: {0:,.2f} MB PSS: {1:,.2f} MB".format(rss_a, pss_a))
+
 
 if __name__ == "__main__":
     main()

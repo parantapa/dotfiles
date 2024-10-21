@@ -1,5 +1,4 @@
-#!/usr/bin/env python2
-# encoding: utf-8
+#!/usr/bin/env python
 """
 Run web search query from terminal.
 """
@@ -11,7 +10,7 @@ __author__ = "Parantapa Bhattachara <pb [at] parantapa [dot] net>"
 import os
 import sys
 from subprocess import Popen
-from urllib import quote_plus
+from urllib.parse import quote_plus
 
 SEARCH_BASE = {
     "g": "https://www.google.com/search?q={0}",
@@ -20,10 +19,11 @@ SEARCH_BASE = {
     "th": "http://www.thesaurus.com/browse/{0}",
     "ud": "http://www.urbandictionary.com/define.php?term={0}",
     "wa": "http://www.wolframalpha.com/input/?i={0}",
-    "gs": "https://scholar.google.com/scholar?q={0}"
+    "gs": "https://scholar.google.com/scholar?q={0}",
 }
 
 BROWSER_CMD = os.environ.get("BROWSER", "firefox").strip()
+
 
 def main():
     if len(sys.argv) < 2:
@@ -50,5 +50,6 @@ def main():
     with open(os.devnull, "wb") as null:
         Popen(cmd, stdout=null, stderr=null)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/env python
 """
 Moving One Git Repository Into Another As A Subdirectory
 
@@ -13,6 +13,7 @@ from subprocess import call as subp_call
 
 RAND_REMOTE = "a6ed6oaqyo"
 
+
 def call(cmd, *args):
     """
     Call the command in shell.
@@ -23,6 +24,7 @@ def call(cmd, *args):
         cmd = cmd % args
     print(cmd)
     subp_call(cmd, shell=True)
+
 
 def main():
     try:
@@ -56,5 +58,6 @@ def main():
     call("git merge -m 'Added subrepo as subdir' %s/master", RAND_REMOTE)
     call("git remote rm %s", RAND_REMOTE)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
