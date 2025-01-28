@@ -372,7 +372,7 @@ cnoreabbrev es CocCommand snippets.editSnippets
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "cpp", "python", "javascript", "svelte", "lua", "bash", "fish", "vim", "json", "json5", "toml", "sql", "julia" },
+  ensure_installed = { "c", "cpp", "python", "javascript", "svelte", "lua", "bash", "fish", "vim", "json", "json5", "toml", "sql", "julia"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -444,6 +444,17 @@ parser_config.esl = {
     filetype = "esl", -- if filetype does not match the parser name
 }
 
+parser_config.gdsl = {
+    install_info = {
+        url = "~/workspace/tree-sitter-gdsl", -- local path or git repo
+        files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+        branch = "main", -- default branch in case of git repo if different from master
+        generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+    },
+    filetype = "gdsl", -- if filetype does not match the parser name
+}
+
 parser_config.jinja2 = {
     install_info = {
         url = "~/workspace/tree-sitter-jinja2", -- local path or git repo
@@ -464,6 +475,18 @@ parser_config.python_wrs = {
         requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
     },
     filetype = "python_wrs", -- if filetype does not match the parser name
+}
+
+
+parser_config.stan = {
+    install_info = {
+        url = "~/workspace/tree-sitter-stan", -- local path or git repo
+        files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+        branch = "main", -- default branch in case of git repo if different from master
+        generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+    },
+    filetype = "stan", -- if filetype does not match the parser name
 }
 
 EOF

@@ -314,7 +314,9 @@ augroup ft_setup
 
     autocmd BufReadPost,BufNewFile *.sqlpygen setlocal ft=sqlpygen
     autocmd BufReadPost,BufNewFile *.esl37,*.esl setlocal ft=esl
+    autocmd BufReadPost,BufNewFile *.gdsl setlocal ft=gdsl
     autocmd BufReadPost,BufNewFile *.jinja.py setlocal ft=python_wrs
+    autocmd BufReadPost,BufNewFile *.stan setlocal ft=stan
 augroup END
 
 " Use ripgrep when available {{{1
