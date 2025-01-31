@@ -1,0 +1,102 @@
+! transparency - true or false (default)
+URxvt*transparent: false
+
+! tint with any color; i.e., blue, red, tomato4, olivedrab2, etc.
+! some nice listings are at:
+! http://www.nisrv.com/drupal/?q=node/11
+! http://www.htmlgoodies.com/tutorials/colors/article.php/3478921
+URxvt*tintColor: Blue
+
+! shading - 0 to 99 darkens, 101 to 200 lightens.
+! Do not use with tintColor; just use a darker or lighter color instead.
+!URxvt*shading: 40
+
+! scrollback buffer lines - 65535 is max on most machines (64 is default)
+URxvt*saveLines: 50000
+
+! font color (default is black)
+URxvt*foreground: White
+
+! background color (prior to tinting) (default is white)
+URxvt*background: Black
+
+! Set base fonts Inconsolata and DejaVu Sans Mono
+URxvt*font: xft:Inconsolata:size=12:antialias=true:hinting=true,\
+            xft:DejaVu Sans Mono:size=12:antialias=true:hinting=true
+
+URxvt*boldFont: xft:Inconsolata:bold:size=12:antialias=true:hinting=true,\
+                xft:DejaVu Sans Mono:bold:size=12:antialias=true:hinting=true
+
+!URxvt.letterSpace: -1
+
+! Traditional fonts - a more traditional font setup in lieu of xft
+!URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
+!URxvt*boldFont:-*-courier-bold-r-normal-*-14-*-*-*-*-*-iso8859-1
+
+! scrollbar - true (default) or false
+URxvt*scrollBar: true
+
+! scrollbar position - left=false (default) or right=true
+URxvt*scrollBar_right: true
+
+! scrollbar style - rxvt (default), plain, next, or xterm
+URxvt*scrollstyle: plain
+
+! diable IS0 14755 key cap mode (use to directly enter unicode)
+URxvt*iso14755: false
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! Infinality settings
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+! Colorscheme Molokai
+! special
+URxvt.foreground:   #f8f8f2
+URxvt.background:   #1b1d1e
+URxvt.cursorColor:  #f8f8f2
+
+! black
+*.color0:       #1b1d1e
+*.color8:       #7e8e91
+
+! red
+*.color1:       #f92672
+*.color9:       #f92672
+
+! green
+*.color2:       #a6e22e
+*.color10:      #a6e22e
+
+! yellow
+*.color3:       #fd971f
+*.color11:      #e6db74
+
+! blue
+*.color4:       #66d9ef
+*.color12:      #66d9ef
+
+! magenta
+*.color5:       #ae81ff
+*.color13:      #ae81ff
+
+! cyan
+*.color6:       #a1efe4
+*.color14:      #a1efe4
+
+! white
+*.color7:       #d2d2cd
+*.color15:      #f8f8f2

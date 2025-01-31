@@ -4,8 +4,8 @@ xrdb=xrdb
 xinitdir=/etc/X11/xinit
 xmodmap=xmodmap
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
+userresources=$HOME/dotfiles/Xresources
+usermodmap=$HOME/dotfiles/Xmodmap
 sysresources=$xinitdir/.Xresources
 sysmodmap=$xinitdir/.Xmodmap
 
