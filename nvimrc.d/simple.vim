@@ -130,7 +130,6 @@ call add(g:my_statusline, " (line %l/%L, col %03c)")
 
 let &statusline = join(g:my_statusline, "")
 
-
 " Searching and movement {{{1
 
 set ignorecase
