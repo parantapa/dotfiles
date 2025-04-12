@@ -9,17 +9,15 @@ else
 fi
 
 dotfiles=(profile bash_logout
-    tmux.conf screenrc gitconfig cvsignore
+    tmux.conf gitconfig cvsignore
     ctags.d sqliterc psqlrc condarc)
 
-dotfiles_extra=(gvimrc vim/bundle vim/python3 vim/syntax
-    pylintrc xsettingsd gtkrc-2.0
+dotfiles_extra=(
+    xsettingsd gtkrc-2.0
     config/i3/config.global
-    config/gtk-3.0/settings.ini
     config/dunst/dunstrc
     config/zathura/zathurarc
     config/clipit/clipitrc
-    config/termite/config
     config/alacritty/alacritty.yml
     config/fish/functions
     config/rofi/config.rasi)
@@ -35,8 +33,6 @@ cd "$dstdir"
 [[ -d .config/zathura ]]  || mkdir -p .config/zathura
 [[ -d .config/clipit ]]   || mkdir -p .config/clipit
 [[ -d .config/fish ]]     || mkdir -p .config/fish
-[[ -d .config/gtk-3.0 ]]  || mkdir -p .config/gtk-3.0
-[[ -d .config/termite ]]  || mkdir -p .config/termite
 [[ -d .config/alacritty ]]  || mkdir -p .config/alacritty
 [[ -d .config/rofi ]]     || mkdir -p .config/rofi
 [[ -d .config/i3 ]]     || mkdir -p .config/i3
