@@ -13,7 +13,8 @@ dotfiles=(profile bash_logout
     ctags.d sqliterc psqlrc condarc)
 
 dotfiles_extra=(gvimrc vim/bundle vim/python3 vim/syntax
-    pylintrc xsettingsd gtkrc-2.0 i3/config.global
+    pylintrc xsettingsd gtkrc-2.0
+    config/i3/config.global
     config/gtk-3.0/settings.ini
     config/dunst/dunstrc
     config/zathura/zathurarc
@@ -38,6 +39,7 @@ cd "$dstdir"
 [[ -d .config/termite ]]  || mkdir -p .config/termite
 [[ -d .config/alacritty ]]  || mkdir -p .config/alacritty
 [[ -d .config/rofi ]]     || mkdir -p .config/rofi
+[[ -d .config/i3 ]]     || mkdir -p .config/i3
 
 # Dont overwrite bashrc, vimrc, config.fish
 if [[ ! -r .bashrc ]] ; then
