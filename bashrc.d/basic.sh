@@ -22,8 +22,8 @@ shopt -s no_empty_cmd_completion
 
 # Set the environment variables to something I like
 export PAGER="less -niRS"
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export BROWSER=firefox-developer-edition
 export PDFVIEWER=evince
 export MENU="rofi -show run -matching fuzzy"
@@ -90,11 +90,7 @@ e () {
 
 
 # GVim alias
-if [[ -n "$DISPLAY" ]] && [[ "$DISPLAY" != "localhost:"* ]] ; then
-    alias g=gvim
-else
-    alias g=vim
-fi
+alias g=nvim
 
 # Add to path if not already exists
 # NOTE: don't expect path to be empty

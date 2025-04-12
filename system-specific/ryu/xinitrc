@@ -45,9 +45,17 @@ if [ -d $xinitdir/xinitrc.d ] ; then
 fi
 
 xrandr > /dev/null
-xinput set-prop  "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 
 export SHELL=/usr/bin/fish
+
+xrandr \
+    --output DP-0 --mode 2560x1440 --pos 0x0 --rotate right \
+    --output DP-1 --off \
+    --output DP-2 --mode 2560x1440 --pos 4000x0 --rotate left \
+    --output DP-3 --off \
+    --output HDMI-0 --off \
+    --output DP-4 --primary --mode 2560x1440 --pos 1440x560 --rotate normal \
+    --output DP-5 --off
 
 #xmodmap "$HOME/dotfiles/capslock-esc"
 #xmodmap "$HOME/dotfiles/print-insert"
@@ -63,5 +71,5 @@ xcompmgr -c -l0 -t0 -r0 -o.00 &
 # exec startxfce4
 # ...or the Window Manager of your choice
 
-make-i3-config
-exec i3 -V > "$HOME/.i3/i3log" 2>&1
+$HOME/dotfiles/bin/make-i3-config
+exec i3 -V > "$HOME/.config/i3/i3log" 2>&1

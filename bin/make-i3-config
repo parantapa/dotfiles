@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd "$HOME/.i3"
+cd "$HOME/.config/i3"
 cat config.global config.local > config

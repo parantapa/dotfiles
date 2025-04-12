@@ -1,7 +1,7 @@
 # Set the environment variables to something I like
 set -x PAGER "less -niRS"
-set -x EDITOR vim
-set -x VISUAL vim
+set -x EDITOR nvim
+set -x VISUAL nvim
 set -x BROWSER firefox-developer-edition
 set -x PDFVIEWER evince
 set -x MENU "rofi -matching fuzzy -dmenu"
@@ -65,8 +65,4 @@ function e
 end
 
 # Vim Alias
-if type -q nvim
-    alias g=nvim
-else
-    alias g=vim
-end
+alias g=nvim

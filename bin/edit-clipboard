@@ -12,7 +12,7 @@ uuid="$( uuidgen -r )"
 fname="$clip_path/$uuid.txt"
 
 xclip -o -selection clipboard > "$fname"
-gvim --nofork --servername "$uuid" "$fname"
+alacritty -e nvim "$uuid" "$fname"
 xclip -i -selection clipboard < "$fname"
 rm -f "$fname"
 xdotool windowfocus "$active_window"
