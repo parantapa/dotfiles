@@ -152,10 +152,6 @@ set virtualedit+=block
 " Don't move on *
 nnoremap * *<C-o>
 
-" Easier to type, and I never use the default behavior.
-noremap H ^
-noremap L g_
-
 " Replacement for , as movement shortcut
 noremap - ,
 
@@ -202,12 +198,6 @@ command! -nargs=0 FoldToggle :call FoldToggle()<CR>
 set complete=.,w,b,u,t,i,k
 set completeopt=menuone
 
-" Strip {{{1
-
-function! Strip(input_string)
-    return substitute(a:input_string, '\v\C^[ \t\n\r]*(.{-})[ \t\n\r]*$', '\1', '')
-endfunction
-
 " Convenience mappings {{{1
 
 " I dont use ex mode
@@ -231,28 +221,9 @@ cnoremap w!! set buftype=nowrite <bar> w !sudo tee % >/dev/null
 " Toggle spell
 nnoremap <F3> :setlocal spell!<CR>
 
-" Shortcuts for completion
-inoremap <C-f> <C-x><C-f>
-inoremap <C-l> <C-x><C-l>
-inoremap <C-Space> <C-x><C-o>
-
-" On C-l also set nohlsearch and diffupdate
-nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR><C-l>
-
-nnoremap ,gs yi{:OpenSearch <C-r>" gs
-
 " Quick editing {{{1
 
 cnoreabbrev ev edit <C-r>=$MYVIMRC<CR>
-
-" QuickRefs {{{1
-
-command! -nargs=0 QuickrefSync !git-sync
-cnoreabbrev qrs QuickrefSync
-
-command! -nargs=0 QuickrefTag !rstindextags -f
-cnoreabbrev qrt QuickrefTag
-
 
 " General command mode abbreveations {{{1
 
@@ -260,62 +231,13 @@ cnoreabbrev mk !make quick
 cnoreabbrev mkall !make
 cnoreabbrev mkclean !make clean
 
-" Various filetype-specific stuff {{{1
-
-
-" Latex {{{2
-
-augroup ft_tex
-    au!
-
-    au Filetype tex setlocal iskeyword+=-
-    au Filetype bib setlocal iskeyword+=-
-    "    au Filetype tex setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
-    "    au Filetype bib setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
-augroup END
-
-
-" Python {{{2
-
-augroup ft_python
-    au!
-
-    au FileType python setlocal commentstring=#\ %s
-augroup END
-
-" Text {{{2
-
-augroup ft_text
-    au!
-
-    au Filetype text setlocal formatoptions-=n
-augroup END
-
 " Setup stuff depending on filename/extension {{{1
 augroup ft_setup
     au!
 
     " Setup the proper filetype
-    autocmd BufReadPost,BufNewFile *.md setlocal ft=markdown
-
-    autocmd BufReadPost,BufNewFile *.plot setlocal ft=gnuplot
-    autocmd BufReadPost,BufNewFile *.js setlocal ft=javascript
-    autocmd BufReadPost,BufNewFile *.sshconfig setlocal ft=sshconfig
-    autocmd BufReadPost,BufNewFile *.pyx setlocal ft=pyrex
-
-    autocmd BufReadPost,BufNewFile bashrc_* setlocal ft=sh
-
-    autocmd BufReadPost,BufNewFile .babelrc setlocal ft=javascript
-    autocmd BufReadPost,BufNewFile .eslintrc setlocal ft=javascript
-
-    autocmd BufReadPost,BufNewFile *.jinja2 setlocal ft=jinja
-    autocmd BufReadPost,BufNewFile *.tex.jinja2 setlocal ft=tex
-
-    autocmd BufReadPost,BufNewFile *.sqlpygen setlocal ft=sqlpygen
     autocmd BufReadPost,BufNewFile *.esl37,*.esl setlocal ft=esl
     autocmd BufReadPost,BufNewFile *.gdsl setlocal ft=gdsl
-    autocmd BufReadPost,BufNewFile *.jinja.py setlocal ft=python_wrs
-    autocmd BufReadPost,BufNewFile *.stan setlocal ft=stan
 augroup END
 
 " Use ripgrep when available {{{1
