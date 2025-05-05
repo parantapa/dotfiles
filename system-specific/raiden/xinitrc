@@ -1,0 +1,75 @@
+#!/bin/bash
+
+xrdb=xrdb
+xinitdir=/etc/X11/xinit
+xmodmap=xmodmap
+
+userresources=$HOME/dotfiles/Xresources
+usermodmap=$HOME/dotfiles/Xmodmap
+sysresources=$xinitdir/.Xresources
+sysmodmap=$xinitdir/.Xmodmap
+
+# merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+    if [ -x /usr/bin/cpp ] ; then
+        $xrdb -merge $sysresources
+    else
+        $xrdb -nocpp -merge $sysresources
+    fi
+fi
+
+if [ -f $sysmodmap ]; then
+    $xmodmap $sysmodmap
+fi
+
+if [ -f "$userresources" ]; then
+    if [ -x /usr/bin/cpp ] ; then
+        $xrdb -merge "$userresources"
+    else
+        $xrdb -nocpp -merge "$userresources"
+    fi
+fi
+
+if [ -f "$usermodmap" ]; then
+    $xmodmap "$usermodmap"
+fi
+
+# start some nice programs
+
+if [ -d $xinitdir/xinitrc.d ] ; then
+ for f in "$xinitdir/xinitrc.d"/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+xrandr > /dev/null
+
+export SHELL=/usr/bin/fish
+
+xrandr \
+    --output DP-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+    --output DP-1 --off \
+    --output DP-2 --off \
+    --output DP-3 --off \
+    --output HDMI-0 --off \
+    --output DP-4 --mode 2560x1440 --pos 2560x0 --rotate normal \
+    --output DP-5 --off
+
+#xmodmap "$HOME/dotfiles/capslock-esc"
+#xmodmap "$HOME/dotfiles/print-insert"
+eval "$( ssh-agent -s -t 16h )"
+dunst &
+nitrogen --restore &
+#xscreensaver -no-splash &
+xsettingsd &
+xcompmgr -c -l0 -t0 -r0 -o.00 &
+
+# exec gnome-session
+# exec startkde
+# exec startxfce4
+# ...or the Window Manager of your choice
+
+$HOME/dotfiles/bin/make-i3-config
+exec i3 -V > "$HOME/.config/i3/i3log" 2>&1

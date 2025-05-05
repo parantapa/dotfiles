@@ -1,0 +1,119 @@
+
+bar {
+    status_command i3status -c /home/parantapa/dotfiles/system-specific/raiden/i3status.conf
+    tray_output primary
+}
+
+workspace 1 output DP-0
+workspace 2 output DP-0
+workspace 3 output DP-0
+workspace 4 output DP-0
+workspace 5 output DP-0
+workspace 6 output DP-0
+
+workspace 7 output DP-4
+workspace 8 output DP-4
+workspace 9 output DP-4
+workspace 10 output DP-4
+workspace - output DP-4
+workspace + output DP-4
+
+#exec clipit 2>/dev/null
+exec keepassxc
+#exec mpd --no-daemon
+#exec ario
+exec conky -c /home/parantapa/dotfiles/system-specific/raiden/conky.conf
+
+exec "env CM_SYNC_PRIMARY_TO_CLIPBOARD=1 clipmenud"
+bindsym Control+Mod1+0 exec "env CM_LAUNCHER=rofi clipmenu"
+
+bindsym Control+Mod1+Left  exec --no-startup-id "spotify-ctl Previous"
+bindsym Control+Mod1+Right exec --no-startup-id "spotify-ctl Next"
+bindsym Control+Mod1+Up    exec --no-startup-id "spotify-ctl PlayPause"
+bindsym Control+Mod1+Down  exec --no-startup-id "spotify-ctl PlayPause"
+
+bindsym XF86AudioPlay exec --no-startup-id "spotify-ctl PlayPause"
+bindsym XF86AudioPause exec --no-startup-id "spotify-ctl PlayPause"
+bindsym XF86AudioNext exec --no-startup-id "spotify-ctl Next"
+bindsym XF86AudioPrev exec --no-startup-id "spotify-ctl Previous"
+
+# bindsym XF86AudioMute            exec "zenity --info --text        XF86AudioMute"
+# bindsym XF86AudioLowerVolume     exec "zenity --info --text        XF86AudioLowerVolume"
+# bindsym XF86AudioRaiseVolume     exec "zenity --info --text        XF86AudioRaiseVolume"
+bindsym XF86PowerOff             exec "zenity --info --text        XF86PowerOff"
+bindsym XF86LaunchA              exec "zenity --info --text        XF86LaunchA"
+bindsym XF86Copy                 exec "zenity --info --text        XF86Copy"
+bindsym XF86Open                 exec "zenity --info --text        XF86Open"
+bindsym XF86Paste                exec "zenity --info --text        XF86Paste"
+bindsym XF86Cut                  exec "zenity --info --text        XF86Cut"
+bindsym XF86MenuKB               exec "zenity --info --text        XF86MenuKB"
+bindsym XF86Calculator           exec "zenity --info --text        XF86Calculator"
+bindsym XF86Sleep                exec "zenity --info --text        XF86Sleep"
+bindsym XF86WakeUp               exec "zenity --info --text        XF86WakeUp"
+bindsym XF86Explorer             exec "zenity --info --text        XF86Explorer"
+bindsym XF86Send                 exec "zenity --info --text        XF86Send"
+bindsym XF86Xfer                 exec "zenity --info --text        XF86Xfer"
+bindsym XF86Launch1              exec "zenity --info --text        XF86Launch1"
+bindsym XF86Launch2              exec "zenity --info --text        XF86Launch2"
+bindsym XF86WWW                  exec "zenity --info --text        XF86WWW"
+bindsym XF86DOS                  exec "zenity --info --text        XF86DOS"
+bindsym XF86ScreenSaver          exec "zenity --info --text        XF86ScreenSaver"
+bindsym XF86RotateWindows        exec "zenity --info --text        XF86RotateWindows"
+bindsym XF86TaskPane             exec "zenity --info --text        XF86TaskPane"
+bindsym XF86Favorites            exec "zenity --info --text        XF86Favorites"
+bindsym XF86MyComputer           exec "zenity --info --text        XF86MyComputer"
+bindsym XF86Back                 exec "zenity --info --text        XF86Back"
+bindsym XF86Forward              exec "zenity --info --text        XF86Forward"
+bindsym XF86Eject                exec "zenity --info --text        XF86Eject"
+#bindsym XF86AudioNext            exec "zenity --info --text        XF86AudioNext"
+#bindsym XF86AudioPrev            exec "zenity --info --text        XF86AudioPrev"
+bindsym XF86AudioRecord          exec "zenity --info --text        XF86AudioRecord"
+bindsym XF86AudioRewind          exec "zenity --info --text        XF86AudioRewind"
+bindsym XF86Phone                exec "zenity --info --text        XF86Phone"
+bindsym XF86HomePage             exec "zenity --info --text        XF86HomePage"
+bindsym XF86Reload               exec "zenity --info --text        XF86Reload"
+bindsym XF86ScrollUp             exec "zenity --info --text        XF86ScrollUp"
+bindsym XF86ScrollDown           exec "zenity --info --text        XF86ScrollDown"
+bindsym XF86New                  exec "zenity --info --text        XF86New"
+bindsym XF86Tools                exec "zenity --info --text        XF86Tools"
+bindsym XF86Launch5              exec "zenity --info --text        XF86Launch5"
+bindsym XF86Launch6              exec "zenity --info --text        XF86Launch6"
+bindsym XF86Launch7              exec "zenity --info --text        XF86Launch7"
+bindsym XF86Launch8              exec "zenity --info --text        XF86Launch8"
+bindsym XF86Launch9              exec "zenity --info --text        XF86Launch9"
+bindsym XF86AudioMicMute         exec "zenity --info --text        XF86AudioMicMute"
+bindsym XF86TouchpadToggle       exec "zenity --info --text        XF86TouchpadToggle"
+bindsym XF86TouchpadOn           exec "zenity --info --text        XF86TouchpadOn"
+bindsym XF86TouchpadOff          exec "zenity --info --text        XF86TouchpadOff"
+# bindsym XF86AudioPause           exec "zenity --info --text        XF86AudioPause"
+bindsym XF86Launch3              exec "zenity --info --text        XF86Launch3"
+bindsym XF86Launch4              exec "zenity --info --text        XF86Launch4"
+bindsym XF86LaunchB              exec "zenity --info --text        XF86LaunchB"
+bindsym XF86Suspend              exec "zenity --info --text        XF86Suspend"
+bindsym XF86Close                exec "zenity --info --text        XF86Close"
+# bindsym XF86AudioPlay            exec "zenity --info --text        XF86AudioPlay"
+bindsym XF86AudioForward         exec "zenity --info --text        XF86AudioForward"
+bindsym XF86WebCam               exec "zenity --info --text        XF86WebCam"
+bindsym XF86Mail                 exec "zenity --info --text        XF86Mail"
+bindsym XF86Messenger            exec "zenity --info --text        XF86Messenger"
+bindsym XF86Search               exec "zenity --info --text        XF86Search"
+bindsym XF86Go                   exec "zenity --info --text        XF86Go"
+bindsym XF86Finance              exec "zenity --info --text        XF86Finance"
+bindsym XF86Game                 exec "zenity --info --text        XF86Game"
+bindsym XF86Shop                 exec "zenity --info --text        XF86Shop"
+# bindsym XF86MonBrightnessDown    exec "zenity --info --text        XF86MonBrightnessDown"
+# bindsym XF86MonBrightnessUp      exec "zenity --info --text        XF86MonBrightnessUp"
+bindsym XF86AudioMedia           exec "zenity --info --text        XF86AudioMedia"
+bindsym XF86Display              exec "zenity --info --text        XF86Display"
+bindsym XF86KbdLightOnOff        exec "zenity --info --text        XF86KbdLightOnOff"
+bindsym XF86KbdBrightnessDown    exec "zenity --info --text        XF86KbdBrightnessDown"
+bindsym XF86KbdBrightnessUp      exec "zenity --info --text        XF86KbdBrightnessUp"
+bindsym XF86Reply                exec "zenity --info --text        XF86Reply"
+bindsym XF86MailForward          exec "zenity --info --text        XF86MailForward"
+bindsym XF86Save                 exec "zenity --info --text        XF86Save"
+bindsym XF86Documents            exec "zenity --info --text        XF86Documents"
+bindsym XF86Battery              exec "zenity --info --text        XF86Battery"
+bindsym XF86Bluetooth            exec "zenity --info --text        XF86Bluetooth"
+bindsym XF86WLAN                 exec "zenity --info --text        XF86WLAN"
+bindsym XF86WWAN                 exec "zenity --info --text        XF86WWAN"
+bindsym XF86RFKill               exec "zenity --info --text        XF86RFKill"
