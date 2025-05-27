@@ -119,9 +119,9 @@ bindsym $mod+Control+Down move workspace to output down
 
 # Before restarting or reloading config create the config file
 # reload the configuration file
-bindsym $mod+Shift+c exec "make-i3-config && i3-msg reload"
+bindsym $mod+Shift+c exec "i3-msg reload"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec "make-i3-config && i3-msg restart"
+bindsym $mod+Shift+r exec "i3-msg restart"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
