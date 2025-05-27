@@ -5,4 +5,4 @@ anaconda_upload: false
 auto_activate_base: false
 show_channel_urls: true
 auto_update_conda: false
-solver: libmamba
+#solver: libmamba
