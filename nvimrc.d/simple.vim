@@ -5,109 +5,109 @@
 "
 " Preamble {{{1
 
-filetype plugin indent on
-
-set nocompatible
-set nomodeline
+" filetype plugin indent on
+"
+" set nocompatible
+" set nomodeline
 
 " Basic options {{{1
 
-set encoding=utf-8
-set autoindent
-set showmode
-set showcmd
-set cursorline
-set ttyfast
-set lazyredraw
-set laststatus=2
-set history=1000
-set shell=/bin/bash
-set matchtime=3
-set title
-set hidden
-
-set ruler
-set nonumber
-
-set splitbelow
-set splitright
-
-set notimeout
-set nottimeout
-
-set autoread
-set autowrite
-
-set listchars=tab:>-,eol:<,extends:>,precedes:<
-set fillchars=diff:@
-set backspace=indent,eol,start
-set showbreak=+++\  " add a space in the end
-
-set cmdheight=1
-set updatetime=300
-set shortmess+=c
+" set encoding=utf-8
+" set autoindent
+" set showmode
+" set showcmd
+" set cursorline
+" set ttyfast
+" set lazyredraw
+" set laststatus=2
+" set history=1000
+" set shell=/bin/bash
+" set matchtime=3
+" set title
+" set hidden
+"
+" set ruler
+" set nonumber
+"
+" set splitbelow
+" set splitright
+"
+" set notimeout
+" set nottimeout
+"
+" set autoread
+" set autowrite
+"
+" set listchars=tab:>-,eol:<,extends:>,precedes:<
+" set fillchars=diff:@
+" set backspace=indent,eol,start
+" set showbreak=+++\  " add a space in the end
+"
+" set cmdheight=1
+" set updatetime=300
+" set shortmess+=c
 
 " Use system clipboard as default register {{{1
 
-if has('unnamedplus')
-    set clipboard=unnamed,unnamedplus
-endif
+" if has('unnamedplus')
+"     set clipboard=unnamed,unnamedplus
+" endif
 
 " Tabs, spaces, wrapping, Indent {{{1
 
-set tabstop=8
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set textwidth=80
-set formatoptions=qrn1
-set shiftround
+" set tabstop=8
+" set shiftwidth=4
+" set softtabstop=4
+" set expandtab
+" set textwidth=80
+" set formatoptions=qrn1
+" set shiftround
+"
+" set colorcolumn=+1
 
-set colorcolumn=+1
-
-" Tab settings for different filetypes
-augroup ft_tab_settings
-    autocmd!
-
-    autocmd FileType c setlocal noet sw=4 sts=4
-    autocmd FileType cpp setlocal noet sw=4 sts=4
-    autocmd FileType go setlocal noet sw=4 sts=4 ts=4
-
-    autocmd FileType html setlocal sw=2 sts=2
-    autocmd FileType xml setlocal sw=2 sts=2
-    autocmd FileType tex setlocal sw=2 sts=2
-    autocmd FileType rst setlocal sw=2 sts=2
-
-    autocmd FileType snippets setlocal noet ts=4
-augroup END
+" " Tab settings for different filetypes
+" augroup ft_tab_settings
+"     autocmd!
+"
+"     autocmd FileType c setlocal noet sw=4 sts=4
+"     autocmd FileType cpp setlocal noet sw=4 sts=4
+"     autocmd FileType go setlocal noet sw=4 sts=4 ts=4
+"
+"     autocmd FileType html setlocal sw=2 sts=2
+"     autocmd FileType xml setlocal sw=2 sts=2
+"     autocmd FileType tex setlocal sw=2 sts=2
+"     autocmd FileType rst setlocal sw=2 sts=2
+"
+"     autocmd FileType snippets setlocal noet ts=4
+" augroup END
 
 " Backups and Spell Files {{{1
-set undofile
-set undoreload=1000
-
-set backupdir=~/.local/share/nvim/backup//
-set backup
-
-let g:my_spellfile = expand("~/quickrefs/myspell.utf-8.add")
-if filereadable(g:my_spellfile)
-    let &spellfile = g:my_spellfile
-    let &dictionary = g:my_spellfile
-
-    " The spell file may be updated outside of vim
-    execute "silent mkspell! " . g:my_spellfile
-endif
-set spelllang=en_us
+" set undofile
+" set undoreload=1000
+"
+" set backupdir=~/.local/share/nvim/backup//
+" set backup
+"
+" let g:my_spellfile = expand("~/quickrefs/myspell.utf-8.add")
+" if filereadable(g:my_spellfile)
+"     let &spellfile = g:my_spellfile
+"     let &dictionary = g:my_spellfile
+"
+"     " The spell file may be updated outside of vim
+"     execute "silent mkspell! " . g:my_spellfile
+" endif
+" set spelllang=en_us
 
 " Leader {{{1
 
-let mapleader = ","
-let maplocalleader = "\\"
+" let mapleader = ","
+" let maplocalleader = "\\"
 
 " Color scheme {{{1
 
-syntax on
-set background=dark
-colorscheme desert
+" syntax on
+" set background=dark
+" colorscheme desert
 
 " Status line {{{1
 
@@ -132,66 +132,66 @@ let &statusline = join(g:my_statusline, "")
 
 " Searching and movement {{{1
 
-set ignorecase
-set smartcase
-set incsearch
-set showmatch
-set hlsearch
-set gdefault
-set nowrapscan
-
-set scrolloff=3
-set sidescrolloff=10
-
-set wrap
-set linebreak
-set sidescroll=1
-
-set virtualedit+=block
-
-" Don't move on *
-nnoremap * *<C-o>
-
-" Replacement for , as movement shortcut
-noremap - ,
-
-" Search for Visually selected text with * {{{1
-" http://vim.wikia.com/wiki/VimTip171
-
-function! VSetSearch()
-    let old_reg = @"
-    normal! gvy
-    let @/ = '\V' . @"
-    normal! gV
-    let @" = old_reg
-endfunction
-
-" Set the search pattern register and do a search with last pattern
-" Then return to the previous position
-vnoremap <silent> * :<C-U>call VSetSearch()<CR>/<CR><C-o>
+" set ignorecase
+" set smartcase
+" set incsearch
+" set showmatch
+" set hlsearch
+" set gdefault
+" set nowrapscan
+"
+" set scrolloff=3
+" set sidescrolloff=10
+"
+" set wrap
+" set linebreak
+" set sidescroll=1
+"
+" set virtualedit+=block
+"
+" " Don't move on *
+" nnoremap * *<C-o>
+"
+" " Replacement for , as movement shortcut
+" noremap - ,
+"
+" " Search for Visually selected text with * {{{1
+" " http://vim.wikia.com/wiki/VimTip171
+"
+" function! VSetSearch()
+"     let old_reg = @"
+"     normal! gvy
+"     let @/ = '\V' . @"
+"     normal! gV
+"     let @" = old_reg
+" endfunction
+"
+" " Set the search pattern register and do a search with last pattern
+" " Then return to the previous position
+" vnoremap <silent> * :<C-U>call VSetSearch()<CR>/<CR><C-o>
 
 " Folding {{{1
 
-set foldlevelstart=0
-set nofoldenable
-set foldmethod=marker
-
-" Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-
-function! FoldToggle()
-    if &foldenable == 1
-        normal zRzn
-    else
-        normal zMzN
-    endif
-endfunction
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-" nnoremap zO zCzO
-command! -nargs=0 FoldToggle :call FoldToggle()<CR>
+" set foldlevelstart=0
+" set nofoldenable
+" set foldmethod=marker
+" 
+" " Space to toggle folds.
+" nnoremap <Space> za
+" vnoremap <Space> za
+" 
+" function! FoldToggle()
+"     if &foldenable == 1
+"         normal zRzn
+"     else
+"         normal zMzN
+"     endif
+" endfunction
+" 
+" " Make zO recursively open whatever top level fold we're in, no matter where the
+" " cursor happens to be.
+" " nnoremap zO zCzO
+" command! -nargs=0 FoldToggle :call FoldToggle()<CR>
 
 " Default completion {{{1
 
