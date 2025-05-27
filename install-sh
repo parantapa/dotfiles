@@ -24,11 +24,6 @@ dotfiles_extra=(
 
 cd "$dstdir"
 
-[[ -d .vim ]]             || mkdir .vim
-[[ -d .vim/tmp ]]         || mkdir .vim/tmp
-[[ -d .vim/tmp/backup ]]  || mkdir .vim/tmp/backup
-[[ -d .vim/tmp/undo ]]    || mkdir .vim/tmp/undo
-[[ -d .vim/tmp/swap ]]    || mkdir .vim/tmp/swap
 [[ -d .config/dunst ]]    || mkdir -p .config/dunst
 [[ -d .config/zathura ]]  || mkdir -p .config/zathura
 [[ -d .config/clipit ]]   || mkdir -p .config/clipit
