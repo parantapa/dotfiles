@@ -175,11 +175,11 @@ let &statusline = join(g:my_statusline, "")
 " set foldlevelstart=0
 " set nofoldenable
 " set foldmethod=marker
-" 
+"
 " " Space to toggle folds.
 " nnoremap <Space> za
 " vnoremap <Space> za
-" 
+"
 " function! FoldToggle()
 "     if &foldenable == 1
 "         normal zRzn
@@ -187,7 +187,7 @@ let &statusline = join(g:my_statusline, "")
 "         normal zMzN
 "     endif
 " endfunction
-" 
+"
 " " Make zO recursively open whatever top level fold we're in, no matter where the
 " " cursor happens to be.
 " " nnoremap zO zCzO

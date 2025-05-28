@@ -156,9 +156,6 @@ vim.keymap.set('c', '<C-k>', [[<C-\>estrpart(getcmdline(), 0, getcmdpos()-1)<CR>
 -- Toggle spell
 vim.keymap.set('n', '<F3>', '<Cmd>setlocal spell!<CR>')
 
--- Quick editing {{{1
-vim.cmd([[cnoreabbrev ev edit <C-r>=$MYVIMRC<CR>]])
-
 -- General command mode abbreviations {{{1
 
 vim.cmd([[

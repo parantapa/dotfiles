@@ -275,7 +275,7 @@ lspconfig.lua_ls.setup({
     Lua = {
         diagnostics = {
             globals = { 'vim' }
-        }
+    }
     }
   }
 })

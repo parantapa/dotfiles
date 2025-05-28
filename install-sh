@@ -10,20 +10,23 @@ fi
 
 dotfiles=(profile bash_logout
     tmux.conf gitconfig cvsignore
-    ctags.d sqliterc psqlrc condarc)
+    ctags.d sqliterc psqlrc condarc
+    config/nvim/lua
+    config/fish/functions
+)
 
 dotfiles_extra=(
-    xsettingsd gtkrc-2.0
+    xsettingsd
     config/i3/config.global
     config/dunst/dunstrc
     config/zathura/zathurarc
     config/clipit/clipitrc
     config/alacritty/alacritty.yml
-    config/fish/functions
     config/rofi/config.rasi)
 
 cd "$dstdir"
 
+[[ -d .config/nvim ]]    || mkdir -p .config/nvim
 [[ -d .config/dunst ]]    || mkdir -p .config/dunst
 [[ -d .config/zathura ]]  || mkdir -p .config/zathura
 [[ -d .config/clipit ]]   || mkdir -p .config/clipit
@@ -38,6 +41,9 @@ if [[ ! -r .bashrc ]] ; then
 fi
 if [[ ! -r .vimrc ]] ; then
     \cp -i "$srcdir/vimrc" ".vimrc"
+fi
+if [[ ! -r .config/nvim/init.vim ]] ; then
+    \cp -i "$srcdir/config/nvim/init.vim" ".config/nvim/init.vim"
 fi
 if [[ ! -r .config/fish/config.fish ]] ; then
     \cp -i "$srcdir/config/fish/config.fish" ".config/fish/config.fish"
