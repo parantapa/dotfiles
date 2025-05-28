@@ -166,7 +166,7 @@ bindsym $mod+Shift+q exit
 
 bindsym Control+Mod1+bracketleft exec sensible-terminal
 bindsym Control+Mod1+bracketright exec sensible-browser
-bindsym Control+Mod1+q exec "xfce4-screenshooter"
+bindsym Control+Mod1+q exec "flameshot gui"
 bindsym Control+Mod1+p exec "thunar"
 bindsym Control+Mod1+backslash exec "repo-edit ~/quickrefs index.md"
 bindsym Control+Mod1+k exec "keepassxc"
