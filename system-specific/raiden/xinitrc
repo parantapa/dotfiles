@@ -66,6 +66,9 @@ nitrogen --restore &
 xsettingsd &
 xcompmgr -c -l0 -t0 -r0 -o.00 &
 
+# Let QT know that it needs to get style info GTK configs
+export XDG_CURRENT_DESKTOP=GNOME
+
 # exec gnome-session
 # exec startkde
 # exec startxfce4
