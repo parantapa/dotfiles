@@ -1,12 +1,10 @@
 #!/bin/bash
 # Start jupyter on localhost
 
-set -Eeuo pipefail
+eval "$( conda shell.bash hook )"
+trap 'echo "############ $BASH_COMMAND"' DEBUG
 
-set +u
-eval "$(conda shell.bash hook)"
-conda activate hp12
-set -u
+conda activate hp13
 
 JUPYTER_PORT=8888
 JUPYTER_IP=localhost
