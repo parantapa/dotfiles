@@ -176,6 +176,7 @@ require("fzf-lua").setup {}
 vim.api.nvim_create_user_command('EditConfig', [[lua FzfLua.files({ cwd = '~/.config/nvim/lua/config' })]], {})
 vim.api.nvim_create_user_command('Files', [[lua FzfLua.files()]], {})
 vim.api.nvim_create_user_command('RecentFiles', [[lua FzfLua.oldfiles()]], {})
+vim.api.nvim_create_user_command('Grep', [[lua FzfLua.live_grep_glob()]], {})
 
 -- Nvim Treesitter {{{1
 
