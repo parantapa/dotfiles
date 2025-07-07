@@ -22,7 +22,8 @@ dotfiles_extra=(
     config/zathura/zathurarc
     config/clipit/clipitrc
     config/alacritty/alacritty.yml
-    config/rofi/config.rasi)
+    config/rofi/config.rasi
+    config/clangd/config.yaml)
 
 cd "$dstdir"
 
@@ -34,6 +35,7 @@ cd "$dstdir"
 [[ -d .config/alacritty ]]  || mkdir -p .config/alacritty
 [[ -d .config/rofi ]]     || mkdir -p .config/rofi
 [[ -d .config/i3 ]]     || mkdir -p .config/i3
+[[ -d .config/clangd ]]     || mkdir -p .config/clangd
 
 # Dont overwrite bashrc, vimrc, config.fish
 if [[ ! -r .bashrc ]] ; then
