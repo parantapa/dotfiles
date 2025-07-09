@@ -42,6 +42,14 @@ vim.opt.shiftround = true
 
 vim.opt.colorcolumn = '+1'
 
+-- Add filetypes
+
+vim.filetype.add({
+    extension = {
+        esl = 'esl',
+    }
+})
+
 -- Tab settings for different filetypes
 
 local ft_tab_settings = vim.api.nvim_create_augroup('ft_tab_settings', { clear = true })
