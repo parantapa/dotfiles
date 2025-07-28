@@ -288,7 +288,8 @@ lspconfig.lua_ls.setup({
 lspconfig.pyright.setup {}
 
 lspconfig.clangd.setup {
-    cmd = { 'clangd', '--log=info' }
+    cmd = { 'clangd', '--log=info' },
+    filetypes ={ "c", "cpp", "objc", "objcpp", "cuda" }
 }
 
 lspconfig.bashls.setup {}
@@ -296,6 +297,9 @@ lspconfig.bashls.setup {}
 lspconfig.cmake.setup {}
 
 lspconfig.ts_ls.setup {}
+
+lspconfig.protols.setup {
+}
 
 -- Conform.nvim {{{1
 
