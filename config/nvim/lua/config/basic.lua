@@ -47,6 +47,7 @@ vim.opt.colorcolumn = '+1'
 vim.filetype.add({
     extension = {
         esl = 'esl',
+        fbs = 'flatbuffers',
     }
 })
 
