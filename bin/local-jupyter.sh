@@ -4,7 +4,7 @@
 eval "$( conda shell.bash hook )"
 trap 'echo "############ $BASH_COMMAND"' DEBUG
 
-conda activate hp12
+conda activate hp13
 
 JUPYTER_PORT=8888
 JUPYTER_IP=localhost
