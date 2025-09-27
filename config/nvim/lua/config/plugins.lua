@@ -245,14 +245,14 @@ parser_config.esl = {
 
 parser_config.flatbuffers = {
     install_info = {
-        url = "~/workspace/tree-sitter-flatbuffers",    -- local path or git repo
-        files = { "src/parser.c" },             -- note that some parsers also require src/scanner.c or src/scanner.cc
+        url = "~/workspace/tree-sitter-flatbuffers", -- local path or git repo
+        files = { "src/parser.c" },                  -- note that some parsers also require src/scanner.c or src/scanner.cc
         -- optional entries:
-        branch = "main",                        -- default branch in case of git repo if different from master
-        generate_requires_npm = false,          -- if stand-alone parser without npm dependencies
-        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+        branch = "main",                             -- default branch in case of git repo if different from master
+        generate_requires_npm = false,               -- if stand-alone parser without npm dependencies
+        requires_generate_from_grammar = false,      -- if folder contains pre-generated src/parser.c
     },
-    filetype = "flatbuffers",                           -- if filetype does not match the parser name
+    filetype = "flatbuffers",                        -- if filetype does not match the parser name
 }
 
 -- Rainbow Delimiters {{{1
@@ -301,7 +301,7 @@ lspconfig.pyright.setup {}
 
 lspconfig.clangd.setup {
     cmd = { 'clangd', '--log=info' },
-    filetypes ={ "c", "cpp", "objc", "objcpp", "cuda" }
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
 }
 
 lspconfig.bashls.setup {}
@@ -330,7 +330,21 @@ vim.api.nvim_create_user_command("Format", function(args)
             ["end"] = { args.line2, end_line:len() },
         }
     end
-    require("conform").format({ async = true, lsp_format = "fallback", range = range })
+
+    if vim.bo.filetype == "cpp" then
+        vim.cmd("%s!#pragma omp!// #pragma omp")
+    end
+
+    require("conform").format({
+        async = true,
+        lsp_format = "fallback",
+        range = range},
+        function(err, did_edit)
+            if vim.bo.filetype == "cpp" then
+                vim.cmd("%s!// #pragma omp!#pragma omp")
+            end
+        end)
+
 end, { range = true })
 
 -- Nvim CMP Setup {{{1
