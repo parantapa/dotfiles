@@ -49,6 +49,8 @@ require("lazy").setup({
 
         { 'hrsh7th/cmp-vsnip', },
         { 'hrsh7th/vim-vsnip', },
+
+        { 'lark-parser/vim-lark-syntax', },
     },
     checker = { enabled = false },
     config = {
@@ -332,7 +334,7 @@ vim.api.nvim_create_user_command("Format", function(args)
     end
 
     if vim.bo.filetype == "cpp" then
-        vim.cmd("%s!#pragma omp!// #pragma omp")
+        vim.cmd("silent! %s!#pragma omp!// #pragma omp")
     end
 
     require("conform").format({
@@ -341,7 +343,7 @@ vim.api.nvim_create_user_command("Format", function(args)
         range = range},
         function(err, did_edit)
             if vim.bo.filetype == "cpp" then
-                vim.cmd("%s!// #pragma omp!#pragma omp")
+                vim.cmd("silent! %s!// #pragma omp!#pragma omp")
             end
         end)
 
