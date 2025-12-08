@@ -5,3 +5,5 @@ DerivePointerAlignment: false
 PointerAlignment: Left
 BreakConstructorInitializers: BeforeComma
 SortIncludes: false
+AllowShortFunctionsOnASingleLine: Empty
+BreakTemplateDeclarations: Yes
