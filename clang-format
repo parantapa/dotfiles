@@ -7,3 +7,4 @@ BreakConstructorInitializers: BeforeComma
 SortIncludes: false
 AllowShortFunctionsOnASingleLine: Empty
 BreakTemplateDeclarations: Yes
+AlignEscapedNewlines: Left

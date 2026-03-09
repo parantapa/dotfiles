@@ -1,2 +1,1 @@
-CompileFlags:
-  Add: [-Wall, -Wextra, -std=c++23, -fopenmp]
+CompilationDatabase: "build/Release"

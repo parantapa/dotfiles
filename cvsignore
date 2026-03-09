@@ -4,3 +4,6 @@ build/
 __pycache__/
 *.pyc
 *.pyo
+CMakeUserPresets.json
+compile_commands.json
+.cache/
