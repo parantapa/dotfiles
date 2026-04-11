@@ -285,11 +285,9 @@ vim.g.rainbow_delimiters = {
 
 -- LSP Configs {{{1
 
-local lspconfig = require('lspconfig')
+vim.lsp.config['vimls'] = {}
 
-lspconfig.vimls.setup {}
-
-lspconfig.lua_ls.setup({
+vim.lsp.config['lua_ls'] = {
     settings = {
         Lua = {
             diagnostics = {
@@ -297,23 +295,22 @@ lspconfig.lua_ls.setup({
             }
         }
     }
-})
+}
 
-lspconfig.pyright.setup {}
+vim.lsp.config['ts_ls'] = {}
 
-lspconfig.clangd.setup {
+vim.lsp.config['pyright'] = {}
+
+vim.lsp.config['clangd'] = {
     cmd = { 'clangd', '--log=info' },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
 }
 
-lspconfig.bashls.setup {}
+vim.lsp.config['cmake'] = {}
 
-lspconfig.cmake.setup {}
+vim.lsp.config['bashls'] = {}
 
-lspconfig.ts_ls.setup {}
-
-lspconfig.protols.setup {
-}
+vim.lsp.config['protols'] = {}
 
 -- Conform.nvim {{{1
 
