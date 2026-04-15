@@ -34,7 +34,7 @@ require("lazy").setup({
         },
         {
             "nvim-treesitter/nvim-treesitter",
-            branch = 'master',
+            branch = 'main',
             build = ":TSUpdate"
         },
         { 'HiPhish/rainbow-delimiters.nvim', },
@@ -182,80 +182,21 @@ vim.api.nvim_create_user_command('Search', [[lua FzfLua.live_grep()]], {})
 
 -- Nvim Treesitter {{{1
 
-require("nvim-treesitter.configs").setup({
-    -- A list of parser names, or "all"
-    ensure_installed = { "c", "cpp", "python", "lua", "bash", "fish", "vim", "vimdoc", "json", "toml", "sql", "markdown", "markdown_inline", "rst", "javascript" },
-
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
-
-    -- Automatically install missing parsers when entering buffer
-    auto_install = true,
-
-    -- List of parsers to ignore installing (for "all")
-    -- ignore_install = { "javascript" },
-
-    highlight = {
-        -- `false` will disable the whole extension
-        enable = true,
-
-        -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-        -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-        -- the name of the parser)
-        -- list of language that will be disabled
-        -- disable = { "c", "rust" },
-
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-    },
-
-    playground = {
-        enable = true,
-        disable = {},
-        updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
-        persist_queries = false, -- Whether the query persists across vim sessions
-        keybindings = {
-            toggle_query_editor = 'o',
-            toggle_hl_groups = 'i',
-            toggle_injected_languages = 't',
-            toggle_anonymous_nodes = 'a',
-            toggle_language_display = 'I',
-            focus_language = 'f',
-            unfocus_language = 'F',
-            update = 'R',
-            goto_node = '<cr>',
-            show_help = '?',
-        },
-    }
-})
-
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.esl = {
-    install_info = {
-        url = "~/workspace/tree-sitter-esl",    -- local path or git repo
-        files = { "src/parser.c" },             -- note that some parsers also require src/scanner.c or src/scanner.cc
-        -- optional entries:
-        branch = "main",                        -- default branch in case of git repo if different from master
-        generate_requires_npm = false,          -- if stand-alone parser without npm dependencies
-        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
-    },
-    filetype = "esl",                           -- if filetype does not match the parser name
+local ts_langs = {
+    "c", "cpp", "python", "javascript", "sql",
+    "lua", "vim", "vimdoc",
+    "bash", "fish",
+    "json", "toml", "markdown", "markdown_inline", "rst"
 }
 
-parser_config.flatbuffers = {
-    install_info = {
-        url = "~/workspace/tree-sitter-flatbuffers", -- local path or git repo
-        files = { "src/parser.c" },                  -- note that some parsers also require src/scanner.c or src/scanner.cc
-        -- optional entries:
-        branch = "main",                             -- default branch in case of git repo if different from master
-        generate_requires_npm = false,               -- if stand-alone parser without npm dependencies
-        requires_generate_from_grammar = false,      -- if folder contains pre-generated src/parser.c
-    },
-    filetype = "flatbuffers",                        -- if filetype does not match the parser name
-}
+require('nvim-treesitter').install(ts_langs)
+
+for _, lang in ipairs(ts_langs) do
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = { lang },
+        callback = function() vim.treesitter.start() end,
+    })
+end
 
 -- Rainbow Delimiters {{{1
 
@@ -285,8 +226,6 @@ vim.g.rainbow_delimiters = {
 
 -- LSP Configs {{{1
 
-vim.lsp.config['vimls'] = {}
-
 vim.lsp.config['lua_ls'] = {
     settings = {
         Lua = {
@@ -297,20 +236,19 @@ vim.lsp.config['lua_ls'] = {
     }
 }
 
-vim.lsp.config['ts_ls'] = {}
-
-vim.lsp.config['pyright'] = {}
-
 vim.lsp.config['clangd'] = {
     cmd = { 'clangd', '--log=info' },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
 }
 
-vim.lsp.config['cmake'] = {}
-
-vim.lsp.config['bashls'] = {}
-
-vim.lsp.config['protols'] = {}
+vim.lsp.enable('vimls')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('clangd')
+vim.lsp.enable('cmake')
+vim.lsp.enable('bashls')
+vim.lsp.enable('protols')
 
 -- Conform.nvim {{{1
 
@@ -335,15 +273,15 @@ vim.api.nvim_create_user_command("Format", function(args)
     end
 
     require("conform").format({
-        async = true,
-        lsp_format = "fallback",
-        range = range},
+            async = true,
+            lsp_format = "fallback",
+            range = range
+        },
         function(err, did_edit)
             if vim.bo.filetype == "cpp" then
                 vim.cmd("silent! %s!// #pragma omp!#pragma omp")
             end
         end)
-
 end, { range = true })
 
 -- Nvim CMP Setup {{{1
