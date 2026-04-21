@@ -249,6 +249,7 @@ vim.lsp.enable('clangd')
 vim.lsp.enable('cmake')
 vim.lsp.enable('bashls')
 vim.lsp.enable('protols')
+vim.lsp.enable('tofu_ls')
 
 -- Conform.nvim {{{1
 
