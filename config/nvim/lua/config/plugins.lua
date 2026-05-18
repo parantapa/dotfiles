@@ -51,6 +51,7 @@ require("lazy").setup({
         { 'hrsh7th/vim-vsnip', },
 
         { 'lark-parser/vim-lark-syntax', },
+        { 'rbberger/vim-singularity-syntax', },
     },
     checker = { enabled = false },
     config = {
