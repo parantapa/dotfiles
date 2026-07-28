@@ -40,6 +40,7 @@ require("lazy").setup({
         { 'HiPhish/rainbow-delimiters.nvim', },
         { 'neovim/nvim-lspconfig', },
         { 'stevearc/conform.nvim', },
+        { 'sindrets/diffview.nvim', },
 
         { 'hrsh7th/cmp-nvim-lsp', },
         { 'hrsh7th/cmp-buffer', },
@@ -183,11 +184,26 @@ vim.api.nvim_create_user_command('Search', [[lua FzfLua.live_grep()]], {})
 
 -- Nvim Treesitter {{{1
 
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'TSUpdate',
+    callback = function()
+        require('nvim-treesitter.parsers').esl = {
+            install_info = {
+                path = '~/workspace/tree-sitter-esl',
+                generate = true,
+                generate_from_json = false,
+                queries = 'queries', -- also install queries from given directory
+            },
+        }
+    end
+})
+
 local ts_langs = {
     "c", "cpp", "python", "javascript", "sql",
     "lua", "vim", "vimdoc",
     "bash", "fish",
-    "json", "toml", "markdown", "markdown_inline", "rst"
+    "json", "toml", "markdown", "markdown_inline", "rst",
+    "esl"
 }
 
 require('nvim-treesitter').install(ts_langs)
@@ -251,6 +267,7 @@ vim.lsp.enable('cmake')
 vim.lsp.enable('bashls')
 vim.lsp.enable('protols')
 vim.lsp.enable('tofu_ls')
+vim.lsp.enable('esc')
 
 -- Conform.nvim {{{1
 
