@@ -1,1 +1,4 @@
 CompilationDatabase: "build/Release"
+CompileFlags:
+  Add:
+    - "-std=c++23"
