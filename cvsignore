@@ -8,3 +8,4 @@ CMakeUserPresets.json
 compile_commands.json
 .cache/
 *.sif
+CLAUDE.local.md
