@@ -9,3 +9,5 @@ compile_commands.json
 .cache/
 *.sif
 CLAUDE.local.md
+USER-DOCUMENTATION-ISSUES.md
+USER-DOCUMENTATION-FIXES.md
